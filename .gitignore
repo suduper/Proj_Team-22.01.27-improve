@@ -11,6 +11,7 @@ tmp/
 *.swp
 *~.nib
 local.properties
+./Resource/
 .settings/
 .loadpath
 .recommenders
