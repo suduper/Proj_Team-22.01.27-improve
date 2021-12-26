@@ -11,7 +11,7 @@ Vector<Goods> GoodsList = null;
 int listSize = 0;
 
 String SAVEFOLDER
-="C:/ShoppingMall/Proj_LOFI/src/main/webapp/Resource/GoodsImg/";
+="C:/JSP_BigData_0616/LHG/Git/gitDownload/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/";
 %> 
 <!DOCTYPE html>
 <html lang="ko">
