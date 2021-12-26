@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+id="WebApp_ID" version="3.0">
+  <display-name>test</display-name>
+  <welcome-file-list>
+    <welcome-file>ajax/ajaxCommunication.html</welcome-file>  <!-- 루트경로 진입시 가장먼저 읽어오는 파일 -->
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+  <!-- 서블릿을 불러오기 위해 WAS에게 주는 정보 -->
+  <!-- 1. 배포할 Servlet 2. 해당 Servlet 매핑 URL -->
+      <servlet-name>ajaxCon</servlet-name>
+      <servlet-class>myServlet.Serv</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>ajaxCon</servlet-name>
+      <url-pattern>/ajaxCon</url-pattern>
+  </servlet-mapping>
+</web-app>

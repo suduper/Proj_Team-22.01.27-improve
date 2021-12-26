@@ -1,0 +1,87 @@
+@charset "UTF-8";
+* {font-family: "Helvetica Neue","Helvetica","Arial",'Spoqa Han Sans','Malgun Gothic','Apple SD Gothic Neo','돋움',dotum,sans-serif;
+		box-sizing: border-box;
+	}
+div#wrap{
+	margin: 5 auto;
+	padding: 5px;
+}
+nav {
+  border: 1px solid #000;
+}
+li {
+  display: inline;
+}
+table{
+	margin: 0 auto;
+	
+	width: 100%;
+	width: 500px;
+}
+caption{ /*회원가입 시작  */
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 17px;
+	color: #000000;
+	text-align: center;
+	padding: 20px;
+}
+td{
+	padding: 10px 0px;
+}
+td>label{
+
+font-size: 12px;
+line-height: 22px;
+color: #999999;
+}
+td label input:hover{
+	cursor: pointer;
+	background-color: #000
+}
+td>button{
+	margin: 10px;
+	font-size: 13px;
+	color: #999999;
+}
+td>p{
+	margin: 10px;
+	font-size: 13px;
+	color: #999999;
+}
+tr.infor{
+	display:flex;
+	justify-content:space-between;
+	font-size: 13px;
+	line-height: 16px;
+	font-family: sans-serif;
+}
+input{
+	border: 1px solid #000;
+	
+		font-size: 12px;
+		height: 40px;
+		font-family: sans-serif;
+}
+input.full{
+	width: 100%;
+	}
+	input::-webkit-input-placeholder { color: #000; }
+	
+td.uZip{
+	display:flex;
+	justify-content:space-between;
+}
+ td.uZip>button{ /* 주소 버튼! */
+ color: #000; 
+ font-size: 12px;
+		height: 40px;
+		font-family: sans-serif;
+		position: relative;
+		top:-10px;
+		left:3px;
+		width: 38%;
+		background-color: #fff;
+		border-radius: 15px;
+		border: 1px solid #000;
+		}
