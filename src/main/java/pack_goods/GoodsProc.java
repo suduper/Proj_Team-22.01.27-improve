@@ -33,7 +33,7 @@ public class GoodsProc {
 	private static final String SAVEFOLDER
 	
 
-	="C:/JSP_BigData_0616/LHG/Git/gitDownload/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/";
+	="C:/ShoppingMall/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/";
 	private static String encType = "UTF-8";
 	private static int maxSize = 100*1024*1024;
 	
