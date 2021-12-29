@@ -45,17 +45,7 @@ $(function(){
 	hideT.style.display = 'none';
 	
 	$('#checkC').click(function (){
-		let addcnt = $("#addcnt").val().trim();
-		if(addcnt > 10){
-			alert('상품이미지 10개까지 업로드 가능');
-		} 
-		else if(addcnt <= 0){
-			alert('상품이미지 갯수를 반드시 등록해주세요');
-			return false;
-		}
-		else{
 		this.form.submit();
-		}
 	});
 	
 	// 상품등록 버튼 클릭시 실행되는 것들 //

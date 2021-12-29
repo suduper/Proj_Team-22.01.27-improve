@@ -69,13 +69,13 @@ object-fit: contain;
 				int goodsPrice = bean.getGoodsPrice();
 				int goodsSPrice = bean.getGoodsSPrice();
 				String regDate = bean.getRegDate();
-				int count = bean.getCount();
+				int count = bean.getwCount();
 				
-				String way = SAVEFOLDER + goodsName +"/thum/"; // 이미지 저장경로 + 서버상품이름 + 썸네일폴더
+				String way = SAVEFOLDER + goodsName +"/thumb/"; // 이미지 저장경로 + 서버상품이름 + 썸네일폴더
 				File ichk = new File(way);
 				FilenameFilter filter = new FilenameFilter() { 
 					public boolean accept(File f, String name) { 
-						return name.contains("TNL"); //TNL이라고 적힌 파일들만 반환
+						return name.contains("thumb_"); //thumb_이라고 적힌 파일들만 반환
 					}
 				};			
 	%>
@@ -90,9 +90,9 @@ object-fit: contain;
 		<%
 			}else{
 			for (String filename : filenames) {
-				setN = filename;   //TNL이라고 적힌 파일 이름을 setN으로 저장
+				setN = filename;   //thumb_이라고 적힌 파일 이름을 setN으로 저장
 		%>
-		<a href=""><img src="../Resource/GoodsImg/<%=goodsName %>/thum/<%=setN %>" alt=""/></a><br>
+		<a href=""><img src="../Resource/GoodsImg/<%=goodsName %>/thumb/<%=setN %>" alt=""/></a><br>
 		<%
 				}
 			}

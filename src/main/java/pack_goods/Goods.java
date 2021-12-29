@@ -10,7 +10,7 @@ public class Goods {
 	private String goodsImages; // 상품 이미지
 	private String goodsContent; //상품 내용
 	private String regDate;         // 상품 등록일
-	private int count;
+	private int wCount;
 	
 	public int getGoodsNum() {
 		return goodsNum;
@@ -60,12 +60,13 @@ public class Goods {
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
-	public int getCount() {
-		return count;
+	public int getwCount() {
+		return wCount;
 	}
-	public void setCount(int count) {
-		this.count = count;
+	public void setwCount(int wCount) {
+		this.wCount = wCount;
 	}
+	
 	
 	
 

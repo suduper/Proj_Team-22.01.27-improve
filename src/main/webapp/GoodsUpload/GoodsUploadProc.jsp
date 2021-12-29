@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.oreilly.servlet.MultipartRequest" %>
-<%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.util.*" %>
 <%@ page import="java.io.*" %>
     
@@ -10,7 +8,6 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <jsp:useBean id="goods" class="pack_goods.GoodsProc" scope="page" />
-
 
 <% // 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크 
 String uID = null;
@@ -21,7 +18,7 @@ String authority = null;
 if(session.getAttribute("authority") != null){ 
 	authority = (String)session.getAttribute("authority"); 
 	String GNF=request.getParameter("GNF");
-	goods.regGoodsImg(request,GNF);
+	goods.regGoodsImg(request);
 	response.sendRedirect("GoodsList.jsp");
 } else {
 	PrintWriter script = response.getWriter();
@@ -31,4 +28,3 @@ if(session.getAttribute("authority") != null){
 	script.println("</script>");
 }
 %> 
-
