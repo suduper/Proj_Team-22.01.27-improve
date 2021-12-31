@@ -4,21 +4,22 @@
 <%@ page import="java.io.*" %>
     
 <%@page import="java.io.PrintWriter"%>
-    
+      
 <% request.setCharacterEncoding("UTF-8"); %>
- 
+
 <jsp:useBean id="goods" class="pack_goods.GoodsProc" scope="page" />
 
 <% // 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크 
-String uID = null; 
+String uID = null;
 if(session.getAttribute("uID") != null){
 	uID = (String)session.getAttribute("uID"); 
 } 
 String authority = null;
-if(session.getAttribute("authority") != null){ 
+if(session.getAttribute("authority") != null){  
 	authority = (String)session.getAttribute("authority"); 
-	goods.regGoods(request); 
-	response.sendRedirect("GoodsList.jsp");
+	String oldGoodsInfo = request.getParameter("oldGoodsInfo");
+	goods.updateGoods(request,oldGoodsInfo);
+	response.sendRedirect("GoodsList.jsp"); 
 } else {
 	PrintWriter script = response.getWriter();
 	script.println("<script>");

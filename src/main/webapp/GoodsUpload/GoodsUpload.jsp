@@ -4,14 +4,14 @@
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <%@page import="java.io.PrintWriter"%>
-
+ 
 <%
 	String uID = null;
 	if(session.getAttribute("uID") != null){
 		uID = (String)session.getAttribute("uID"); 
 	} 
 	String authority = null;
-	if(session.getAttribute("authority") != null){ 
+	if(session.getAttribute("authority").equals("admin")){ 
 		authority = (String)session.getAttribute("authority");		
 	} else {
 		PrintWriter script = response.getWriter();
@@ -20,17 +20,7 @@
 		script.println("location.href='../Main/Main.jsp'");
 		script.println("</script>");
 	}
-	
-	
-	int filecounter = 0;
-	if(request.getParameter("addcnt") != null){
-		filecounter = Integer.parseInt(request.getParameter("addcnt"));
-	}
-	
-	String goodsName= null;
-	if(request.getParameter("goodsName") !=null){
-		goodsName = request.getParameter("goodsName");
-	}
+
 %>
 
 <!DOCTYPE html>
@@ -90,6 +80,9 @@ img#Img {
 	<form action="GoodsUploadProc.jsp" method="post" id="send" enctype="multipart/form-data">
 	상품명 : <input type="text" name="goodsName" id="goodsName" />
 	
+	상품 입고일 : 
+	<input type="text" name="goodsWarehousing" id="goodsWarehousing" placeholder="yy.mm.dd"/>
+	
 	상품 종류 : 
 		<select name="goodsType" id="goodsType">
 			<option value='1' selected>-- 선택 --</option>
@@ -98,10 +91,10 @@ img#Img {
   			<option value='기타'>기타</option>
 		</select>
 	상품 판매 가격 : 
-		<input type="text" name="goodsPrice" id="goodsPrice"/>
+		<input type="text" name="goodsPrice" id="goodsPrice" maxlength="7"/>
 		
 	상품 세일 가격 :
-		<input type="text" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다."/>
+		<input type="text" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다." maxlength="7"/>
 	<br>	
 	썸네일 : <input type="file" id="goodsThumbnail" name="goodsThumbnail" multiple="multiple" accept='.png, .jpg' required="required"/>
 	 <div id="Thumb_drop">
@@ -109,7 +102,7 @@ img#Img {
 		<div id="Preview_Thumb">
 		</div>
 	</div>	
-	<br>
+	<br> 
 	상품 이미지 : 
 	<input type="file" id="goodsImages" name="goodsImages" multiple="multiple" accept='.png, .jpg' required="required">
 	 <div id="Img_drop">

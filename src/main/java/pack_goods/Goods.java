@@ -1,12 +1,14 @@
 package pack_goods;
-
+ 
 public class Goods {
 	
 	private int goodsNum;        //상품 번호
 	private String goodsName; //상품 이름
+	private String goodsWarehousing;
 	private String goodsType;   //상품 종류
 	private int goodsPrice;       //상품 판매 가격
 	private int goodsSPrice;    //상품 세일 가격
+	private String goodsThumbnail;
 	private String goodsImages; // 상품 이미지
 	private String goodsContent; //상품 내용
 	private String regDate;         // 상품 등록일
@@ -23,6 +25,13 @@ public class Goods {
 	}
 	public void setGoodsName(String goodsName) {
 		this.goodsName = goodsName;
+	}
+	
+	public String getGoodsWarehousing() {
+		return goodsWarehousing;
+	}
+	public void setGoodsWarehousing(String goodsWarehousing) {
+		this.goodsWarehousing = goodsWarehousing;
 	}
 	public String getGoodsType() {
 		return goodsType;
@@ -41,6 +50,12 @@ public class Goods {
 	}
 	public void setGoodsSPrice(int goodsSPrice) {
 		this.goodsSPrice = goodsSPrice;
+	}
+	public String getGoodsThumbnail() {
+		return goodsThumbnail;
+	}
+	public void setGoodsThumbnail(String goodsThumbnail) {
+		this.goodsThumbnail = goodsThumbnail;
 	}
 	public String getGoodsImages() {
 		return goodsImages;

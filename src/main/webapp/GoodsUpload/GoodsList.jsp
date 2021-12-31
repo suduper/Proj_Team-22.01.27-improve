@@ -1,10 +1,16 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ page import="java.util.Base64" %>
+<%@ page import="java.util.Base64.Encoder" %>
+<%@ page import="java.util.Base64.Decoder" %>
 <%@ page import="java.io.*" %>
 
 <%@ page import="pack_goods.Goods, java.util.Vector" %>
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
 <% request.setCharacterEncoding("UTF-8");%>
+ 
 <%
 Vector<Goods> GoodsList = null;
 
@@ -12,9 +18,13 @@ int listSize = 0;
 
 String SAVEFOLDER
 ="C:/ShoppingMall/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/";
+
+Encoder encoder = Base64.getEncoder();
+Decoder decoder = Base64.getDecoder();
 %> 
+
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko"> 
 <head>
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,66 +66,73 @@ object-fit: contain;
 			
 	<%	
 		} else { // 등록상품이 있을 경우 출력 시작
+			
 			for (int i=0; i<listSize; i++) {						
-				Goods bean = GoodsList.get(i);
-				int num = bean.getGoodsNum();
+				Goods list = GoodsList.get(i);
+				int goodsNum = list.getGoodsNum();
 				
-				String goodsName = bean.getGoodsName();
+				String goodsName = list.getGoodsName();
+				
 				int NL = goodsName.length();	 //NameLength = 서버내 상품이름길이
-				int TR = NL - 11;                   //true length 서버내 상품이름에서 날짜 빼기
-				String showName = goodsName.substring(0,TR); //표기할 상품명 생성
+				int TL = NL - 11;                   //true length 서버내 상품이름에서 날짜 빼기
+				String showName = goodsName.substring(0,TL); //표기할 상품명 생성
+				String dates = goodsName.substring(TL,NL); // 상품 등록 날짜
+				byte[] getName = showName.getBytes();//바이트로 변환
+				String tloc = encoder.encodeToString(getName);//인코딩
+				tloc = (tloc + dates).replaceAll("/", "{"); //이름 내의/를 {로 변환
 				
-				String goodsType = bean.getGoodsType();
-				int goodsPrice = bean.getGoodsPrice();
-				int goodsSPrice = bean.getGoodsSPrice();
-				String regDate = bean.getRegDate();
-				int count = bean.getwCount();
+				String goodsType = list.getGoodsType();
+				int goodsPrice = list.getGoodsPrice();
+				int goodsSPrice = list.getGoodsSPrice();
+				String regDate = list.getRegDate();
+				int count = list.getwCount();
 				
-				String way = SAVEFOLDER + goodsName +"/thumb/"; // 이미지 저장경로 + 서버상품이름 + 썸네일폴더
-				File ichk = new File(way);
-				FilenameFilter filter = new FilenameFilter() { 
-					public boolean accept(File f, String name) { 
-						return name.contains("thumb_"); //thumb_이라고 적힌 파일들만 반환
-					}
-				};			
+				String way = SAVEFOLDER + tloc +"/thumb/"; // 이미지 저장경로 + 서버상품이름 + 썸네일폴더
+				String thumbnail =null;
+				File TF = new File(way+"thumb_"+list.getGoodsThumbnail());
 	%>
-	<div id="Show"><!-- <img src="../GoodsImg/GoodsReady/goods_ready.jpg" alt="상품 준비중"> -->
-		<%
-		try {
-			String setN = null;  //setN 변수 초기화
-			String[] filenames = ichk.list(filter);
-			if(filenames == null){
-		%>
+	<div id="Show"> 
+	<%
+	try {
+			if(TF.isFile()) {
+			     thumbnail = TF.getName();
+	%>
+		<a href="GoodsView.jsp?goodsName=<%=goodsName%>">
+			<img src="../Resource/GoodsImg/<%=tloc %>/thumb/<%=thumbnail %>" alt=""/>
+		</a><br>
+	<%
+	}else{ 
+	%>
 		<img src="../Resource/GoodsImg/GoodsReady/goods_ready.jpg" alt="상품 준비중"><br>
+	<%
+	}
+	%>
+		
+		번호 : <%=goodsNum%> <br>
+		종류 : <%=goodsType%> <br>
+		이름 : <%=showName%> <br>
+		가격 : <%=goodsPrice%> <br>
+		
 		<%
-			}else{
-			for (String filename : filenames) {
-				setN = filename;   //thumb_이라고 적힌 파일 이름을 setN으로 저장
+		if(list.getGoodsSPrice() != 0){
 		%>
-		<a href=""><img src="../Resource/GoodsImg/<%=goodsName %>/thumb/<%=setN %>" alt=""/></a><br>
-		<%
-				}
-			}
-		%>
-		종류 : <%=goodsType %><br>
-		이름 : <%=showName%><br>
-		가격 : <%=goodsPrice %><br>
-		<%
-		if(bean.getGoodsSPrice() != 0){
-		%>
-		세일 가격 : <%=goodsSPrice %><br>
+		
+		세일 가격 : <%=goodsSPrice%> <br>
+		
 		<% 
 		}
 		%>
-		상품 등록일 : <%=regDate %><br>
+		
+		상품 등록일 : <%=regDate%><br>
 		조회수 : <%=count %><br>
-	</div>			
+	</div>		
+		
 	<%
-		} catch (Exception e) {
+	} catch (Exception e) {
 			out.println(e);
-		}
-			}
-		}
+	}
+				}
+				}
 	%>
 </div>
 				

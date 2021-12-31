@@ -1,4 +1,4 @@
-
+ 
 const hideT = document.getElementById('hider');
 	hideT.style.display = 'none';
 
@@ -146,26 +146,22 @@ $('#btnSubmit').on('click', function () {
 	var goodsPrice = $("#goodsPrice").val().trim();
 	var goodsSPrice = $("#goodsSPrice").val().trim();
 	
-	alert('ImgIdx : ' + ImgIdx);
-	alert('thumb : ' + Timage);
+	//alert('ImgIdx : ' + ImgIdx);
+	//alert('thumb : ' + Timage);
 	if (goodsType == "1") {
 		alert("상품 종류 미선택.");
 		$("#goodsType").focus();
 	} else if (goodsPrice == "") {
 		alert("상품 가격 미입력.");
 		$("#goodsPrice").focus();
-	} else if (Timage == ""){
-		alert("썸네일을 확인할 수 없습니다. 다시 첨부해 주세요")
-	} else if (ImgIdx == 0){
-        alert("상품 이미지를 확인할 수 없습니다. 상품이미지를 첨부해 주세요");
-    } else {
+	} else {
 	if (goodsSPrice == "") {
 		$("#goodsSPrice").val(0)
 	}
 	const writer = jQuery.trim(document.getElementById('write').innerHTML);
 		const setT = document.all("goodsContent");
 		setT.innerHTML = writer;
-		alert(writer);
+		//alert(writer);
   	$('#send').submit();
   }
 });
