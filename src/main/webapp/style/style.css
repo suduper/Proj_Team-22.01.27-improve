@@ -72,6 +72,7 @@ td.uZip{
 	display:flex;
 	justify-content:space-between;
 }
+
  td.uZip>button{ /* 주소 버튼! */
  color: #000; 
  font-size: 12px;
@@ -85,3 +86,20 @@ td.uZip{
 		border-radius: 15px;
 		border: 1px solid #000;
 		}
+		/*동의 양식표*/
+ul>li{list-style: none}
+.clearfix::after{content: "";display: block;clear: both;}
+#joinForm{width: 500px;margin: 0 auto; border: 1px solid #000;}
+
+
+.checkBox>ul>li{float: left;}
+.checkBox>ul>li:first-child{padding: 10px;}
+.checkBox>ul>li:nth-child(2){display: flex;
+	justify-content:space-between; }
+.checkBox textarea{width: 96%;height: 90px; margin: 0 2%;}
+.lis{
+display: inline
+}
+
+
+
