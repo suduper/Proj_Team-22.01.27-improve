@@ -53,7 +53,7 @@
 <div id="review">
 <h3>REVIEW</h3>
 <br><br>
-<form action="PostProc.jsp" method="Post" id="postFrm" enctype="multipart/form-data" name="postFrm">
+<form action="ReviewProc.jsp" method="Post" id="postFrm" enctype="multipart/form-data" name="postFrm">
 
 <table id="center">
 	<tbody>
@@ -90,7 +90,7 @@
 		</tr>
 		<tr>
 			<td>
-			<button type="button" id="cancel" class="pBtn">취소</button>
+			<button type="button" id="cancel" class="pBtn" onclick="history.back()">취소</button>
 			<button type="button" id="regBtn" class="pBtn">등록하기</button>
 			</td>
 		</tr>

@@ -10,6 +10,8 @@
     
     ReviewBean bean = rMgr.getReview(numParam);
     
+    String nowPage = request.getParameter("nowPage");
+    
     int num = bean.getNum();
     String uName = bean.getuName();
     String subject = bean.getSubject();
@@ -90,19 +92,24 @@
 <table id = "read">
 	<tbody>
 		<tr>
-			<td><span class="rContent">이름  <%=uName %></span></td>
+			<td class="rContent"><span>이름  <%=uName %></span></td>
 		</tr>
 		<tr>
-			<td><span class="rContent">제목  <%=subject %></span></td>
+			<td class="rContent"><span>제목  <%=subject %></span></td>
 		</tr>
 		<tr>
-			<td><textarea id="txtArea"><%=content %></textarea></td>
+			<td><textarea id="txtArea" readonly ><%=content %></textarea></td>
 		</tr>
 	</tbody>
 </table>
-<hr>
-<button type="button">리스트</button>
 
+<hr>
+<button type="button" onclick="history.back()" class="reviewBtn">리스트</button>
+<button type="button" id="modBtn"  class="reviewBtn">수정</button>
+<button type="button" id="delBtn"  class="reviewBtn">삭제</button>
+
+			<input type="hidden" name="nowPage" value="<%=nowPage%>" id="nowPage">
+			<input type="hidden" name="num" value="<%=num%>" id="num">
 
 </main>
 
@@ -151,6 +158,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../script/script.js"></script>
+<script src="../script/script_Review.js"></script>
 </body>
 </html>

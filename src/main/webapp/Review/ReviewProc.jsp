@@ -5,5 +5,5 @@
     <jsp:useBean id="rMgr" class="pack_review.ReviewMgr" scope="page"/>
 <%
 rMgr.insertReview(request);
-response.sendRedirect("List.jsp");
+response.sendRedirect("ReviewList.jsp");
 %>

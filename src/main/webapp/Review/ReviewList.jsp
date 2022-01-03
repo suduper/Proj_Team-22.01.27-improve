@@ -12,19 +12,29 @@
     Vector<ReviewBean> vList = null;
     
     int totalRecord = 0; // 전체 레코드
-    int numPerPage = 10; // 페이지 당 레코드
-    int pagePerBlock = 15; // 블럭 당 페이지
+    int numPerPage = 5; // 페이지 당 레코드
+    int pagePerBlock = 5; // 블럭 당 페이지
     
-    int totalPage = 0; // 전체 페이지
-    int totalBlock = 0; // 전체 블록
+    int totalPage = 0;
+    int totalBlock = 0;
+    
     
     int nowPage = 1; // 현재 페이지
     int nowBlock = 1;// 현재 블럭
     
     int start = 0; // DB의 select 시작 번호
-    int end = 10; // 시작번호로부터 가져올 select 수
-    
+    int end = 5; // 시작번호로부터 가져올 select 수
+
     int listSize = 0; // 현재 읽어온 게시물 수
+    
+    String keyField = "";
+    String keyWord = "";
+    
+    totalRecord = rMgr.getTotalCount(keyField, keyWord);
+    
+    totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
+    nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
+    totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
     
     %>
     
@@ -64,7 +74,7 @@
                     <li class="board"><a href="#">Review</a></li>
                 </ul>
             </nav>
-            
+             
             <nav id="nav2" class="flex-container">
                 <ul><a href="#">Login</a></ul>
                 <ul><a href="#">Account</a></ul>
@@ -88,7 +98,7 @@ vList = rMgr.getReviewList();
 listSize = vList.size();
 %>
 
-<table>
+<table id="rList">
 	<tbody>
 	<%
 	if(vList.isEmpty()){
@@ -100,7 +110,7 @@ listSize = vList.size();
 	</tr>
 	<%}
 	else{
-	%>
+	%> 
 	
 	<%
 	for(int i = 0; i<listSize; i++){
@@ -113,18 +123,65 @@ listSize = vList.size();
 		String regDate = bean.getRegDate();
 	
 	%>
-		<tr class="prnTr" onclick="read(<%=num%>)">
-			<td><%= num %></td>
-			<td><%= subject %></td>
-			<td><%= regDate %></td>
-			<td><%= uName %></td>
+		<tr class="prnTr" >
+			<td class="List" onclick="ReviewRead(<%=num%>)"><%= num %></td>
+			<td class="List"><%= subject %></td>
+			<td class="List"><%= uName %></td>
 		</tr>
 		<%
 		}
 	}
 		%>
+		<tr>
+		<td colspan="3" id="pagingTd">
+		<%
+		int pageStart = (nowBlock-1)*pagePerBlock+1;
+		
+		int pageEnd = (nowBlock<totalBlock) ?
+				pageStart + pagePerBlock-1 : totalPage;
+		
+		if(totalPage != 0) {%>
+		
+		<%
+		if(nowBlock>1){
+		%>
+		<span onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>')">
+		&lt;
+		</span>
+		<%} else{ %>
+		<span></span>
+		<% } %>
+		
+		<%
+		for( ; pageStart<=pageEnd; pageStart++) {		%>
+		<%
+		if(pageStart == nowPage){%>
+		<span onclick="movePage('<%=pageStart%>')">
+		<%=pageStart %>
+		</span>
+		<%} else{%>
+		<span onclick="movePage('<%=pageStart%>')">
+		<%=pageStart %>
+		</span>
+		<%} %>
+		<%} %>
+		
+		<%if(totalBlock>nowBlock) { %>
+		<span onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>')">
+		&gt;
+		</span>
+		<%} else{ %>
+		<span></span>
+		<%} %>
+		
+		<%} %>
+		
+		</td>
+		</tr>
 	</tbody>
 </table>
+
+<button type="button" onclick="location.href='ReviewWrite.jsp'">리뷰 남기기</button>
 
 
 
@@ -175,6 +232,6 @@ listSize = vList.size();
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../script/script.js"></script>
+<script src="../script/script_Review.js"></script>
 </body>
 </html>
