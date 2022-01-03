@@ -107,7 +107,7 @@ public class ReviewMgr {
 			sql = "select*from tblReview order by num desc limit ?,?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, 0);
-			objPstmt.setInt(2, 10);
+			objPstmt.setInt(2, 1);
 			objRs = objPstmt.executeQuery();
 			
 			while(objRs.next()) {
@@ -171,5 +171,128 @@ public class ReviewMgr {
 		return bean;
 	}
 	// Read 끝
+	
+	// 페이지 출력
+	
+	public int getTotalCount(String keyField, String keyWord) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		ResultSet objRs = null;
+		String sql = null;
+		int totalCnt = 0;
+		
+		try {
+			objConn = pool.getConnection(); // DB연동
+			
+			if(keyWord.equals("null") || keyWord.equals("")) {
+				sql = "select count(*) from tblReview";
+				objPstmt = objConn.prepareStatement(sql);
+			} else {
+				sql = "select count(*) from tblReview ";
+				sql += "where "+keyField+" like ?";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setString(1, "%" + keyWord + "%");
+			}
+
+			objRs = objPstmt.executeQuery();
+
+			if (objRs.next()) {
+				totalCnt = objRs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			System.out.println("SQL : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+
+		return totalCnt;
+	}
+	
+		
+	// 페이지 출력 끝
+	
+	// 리뷰 수정
+	
+	public int updateReview(ReviewBean bean) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		String sql = null;
+		int exeCnt = 0;
+		
+		try {
+			objConn = pool.getConnection();
+			sql = "update tblReview set uName=?, subject=?, content=? where num=?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, bean.getuName());
+			objPstmt.setString(2, bean.getSubject());
+			objPstmt.setString(3, bean.getContent());
+			objPstmt.setInt(4, bean.getNum());
+			exeCnt = objPstmt.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println("SQL : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt);
+		}
+
+		return exeCnt;
+	
+	}
+	
+	// 리뷰 수정 끝
+	
+	//Delete 시작
+	
+	public int deleteReview(int num) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		ResultSet objRs = null;
+		String sql = null;
+		
+		int exeCnt = 0;
+		
+		try {
+			objConn = pool.getConnection();
+			
+			sql = "select fileName from tblReview whrere num=?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setInt(1,  num);
+			objRs = objPstmt.executeQuery();
+			
+			if(objRs.next() && objRs.getString(1) != null) {
+				if(!objRs.getString(1).equals("")) {
+					String fName = objRs.getString(1);
+					String fileSrc = SAVEFOLDER + "/" + fName;
+					File file = new File(fileSrc);
+					
+					if(file.exists())
+						file.delete();
+				}
+			}
+			
+			
+			sql = "delete from tblReview where num = ?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setInt(1, num);
+			exeCnt = objPstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("SQL : "+e.getMessage());
+		}finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		
+		return exeCnt;
+		
+		
+	}
+	
+	
+	//Delete 끝
+	
 
 }
