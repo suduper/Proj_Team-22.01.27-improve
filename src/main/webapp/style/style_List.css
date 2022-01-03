@@ -85,3 +85,21 @@ li{
 #top{
 	text-align: center;
 }
+
+#rList{
+	text-align: center;
+	width: 100%;
+	border: 1px solid #aaa;
+}
+.List{
+	padding: 10px;
+}
+.prnTr{
+	cursor: pointer;
+}
+
+#pagingTd{
+	width: 100px;
+	height: 100px;
+	border: 1px solid #aaa;
+}
