@@ -94,7 +94,7 @@ public class ReviewMgr {
 	
 	// List 출력
 	
-	public Vector<ReviewBean> getReviewList(){
+	public Vector<ReviewBean> getReviewList(int start, int end){
 		
 		Vector<ReviewBean> vList = new Vector<>();
 		Connection objConn = null;
@@ -106,8 +106,8 @@ public class ReviewMgr {
 			objConn = pool.getConnection();
 			sql = "select*from tblReview order by num desc limit ?,?";
 			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setInt(1, 0);
-			objPstmt.setInt(2, 1);
+			objPstmt.setInt(1, start);
+			objPstmt.setInt(2, end);
 			objRs = objPstmt.executeQuery();
 			
 			while(objRs.next()) {
