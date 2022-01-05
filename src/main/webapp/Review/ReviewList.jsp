@@ -9,10 +9,9 @@
     <%
     request.setCharacterEncoding("utf-8");
     
-    Vector<ReviewBean> vList = null;
     
     int totalRecord = 0; // 전체 레코드
-    int numPerPage = 5; // 페이지 당 레코드
+    int numPerPage = 10; // 페이지 당 레코드
     int pagePerBlock = 5; // 블럭 당 페이지
     
     int totalPage = 0;
@@ -23,12 +22,15 @@
     int nowBlock = 1;// 현재 블럭
     
     int start = 0; // DB의 select 시작 번호
-    int end = 5; // 시작번호로부터 가져올 select 수
+    int end = 10; // 시작번호로부터 가져올 select 수
 
     int listSize = 0; // 현재 읽어온 게시물 수
     
     String keyField = "";
     String keyWord = "";
+    
+
+
     
     totalRecord = rMgr.getTotalCount(keyField, keyWord);
     
@@ -36,6 +38,7 @@
     nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
     totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
     
+    Vector<ReviewBean> vList = null;
     %>
     
 <!DOCTYPE html>
@@ -94,7 +97,7 @@
 <main id="main">
 
 <%
-vList = rMgr.getReviewList();
+vList = rMgr.getReviewList(start, end);
 listSize = vList.size();
 %>
 
@@ -156,7 +159,7 @@ listSize = vList.size();
 		for( ; pageStart<=pageEnd; pageStart++) {		%>
 		<%
 		if(pageStart == nowPage){%>
-		<span onclick="movePage('<%=pageStart%>')">
+		<span>
 		<%=pageStart %>
 		</span>
 		<%} else{%>
