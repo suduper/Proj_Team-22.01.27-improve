@@ -100,11 +100,6 @@ select exists (select * from userBasket where uID = 'user1234' and goodsName = '
 -- select EXISTS (select * from 테이블이름 where 컬럼=찾는 값 limit 1) as success;
 select count(case when uID = 'user1234' and goodsName ='겨울옷시리즈_2201040857' then 1 end) as uID from userBasket; 
 
-SELECT column_name(s)
-FROM table_name
-WHERE EXISTS
-(SELECT column_name FROM table_name WHERE condition);
-
 
 -- --////////////// 업데이트 //////////////--  -- 
 set SQL_SAFE_UPDATES = 0;
@@ -119,6 +114,6 @@ delete from GoodsInfo where goodsName= '전체변경 _2201010238';
 -- --//////////////!!!드랍!!!///////////////--  -- 
 drop database !lofip;
 drop table !UserInfo;
-drop table GoodsInfo;
+drop table !GoodsInfo;
 drop table !tblReview;
 drop table !userBasket;

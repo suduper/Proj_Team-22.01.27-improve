@@ -133,7 +133,7 @@ transform : scale(1.5);
 							<td> <%=Allcount %></td>
 							<td><%=calcRes %></td>
 							<td>
-								<input type="checkbox" name="buy" id="buy"" />
+								<input type="checkbox" name="buy" id="buy" />
 							</td>
 						</tr>
 					</tbody>
@@ -143,6 +143,8 @@ transform : scale(1.5);
 			}
 		}
 	%>
-	
+	<div id="buyProc">
+		<button type="button">장바구니 구매</button>
+	</div>
 </body>
 </html>
