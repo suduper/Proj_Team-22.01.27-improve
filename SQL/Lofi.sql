@@ -4,12 +4,13 @@ use LofiP;
 create table userInfo(
 Nationality   char(10),
 Certify         char(10), 
-uID        char(20),
+uID        	  char(20),
 uPw             char(20),
 uZip             char(100),
 uAddr1         char(100),
 uAddr2         char(100),
 authority      char(5),
+Wallet      	   int(8),
 primary key(uID)
 );
 
@@ -113,7 +114,7 @@ delete from GoodsInfo where goodsName= '전체변경 _2201010238';
 
 -- --//////////////!!!드랍!!!///////////////--  -- 
 drop database !lofip;
-drop table !UserInfo;
+drop table UserInfo;
 drop table !GoodsInfo;
 drop table !tblReview;
 drop table !userBasket;

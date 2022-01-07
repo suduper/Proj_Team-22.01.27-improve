@@ -10,6 +10,7 @@ public class User {
 	private String uAddr1;
 	private String uAddr2;
 	private String authority;
+	private String Wallet;
 	
 	
 	public String getNationality() {
@@ -59,6 +60,12 @@ public class User {
 	}
 	public void setAuthority(String authority) {
 		this.authority = authority;
+	}
+	public String getWallet() {
+		return Wallet;
+	}
+	public void setWallet(String wallet) {
+		Wallet = wallet;
 	}
 	
 	

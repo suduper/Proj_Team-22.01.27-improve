@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import pack_goods.DBConnectionMgr;
 
@@ -67,10 +68,10 @@ public class UserDAO {
 		ResultSet					objRs 				=		null;
 		String						sql_join 		=		null;
 		
-		  String sql = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?)";
+		  String sql = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		  try {
 			  objConn = pool.getConnection();
-			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?)";
+			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			  objPstmt = objConn.prepareStatement(sql_join); //쿼리문1을 대기 시킨다
 			  objPstmt.setString(1, user.getNationality());
 			  objPstmt.setString(2, user.getCertify());
@@ -80,6 +81,7 @@ public class UserDAO {
 			  objPstmt.setString(6, user.getuAddr1());
 			  objPstmt.setString(7, user.getuAddr2());
 			  objPstmt.setString(8, user.getAuthority());
+			  objPstmt.setInt(9, 0);
 			  return objPstmt.executeUpdate();
 		  }catch (Exception e) {
 		 	e.printStackTrace();
@@ -138,4 +140,31 @@ public class UserDAO {
 		return -2; //오류
 	}
 	*/
+	
+	public int Wallet(String uID) {
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+		
+		try {
+			objConn = pool.getConnection();
+			
+			sql= "select Wallet from userInfo where uID = ?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objRs = objPstmt.executeQuery();
+			if(objRs.next()) {
+				return objRs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return -1;
+	}
 }

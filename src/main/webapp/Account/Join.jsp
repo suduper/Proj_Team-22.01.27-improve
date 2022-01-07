@@ -12,7 +12,7 @@
 <body>
 
 <div id="wrap">
-	<form action="JoinAction.jsp" id="regFrm">
+	<form action="JoinAction.jsp" method="post" id="regFrm">
 		<table>
 			<tbody>
 			<caption>회원가입</caption>
@@ -438,7 +438,7 @@ function kakaopost() {
 <script>
 $(document).ready(function() {
 	$('#btn-Join').click(function () { 
-		$("form").submit(); 
+		$("#regFrm").submit(); 
 	});
 });
 </script>

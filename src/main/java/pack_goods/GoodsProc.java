@@ -776,10 +776,30 @@ public class GoodsProc {
 	}
 	// 옷바구니 보기 끝 //
 	
-	public int userBuy () {
-		return 0;
+	// 옷바구니 구매 시작 //
+	public int userBuy (String uID) {
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
 		
+		try {
+			objConn = pool.getConnection();
+			
+			sql= "select Wallet from userInfo where uID = ?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return -1;
 	}
+	// 옷바구니 구매 끝 //
 }
 
 
