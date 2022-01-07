@@ -12,7 +12,11 @@ public class Goods {
 	private String goodsImages; // 상품 이미지
 	private String goodsContent; //상품 내용
 	private String regDate;         // 상품 등록일
-	private int wCount;
+	private int inventoryS	;       // S사이즈 재고
+	private int inventoryM;		// M사이즈 재고
+	private int inventoryL;		// L사이즈 재고
+	private int inventoryXL;		// XL사이즈 재고
+	private int wCount;			// 조회수
 	
 	public int getGoodsNum() {
 		return goodsNum;
@@ -74,6 +78,30 @@ public class Goods {
 	}
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
+	}
+	public int getInventoryS() {
+		return inventoryS;
+	}
+	public void setInventoryS(int inventoryS) {
+		this.inventoryS = inventoryS;
+	}
+	public int getInventoryM() {
+		return inventoryM;
+	}
+	public void setInventoryM(int inventoryM) {
+		this.inventoryM = inventoryM;
+	}
+	public int getInventoryL() {
+		return inventoryL;
+	}
+	public void setInventoryL(int inventoryL) {
+		this.inventoryL = inventoryL;
+	}
+	public int getInventoryXL() {
+		return inventoryXL;
+	}
+	public void setInventoryXL(int inventoryXL) {
+		this.inventoryXL = inventoryXL;
 	}
 	public int getwCount() {
 		return wCount;

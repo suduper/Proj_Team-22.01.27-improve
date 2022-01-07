@@ -69,6 +69,11 @@ img#Img {
 	object-fit: contain;
 	margin-left: 5px;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 </style>
 
 </head>
@@ -91,11 +96,20 @@ img#Img {
   			<option value='기타'>기타</option>
 		</select>
 	상품 판매 가격 : 
-		<input type="text" name="goodsPrice" id="goodsPrice" maxlength="7"/>
+		<input type="number" name="goodsPrice" id="goodsPrice" min="1000" max="9999999"/>
 		
 	상품 세일 가격 :
-		<input type="text" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다." maxlength="7"/>
-	<br>	
+		<input type="number" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다." min="1000" max="9999999"/>
+	<br>
+	<br>
+	<div id="inventoryList">
+		재고량 
+		S재고 : <input type="number" name="inventoryS" id="inventoryS" max="999"/>
+		M재고 : <input type="number" name="inventoryM" id="inventoryM" max="999"/>
+		L재고 : <input type="number" name="inventoryL" id="inventoryL" max="999"/>
+		XL재고 : <input type="number" name="inventoryXL" id="inventoryXL" max="999"/>
+	</div>
+	<br>
 	썸네일 : <input type="file" id="goodsThumbnail" name="goodsThumbnail" multiple="multiple" accept='.png, .jpg' required="required"/>
 	 <div id="Thumb_drop">
 	 	<p>썸네일 drag & drop</p>

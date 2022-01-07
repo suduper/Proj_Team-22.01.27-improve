@@ -50,6 +50,8 @@ public class UserDAO {
 								authority = "user";
 						 return 1;
 					 }
+				} else {
+					return -1;
 				}
 			}
 		}catch (Exception e) {

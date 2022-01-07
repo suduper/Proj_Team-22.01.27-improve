@@ -47,6 +47,9 @@ Thumbdrop
     }
   });
  //////////// 썸네일 드래그 앤 드롭 영역 /////////////
+ 
+ 
+ 
 
 //////////// 썸네일 미리보기 생성 /////////////
 function Preview_Thumb(file_T,idx_T) {
@@ -145,16 +148,24 @@ $('#btnSubmit').on('click', function () {
 	var goodsType = $("#goodsType").val().trim();
 	var goodsPrice = $("#goodsPrice").val().trim();
 	var goodsSPrice = $("#goodsSPrice").val().trim();
-	
-	alert('ImgIdx : ' + ImgIdx);
-	alert('thumb : ' + Timage);
+	var priceCheck = parseInt(goodsPrice) - parseInt(goodsSPrice);
+	var inventoryS = $("#inventoryS").val().trim();
+	var inventoryM = $("#inventoryM").val().trim();
+	var inventoryL = $("#inventoryL").val().trim();
+	var inventoryXL = $("#inventoryXL").val().trim();
+
 	if (goodsType == "1") {
 		alert("상품 종류 미선택.");
 		$("#goodsType").focus();
-	} else if (goodsPrice == "") {
-		alert("상품 가격 미입력.");
+	} else if (goodsPrice == "" || goodsPrice > 9999999) {
+		alert("상품 가격을 확인해주세요.");
 		$("#goodsPrice").focus();
-	} else if (Timage == ""){
+	    } else if (priceCheck < 0){
+        alert("상품 세일가격을 확인해주세요");
+        $("#goodsSPrice").focus();
+    } else if (inventoryS > 999 || inventoryM > 999 || inventoryL > 999 || inventoryXL > 999){
+        alert("상품 재고를 확인해주세요"); 
+    } else if (Timage == ""){
 		alert("썸네일을 확인할 수 없습니다. 다시 첨부해 주세요")
 	} else if (ImgIdx == 0){
         alert("상품 이미지를 확인할 수 없습니다. 상품이미지를 첨부해 주세요");
@@ -165,6 +176,8 @@ $('#btnSubmit').on('click', function () {
 	const writer = jQuery.trim(document.getElementById('write').innerHTML);
 		const setT = document.all("goodsContent");
 		setT.innerHTML = writer;
+		alert('ImgIdx : ' + ImgIdx);
+		alert('thumb : ' + Timage);
 		alert(writer);
   	$('#send').submit();
   }

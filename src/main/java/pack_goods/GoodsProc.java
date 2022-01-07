@@ -70,6 +70,12 @@ public class GoodsProc {
 		String goodsImages = null; // 상품 이미지 이름
 		String allImages = ""; // 모든 상품 이미지 이름
 		String goodsContent = null; //상품 내용
+		 									
+											// 재고 량
+		int inventoryS = 0;
+		int inventoryM = 0;
+		int inventoryL = 0;
+		int inventoryXL = 0;
 		
 		String goodsFolder = null; // 상품 폴더 초기화
 		
@@ -135,6 +141,24 @@ public class GoodsProc {
 					goodsContent = properties;
 					
 				}
+				if(inputID.equals("inventoryS")){
+					inventoryS = Integer.parseInt(properties) ;
+			
+				}
+				if(inputID.equals("inventoryM")){
+					inventoryM = Integer.parseInt(properties) ;
+					
+				}
+				if(inputID.equals("inventoryL")){
+					inventoryL = Integer.parseInt(properties) ;
+					
+				}
+				if(inputID.equals("inventoryXL")){
+					inventoryXL = Integer.parseInt(properties) ;
+					
+				}
+				
+				
 			}
 			////////////////////////////////////////////
 			////////////////////////////////////////////
@@ -188,18 +212,26 @@ public class GoodsProc {
 					+ "goodsThumbnail,"
 					+ "goodsImages,"					
 					+ "goodsContent,"
-					+ "regDate"
-					+ ")values(?, ?, ?, ?, ?, ?, ?, ?, now())";
+					+ "regDate,"
+					+ "inventoryS,"
+					+ "inventoryM,"
+					+ "inventoryL,"
+					+ "inventoryXL"
+					+ ")values(?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, goodsName+add);
 			objPstmt.setString(2, goodsWarehousing);
 			objPstmt.setString(3, goodsType);
-			objPstmt.setInt(4, Integer.parseInt(goodsPrice));
-			objPstmt.setInt(5, Integer.parseInt(goodsSPrice));
+			objPstmt.setInt(4, Integer.parseInt(goodsPrice) );
+			objPstmt.setInt(5, Integer.parseInt(goodsSPrice) );
 			objPstmt.setString(6, goodsThumbnail);
 			objPstmt.setString(7, allImages);
 			objPstmt.setString(8, goodsContent );
+			objPstmt.setInt(9, inventoryS);
+			objPstmt.setInt(10, inventoryM);
+			objPstmt.setInt(11, inventoryL);
+			objPstmt.setInt(12, inventoryXL);
 			objPstmt.executeUpdate();
 			
 		
@@ -232,29 +264,31 @@ public class GoodsProc {
 			objPstmt.setInt(2, 20);
 			objRs = objPstmt.executeQuery(); 
 	 
-		while (objRs.next()) {
-			Goods list = new Goods();
-			list.setGoodsNum(objRs.getInt("goodsNum"));
-			list.setGoodsName(objRs.getString("goodsName"));
-			list.setGoodsType(objRs.getString("goodsType"));
-			list.setGoodsPrice(objRs.getInt("goodsPrice"));
-			list.setGoodsSPrice(objRs.getInt("goodsSPrice"));
-			list.setGoodsThumbnail(objRs.getString("goodsThumbnail"));
-			list.setRegDate(objRs.getString("regDate"));
-			list.setwCount(objRs.getInt("wcount"));
-			GoodsList.add(list);
+			while (objRs.next()) {
+				Goods list = new Goods();
+				list.setGoodsNum(objRs.getInt("goodsNum"));
+				list.setGoodsName(objRs.getString("goodsName"));
+				list.setGoodsType(objRs.getString("goodsType"));
+				list.setGoodsPrice(objRs.getInt("goodsPrice"));
+				list.setGoodsSPrice(objRs.getInt("goodsSPrice"));
+				list.setGoodsThumbnail(objRs.getString("goodsThumbnail"));
+				list.setRegDate(objRs.getString("regDate"));
+				list.setwCount(objRs.getInt("wcount"));
+				GoodsList.add(list);
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
 		}
-	} catch (Exception e) {
-		System.out.println("SQL이슈 : " + e.getMessage());
-	} finally {
-		pool.freeConnection(objConn, objPstmt, objRs);
+		return GoodsList;
 	}
+	// 저장된 상품 리스트 불러오기 종료 //
 
-return GoodsList;
-}
-// 저장된 상품 리스트 불러오기 종료 //
-
-// 상품 조회수 증가 시작 //
+	// 상품 조회수 증가 시작 //
 	
 	public void upCount(String goodsName) {
 		// 조회수 증가 시작
@@ -269,17 +303,19 @@ return GoodsList;
 			objPstmt.setString(1, goodsName);
 			objPstmt.executeUpdate();
 			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("SQL이슈 : " + e.getMessage());
+			System.out.println("DB 접속이슈 : " + e.getMessage());
 		} finally {
 			pool.freeConnection(objConn, objPstmt);
 		}
 		
 	}
 	
-// 상품 조회수 증가 끝 //
+	// 상품 조회수 증가 끝 //
 	
-// 상품 정보 전송 시작 //
+	// 상품 정보 전송 시작 //
 	public Goods getGoodsView(String goodsName) {
 
 		Connection					objConn			=	null;
@@ -308,24 +344,29 @@ return GoodsList;
 				View.setGoodsImages(objRs.getString("goodsImages"));
 				View.setGoodsContent(objRs.getString("goodsContent"));
 				View.setRegDate(objRs.getString("regDate"));
+				View.setInventoryS(objRs.getInt("inventoryS"));
+				View.setInventoryM(objRs.getInt("inventoryM"));
+				View.setInventoryL(objRs.getInt("inventoryL"));
+				View.setInventoryXL(objRs.getInt("inventoryXL"));
 				View.setwCount(objRs.getInt("wcount"));
 				
 			}
 			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
 		} catch (Exception e) {
-			System.out.println("SQL이슈 : " + e.getMessage());
+			System.out.println("DB 접속이슈 : " + e.getMessage());
 		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
 		
-		
 		return View;
 	} 
 
-// 상품 정보 전송 끝 //
+	// 상품 정보 전송 끝 //
 
 	
-// 상품 정보 업데이트 시작 //
+	// 상품 정보 업데이트 시작 //
 	public void updateGoods(HttpServletRequest req,
 										String oldGoodsInfo) {		
 		Connection				objConn 			=		null;
@@ -579,8 +620,161 @@ return GoodsList;
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
 	}
+	// 상품 정보 업데이트 끝 //
+	
+	// 옷바구니 정보 추가 및 업데이트 시작 //
+	public int addBasket(String uID, 
+									 String goodsName,
+									 String Scount, 
+									 String Mcount, 
+									 String Lcount, 
+									 String XLcount, 
+									 String Allcount, 
+									 String calcRes) {
+		
+		Connection				objConn 			=		null;
+		PreparedStatement	objPstmt 			=		null;
+		ResultSet					objRs 				=		null;
+		String						sql 					=		null;
+		
+		System.out.println(goodsName);
+		System.out.println(uID);
+		
+		try {
+			objConn = pool.getConnection();
+			// 중복검사 시작//
+				   //select exists (select goodsName='겨울옷시리즈_2201040857' from userBasket where  uID = 'user1234' limit 1) as success;
+			sql = "select exists ("
+					+ "select * from userBasket "
+					+ "where uID = '"+uID+"'"
+					+ "and goodsName = '"+goodsName +"'"
+					+ "limit 1) as RES;";
+			
+			objPstmt = objConn.prepareStatement(sql);	
+			objRs = objPstmt.executeQuery(sql);
+			if(objRs.next()) {
+				if(objRs.getInt(1) == 0) { // 옷바구니에 같은 상품이 없다면
+					System.out.println(uID + "의 옷바구니 목록 추가");
+					sql = "insert into userBasket value (?, ?, ?, ?, ?, ?, ?, ?)";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setString(1, uID);
+					objPstmt.setString(2, goodsName);
+					objPstmt.setInt(3, Integer.parseInt(Scount));
+					objPstmt.setInt(4, Integer.parseInt(Mcount));
+					objPstmt.setInt(5, Integer.parseInt(Lcount));
+					objPstmt.setInt(6, Integer.parseInt(XLcount));
+					objPstmt.setInt(7, Integer.parseInt(Allcount));
+					objPstmt.setInt(8, Integer.parseInt(calcRes)); 
+					objPstmt.executeUpdate();
+					return 1;
+				} else if(objRs.getInt(1) == 1) { // 옷바구니에 같은 상품이 있다면
+					System.out.println(uID + "의 옷바구니 업데이트됨");
+					sql = "update userBasket set "
+							+ "Scount = ? , "
+							+ "Mcount = ? ,  "
+							+ "Lcount = ? , "
+							+ "XLcount = ? ,  "
+							+ "Allcount = ? , "
+							+ "calcRes = ? "
+							+ "where uID = ? and "
+							+ "goodsName = ? ;";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setInt(1, Integer.parseInt(Scount));
+					objPstmt.setInt(2, Integer.parseInt(Mcount));
+					objPstmt.setInt(3, Integer.parseInt(Lcount));
+					objPstmt.setInt(4, Integer.parseInt(XLcount));
+					objPstmt.setInt(5, Integer.parseInt(Allcount));
+					objPstmt.setInt(6, Integer.parseInt(calcRes)); 
+					objPstmt.setString(7, uID);
+					objPstmt.setString(8, goodsName);
+					objPstmt.executeUpdate();
+					return 2;	
+				} else { 
+					return -1;
+				}
+			}		
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return 0;
+		
+	}
+	
+	// 옷바구니 안 상품 개수 시작 //
+	public int BasketCount(String uID) {
+		Connection				objConn 			=		null;
+		PreparedStatement	objPstmt 			=		null;
+		ResultSet					objRs 				=		null;
+		String						sql 					=		null;
+		
+		try {
+			objConn = pool.getConnection();
+			sql = "select count(*) from userbasket where uID = ? ";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objRs = objPstmt.executeQuery();
+			if(objRs.next()) {
+				return objRs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+	
+		
+		return 0;	
+	}
+	// 옷바구니 안 상품 개수 끝 //
+	
+	// 옷바구니 정보 추가 및 업데이트 끝//
+	
+	// 옷바구니 보기 시작 //
+	public Vector<MyBasket> showBasket(String uID) {
 
-// 상품 정보 업데이트 끝 //
+		Vector<MyBasket> BasketList = new Vector<>();
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+
+		try {
+			objConn = pool.getConnection();   // DB연동구문 사용
+			sql = "select * from userBasket where uID =? ";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objRs = objPstmt.executeQuery(); 
+	 
+			while (objRs.next()) {
+				MyBasket BList = new MyBasket();
+				BList.setGoodsName(objRs.getString("goodsName"));
+				BList.setScount(objRs.getInt("Scount"));
+				BList.setMcount(objRs.getInt("Mcount"));
+				BList.setLcount(objRs.getInt("Lcount"));
+				BList.setXLcount(objRs.getInt("XLcount"));
+				BList.setAllcount(objRs.getInt("Allcount"));
+				BList.setCalcRes(objRs.getInt("calcRes"));
+				BasketList.add(BList);
+			}
+		
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return BasketList;
+	}
+	// 옷바구니 보기 끝 //
 }
 
 
