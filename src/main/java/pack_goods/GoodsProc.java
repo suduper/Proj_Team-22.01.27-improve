@@ -775,6 +775,11 @@ public class GoodsProc {
 		return BasketList;
 	}
 	// 옷바구니 보기 끝 //
+	
+	public int userBuy () {
+		return 0;
+		
+	}
 }
 
 
