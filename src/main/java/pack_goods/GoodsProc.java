@@ -27,10 +27,10 @@ import org.apache.commons.io.FilenameUtils;
 public class GoodsProc {
 	
 	private DBConnectionMgr pool;
-	private static final String SAVEFOLDER ="C:/ShoppingMall/"
+	private static final String SAVEFOLDER ="C:/Users/TridentK/git/"
 															   + "Project_Lofi_Co-op/"
 															   + "src/main/webapp/"
-															   + "Resource/GoodsImg/";
+															   + "Resource/GoodsImg/"; // 경로명 반드시 변경
 	private static String encType = "UTF-8";
 	private static int maxSize = 100*1024*1024;
 	

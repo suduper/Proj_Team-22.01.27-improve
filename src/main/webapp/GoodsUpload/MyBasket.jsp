@@ -33,9 +33,6 @@ Vector<MyBasket> BasketList = null;
 
 int listSize = 0;
 
-String SAVEFOLDER
-="C:/ShoppingMall/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/";
-
 Encoder encoder = Base64.getEncoder();
 Decoder decoder = Base64.getDecoder();
 
@@ -52,9 +49,14 @@ Decoder decoder = Base64.getDecoder();
 div#ShowItem {
 margin : 0px auto;
 width : 800px;
-height : 150px;
+height : 170px;
 border : 2px solid #080;
 display: flex;
+}
+th{
+font-size: 12px;
+height: 30px;
+line-height: 30px;
 }
 td{
 width: 120px;
@@ -100,10 +102,6 @@ transform : scale(1.5);
 				String tloc = encoder.encodeToString(getName);//인코딩
 				tloc = (tloc + dates).replaceAll("/", "{"); //이름 내의/를 {로 변환
 					
-				String way = SAVEFOLDER + tloc +"/thumb/"; // 이미지 저장경로 + 서버상품이름 + 썸네일폴더
-				String thumbnail =null;
-				
-				
 				int Scount = list.getScount();
 				int Mcount = list.getMcount();
 				int Lcount = list.getLcount();
