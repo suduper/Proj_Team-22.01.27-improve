@@ -102,11 +102,13 @@ display: inline
 }
 /*체크박스*/
 tfoot{
+
  border-collapse: collapse;
 
  }
  
  #joinForm{
+ width: 100%;
  display:block;
  border: 1px solid #000;
  }
@@ -121,6 +123,7 @@ tfoot{
 }
 .agreebox{ /* 체크박스들 */
 	width:20px;
+	cursor: pointer;
 }
 #checkbox_all{
 
@@ -141,4 +144,16 @@ textarea{
 #checkbox_1{
 	position: relative;
 	bottom: -15px;
+}
+
+/* 체크박스들 끝 */
+/* 회원가입시작 */
+.Join_btn{
+	cursor: pointer;
+display:block;
+width: 240px;	
+height: 45px;
+border: 1px solid #000;
+border-radius: 2em;
+
 }

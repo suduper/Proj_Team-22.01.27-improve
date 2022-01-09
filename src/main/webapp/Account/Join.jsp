@@ -30,7 +30,7 @@
 				</tr>
 				<tr>
 					<td>
-						<button>휴대폰인증</button>
+						<button style="cursor: pointer;">휴대폰인증</button>
 						<p>본인 명의의 휴대폰으로 본인인증을 진행합니다.</p>
 					</td>
 				</tr>
@@ -52,7 +52,7 @@
 
 				<tr>
 					<td class="uZip"><input type="text" id="uZip" name="uZip" placeholder=" 주소"size="64" readonly>
-						<button type="button" id="zipBtn" onclick="kakaopost()">우편번호</button>
+						<button type="button" id="zipBtn" onclick="kakaopost()" style="cursor: pointer;">우편번호</button>
 					</td>
 				</tr>
 				<tr>
@@ -368,7 +368,7 @@ o 로그 기록
 
 ※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.
 				</textarea>
-				<p class="agree">개인정보 수집 및 이용에 동의하십니까?<input type="checkbox" id="checkbox_1" class="agreebox">동의함</p>
+				<p class="agree">개인정보 수집 및 이용에 동의하십니까?<input type="checkbox" id="checkbox_2" class="agreebox">동의함</p>
 				</td>
 				<td style="display: block; ">
 				<span style="text-align: left; font-size: 12px; margin-left: 20px">[선택] 쇼핑정보 수신 동의</span>
@@ -382,13 +382,16 @@ o 로그 기록
 				<p class="agree">SMS 수신을 동의하십니까?<input type="checkbox" id="checkbox_1" class="agreebox">동의함</p>
 				</td>
 				</tr>
+	            <tr class="infor">
+					<td ><button type="button" id="btn-Join" class="Join_btn" style="background-color: #000; color: #fff">회원가입</button></td>
+					<td><button type="button" id="btn-Cancel" class="Join_btn"style="background-color: #fff; color: #000">회원가입취소</button></td>
+				</tr>
 			</tfoot>
 			<!-- 체크박스 끝 -->
 		</table>
 	</form>
 	
-	<button type="button" id="btn-Join"
-	style="position: relative;left:1000px">회원가입</button>
+	
  </div>
 
 
@@ -410,12 +413,88 @@ function kakaopost() {
 <!-- jquery로 submit -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-$(document).ready(function() {
-	$('#btn-Join').click(function () { 
-		
-		$("#regFrm").submit(); 
-	});
+//체크박스 전체선택 시작
+$('#checkbox_all').click(function(){
+	let checked = $('#checkbox_all').is(':checked');
+	
+	if(checked)
+		$('input:checkbox').prop('checked',true); 
+	else
+		$('input:checkbox').prop('checked',false);
 });
+//체크박스 전체선택 끝
+//아이디 유효성검사시작
+	$("#btn-Join").click(function(){
+		
+		let uID = $("#uID").val();
+		let uIdLen  = uID.length;
+		let uIdReg = /[^a-z|A-Z|0-9|_]/;
+		if (uIdLen < 5) {
+			alert("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+			$("#uID").focus();
+			return;
+		} else if(uIdReg.test(uID)) {
+			alert("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+			$("#uID").focus();
+			return;
+		}
+		//아이디 검사끝
+		//비밀번호 및 회원가입필수들 시작
+		let uPw = $("#uPw").val();
+		let uPw_Re = $("#uPw_Re").val();
+		let uName = $("#uName").val();
+		let uEmail = $("#uEmail").val();
+		let uAddr1 = $("#uAddr1").val();
+		let uAddr2 = $("#uAddr2").val();
+		let uAddr = uAddr1 + " " + uAddr2;
+		let checkbox_1=$('#checkbox_1').is(':checked');
+		let checkbox_2=$('#checkbox_2').is(':checked');
+		//let uIdBtnClickChk = $("#uIdBtnClickChk").val();
+		if(uID == "") {    	// 아이디 검사 시작
+			alert("ID를 입력해주세요");
+			$("#uID").focus();
+			
+			$("#uID").focus(function(){
+				$(this).css({"outline": "1px solid #555"});	
+			}).blur(function(){
+				$(this).css({"outline": "none"});	
+			});					
+			// 아이디 검사 끝
+		} else if (uPw == "") {     // 비밀번호 검사 시작
+			alert("비밀번호를 입력하세요.");
+			$("#uPw").focus();
+		} else if (uPw != uPw_Re) {     // 비밀번호 동일검사 시작
+			alert("비밀번호가 다릅니다. 확인 후 다시 입력하세요.");
+			$("#uPw_Re").val("");
+			$("#uPw").focus();
+		} else if (uEmail == "") {     // 이메일 검사 시작
+			alert("이메일을 입력하세요.");
+			$("#uEmail").focus();
+		} else if (uEmail.indexOf("@") < 0 || uEmail.indexOf(".") < 0) {     // 이메일 검사 시작
+			alert("이메일주소를 확인하세요.");
+			$("#uEmail").focus();
+		} else if (checkbox_1 == false) {     // 이메일 검사 시작
+			alert("개인정보 수집 및 이용에 동의해주세요");
+			$("#checkbox_1").focus();
+		}else if (checkbox_2 == false) {     // 이메일 검사 시작
+			alert("개인정보 수집 및 이용에 동의해주세요");
+			$("#checkbox_2").focus();
+		}else {
+			$("#uAddr").val(uAddr);
+			
+			$("#regFrm").submit();		
+			
+		}
+	
+	});
+//////////////유효성 검사 시작//////////////////////
+	
+//////////////유효성 검사 끝 //////////////////////
+	$("#btn-Cancel").click(function(){
+		location.href = "../Index.jsp";
+	});
+
+
 </script>
 
 </body>
