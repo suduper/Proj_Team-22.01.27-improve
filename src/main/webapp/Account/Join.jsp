@@ -18,22 +18,42 @@
 			<caption>회원가입</caption>
 				<tr>
 					<td>
-						<label ><input type="radio" name="nationality" value="1_내국인" style="font-size:12px; width:25px;height:22px" checked>내국인회원</label>
-						<label ><input type="radio" name="nationality" value="0_외국인" style="font-size:12px; width:25px;height:22px" >외국인회원(foreigner)</label>
+						<label ><input type="radio" name="nationality" value="1_내국인" style="font-size:12px; width:25px;height:22px" checked id="nomalBtn">내국인회원</label>
+						<label ><input type="radio" name="nationality" value="0_외국인" style="font-size:12px; width:25px;height:22px" id="foreignerBtn">외국인회원(foreigner)
+						</label>
 					</td>
 				</tr>
-				<tr>
+				<tr class="hideForeigner">
+					<td><input type="text" name=foreigner id="foreigner" placeholder="이름(Name)"class="full"></td>
+				</tr>
+				<tr class="hideForeigner">
+					<td><input type="text" name=foreigner id="foreigner" placeholder=""class="full" style="margin-top: -10px;">
+				</td>
+				</tr>
+				<tr class="hideForeigner">
+				<td>
+					<button type="button" id="foreignerCheck" style="margin-top: -10px;">CHECK</button>
+				<p style="color: #000; font-size: 12px;">
+				회사는 회원의 본인확인 및 서비스제공을 위하여 고유식별정보를 수집하여 보관하며 개인정보취급방침에 따라
+보유 및 이용합니다. 고유식별정보 제공을 거부하는 경우 서비스 이용이 제한됩니다.</p>
+<input type="checkbox" class="agreebox" id="foreignerBox"><span style="font-size: 12px;">고유식별정보 처리에 동의 합니다.</span>
+</td>
+				</tr>
+				<tr class="phoneAcc">
 					<td>
-						<label ><input type="radio" name="certify" value="1_휴대폰" style="font-size:12px; width:25px;height:22px" checked>휴대폰인증</label>
-						<label ><input type="radio" name="certify" value="2_이메일" style="font-size:12px; width:25px;height:22px">이메일인증</label>
+						<label ><input type="radio" name="certify" value="1_휴대폰" style="font-size:12px; width:25px;height:22px" checked id="certify1">휴대폰인증</label>
+						<label ><input type="radio" name="certify" value="2_이메일" style="font-size:12px; width:25px;height:22px" id="certify2">이메일인증<span id="hideSpan"><br>기본정보 > 이메일 항목에 입력하신 정보로 본인인증을 진행합니다.
+회원가입 후에 입력하신 이메일 주소로 인증 메일이 발송되오니, 확인해 주시기 바랍니다.</span></label>
 					</td>
 				</tr>
-				<tr>
-					<td>
+				<tr class="phoneAcc">
+					<td id="showSpan">
 						<button style="cursor: pointer;">휴대폰인증</button>
 						<p>본인 명의의 휴대폰으로 본인인증을 진행합니다.</p>
 					</td>
 				</tr>
+				
+				
 				<tr class="infor">
 					<td >&nbsp;INFORMATION <!--  인포메이션 시작~~~~~--></td>
 					<td>*필수입력사항</td>
@@ -413,6 +433,28 @@ function kakaopost() {
 <!-- jquery로 submit -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+//숨기기버튼들 외국인 시작
+$(".hideForeigner").css("display" ,"none"); //외국인 회원버튼 클릭시 이제나올거임
+$("#hideSpan").css("display" ,"none"); //이메일인증버튼
+$("#foreignerBtn").click(function() {
+	$(".hideForeigner").show();
+	$(".phoneAcc").hide();
+});
+
+$("#nomalBtn").click(function() {
+	$(".hideForeigner").hide();
+	$(".phoneAcc").show();
+});
+
+$("#certify1").click(function(){
+	$("#hideSpan").hide(); //이메일인증 숨기기
+	$("#showSpan").show(); //휴대폰인증 보여주세요
+});
+$("#certify2").click(function(){
+	$("#hideSpan").show();
+	$("#showSpan").hide();
+	
+});
 //체크박스 전체선택 시작
 $('#checkbox_all').click(function(){
 	let checked = $('#checkbox_all').is(':checked');

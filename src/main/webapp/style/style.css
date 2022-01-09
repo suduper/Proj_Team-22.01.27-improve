@@ -72,7 +72,22 @@ td.uZip{
 	display:flex;
 	justify-content:space-between;
 }
-
+#foreignerCheck{
+	border-radius: 2em;
+	border: 1px solid #000;
+	background-color: #fff;
+	width: 100px;
+	height: 40px;
+	font-size: 14px;
+	color: #000;
+	position:relative;
+	right: 10px;	
+	cursor: pointer;
+}
+#foreignerBox{
+	position: relative;
+	top:15px;
+}
  td.uZip>button{ /* 주소 버튼! */
  color: #000; 
  font-size: 12px;
@@ -124,6 +139,7 @@ tfoot{
 .agreebox{ /* 체크박스들 */
 	width:20px;
 	cursor: pointer;
+	border: 1px solid #000;
 }
 #checkbox_all{
 
@@ -136,6 +152,7 @@ textarea{
 	height: 100px;
 }
 .agree{
+
 	margin-left: 20px;
 	margin-top: -30px;
 	color: #000;
@@ -145,7 +162,10 @@ textarea{
 	position: relative;
 	bottom: -15px;
 }
-
+#checkbox_2{
+	position: relative;
+	bottom: -15px;
+}
 /* 체크박스들 끝 */
 /* 회원가입시작 */
 .Join_btn{
