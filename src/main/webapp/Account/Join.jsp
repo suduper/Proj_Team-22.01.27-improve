@@ -438,6 +438,7 @@ function kakaopost() {
 <script>
 $(document).ready(function() {
 	$('#btn-Join').click(function () { 
+		alert("읗헣헣");
 		$("#regFrm").submit(); 
 	});
 });
