@@ -100,6 +100,45 @@ ul>li{list-style: none}
 .lis{
 display: inline
 }
+/*체크박스*/
+tfoot{
+ border-collapse: collapse;
 
+ }
+ 
+ #joinForm{
+ display:block;
+ border: 1px solid #000;
+ }
+#allChk{ 
+	border-bottom: 1px solid #080;
+	text-align: center;
+	margin-top: 20px;
+}
+.chkBox{
+	margin-top: 10px;
+	display: flex;
+}
+.agreebox{ /* 체크박스들 */
+	width:20px;
+}
+#checkbox_all{
 
-
+	position: relative;
+	top: -13px;
+}
+textarea{
+	width: 450px;
+	margin: 20px;
+	height: 100px;
+}
+.agree{
+	margin-left: 20px;
+	margin-top: -30px;
+	color: #000;
+	font-size: 12px;
+}
+#checkbox_1{
+	position: relative;
+	bottom: -15px;
+}

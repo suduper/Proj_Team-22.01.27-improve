@@ -138,36 +138,19 @@
 				<td><span style="font-size: 15px;">전체 동의</span></td>
 				</tr>
 				<tr>
-				<td>
-				
-				</td>
-				</tr>
-				<tr>
 					<td>
 						<input type="hidden" name="authority" id="authority" value="user"/>
 					</td>
 				</tr>
-				
-			</tbody>
-		</table>
-	</form>
-	<form action="" id="joinForm">
-				<ul class="join_box">
-                <li class="checkBox check01">
-                    <ul class="clearfix">
-                   
-                        <li class="lis">     <input type="checkbox" name="chkAll" id="chk" class="chkAll"> 이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</li>
-                    </ul>
-                </li>
-                <li class="checkBox check02">
-                    <ul class="clearfix">
-                        <li class="lis">[필수] 이용약관 동의</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk"> 
-                        </li>
-                    </ul>
-                    <textarea name="" id="">
-                    제1조(목적)
+				</tbody>
+			<!-- 체크박스 시작 -->
+				<tfoot>
+				<tr id="joinForm">
+				<th class="chkBox" id="allChk" style=" font-size: 14px; font-style: bold; "  ><input type="checkbox" id="checkbox_all" class="agreebox">이용약관 및 개인정보수집 및 이용, 쇼핑정보 수신(선택)에 모두 동의합니다.</th>
+				<td style="display: block; border-bottom: 1px solid; #000;">
+				<span style="text-align: left; font-size: 12px; margin-left: 20px">[필수] 이용약관 동의</span>
+				<textarea name="" id="" cols="30" rows="10">
+				제1조(목적)
 이 약관은 슬랜빌리지(전자상거래 사업자)가 운영하는 로파이 사이버 몰(이하 “몰”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 사이버 몰과 이용자의 권리 의무 및 책임사항을 규정함을 목적으로 합니다.
 ※「PC통신, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 이 약관을 준용합니다.」
 
@@ -329,17 +312,13 @@
 ② “몰”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
 
 부 칙(시행일) 이 약관은 년 월 일부터 시행합니다.
-       </textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li class="lis">[필수] 개인정보 수집 및 이용 동의</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk">
-                        </li>
-                    </ul>
-                    <textarea name="" id="">
-                     ** 본 양식은 쇼핑몰 운영에 도움을 드리고자 샘플로 제공되는 서식으로 쇼핑몰 운영형태에 따른 수정이 필요합니다. 쇼핑몰에 적용하시기 전, 쇼핑몰 운영 사항 등을 확인하시고 적절한 내용을 반영하여 사용하시기 바랍니다. **
+				</textarea>
+				<p class="agree">개인정보 수집 및 이용에 동의하십니까?<input type="checkbox" id="checkbox_1" class="agreebox">동의함</p>
+				</td>
+				<td style="display: block; border-bottom: 1px solid; #000;">
+				<span style="text-align: left; font-size: 12px; margin-left: 20px">[필수] 개인정보 수집 및 이용 동의</span>
+				<textarea name="" id="" cols="30" rows="10">
+				 ** 본 양식은 쇼핑몰 운영에 도움을 드리고자 샘플로 제공되는 서식으로 쇼핑몰 운영형태에 따른 수정이 필요합니다. 쇼핑몰에 적용하시기 전, 쇼핑몰 운영 사항 등을 확인하시고 적절한 내용을 반영하여 사용하시기 바랍니다. **
 
 1. 개인정보 수집목적 및 이용목적
 
@@ -387,32 +366,27 @@ o 로그 기록
 
 -보존기간 : 3개월
 
-※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.</textarea>
-                </li>
-                <li class="checkBox check03">
-                    <ul class="clearfix">
-                        <li class="lis">[선택] 쇼핑정보 수신 동의</li>
-                    </ul>
- 
-                    <textarea name="" id="">
-                    할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS와 이메일로 받아보실 수 있습니다.
+※ 동의를 거부할 수 있으나 거부시 회원 가입이 불가능합니다.
+				</textarea>
+				<p class="agree">개인정보 수집 및 이용에 동의하십니까?<input type="checkbox" id="checkbox_1" class="agreebox">동의함</p>
+				</td>
+				<td style="display: block; ">
+				<span style="text-align: left; font-size: 12px; margin-left: 20px">[선택] 쇼핑정보 수신 동의</span>
+				<textarea name="" id="" cols="30" rows="10">
+				할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS와 이메일로 받아보실 수 있습니다.
 
 단, 주문/거래 정보 및 주요 정책과 관련된 내용은 수신동의 여부와 관계없이 발송됩니다.
 
 선택 약관에 동의하지 않으셔도 회원가입은 가능하며, 회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
-       </textarea>
-                </li>
-                <li class="checkBox check04">
-                    <ul class="clearfix">
-                        <li class="lis">SMS 수신을 동의하십니까?</li>
-                        <li class="checkBtn">
-                            <input type="checkbox" name="chk">
-                        </li>
-                    </ul>
- 
-                </li>
-            </ul>
-            </form>
+				</textarea>
+				<p class="agree">SMS 수신을 동의하십니까?<input type="checkbox" id="checkbox_1" class="agreebox">동의함</p>
+				</td>
+				</tr>
+			</tfoot>
+			<!-- 체크박스 끝 -->
+		</table>
+	</form>
+	
 	<button type="button" id="btn-Join"
 	style="position: relative;left:1000px">회원가입</button>
  </div>
@@ -438,7 +412,7 @@ function kakaopost() {
 <script>
 $(document).ready(function() {
 	$('#btn-Join').click(function () { 
-		alert("읗헣헣");
+		
 		$("#regFrm").submit(); 
 	});
 });
