@@ -115,6 +115,17 @@ ul>li{list-style: none}
 .lis{
 display: inline
 }
+/*마이페이지 css 시작*/
+#ifLogin{
+	border: 1px solid #000; cursor: pointer; text-align:center; height: 130px;
+}
+.Mytr{
+	display: flex;justify-content:space-between; margin-top: 20px; height: 70px; text-align:center;
+}
+.Mytd{
+	border: 1px solid #000; width:49%; font-size:11px ;
+}
+/*마이페이지 css 끝 */
 /*체크박스*/
 tfoot{
 

@@ -4,16 +4,15 @@ use LofiP;
 create table userInfo(
 Nationality   char(10),
 Certify         char(10), 
-uID        	  char(20),
+uID        char(20),
 uPw             char(20),
 uZip             char(100),
 uAddr1         char(100),
 uAddr2         char(100),
 authority      char(5),
-Wallet      	   int(8),
 primary key(uID)
 );
-
+select * from userInfo;
 /*---------------------상품 테이블--------------------*/
 create table GoodsInfo(
 goodsNum       			int     				auto_increment     primary key,
@@ -64,10 +63,11 @@ XLcount 			int(3),
 allcount 			int(4),
 calcRes 				int(9)
 );
+
 /*----------------초기 입력----------------*/
 
 insert into userInfo(uID,uPw,authority) values ('test1234','1234','admin');  /*관리자 권한 계정 임시 생성*/
-insert into userInfo(uID,uPw,authority) values ('user1234','1234','user');  
+
 /*------------------------------------------------------*/
 select now();
 -- --///////////////desc 문/////////////--  -- 
@@ -93,13 +93,18 @@ select * from userBasket where uID = 'user1234';
 
 delete from userBasket where uID = 'user1234';
 
-select Wallet from userInfo where uID = 'user1231';
+
 
 update userBasket set Scount = 3 , Mcount = 2,  Lcount = 1 , XLcount = 0 ,  allCount = 6, calcRes = 300000 where uID = 'user1234' and goodsName = '겨울옷시리즈_2201040857' ;
  SELECT EXISTS(SELECT * FROM MYTABLE where MYCOLUMN = VALUE ) as isHava;
 select exists (select * from userBasket where uID = 'user1234' and goodsName = '겨울옷시리즈_2201040857' limit 1) as RES;
 -- select EXISTS (select * from 테이블이름 where 컬럼=찾는 값 limit 1) as success;
 select count(case when uID = 'user1234' and goodsName ='겨울옷시리즈_2201040857' then 1 end) as uID from userBasket; 
+
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
 
 
 -- --////////////// 업데이트 //////////////--  -- 
@@ -109,12 +114,12 @@ update GoodsInfo set goodsName = '봄옷 시리즈시험_2112310953',goodsPrice=
 update GoodsInfo set goodsThumbnail = '67SE7Ji3MQ==.jpg' where goodsName = '봄옷 시즌1_2201011215';
 update GoodsInfo set goodsImages = '67SE7Ji3Mg==.jpg / 67SE7Ji3Mw==.jpg / 67SE7Ji3MQ==.jpg / 67SE7Ji3Mg==3.jpg / ' where goodsName = '완전변경 봄옷시즌!_2201011215';
 update GoodsInfo set inventoryM = 0 where goodsName='겨울옷시리즈_2201040838';
-update userInfo set Wallet = 10000000 where uID = 'user1231';
+
 delete from GoodsInfo where goodsName= '전체변경 _2201010238';
 
 -- --//////////////!!!드랍!!!///////////////--  -- 
 drop database !lofip;
 drop table !UserInfo;
-drop table !GoodsInfo;
+drop table GoodsInfo;
 drop table !tblReview;
 drop table !userBasket;
