@@ -24,7 +24,7 @@ int walletMoney = userDAO.Wallet(uID);
 String result = null;
 if(walletMoney > 0){
 	result = "성공";
-}
+}  
 
 int pay = walletMoney - sum;
 
