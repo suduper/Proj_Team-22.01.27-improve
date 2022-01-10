@@ -213,7 +213,7 @@ listSize = vList.size();
                 <h4>LINKS</h4>
                 <ul><a href="#">회사소개</a></ul>
                 <ul><a href="#">이용약관</a></ul>
-                <ul><a href="#">개인정보취급방침</a></ul>
+                <ul><a href="#">개인정보취급방침</a></ul> 
                 <ul><a href="#">이용안내</a></ul>
             </div>
             <div id="follow">
