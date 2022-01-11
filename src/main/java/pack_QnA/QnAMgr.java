@@ -1,4 +1,4 @@
-package pack_review;
+package pack_QnA;
 
 
 import com.oreilly.servlet.MultipartRequest;
@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-public class ReviewMgr {
+public class QnAMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
@@ -25,7 +25,7 @@ public class ReviewMgr {
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
 	
-	public ReviewMgr() {
+	public QnAMgr() {
 		
 		try {
 			pool = DBConnectionMgr.getInstance();
@@ -34,8 +34,9 @@ public class ReviewMgr {
 		}
 		
 	}
+	
 	// 리뷰 입력
-	public void insertReview(HttpServletRequest req) {
+	public void insertQnA(HttpServletRequest req) {
 		
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
@@ -66,7 +67,7 @@ public class ReviewMgr {
 			}
 			String content = multi.getParameter("content");
 			
-			sql = "insert into tblReview(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
+			sql = "insert into tblQnA(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
 					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
@@ -94,33 +95,30 @@ public class ReviewMgr {
 	
 	// List 출력
 	
-	public Vector<ReviewBean> getReviewList(int start, int end){
+	public Vector<QnABean> getQnAList(int start, int end){
 		
-		Vector<ReviewBean> vList = new Vector<>();
+		Vector<QnABean> vList = new Vector<>();
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
 		ResultSet objRs = null;
 		String sql	= null;
 		
-		
 		try {
 			objConn = pool.getConnection();
-			sql = "select*from tblReview order by num desc limit ?,?";
+			sql = "select*from tblQnA order by num desc limit ?,?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, start);
 			objPstmt.setInt(2, end);
 			objRs = objPstmt.executeQuery();
 			
 			while(objRs.next()) {
-				ReviewBean bean = new ReviewBean();
+				QnABean bean = new QnABean();
 				bean.setNum(objRs.getInt("num"));
 				bean.setSubject(objRs.getString("subject"));
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
 				
-				
 				vList.add(bean);
-			
 			}
 		}catch (Exception e) {
 			System.out.println("SQL : "+e.getMessage());
@@ -135,17 +133,17 @@ public class ReviewMgr {
 	
 	// Read 시작
 	
-	public ReviewBean getReview(int num) {
+	public QnABean getQnA(int num) {
 		
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
 		ResultSet objRs = null;
 		String sql = null;
 		
-		ReviewBean bean = new ReviewBean();
+		QnABean bean = new QnABean();
 		try {
 			objConn = pool.getConnection();
-			sql = "select*from tblReview where num = ?";
+			sql = "select*from tblQnA where num = ?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, num);
 			objRs = objPstmt.executeQuery();
@@ -189,10 +187,10 @@ public class ReviewMgr {
 			objConn = pool.getConnection(); // DB연동
 			
 			if(keyWord.equals("null") || keyWord.equals("")) {
-				sql = "select count(*) from tblReview";
+				sql = "select count(*) from tblQnA";
 				objPstmt = objConn.prepareStatement(sql);
 			} else {
-				sql = "select count(*) from tblReview ";
+				sql = "select count(*) from tblQnA ";
 				sql += "where "+keyField+" like ?";
 				objPstmt = objConn.prepareStatement(sql);
 				objPstmt.setString(1, "%" + keyWord + "%");
@@ -218,7 +216,7 @@ public class ReviewMgr {
 	
 	// 리뷰 수정
 	
-	public int updateReview(ReviewBean bean) {
+	public int updateQnA(QnABean bean) {
 		
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
@@ -227,7 +225,7 @@ public class ReviewMgr {
 		
 		try {
 			objConn = pool.getConnection();
-			sql = "update tblReview set uName=?, subject=?, content=? where num=?";
+			sql = "update tblQnA set uName=?, subject=?, content=? where num=?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, bean.getuName());
 			objPstmt.setString(2, bean.getSubject());
@@ -249,7 +247,7 @@ public class ReviewMgr {
 	
 	//Delete 시작
 	
-	public int deleteReview(int num) {
+	public int deleteQnA(int num) {
 		
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
@@ -261,7 +259,7 @@ public class ReviewMgr {
 		try {
 			objConn = pool.getConnection();
 			
-			sql = "select fileName from tblReview whrere num=?";
+			sql = "select fileName from tblQnA whrere num=?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1,  num);
 			objRs = objPstmt.executeQuery();
@@ -278,7 +276,7 @@ public class ReviewMgr {
 			}
 			
 			
-			sql = "delete from tblReview where num = ?";
+			sql = "delete from tblQnA where num = ?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, num);
 			exeCnt = objPstmt.executeUpdate();
@@ -296,6 +294,76 @@ public class ReviewMgr {
 	
 	
 	//Delete 끝
+	
+	public int replyQnA(QnABean bean) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		ResultSet objRs = null;
+		String sql = null;
+		int cnt = 0;
+		
+		try {
+			
+			objConn = pool.getConnection();
+			
+			sql = "insert into tblQnA (uName, content, subject, ref, pos, depth, regDate, pass, count, ip) values(?, ?, ?, ?, ?, ?,now(), ?, 0, ?)";
+			
+			int depth = bean.getDepth()+1;
+			int pos = bean.getPos()+1;
+			
+			objPstmt =objConn.prepareStatement(sql);
+			objPstmt.setString(1, bean.getuName());
+			objPstmt.setString(2, bean.getContent());
+			objPstmt.setString(3, bean.getSubject());
+			objPstmt.setInt(4, bean.getRef());
+			objPstmt.setInt(5, pos);
+			objPstmt.setInt(6, depth);
+			objPstmt.setString(7, bean.getPass());
+			objPstmt.setString(8, bean.getIp());
+			cnt = objPstmt.executeUpdate();
+			
+			
+		}catch(Exception e) {
+			System.out.println("SQL : "+e.getMessage());
+		}finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return cnt;
+		
+		
+	}
+	
+	public int replyUpQnA(int ref, int pos) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		ResultSet objRs = null;
+		String sql = null;
+		int cnt = 0;
+		
+		try {
+			
+			objConn = pool.getConnection();
+			
+			sql = "update tblQnA set pos = pos+1 where ref = ? and pos > ?";
+			
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setInt(1, ref);
+			objPstmt.setInt(2, pos);
+			cnt = objPstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			System.out.println("SQL : "+e.getMessage());
+		}finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		
+		return cnt;
+		
+	}
+	
+	
 	
 
 }
