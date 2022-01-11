@@ -49,7 +49,7 @@
             <nav id="nav2" class="flex-container">
             <% if(uID == null){ /* 로그인 안되있을때 */ %>
                 <ul><a href="../Account/Login.jsp">Login</a></ul>
-                <ul><a href="../Account/Mypage.jsp">Account</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
 			<%  }
             
             else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
