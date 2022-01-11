@@ -57,7 +57,7 @@
             else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
                 <ul><a href="#">Cart</a></ul>
-                <ul><a href="../Account/Mypage.jsp">Account</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
 			<% } 
             else if(uID !=null && authority.equals("admin")){
 			%>
