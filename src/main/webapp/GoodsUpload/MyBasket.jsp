@@ -211,6 +211,7 @@ background-color: #EFEFEF;
 				</thead>
 				<tbody>
 				<form action="BuyProc.jsp?count=<%=listSize%>" method="post" id="buyGoods">
+					<input type="hidden" name="uID" id="uID" value="<%=uID %>" />
 				<%
 				for (int i = 0; i < listSize; i++){
 					MyBasket list = BasketList.get(i);
@@ -235,11 +236,12 @@ background-color: #EFEFEF;
 					int calcRes = list.getCalcRes();
 					String buyCost = money.format(calcRes);
 					
-					
+					sum +=calcRes;
+					allBuyCost = money.format(sum);
 		%>
 					<tr>
 						<td id="showThumb">
-							<img src="../Resource/GoodsImg/<%=tloc %>/thumb/thumb_<%=view.getGoodsThumbnail() %>" alt="" />
+							<img src="../Resource/GoodsImg/<%=tloc %>/thumb/thumb_<%=view.getGoodsThumbnail() %>"/>
 						</td>
 						<td><span id="goodsName"><%=showName %></span></td>
 						<td id="Sizes">
@@ -251,35 +253,31 @@ background-color: #EFEFEF;
 						<td> <%=Allcount %> <span>개</span></td>
 						<td> <%=buyCost %> <span>원</span></td>
 						<td>
-							<input type="checkbox" name="buyThis<%=i%>" id="buyThis<%=i%>" onclick="PayCalc(<%=listSize%>,<%=i %>)" value="<%=calcRes %>" />
-							<input type="hidden" name="uID" id="uID" value="<%=uID %>" />
-							<input type="hidden" name="goodsName<%=i%>" id="goodsName<%=i%>" value="<%=goodsName%> " />
-							<input type="hidden" name="Scount<%=i%>" id="Scount<%=i%>" value="<%=Scount%>"/>
-							<input type="hidden" name="Mcount<%=i%>" id="Mcount<%=i%>" value="<%=Mcount%>"/>
-							<input type="hidden" name="Lcount<%=i%>" id="Lcount<%=i%>" value="<%=Lcount%>"/>
-							<input type="hidden" name="XLcount<%=i%>" id="XLcount<%=i%>" value="<%=XLcount%>"/>
-							<input type="hidden" name="calcRes<%=i%>" id="calcRes<%=i%>" value="<%=calcRes %>"/>
+							<input type="hidden" name="calcRes<%=i %>" id="calcRes<%=i %>" value="<%=calcRes%>"/>
+							<input type="checkbox" name="buyThis<%=i%>" id="buyThis" 
+										onclick="PayCalc(<%=listSize%>,<%=i %>)" 
+										value="<%=goodsName %> / <%=Scount %> / <%=Mcount %> / <%=Lcount %> / <%=XLcount %> / <%=calcRes %>"/>
 						</td>
 					</tr>
 				
 		<%
-			sum +=calcRes;
-			allBuyCost = money.format(sum);
 				}
 			}
-		%>
+		%>	
+				<input type="hidden" name="forSubmitPrice" id="forSubmitPrice" value=""/>
 				</form>
 				</tbody>	
 			</table>
 		</div> <!-- <div id="BasketList"> -->
 		
+
 		<div id="buyProc">
 				<p>전체 금액</p>
 				<p><span id="AllBuyCost">0</span>원</p>
 			<ul>
 				<li><span >전체 선택 &nbsp;&nbsp;<input type="checkbox" name="buyThis" id="selectAll" onclick='selectAll(this,<%=listSize %>)'></span></li>
 				<li><span onclick="">선택 상품 삭제</span></li>
-				<li><span onclick="submit()">선택 상품 구매</span></li>
+				<li><span onclick="BuyIt()">선택 상품 구매</span></li>
 			</ul>
 		</div> <!-- <div id="buyProc"> -->
 		

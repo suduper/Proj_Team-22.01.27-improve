@@ -41,13 +41,72 @@ String PayedWalletMoney = money.format(walletMoney - sum);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CheckYourWallet</title>
+<style>
+div#purchaseInfo{
+border: 1px solid #000;
+border-radius : 10px;
+}
+div#purchaseCheck{
+border: 1px solid #000;
+border-radius : 10px;
+width : 250px;
+margin: 0px auto;
+margin-top: 30px;
+}
+div#purchaseCheck p{
+text-align: center;
+font-size: 25px;
+}
+ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.choice {
+    display: flex;
+    justify-content: space-around;
+}
+li{
+border: 1px solid #000;
+border-radius : 10px;
+margin-bottom : 20px;
+width: 80px;
+height: 40px;
+line-height : 40px;
+font-size:28px;
+text-align: center;
+}
+h1 {
+text-align: center;
+}
+span#showInfo {
+border: 3px inset #777;
+font-weight: bold;
+}
+.choice li:hover{
+background-color: #CfCfCf;
+cursor: pointer;
+}
+</style>
 </head>
 <body>
 <h1>결제정보</h1>
-<%=uID %><br>
-<%=result %><br>
-현재 내 지갑 <%=MyWalletMoney %><br>
-결재 금액 : <%=YouHaveToPay %><br>
-결제후 내 지갑 <%=PayedWalletMoney %><br>
+<div id="purchaseInfo">
+	<p><%=uID %> 님의 지갑정보 불러오기 <%=result %></p>
+	<p>현재 내 지갑 : <span id="showInfo"><%=MyWalletMoney %></span>원</p>
+	<p>결재 금액 : <span id="showInfo"><%=YouHaveToPay %></span>원</p>
+	<p>결제후 내 지갑 : <span id="showInfo"><%=PayedWalletMoney %></span>원</p>
+</div>
+
+<div id="purchaseCheck">
+	<p>구매하시겠습니까?</p>
+	<ul class="choice">
+		<li><span onclick="callWallet()">Yes</span></li>
+		<li><span onclick="window.close()">No</span></li>
+	</ul>
+</div>
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="../script/script_MyBasket.js"></script>
 </body>
 </html>

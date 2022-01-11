@@ -8,7 +8,14 @@ let checkCount = 0;
 let selectAllCnt = 0;
 let AllBuyCost = document.getElementById('AllBuyCost');
 let childOpenWindow; // 자식 창 오픈 
-let uID = document.getElementById('uID').value;
+let uID = null;
+let insertDiv =null;
+
+if(document.getElementById('uID')){ 
+	if(document.getElementById('uID').value != null){
+		uID = document.getElementById('uID').value;
+	}	
+}
 
 //전체선택
 function selectAll(selectAll,listSize)  {
@@ -39,17 +46,18 @@ function PayCalc(listSize,checkNum){
 		AllBuyCostCalc(sum);
 		
 	} else if(listSize == checkNum){
+		sum = 0;
 		for(let i = 0; i < checkNum; i++){
 			checkboxes = document.getElementsByName('buyThis'+i);
 			rs = "전체 추가 : "
-			val = $(checkboxes).val();
+			val = $("#calcRes"+i).val();
 			sum = sum + parseInt(val);
 			AllBuyCostCalc(sum);
 		}
 		console.log(checkNum + rs + val + " 전체 : " + sum);
 	} else {
 		checkboxes = document.getElementsByName('buyThis'+checkNum);
-		val = $(checkboxes).val();
+		val = $("#calcRes"+checkNum).val();
 		isThisChecked = $(checkboxes).is(":checked");
 		if(isThisChecked == true){
 			rs = "추가 : ";
@@ -59,6 +67,7 @@ function PayCalc(listSize,checkNum){
 		if(isThisChecked == false) {
 			rs = "감소 : "
 			sum = sum - parseInt(val);
+			$('.goods'+checkNum).remove();
 			AllBuyCostCalc(sum);
 		}
 		console.log(checkNum + rs + val + " 전체 : " + sum);
@@ -69,26 +78,45 @@ function PayCalc(listSize,checkNum){
 
 //금액 계산 결과 변환기
 function AllBuyCostCalc(sum){
+	document.getElementById('forSubmitPrice').value = sum;
 	let res = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	document.getElementById('AllBuyCost').innerHTML = res;
 }
 //금액 계산 결과 변환기
 
 
+function BuyIt(){
+	if(document.getElementById('AllBuyCost').innerHTML == 0){
+		alert('구매하실 상품을 선택해 주세요');
+		return false;	
+	}
+	$("#buyGoods").submit();
+}
+
 //상품구매
-function submit(){
-	window.name = uID; 
-	childOpenWindow = window.open('../GoodsUpload/CheckYourWallet.jsp?info='+uID+"/"+sum, "CheckYourWallet", "width=500, height=500, resizable = no, scrollbars = no"); 
+function Purchase(getUID,sum){
+	if(document.getElementById('AllBuyCost').innerHTML == 0){
+		alert('구매하실 상품을 선택해 주세요');
+		return false;	
+	}
+	window.name = getUID+'payment'; 
+	childOpenWindow = window.open('../GoodsUpload/CheckYourWallet.jsp?info='+getUID+"/"+sum, 
+								"CheckYourWallet", "width=500, height=500, \
+								resizable = no, scrollbars = no");
 	
 	//$("#buyGoods").submit();
 }
 //상품구매
 
-function openWindow() { 
-	window.name = 'parentForm'; 
-	childOpenWindow = window.open(url, windowName, [windowFeatures]); 
-} // 자식에게 값 전달 
-
-function sendChildText() { 
+function callWallet() { 
+	alert('확인');
+	let parent = window.opener;
+	parent.document.getElementById('buyGoods').submit();
 	
+    self.close();
+    sendDATA();
+}
+
+function sendDATA(){
+	 $("#buyGoods").submit();
 }

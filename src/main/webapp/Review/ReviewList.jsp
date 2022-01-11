@@ -94,7 +94,7 @@
 <main id="main">
 
 <%
-vList = rMgr.getReviewList();
+vList = rMgr.getReviewList(1,2);
 listSize = vList.size();
 %>
 

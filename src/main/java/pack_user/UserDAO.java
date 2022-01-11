@@ -140,7 +140,7 @@ public class UserDAO {
 		return -2; //오류
 	}
 	*/
-	
+	//지갑확인 시작
 	public int Wallet(String uID) {
 		Connection					objConn		=	null;
 		PreparedStatement 		objPstmt 		= 	null;
@@ -166,5 +166,40 @@ public class UserDAO {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
 		return -1;
+	}
+	//지갑확인 끝
+	
+	//유저정보 시작
+	public User userInfo(String uID) {
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+		
+		
+		User info = new User();
+		try {
+			objConn = pool.getConnection();
+			
+			sql= "select * from userInfo where uID = ?";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objRs = objPstmt.executeQuery();
+			
+			if(objRs.next()) {
+				info.setuZip(objRs.getString("uZip"));
+				info.setuAddr1(objRs.getString("uAddr1"));
+				info.setuAddr2(objRs.getString("uAddr2"));
+			}
+
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return info;
 	}
 }
