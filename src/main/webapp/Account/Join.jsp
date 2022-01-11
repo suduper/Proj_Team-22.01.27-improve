@@ -15,7 +15,7 @@
 	<form action="JoinAction.jsp" method="post" id="regFrm">
 		<table>
 			<tbody>
-			<caption>회원가입1</caption>
+			<caption>회원가입2</caption>
 				<tr>
 					<td>
 						<label ><input type="radio" name="nationality" value="1_내국인" style="font-size:12px; width:25px;height:22px" checked id="nomalBtn">내국인회원</label>
