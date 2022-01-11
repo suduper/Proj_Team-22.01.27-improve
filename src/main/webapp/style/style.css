@@ -123,9 +123,85 @@ display: inline
 	display: flex;justify-content:space-between; margin-top: 20px; height: 70px; text-align:center;
 }
 .Mytd{
-	border: 1px solid #000; width:49%; font-size:11px ;
+	border: 1px solid #000; width:49%; font-size:11px;
+	background-repeat: no-repeat;
+}
+#orderCus{
+	background-image: url('../Account/img/delivery.png');
+	background-position: 50% 60%;
+}
+#inforCus{
+	background-image: url('../Account/img/info.png');
+	background-position: 50% 60%;
+}
+#wishCus{
+	background-image: url('../Account/img/wish.png');
+	background-position: 50% 60%;
+}
+#moneyCus{
+	background-image: url('../Account/img/dollor.png');
+	background-position: 50% 60%;
+}
+#couponCus{
+	background-image: url('../Account/img/coupon.png');
+	background-position: 50% 60%;
+}
+#myCus{
+	background-image: url('../Account/img/my.png');
+	background-position: 50% 60%;
+}
+#addrCus{
+	background-image: url('../Account/img/addr.png');
+	background-position: 50% 60%;
+}
+#deliCus{
+	background-image: url('../Account/img/AlwaysDelivery.png');
+	background-position: 50% 60%;
 }
 /*마이페이지 css 끝 */
+
+/*로그인페이지 시작*/
+#Td_Id_save{
+	display:block;
+	margin-top: -20px;
+	padding-top: -30px;
+}
+#Input_Id_save{
+	width: 20px;
+	position: relative;
+	top:15px;
+}
+#LoginOrAccount{
+	margin-top: -15px;
+}
+#infor2{
+	margin-top: -35px;
+	display:flex;
+	justify-content:space-between;
+	font-size: 13px;
+	line-height: 12px;
+	font-family: sans-serif;
+}
+#Naver_Login{
+	background-image: url('../Account/img/naver.png');
+	background-repeat: no-repeat;
+	background-position: 35%;
+}
+#Kakao_Login{
+	background-image: url('../Account/img/kakao.png');
+	background-repeat: no-repeat;
+	background-position: 35%;
+}
+.Join_btn2{
+	cursor: pointer;
+display:block;
+width: 240px;	
+height: 26px;
+border: 1px solid #000;
+border-radius: 2em;
+
+}
+/*로그인페이지 끝*/
 /*체크박스*/
 tfoot{
 

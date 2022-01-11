@@ -10,12 +10,12 @@
 <link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-
+<%@include file="../Main/Main_Top.jsp" %>
 <div id="wrap">
 	<form action="JoinAction.jsp" method="post" id="regFrm">
 		<table>
 			<tbody>
-			<caption>회원가입2</caption>
+			<caption>회원가입</caption>
 				<tr>
 					<td>
 						<label ><input type="radio" name="nationality" value="1_내국인" style="font-size:12px; width:25px;height:22px" checked id="nomalBtn">내국인회원</label>
@@ -59,7 +59,7 @@
 					<td>*필수입력사항</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="uID" id="uID" placeholder="아이디"class="full"></td>
+					<td><input type="text" name="uID" id="uID" placeholder=" 아이디"class="full"></td>
 				</tr>
 
 				<tr>
@@ -413,7 +413,7 @@ o 로그 기록
 	
 	
  </div>
-
+<%@include file="../Main/Main_Bottom.jsp" %>
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <!--  카카오 우편번호 예제시작-->
