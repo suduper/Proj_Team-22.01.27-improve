@@ -8,6 +8,9 @@
     
     int numParam = Integer.parseInt(request.getParameter("num"));
     
+    String keyField = request.getParameter("keyField");
+    String keyWord = request.getParameter("keyWord");
+    
     ReviewBean bean = rMgr.getReview(numParam);
     
     String nowPage = request.getParameter("nowPage");
@@ -16,6 +19,7 @@
     String uName = bean.getuName();
     String subject = bean.getSubject();
     String content = bean.getContent();
+    String filename = bean.getFileName();
     
     int pos = bean.getPos();
     int ref = bean.getRef();
@@ -92,24 +96,29 @@
 <table id = "read">
 	<tbody>
 		<tr>
-			<td class="rContent"><span>이름  <%=uName %></span></td>
+			<td class="rContent"><span>제목</span><span><%=subject %></span></td>
 		</tr>
 		<tr>
-			<td class="rContent"><span>제목  <%=subject %></span></td>
+			<td class="rContent"><span>작성자</span><span><%=uName %></span></td>
 		</tr>
 		<tr>
-			<td><textarea id="txtArea" readonly ><%=content %></textarea></td>
+			<td id="readContents" >
+			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="">
+			<textarea name="txtArea" id="txtArea" cols="30" rows="10" readonly><%=content %></textarea>
+			</td>
 		</tr>
 	</tbody>
 </table>
 
-<hr>
 <button type="button" onclick="history.back()" class="reviewBtn">리스트</button>
 <button type="button" id="modBtn"  class="reviewBtn">수정</button>
 <button type="button" id="delBtn"  class="reviewBtn">삭제</button>
 
 			<input type="hidden" name="nowPage" value="<%=nowPage%>" id="nowPage">
 			<input type="hidden" name="num" value="<%=num%>" id="num">
+			<input type="hidden" id="pKeyField" value="<%=keyField%>">
+			<input type="hidden" id="pKeyWord" value="<%=keyWord%>">
+
 
 </main>
 

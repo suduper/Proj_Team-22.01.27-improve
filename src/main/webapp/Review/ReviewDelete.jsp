@@ -25,7 +25,7 @@
     		
     		<script>
     		alert("삭제 완료");
-    		location.href = "<%=url%>"; 
+    		location.href = "ReviewList.jsp";
     		</script>
     	<%} else{%>
     	<script>
@@ -42,8 +42,8 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Update</title>
-    <link rel="stylesheet" href="../style/style_Update.css">
+    <title>Review Delete</title>
+    <link rel="stylesheet" href="../style/style_Delete.css">
 </head>
 <body>
 
@@ -88,7 +88,7 @@
         
         <div id="delete">
         
-        <h3>리뷰 삭제</h3>
+        <h3>REVIEW</h3>
 			<br><br>
 		<form id="delFrm" name="delFrm">
 		
@@ -96,13 +96,13 @@
 			<tbody>
 				<tr>
 					<td>
-					<input type="password" name="passParam" id="pass" placeholder="비밀번호를 입력하세요">
+					<input type="password" name="passParam" id="pass" placeholder="비밀번호를 입력하세요" size="50">
 					</td>
 				</tr>
 			</tbody>
 		</table>
-		<button type="button" id="delSbmBtn">삭제하기</button>
-		<button type="button" onclick="history.back()">돌아가기</button>
+		<button type="button" id="delSbmBtn" class="delBtn">삭제하기</button>
+		<button type="button" onclick="history.back()" class="delBtn">돌아가기</button>
 		
 			<input type="hidden" name="num" value="<%=numParam%>">
 			<input type="hidden" name="nowPage" value="<%=nowPage%>">

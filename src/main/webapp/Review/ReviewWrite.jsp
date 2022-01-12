@@ -53,7 +53,7 @@
 <div id="review">
 <h3>REVIEW</h3>
 <br><br>
-<form action="ReviewProc.jsp" method="Post" id="postFrm" enctype="multipart/form-data" name="postFrm">
+<form action="ReviewProc.jsp?subject=1234" method="Post" id="postFrm" enctype="multipart/form-data" name="postFrm">
 
 <table id="center">
 	<tbody>
@@ -74,13 +74,13 @@
 		</tr>
 		<tr>
 			<td>
-			<textarea rows="30" cols="79" name="content" size="80" di="content"></textarea>
+			<textarea rows="30" cols="79" name="content" size="80" id="content"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="file" placeholder="파일 선택" size = "71" id="fileName" readonly>
-			<input type="file" name="file" id="file"><label for="file">첨부하기</label>
+			<!-- <label for="file">첨부하기</label> -->
+			<input type="file" name="fileName" placeholder="파일 선택" size = "71" id="fileName">
 			</td>
 		</tr>
 		<tr>

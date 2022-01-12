@@ -4,6 +4,7 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <jsp:useBean id="rMgr" class="pack_review.ReviewMgr" scope="page"/>
 <%
-rMgr.insertReview(request);
+String subject = request.getParameter("subject");
+rMgr.insertReview(request, subject);
 response.sendRedirect("ReviewList.jsp");
 %>

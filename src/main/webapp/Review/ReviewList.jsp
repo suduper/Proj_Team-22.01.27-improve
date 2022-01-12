@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="pack_review.ReviewBean"
-    import="java.util.*"
+    import="java.util.Vector"
     %>
     
     <jsp:useBean id="rMgr" class="pack_review.ReviewMgr" scope="page"/>
@@ -9,7 +9,6 @@
     <%
     request.setCharacterEncoding("utf-8");
     
-    Vector<ReviewBean> vList = null;
     
     int totalRecord = 0; // 전체 레코드
     int numPerPage = 5; // 페이지 당 레코드
@@ -30,12 +29,24 @@
     String keyField = "";
     String keyWord = "";
     
+    if (request.getParameter("keyWord") != null) {
+    	keyField = request.getParameter("keyField");
+    	keyWord = request.getParameter("keyWord");
+    }
+    
+    if (request.getParameter("nowPage") != null) {
+    	nowPage = Integer.parseInt(request.getParameter("nowPage"));
+    	start = (nowPage * numPerPage) - numPerPage;
+    	end = numPerPage;
+    }
+    
     totalRecord = rMgr.getTotalCount(keyField, keyWord);
     
     totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
     nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
     totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
     
+    Vector<ReviewBean> vList = null;
     %>
     
 <!DOCTYPE html>
@@ -89,12 +100,12 @@
         </header>
 
 
-<div id="top"><span>REVIEW</span></div>
+<div id="top"><h4>REVIEW</h4></div>
 
 <main id="main">
 
 <%
-vList = rMgr.getReviewList(1,2);
+vList = rMgr.getReviewList(keyField, keyWord, start, end);
 listSize = vList.size();
 %>
 
@@ -115,23 +126,36 @@ listSize = vList.size();
 	<%
 	for(int i = 0; i<listSize; i++){
 		
+		if(i==listSize) break;
+		
 		ReviewBean bean = vList.get(i);
 		
 		int num = bean.getNum();
 		String subject = bean.getSubject();
 		String uName = bean.getuName();
 		String regDate = bean.getRegDate();
+		String content = bean.getContent();
 	
 	%>
 		<tr class="prnTr" >
-			<td class="List" onclick="ReviewRead(<%=num%>)"><%= num %></td>
-			<td class="List"><%= subject %></td>
-			<td class="List"><%= uName %></td>
+			<td class="List" id="listNum" onclick="ReviewRead(<%=num%>)"><%= num %></td>
+			<td class="List" id="listSub"><%= subject %>
+			<br><br>
+			<input type="text" placeholder="<%=content%>" readonly id="listContent" maxlength="20">
+			</td>
+			<td class="List" id="listName"><%= uName %></td>
 		</tr>
+		
 		<%
 		}
 	}
 		%>
+		
+		<tr>
+			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='ReviewWrite.jsp'">리뷰 남기기</button></td>
+		</tr>
+
+
 		<tr>
 		<td colspan="3" id="pagingTd">
 		<%
@@ -156,11 +180,11 @@ listSize = vList.size();
 		for( ; pageStart<=pageEnd; pageStart++) {		%>
 		<%
 		if(pageStart == nowPage){%>
-		<span onclick="movePage('<%=pageStart%>')">
+		<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>)">
 		<%=pageStart %>
 		</span>
 		<%} else{%>
-		<span onclick="movePage('<%=pageStart%>')">
+		<span class="mBtn" onclick="movePage('<%=pageStart%>')">
 		<%=pageStart %>
 		</span>
 		<%} %>
@@ -174,16 +198,35 @@ listSize = vList.size();
 		<span></span>
 		<%} %>
 		
-		<%} %>
+	<%} %>
 		
 		</td>
 		</tr>
 	</tbody>
 </table>
 
-<button type="button" onclick="location.href='ReviewWrite.jsp'">리뷰 남기기</button>
+<div id="searchArea" class="flex-container">
 
-
+<form name = "searchFrm" id="searchFrm">
+	<select name="keyDate" id="keyDate">
+		<option value="week">일주일</option>
+		<option value="month">한달</option>
+		<option value="threeMonth">세달</option>
+		<option value="all">전체</option>
+	</select>
+	
+	<select name="keyField" id="keyField">
+		<option value="subject" <% if(keyField.equals("subject")) out.print("selected"); %>>제목</option>
+		<option value="content" <% if(keyField.equals("content")) out.print("selected"); %>>내용</option>
+		<option value="uName" <% if(keyField.equals("uName")) out.print("selected"); %>>작성자</option>
+	</select>
+	
+	<input type="text" name="keyWord" id="keyWord" value="<%= keyWord%>">
+	<button type="button" id="searchBtn">검색</button>
+	</form>
+</div>
+	<input type="hidden" id="pKeyField" value="<%= keyField%>">
+	<input type="hidden" id="pKeyWord" value="<%= keyWord%>">
 
 </main>
 
@@ -213,7 +256,7 @@ listSize = vList.size();
                 <h4>LINKS</h4>
                 <ul><a href="#">회사소개</a></ul>
                 <ul><a href="#">이용약관</a></ul>
-                <ul><a href="#">개인정보취급방침</a></ul> 
+                <ul><a href="#">개인정보취급방침</a></ul>
                 <ul><a href="#">이용안내</a></ul>
             </div>
             <div id="follow">

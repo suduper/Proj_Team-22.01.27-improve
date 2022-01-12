@@ -74,7 +74,7 @@
 	<tbody>
 		<tr>
 			<td>
-			<input type="text" name="subject" placeholder="<%=subject %>>"  size = "80" id="subject">
+			<input type="text" name="subject" placeholder="<%=subject %>"  size = "80" id="subject">
 			</td>
 		</tr>
 		<tr>
@@ -89,15 +89,12 @@
 		</tr>
 		<tr>
 			<td>
-			<textarea rows="30" cols="79" name="content" size="80" di="content">
-			<%=content %>
-			</textarea>
+			<textarea rows="30" cols="79" name="content" size="80" id="content"><%=content %></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="file" placeholder="파일 선택" size = "71" id="fileName" readonly>
-			<input type="file" name="file" id="file"><label for="file">첨부하기</label>
+				<input type="file" name="fileName" size = "80" id="fileName">
 			</td>
 		</tr>
 		<tr>
