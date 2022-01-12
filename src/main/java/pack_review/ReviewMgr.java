@@ -1,26 +1,29 @@
 package pack_review;
 
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 public class ReviewMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
-	 = "C:\\Project_Directory";
+	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op-develop/src/main/webapp/Resource/ReviewImg/";
 	
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
@@ -35,7 +38,7 @@ public class ReviewMgr {
 		
 	}
 	// 리뷰 입력
-	public void insertReview(HttpServletRequest req) {
+	public void insertReview(HttpServletRequest req, String subject) {
 		
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
@@ -44,6 +47,7 @@ public class ReviewMgr {
 		MultipartRequest	multi = null;
 		int fileSize = 0;
 		String fileName = null;
+		// String subject = null;
 		
 		try {
 			objConn = pool.getConnection();
@@ -54,17 +58,24 @@ public class ReviewMgr {
 			int ref = 1;
 			if(objRs.next()) ref = objRs.getInt(1)+1;
 			
-			File file = new File(SAVEFOLDER);
 			
-			if(!file.exists()) file.mkdirs();
 			
-			multi = new MultipartRequest(req, SAVEFOLDER, maxSize, encType, new DefaultFileRenamePolicy());
+			File file = new File(SAVEFOLDER+subject);
+			
+			if (!file.exists())
+				file.mkdirs();
+			
+			multi = new MultipartRequest(req, SAVEFOLDER+subject, maxSize, encType, new DefaultFileRenamePolicy());
+			
 			
 			if(multi.getFilesystemName("fileName") != null) {
 				fileName = multi.getFilesystemName("fileName");
 				fileSize = (int)multi.getFile("fileName").length();
 			}
 			String content = multi.getParameter("content");
+			
+			subject = multi.getParameter("subject");
+		
 			
 			sql = "insert into tblReview(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
 					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
@@ -94,7 +105,7 @@ public class ReviewMgr {
 	
 	// List 출력
 	
-	public Vector<ReviewBean> getReviewList(int start, int end){
+	public Vector<ReviewBean> getReviewList(String keyField, String keyWord, int start, int end){
 		
 		Vector<ReviewBean> vList = new Vector<>();
 		Connection objConn = null;
@@ -103,12 +114,27 @@ public class ReviewMgr {
 		String sql	= null;
 		
 		
+		
 		try {
 			objConn = pool.getConnection();
+			
+			if(keyWord.equals("null") || keyWord.equals("")) {
+			
 			sql = "select*from tblReview order by num desc limit ?,?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, start);
 			objPstmt.setInt(2, end);
+						
+			
+			} else {
+				sql = "select*from tblReview where "+keyField+" like ? order by num desc limit ?,?";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setString(1, "%"+keyWord+"%");
+				objPstmt.setInt(2, start);
+				objPstmt.setInt(3, end);
+								
+			}
+			
 			objRs = objPstmt.executeQuery();
 			
 			while(objRs.next()) {
@@ -117,11 +143,13 @@ public class ReviewMgr {
 				bean.setSubject(objRs.getString("subject"));
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
+				bean.setContent(objRs.getString("content"));
 				
 				
 				vList.add(bean);
-			
 			}
+			
+			
 		}catch (Exception e) {
 			System.out.println("SQL : "+e.getMessage());
 		}finally {
@@ -186,7 +214,7 @@ public class ReviewMgr {
 		int totalCnt = 0;
 		
 		try {
-			objConn = pool.getConnection(); // DB연동
+			objConn = pool.getConnection();
 			
 			if(keyWord.equals("null") || keyWord.equals("")) {
 				sql = "select count(*) from tblReview";
@@ -261,7 +289,7 @@ public class ReviewMgr {
 		try {
 			objConn = pool.getConnection();
 			
-			sql = "select fileName from tblReview whrere num=?";
+			sql = "select fileName from tblReview where num=?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1,  num);
 			objRs = objPstmt.executeQuery();
