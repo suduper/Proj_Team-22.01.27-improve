@@ -1,12 +1,35 @@
 
 
-function ReviewRead(param) {
+/* function ReviewRead(param) {
 	location.href="ReviewRead.jsp?num="+param;
-}
+} */
+
+function ReviewRead(p1, p2) {
+    let p3 = $("#pKeyField").val().trim();  // p3 : keyField
+    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
+	let param = "ReviewRead.jsp?num="+p1;
+	     param += "&nowPage="+p2;
+	     param += "&keyField="+p3;
+	     param += "&keyWord="+p4 ; 
+	location.href=param;
+}	
 
 function movePage(p1){
-	let param = "ReviewList.jsp?nowPage="+p1;
+	let p3 = $("#pKeyField").val().trim();
+    let p4 = $("#pKeyWord").val().trim();
+
+	let param = "ReviewList.jsp?nowPage="+p1+"&keyField="+p3+"&keyWord="+p4;
 	location.href = param;
+}
+
+function moveBlock(p1, p2) {    // 블럭 이동
+
+	let pageNum = parseInt(p1);
+	let pagePerBlock = parseInt(p2);	
+	
+	let param = "ReviewList.jsp?nowPage="+(pagePerBlock*(pageNum-1)+1);
+	location.href=param;
+
 }
 
 
@@ -123,6 +146,18 @@ $(function(){
 		
 		
 	});
+	
+		$("#searchBtn").click(function(){
+		let keyWord = $("#keyWord").val().trim();
+		if (keyWord=="") {
+			alert("검색어를 입력해주세요.");
+			$("#keyWord").focus();			
+		} else {
+			$("#searchFrm").submit();
+		}
+	});	
+	
+	
 
 
 
