@@ -7,6 +7,7 @@
     margin: 0px auto;
     width: 1500px;
     border: 1px solid #000;
+    text-align: center;
 }
 /* 
 li{
@@ -82,43 +83,20 @@ li{
     font-size: 13px;
 }
 
-#read{	
-	width: 50%;
-	margin-right: auto;
-	margin-left: auto;
-}
-
-.rContent{
-	width: 400px;
-	font-size: 15px;
-	line-height: 40px;
-	display: flex;
-	justify-content: space-between;
-	font-weight: bold;
-}
-
-#txtArea{
-	width: 800px;
-	height: 200px;
-	resize: none;
-	border: 1.5px solid #000;
-	text-align: left;
-	outline: none;
-	line-height: 20px;
-	padding-top: 10px;
-	padding-left: 20px;
-}
-
-.reviewBtn{
-	margin-top: 20px;
-	font-size: 20px;
-	font-weight: bold;
-	width: 150px;
-	height: 70px;
-	border: 1px solid #000;
-	border-radius: 10px;
-	background-color: white;
+#pass{
 	position: relative;
-	left: 330px;
-	cursor: pointer;
+	left: 550px;
+	height: 50px;
 }
+
+.delBtn{
+	margin-top: 10px;
+	width: 100px;
+	height: 30px;
+	border: 1px solid black;
+	cursor: pointer;
+	background-color: white;
+	font-size: 15px;
+	border-radius: 10px;
+	}
+

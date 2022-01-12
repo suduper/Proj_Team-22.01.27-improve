@@ -89,20 +89,26 @@ li{
 	line-height: 30px;
 }
 #content{
-	width: 500px;
+	width: 570px;
+	resize: none;
+	outline: none;
 }
 
 #subject, #uName, #email,  #filename, #pass{
 	height: 50px;
 }
 #file{
-	display: none;
+	/* display: none; */
 }
 
 .pBtn{
-	width: 282px;
+	margin-top: 10px;
+	width: 283px;
 	height: 50px;
 	border: 1px solid black;
 	cursor: pointer;
+	background-color: white;
+	font-size: 15px;
+	border-radius: 10px;
 	}
 

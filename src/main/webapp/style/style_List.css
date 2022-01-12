@@ -83,23 +83,87 @@ li{
 }
 
 #top{
+	margin-left: 148px;
+	width: 80%;
 	text-align: center;
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 20px;
 }
 
 #rList{
 	text-align: center;
-	width: 100%;
-	border: 1px solid #aaa;
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+	font-size: 12px;
+	/* border: 1px solid #aaa; */
 }
 .List{
-	padding: 10px;
+	height: 110px;
+	border-bottom: 1px solid #aaa;
 }
-.prnTr{
+#listNum{
 	cursor: pointer;
+}
+.prnTr, .List{
+	margin: 20px;
 }
 
 #pagingTd{
 	width: 100px;
-	height: 100px;
-	border: 1px solid #aaa;
+	height: 50px;
+	/* border: 1px solid #aaa; */ 
 }
+.mBtn{
+	margin: 10px;
+	cursor: pointer;
+}
+#nowView{
+	color: blue;
+}
+#writeBtn{
+	position : relative;
+	left: 44%;
+	bottom: -10px;
+	font-size: 20px;
+	border-radius: 15px;
+	padding: 20px 20px;
+	background-color: #000;
+	border-style: none;
+	color: white;
+	cursor: pointer;
+	border-style: none;
+}
+#listSub{
+	
+	text-align: center;
+}
+#listName{
+	
+	text-align: right;
+}
+#listContent{
+	border: none;
+}
+#searchArea{
+	position: relative;
+	left: 150px;
+}
+#keyField, #keyDate{
+	width: 80px;
+	height: 40px;
+	text-align: left;
+}
+#keyWord{
+	width: 140px;
+	height: 40px;
+}
+#searchBtn{
+	width: 80px;
+	height: 40px;
+	border-radius: 15px;
+	background-color: #000;
+	border-style: none;
+	color : white;
+	cursor: pointer;
+	}
