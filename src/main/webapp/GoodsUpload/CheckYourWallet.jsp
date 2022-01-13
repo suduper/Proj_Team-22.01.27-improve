@@ -7,12 +7,19 @@
 
 <%@page import="java.text.NumberFormat"%>
 
+<%@page import="java.io.PrintWriter"%>
+
 <jsp:useBean id="walletInfo" class="pack_user.UserDAO" scope="page"/>
 <jsp:useBean id="useWallet" class="pack_goods.GoodsProc" scope="page" />
 
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <% 
+int res = 999;
+if(session.getAttribute("sessionChecker") != null){
+	res = 2;
+}
+
 String info = request.getParameter("info");
 
 String[] infoSplit = info.split("/");
@@ -30,8 +37,8 @@ int pay = walletMoney - sum;
 
 NumberFormat money = NumberFormat.getNumberInstance();
 String MyWalletMoney = money.format(walletMoney);
-String YouHaveToPay = money.format(pay);
-String PayedWalletMoney = money.format(walletMoney - sum);
+String YouHaveToPay = money.format(sum);
+String PayedWalletMoney = money.format(pay);
 %>
 
 <!DOCTYPE html>
@@ -91,6 +98,7 @@ cursor: pointer;
 </head>
 <body>
 <h1>결제정보</h1>
+<input type="hidden" name="res" id="res" value="<%=res%>"/>
 <div id="purchaseInfo">
 	<p><%=uID %> 님의 지갑정보 불러오기 <%=result %></p>
 	<p>현재 내 지갑 : <span id="showInfo"><%=MyWalletMoney %></span>원</p>
@@ -106,7 +114,15 @@ cursor: pointer;
 	</ul>
 </div>
 
+<div id="hiddenForm">
+	<form action="PurchaseAction.jsp" id="Purchase">
+		<input type="hidden" name="uID" id="uID" 	value="<%=uID %>" />
+		<input type="hidden" name="sum" id="sum" value="<%=sum %>" />
+	</form>
+</div>
+
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../script/script_MyBasket.js"></script>
+<script src="../script/script_Purchase.js"></script>
 </body>
 </html>

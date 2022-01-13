@@ -13,7 +13,10 @@
 
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="pack_goods.MyBasket, java.util.Vector" %>
+
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
+
+<jsp:useBean id="SessionCheck" class="pack_goods.Goods" scope="page" />
 
 <% request.setCharacterEncoding("UTF-8");%>
 
@@ -60,6 +63,7 @@ div#content {
 div#BasketList{
 border: 1px solid #000;
 width: 800px;
+min-height:240px;
 margin:0px auto;
 display: flex;
 justify-content: space-around;
@@ -194,6 +198,7 @@ background-color: #EFEFEF;
 		
 		<% 
 			} else {
+				session.setAttribute("sessionChecker", SessionCheck.getSessionChecker());
 		%>
 		
 		<div id="BasketList">
@@ -210,7 +215,7 @@ background-color: #EFEFEF;
 					</tr>
 				</thead>
 				<tbody>
-				<form action="BuyProc.jsp?count=<%=listSize%>" method="post" id="buyGoods">
+				<form action="GoodsBuy.jsp?count=<%=listSize%>" method="post" id="buyGoods">
 					<input type="hidden" name="uID" id="uID" value="<%=uID %>" />
 				<%
 				for (int i = 0; i < listSize; i++){
@@ -282,7 +287,7 @@ background-color: #EFEFEF;
 		</div> <!-- <div id="buyProc"> -->
 		
 	</div> <!-- <div id="ShowItem"> -->
-	
+	<p>세션 <%=session.getAttribute("sessionChecker")%></p>
 </div>
 
 <jsp:include page="../Main/Main_Bottom.jsp" flush="true"/>	

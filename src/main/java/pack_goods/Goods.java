@@ -4,7 +4,7 @@ public class Goods {
 	
 	private int goodsNum;        //상품 번호
 	private String goodsName; //상품 이름
-	private String goodsWarehousing;
+	private String goodsWarehousing; //상품 입고일
 	private String goodsType;   //상품 종류
 	private int goodsPrice;       //상품 판매 가격
 	private int goodsSPrice;    //상품 세일 가격
@@ -17,6 +17,8 @@ public class Goods {
 	private int inventoryL;		// L사이즈 재고
 	private int inventoryXL;		// XL사이즈 재고
 	private int wCount;			// 조회수
+	
+	private String sessionChecker;
 	
 	public int getGoodsNum() {
 		return goodsNum;
@@ -110,8 +112,14 @@ public class Goods {
 		this.wCount = wCount;
 	}
 	
+	//////////////////////세션용///////////////////////
+	public String getSessionChecker() {
+		return sessionChecker;
+	}
+	public void setSessionChecker(String sessionChecker) {
+		this.sessionChecker = sessionChecker;
+	}
+	//////////////////////세션용///////////////////////
 	
 	
-
-
 }

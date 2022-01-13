@@ -77,7 +77,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="text" id="uAddr" name="uAddr1" placeholder=" 기본주소" class="full" readonly>
+						<input type="text" id="uAddr1" name="uAddr1" placeholder=" 기본주소" class="full" readonly>
 					</td>
 				</tr>
 				<tr>
@@ -423,7 +423,7 @@ function kakaopost() {
     new daum.Postcode({
         oncomplete: function(data) {
            document.querySelector("#uZip").value = data.zonecode;
-           document.querySelector("#uAddr").value = data.address;
+           document.querySelector("#uAddr1").value = data.address;
         }
     }).open();
 }

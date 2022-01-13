@@ -30,7 +30,7 @@
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('이미 로그인이 되어 있습니다')");
-		script.println("location.href='../Main/Index.jsp'");
+		script.println("location.href='../Main/Main.jsp'");
 		script.println("</script>");
 	}
 	UserDAO userDAO = new UserDAO();

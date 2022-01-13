@@ -642,12 +642,11 @@ public class GoodsProc {
 		
 		try {
 			objConn = pool.getConnection();
-			// 중복검사 시작//
-				   //select exists (select goodsName='겨울옷시리즈_2201040857' from userBasket where  uID = 'user1234' limit 1) as success;
 			sql = "select exists ("
 					+ "select * from userBasket "
 					+ "where uID = '"+uID+"'"
 					+ "and goodsName = '"+goodsName +"'"
+					+ "and ordered = 0 "
 					+ "limit 1) as RES;";
 			
 			objPstmt = objConn.prepareStatement(sql);	
@@ -655,7 +654,7 @@ public class GoodsProc {
 			if(objRs.next()) {
 				if(objRs.getInt(1) == 0) { // 옷바구니에 같은 상품이 없다면
 					System.out.println(uID + "의 옷바구니 목록 추가");
-					sql = "insert into userBasket value (?, ?, ?, ?, ?, ?, ?, ?)";
+					sql = "insert into userBasket value (?, ?, ?, ?, ?, ?, ?, ?, 0)";
 					objPstmt = objConn.prepareStatement(sql);
 					objPstmt.setString(1, uID);
 					objPstmt.setString(2, goodsName);
@@ -748,7 +747,7 @@ public class GoodsProc {
 
 		try {
 			objConn = pool.getConnection();   // DB연동구문 사용
-			sql = "select * from userBasket where uID =? ";
+			sql = "select * from userBasket where uID =? and ordered = 0";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, uID);
 			objRs = objPstmt.executeQuery(); 
@@ -776,19 +775,47 @@ public class GoodsProc {
 	}
 	// 옷바구니 보기 끝 //
 	
-	// 옷바구니 구매 시작 //
-	public int userBuy (String uID) {
+	
+	// 상품 주문 시작 //
+	public String userOrder(String orderName, 
+								  String info,
+								  int Zip,
+								  String Addr1,
+								  String Addr2,
+								  String phone,
+								  String notice) {
 		Connection					objConn		=	null;
 		PreparedStatement 		objPstmt 		= 	null;
 		ResultSet						objRs			=	null;
 		String							sql 				=	null;
 		
+		System.out.println(info);
+		String[] info_split = info.split(" / ");
+		System.out.println(info_split[0]);
+		System.out.println(info_split[1]);
+		System.out.println(info_split[2]);
+		System.out.println(info_split[3]);
+		System.out.println(info_split[4]);
+		System.out.println(info_split[5]);
+		System.out.println(Addr1);
+		System.out.println(Addr2);
 		try {
 			objConn = pool.getConnection();
-			
-			sql= "select Wallet from userInfo where uID = ?";
+			sql= "insert into userOrder values(?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setString(1, uID);
+			objPstmt.setString(1, orderName);
+			objPstmt.setString(2, info_split[0]);
+			objPstmt.setInt(3, Integer.parseInt(info_split[1]));
+			objPstmt.setInt(4, Integer.parseInt(info_split[2]));
+			objPstmt.setInt(5, Integer.parseInt(info_split[3]));
+			objPstmt.setInt(6, Integer.parseInt(info_split[4]));
+			objPstmt.setInt(7, Zip);
+			objPstmt.setString(8, Addr1);
+			objPstmt.setString(9, Addr2);
+			objPstmt.setString(10, phone);
+			objPstmt.setString(11, notice);
+			
+			objPstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			System.out.println("SQL 이슈 : " + e.getMessage());
@@ -797,9 +824,41 @@ public class GoodsProc {
 		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
-		return -1;
+		System.out.println(info_split[0]+" 장바구니 삭제로 보냄");
+		return info_split[0];
 	}
-	// 옷바구니 구매 끝 //
+	
+	// 상품 주문 끝 //
+	
+	// 주문상품 장바구니 삭제 시작//
+	public int set0Basket(String uID, String goodsName) {
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+		int res = 0;
+		try {
+			objConn = pool.getConnection();
+			
+			sql= "update userBasket set ordered = 1 where uID = ? and goodsName = ? and ordered = 0";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objPstmt.setString(2, goodsName);
+			res = objPstmt.executeUpdate();
+			System.out.println(goodsName + "장바구니에서 삭제됨");
+			return res;
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return 0;
+	}
+	// 주문상품 장바구니 삭제 끝//
+	
 }
 
 
