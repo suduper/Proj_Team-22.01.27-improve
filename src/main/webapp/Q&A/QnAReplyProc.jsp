@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
     
     <% request.setCharacterEncoding("UTF-8"); %>
-    <jsp:useBean id="qMgr" class="pack_QnA.QnAMgr" scope="page"/>
-    <jsp:useBean id="reBean" class="pack_QnA.QnABean" scope="page" />
-	<jsp:setProperty name="reBean" property="*" />
+<jsp:useBean id="qMgr" class="pack_QnA.QnAMgr" scope="page" />
+<jsp:useBean id="reBean" class="pack_QnA.QnABean" scope="page" />
+<jsp:setProperty name="reBean" property="*" />
 <%
 int repUpCnt = qMgr.replyUpQnA(reBean.getRef(), reBean.getPos());
-     // 끼어들기가 아닐경우 실행되는 소스 없음.
 int repInsCnt = qMgr.replyQnA(reBean);
 
 String nowPage = request.getParameter("nowPage");
@@ -21,7 +20,7 @@ if(repInsCnt > 0) {
 	url += "&keyWord="+keyWord;
 %>    
 	<script>
-		location.href="<%=url%>";
+		location.href="QnAList.jsp";
 	</script>
 <%
 } else {

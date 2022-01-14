@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     import="pack_QnA.QnABean"
-    import="java.util.*"
+    import="java.util.Vector"
     %>
     
     <jsp:useBean id="qMgr" class="pack_QnA.QnAMgr" scope="page"/>
@@ -9,7 +9,6 @@
     <%
     request.setCharacterEncoding("utf-8");
     
-    Vector<QnABean> vList = null;
     
     int totalRecord = 0; // 전체 레코드
     int numPerPage = 5; // 페이지 당 레코드
@@ -30,11 +29,26 @@
     String keyField = "";
     String keyWord = "";
     
+    if (request.getParameter("keyWord") != null) {
+    	keyField = request.getParameter("keyField");
+    	keyWord = request.getParameter("keyWord");
+    }
+    
+    
+    if (request.getParameter("nowPage") != null) {
+    	nowPage = Integer.parseInt(request.getParameter("nowPage"));
+    	start = (nowPage * numPerPage) - numPerPage;
+    	end = numPerPage;
+    }
+    
     totalRecord = qMgr.getTotalCount(keyField, keyWord);
     
     totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
     nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
     totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
+    
+    Vector<QnABean> vList = null;
+    
     
     %>
     
@@ -45,7 +59,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../style/style_List.css">
+    <link rel="stylesheet" href="../style/style_ListQnA.css">
 </head>
 <body>
 
@@ -89,64 +103,68 @@
         </header>
 
 
-<div id="top"><span>REVIEW</span></div>
+<div id="top"><span>QnA</span></div>
 
 <main id="main">
 
-<%
-vList = qMgr.getQnAList(start, end);
-listSize = vList.size();
-%>
 
 <table id="QnAList">
+
 	<tbody>
-	<%
+<%
+vList = qMgr.getQnAList(keyField, keyWord, start, end);
+listSize = vList.size();
+
+
 	if(vList.isEmpty()){
 	%>
 	<tr>
 	<td colspan="3">
-	<%= "리뷰가 없습니다." %>
+	<%= "작성글이 없습니다." %>
 	</td>
 	</tr>
-	<%}
-	else{
+	<%} else {
 	%> 
 	
 	<%
-	for(int i = 0; i<listSize; i++){
+	for(int i = 0; i<numPerPage; i++){
+		
+		if(i==listSize) break;
 		
 		QnABean bean = vList.get(i);
 		
 		int num = bean.getNum();
 		String subject = bean.getSubject();
 		String uName = bean.getuName();
-		String regDate = bean.getRegDate();
+		String filename = bean.getFileName();
+		String content = bean.getContent();
 		int depth = bean.getDepth();
-		int count = bean.getCount();
 	
-	%>
-		<tr class="prnTr" >
-			<td>
-							<% if (depth == 0) out.print(num);   // 답변글이 아님을 의미함 %>
-			</td>  <!--  num로 변경필! -->
-			<td class="subjectTd">
+		%>
+  	<tr class="prnTr"  onclick="QnARead(<%=num%>)">
+			<td class="List">
+					<% if (depth == 0) out.print(num);  %>
+			</td> 
+			<td class="List">
 					<% 
-								 if (depth > 0) {    // 답변글을 의미함
+								 if (depth > 0) {
 									 for(int blank=0; blank<depth; blank++) {
-										 out.print("&nbsp;&nbsp;&nbsp;&nbsp;");
+										 out.print("Re: ");
 									 }
 								 } 
 								out.print(subject);
 					%>
-			<td class="List" onclick="QnARead(<%=num%>)"><%= num %></td>
-			
-			<td class="List"><%= subject %></td>
+			</td>
 			<td class="List"><%= uName %></td>
 		</tr>
+		
 		<%
 		}
 	}
-		%>
+%>
+		<tr>
+			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='QnAWrite.jsp'">리뷰 남기기</button></td>
+		</tr>
 		<tr>
 		<td colspan="3" id="pagingTd">
 		<%
@@ -196,7 +214,32 @@ listSize = vList.size();
 	</tbody>
 </table>
 
-<button type="button" onclick="location.href='QnAWrite.jsp'">리뷰 남기기</button>
+<div id="searchArea" class="flex-container">
+
+<form name = "searchFrm" id="searchFrm">
+
+	<select name="keyDate" id="keyDate">
+		<option value="week">일주일</option>
+		<option value="month">한달</option>
+		<option value="threeMonth">세달</option>
+		<option value="all">전체</option>
+	</select>
+	
+	<select name="keyField" id="keyField">
+		<option value="subject" <% if(keyField.equals("subject")) out.print("selected"); %>>제목</option>
+		<option value="content" <% if(keyField.equals("content")) out.print("selected"); %>>내용</option>
+		<option value="uName" <% if(keyField.equals("uName")) out.print("selected"); %>>작성자</option>
+	</select>
+	
+	<input type="text" name="keyWord" id="keyWord" value="<%= keyWord%>">
+	<button type="button" id="searchBtn">검색</button>
+	</form>
+	
+	<input type="hidden" id="pKeyField" value="<%= keyField%>">
+	<input type="hidden" id="pKeyWord" value="<%= keyWord%>">
+</div>
+
+
 
 
 

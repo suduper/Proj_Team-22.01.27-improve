@@ -1,22 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    <jsp:useBean id="bean" class="pack_QnA.QnABean" scope="session" />
-    
-    <%
-    request.setCharacterEncoding("utf-8");
-    int num = Integer.parseInt(request.getParameter("num"));
-
-    String nowPage = request.getParameter("nowPage");
-    String uName = bean.getuName();
-    String subject = bean.getSubject();
-    String content = bean.getContent();
-    String ref = String.valueOf(bean.getRef());
-    String depth = String.valueOf(bean.getDepth());
-    String pos = String.valueOf(bean.getPos());
-    
-    %>  
-    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QnA</title>
-    <link rel="stylesheet" href="../style/style_post.css">
+    <link rel="stylesheet" href="../style/style_postQnA.css">
 </head>
 <body>
 
@@ -70,13 +53,12 @@
 <div id="QnA">
 <h3>QnA</h3>
 <br><br>
-<form action="QnAReplyProc.jsp" method="Post" id="replyFrm" enctype="multipart/form-data" name="replyFrm">
+<form action="QnAProc.jsp" method="Post" id="postFrm" enctype="multipart/form-data" name="postFrm">
 
 <table id="center">
 	<tbody>
 		<tr>
 			<td>
-			<span><b><%=uName %> 님의 글</b></span>
 			<input type="text" name="subject" placeholder="제목"  size = "80" id="subject">
 			</td>
 		</tr>
@@ -109,7 +91,7 @@
 		<tr>
 			<td>
 			<button type="button" id="cancel" class="pBtn" onclick="history.back()">취소</button>
-			<button type="button" id="replySubBtn" class="pBtn">등록하기</button>
+			<button type="button" id="regBtn" class="pBtn">등록하기</button>
 			</td>
 		</tr>
 	</tbody>

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="pack_review.*"
+    import="pack_QnA.*"
     %>
-    <jsp:useBean id = "rMgr" class = "pack_review.ReviewMgr" scope="page"/>
+    <jsp:useBean id = "qMgr" class = "pack_QnA.QnAMgr" scope="page"/>
     <%
     request.setCharacterEncoding("utf-8");
     
@@ -14,18 +14,17 @@
     if(request.getParameter("passParam") != null){
     	String passParam = request.getParameter("passParam");
     	
-    	ReviewBean bean = (ReviewBean)session.getAttribute("bean");
+    	QnABean bean = (QnABean)session.getAttribute("bean");
     	String pass = bean.getPass();
     	
     	if(passParam.equals(pass)){
-    		int exeCnt = rMgr.deleteReview(numParam);
+    		int exeCnt = qMgr.deleteQnA(numParam);
     		
-    		String url = "ReviewList.jsp?nowPage="+nowPage;
     		%>
     		
     		<script>
     		alert("삭제 완료");
-    		location.href = "<%=url%>"; 
+    		location.href = "QnAList.jsp"; 
     		</script>
     	<%} else{%>
     	<script>
@@ -43,7 +42,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review Update</title>
-    <link rel="stylesheet" href="../style/style_Update.css">
+    <link rel="stylesheet" href="../style/style_DeleteQnA.css">
 </head>
 <body>
 

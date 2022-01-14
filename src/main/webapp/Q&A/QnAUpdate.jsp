@@ -21,7 +21,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QnA Update</title>
-    <link rel="stylesheet" href="../style/style_Update.css">
+    <link rel="stylesheet" href="../style/style_UpdateQnA.css">
 </head>
 <body>
 
@@ -68,7 +68,7 @@
         
         <h3>REVIEW</h3>
 <br><br>
-<form action="ReviewUpdateProc.jsp" method="get" id="UpdateFrm" enctype="multipart/form-data" name="UpdateFrm">
+<form action="QnAUpdateProc.jsp" method="get" id="UpdateFrm" enctype="multipart/form-data" name="UpdateFrm">
 
 <table id="center">
 	<tbody>

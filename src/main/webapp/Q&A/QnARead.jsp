@@ -41,7 +41,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QnARead</title>
-    <link rel="stylesheet" href="../style/style_Read.css">
+    <link rel="stylesheet" href="../style/style_ReadQnA.css">
 </head>
 <body>
 
@@ -88,7 +88,7 @@
 <!-- HTML템플릿(Template, Templet) 헤더 끝 -->
 
 <main id="main">
-
+<%=ref %>
 <table id = "read">
 	<tbody>
 		<tr>
