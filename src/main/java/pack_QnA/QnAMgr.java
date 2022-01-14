@@ -1,26 +1,29 @@
 package pack_QnA;
 
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.PageContext;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.JspWriter;
+import javax.servlet.jsp.PageContext;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 public class QnAMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
-	 = "C:\\Project_Directory";
+	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op-develop/src/main/webapp/Resource/ReviewImg/";
 	
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
@@ -34,9 +37,8 @@ public class QnAMgr {
 		}
 		
 	}
-	
-	// 리뷰 입력
-	public void insertQnA(HttpServletRequest req) {
+
+	public void insertQnA(HttpServletRequest req, String subject) {
 		
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
@@ -45,27 +47,35 @@ public class QnAMgr {
 		MultipartRequest	multi = null;
 		int fileSize = 0;
 		String fileName = null;
+		// String subject = null;
 		
 		try {
 			objConn = pool.getConnection();
-			sql = "select max(num) from tblReview";
+			sql = "select max(num) from tblQnA";
 			objPstmt = objConn.prepareStatement(sql);
 			objRs = objPstmt.executeQuery();
 			
 			int ref = 1;
 			if(objRs.next()) ref = objRs.getInt(1)+1;
 			
-			File file = new File(SAVEFOLDER);
 			
-			if(!file.exists()) file.mkdirs();
 			
-			multi = new MultipartRequest(req, SAVEFOLDER, maxSize, encType, new DefaultFileRenamePolicy());
+			File file = new File(SAVEFOLDER+subject);
+			
+			if (!file.exists())
+				file.mkdirs();
+			
+			multi = new MultipartRequest(req, SAVEFOLDER+subject, maxSize, encType, new DefaultFileRenamePolicy());
+			
 			
 			if(multi.getFilesystemName("fileName") != null) {
 				fileName = multi.getFilesystemName("fileName");
 				fileSize = (int)multi.getFile("fileName").length();
 			}
 			String content = multi.getParameter("content");
+			
+			subject = multi.getParameter("subject");
+		
 			
 			sql = "insert into tblQnA(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
 					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
@@ -91,41 +101,59 @@ public class QnAMgr {
 		
 	}
 	
-	// 리뷰 입력 끝
-	
 	// List 출력
 	
-	public Vector<QnABean> getQnAList(int start, int end){
-		
+	public Vector<QnABean> getQnAList(String keyField, String keyWord, int start, int end) {
+
 		Vector<QnABean> vList = new Vector<>();
 		Connection objConn = null;
-		PreparedStatement	objPstmt = null;
+		PreparedStatement objPstmt = null;
 		ResultSet objRs = null;
-		String sql	= null;
-		
+		String sql = null;
+
 		try {
-			objConn = pool.getConnection();
-			sql = "select*from tblQnA order by num desc limit ?,?";
-			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setInt(1, start);
-			objPstmt.setInt(2, end);
-			objRs = objPstmt.executeQuery();
+			objConn = pool.getConnection(); // DB연동
 			
-			while(objRs.next()) {
+			
+			if (keyWord.equals("null") || keyWord.equals("")) {
+				// 검색어가 없을 경우
+				sql = "select * from tblQna "
+						+ "order by ref desc, pos asc limit ?, ?";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setInt(1, start);
+				objPstmt.setInt(2, end);
+			} else {
+				// 검색어가 있을 경우
+				sql = "select * from tblQna "
+						+ "where "+ keyField +" like ? "
+						+ "order by ref desc, pos asc limit ?, ?";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setString(1, "%"+keyWord+"%");
+				objPstmt.setInt(2, start);
+				objPstmt.setInt(3, end);
+			}
+			
+			
+			objRs = objPstmt.executeQuery();
+
+			while (objRs.next()) {
 				QnABean bean = new QnABean();
 				bean.setNum(objRs.getInt("num"));
-				bean.setSubject(objRs.getString("subject"));
-				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
-				
+				bean.setSubject(objRs.getString("subject"));
+				bean.setPos(objRs.getInt("pos"));
+				bean.setRef(objRs.getInt("ref"));
+				bean.setDepth(objRs.getInt("depth"));
+				bean.setRegDate(objRs.getString("regDate"));
+				bean.setCount(objRs.getInt("count"));
 				vList.add(bean);
 			}
-		}catch (Exception e) {
-			System.out.println("SQL : "+e.getMessage());
-		}finally {
+		} catch (Exception e) {
+			System.out.println("SQL이슈 : " + e.getMessage());
+		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
-		
+
 		return vList;
 	}
 	
@@ -157,6 +185,7 @@ public class QnAMgr {
 				bean.setDepth(objRs.getInt("depth"));
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setPass(objRs.getString("pass"));
+				bean.setRef(objRs.getInt("ref"));
 				bean.setCount(objRs.getInt("count"));
 				bean.setFileName(objRs.getString("fileName"));
 				bean.setFileSize(objRs.getInt("fileSize"));
@@ -176,21 +205,21 @@ public class QnAMgr {
 	// 페이지 출력
 	
 	public int getTotalCount(String keyField, String keyWord) {
-		
+
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
 		ResultSet objRs = null;
 		String sql = null;
 		int totalCnt = 0;
-		
+
 		try {
 			objConn = pool.getConnection(); // DB연동
 			
 			if(keyWord.equals("null") || keyWord.equals("")) {
-				sql = "select count(*) from tblQnA";
+				sql = "select count(*) from tblQna";
 				objPstmt = objConn.prepareStatement(sql);
 			} else {
-				sql = "select count(*) from tblQnA ";
+				sql = "select count(*) from tblQna ";
 				sql += "where "+keyField+" like ?";
 				objPstmt = objConn.prepareStatement(sql);
 				objPstmt.setString(1, "%" + keyWord + "%");
@@ -203,7 +232,7 @@ public class QnAMgr {
 			}
 			
 		} catch (Exception e) {
-			System.out.println("SQL : " + e.getMessage());
+			System.out.println("SQL이슈 : " + e.getMessage());
 		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
@@ -214,7 +243,6 @@ public class QnAMgr {
 		
 	// 페이지 출력 끝
 	
-	// 리뷰 수정
 	
 	public int updateQnA(QnABean bean) {
 		
@@ -243,9 +271,6 @@ public class QnAMgr {
 	
 	}
 	
-	// 리뷰 수정 끝
-	
-	//Delete 시작
 	
 	public int deleteQnA(int num) {
 		
@@ -259,7 +284,7 @@ public class QnAMgr {
 		try {
 			objConn = pool.getConnection();
 			
-			sql = "select fileName from tblQnA whrere num=?";
+			sql = "select fileName from tblQnA where num=?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1,  num);
 			objRs = objPstmt.executeQuery();
@@ -296,23 +321,27 @@ public class QnAMgr {
 	//Delete 끝
 	
 	public int replyQnA(QnABean bean) {
-		
+
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
 		ResultSet objRs = null;
 		String sql = null;
 		int cnt = 0;
-		
+	
+
 		try {
-			
 			objConn = pool.getConnection();
 			
-			sql = "insert into tblQnA (uName, content, subject, ref, pos, depth, regDate, pass, count, ip) values(?, ?, ?, ?, ?, ?,now(), ?, 0, ?)";
+			sql = "insert into tblQnA (";
+			sql += "uName, content, subject, ";
+			sql += "ref, pos, depth,  ";
+			sql += "regDate, Pass, count, ip) values (";
+			sql += "?, ?, ?, ?, ?, ?,now(), ?, 0, ?)";
+
+			int depth = bean.getDepth() + 1;
+			int pos = bean.getPos() + 1;
 			
-			int depth = bean.getDepth()+1;
-			int pos = bean.getPos()+1;
-			
-			objPstmt =objConn.prepareStatement(sql);
+			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, bean.getuName());
 			objPstmt.setString(2, bean.getContent());
 			objPstmt.setString(3, bean.getSubject());
@@ -322,47 +351,46 @@ public class QnAMgr {
 			objPstmt.setString(7, bean.getPass());
 			objPstmt.setString(8, bean.getIp());
 			cnt = objPstmt.executeUpdate();
-			
-			
-		}catch(Exception e) {
-			System.out.println("SQL : "+e.getMessage());
-		}finally {
+
+
+		} catch (Exception e) {
+			System.out.println("SQL이슈 : " + e.getMessage());
+		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
+
 		return cnt;
-		
-		
 	}
 	
 	public int replyUpQnA(int ref, int pos) {
-		
+
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
 		ResultSet objRs = null;
 		String sql = null;
 		int cnt = 0;
 		
+
 		try {
-			
-			objConn = pool.getConnection();
-			
-			sql = "update tblQnA set pos = pos+1 where ref = ? and pos > ?";
+			objConn = pool.getConnection(); 
+			sql = "update tblQnA set pos = pos + 1 ";
+			sql += "where ref = ? and pos > ?";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setInt(1, ref);
 			objPstmt.setInt(2, pos);
 			cnt = objPstmt.executeUpdate();
-			
-		}catch(Exception e) {
-			System.out.println("SQL : "+e.getMessage());
-		}finally {
+
+
+		} catch (Exception e) {
+			System.out.println("SQL이슈 : " + e.getMessage());
+		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
+
 		
 		return cnt;
-		
-	}
-	
+	}	
 	
 	
 
