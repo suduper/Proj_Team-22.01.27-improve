@@ -1,0 +1,173 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url(Style_Reset.css);
+
+#wrap{
+    padding: 20px;
+    margin: 0px auto;
+    width: 1500px;
+    border: 1px solid #000;
+}
+/* 
+li{
+    list-style: none;
+} */
+#header{
+    position: sticky;
+    top: 5px;
+    margin-bottom: 50px;
+}
+#logo{
+    flex: 1;
+}
+
+#nav1{
+    padding-left: 50px;
+    flex: 1;
+    justify-content: space-around;
+    margin-top: 150px;
+}
+.goods1{
+    display: none;
+    /* display: inline; */
+    line-height: 30px;
+}
+
+.board {
+    display: none;
+    line-height: 25px;
+}
+
+#nav2{
+    padding-left: 10px;
+    margin-left: 500px;
+    flex: 1;
+    justify-content: space-around;
+    margin-top: 150px;
+}
+.search2{
+    display: none;
+    margin-left: -500px;
+    width: 500px;
+}
+.search2 input{
+    border:none;
+    border-bottom: 1px solid #000;
+    width: 100%;
+    margin-top: 30px;
+    font-size: 30px;
+    outline: none;
+}
+
+#searcha{
+    margin-top: 10px;
+    font-size: 15px;
+}
+#searcha:hover{
+    
+    background-color: #aaa;
+    color: white;
+}
+
+#main{
+    height: 1000px;
+}
+
+#info{
+    justify-content: space-around;
+    line-height: 25px;
+}
+#info2{
+    margin-top: 30px;
+    font-size: 13px;
+}
+
+#top{
+	margin-left: 148px;
+	width: 80%;
+	text-align: center;
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 20px;
+}
+
+#QnAList{
+	text-align: center;
+	margin-right: auto;
+	margin-left: auto;
+	width: 80%;
+	font-size: 12px;
+	border-collapse: collapse;
+	/* border: 1px solid #aaa; */
+}
+.List{
+	height: 110px;
+	border-bottom: 1px solid #aaa;
+}
+#listNum{
+	cursor: pointer;
+}
+.prnTr, .List{
+	margin: 20px;
+}
+
+#pagingTd{
+	width: 100px;
+	height: 50px;
+	/* border: 1px solid #aaa; */ 
+}
+.mBtn{
+	margin: 10px;
+	cursor: pointer;
+}
+#nowView{
+	color: blue;
+}
+#writeBtn{
+	position : relative;
+	left: 44%;
+	bottom: -10px;
+	font-size: 20px;
+	border-radius: 15px;
+	padding: 20px 20px;
+	background-color: #000;
+	border-style: none;
+	color: white;
+	cursor: pointer;
+	border-style: none;
+}
+#listSub{
+	
+	text-align: center;
+}
+#listName{
+	
+	text-align: right;
+}
+#listContent{
+	border: none;
+	outline: none;
+}
+#searchArea{
+	position: relative;
+	left: 150px;
+}
+#keyField, #keyDate{
+	width: 80px;
+	height: 40px;
+	text-align: left;
+}
+#keyWord{
+	width: 140px;
+	height: 40px;
+}
+#searchBtn{
+	width: 80px;
+	height: 40px;
+	border-radius: 15px;
+	background-color: #000;
+	border-style: none;
+	color : white;
+	cursor: pointer;
+	}
+
+	
