@@ -2,11 +2,14 @@ function forUpdate(goodsName){
 	location.href="GoodsUpdate.jsp?goodsName="+goodsName;
 } 
 
+let origPrice = null;
 let nowday = new Date();   
 let weekday = nowday.getDay();
 let hours = nowday.getHours(); 
 let arrival = null;
 let send = null;
+
+let uID = document.getElementById('uID').value;
 
 if(10 < hours && hours < 16){ //오늘발송
 	if(weekday == 5 || weekday == 6){
@@ -24,13 +27,11 @@ if(10 < hours && hours < 16){ //오늘발송
 	send = '내일'
 }
 
-
-window.onload = 
-	function(){
+window.onload = function(){
 	$('#arriveDate').append(send);
-	let origPrice = document.getElementById('origPrice').value;
-	calc(origPrice);
 };
+
+
 
 let SALL = 0;
 let MALL = 0;
@@ -44,15 +45,15 @@ function choice(size,sellPrice){
 		'<div id="buyCount'+size+'" style="display: flex;"> \
 		<p id="plus'+size+'" class="no-drag" onclick='+'count("plus'+size+'","'+sellPrice+'","'+size+'")'+'\
 			style="border: 1px solid #000; width: 40px; \
-				   height: 40px; line-height: 40px; text-align: center;">+</p> \
+				   height: 40px; line-height: 40px; text-align: center; border-radius:3px;">+</p> \
 		<p id="result'+size+'" \
 			style="border: 1px solid #000; width: 40px; \
-				   height: 40px; line-height: 40px; text-align: center;">1</p> \
+				   height: 40px; line-height: 40px; text-align: center; border-radius:3px;">1</p> \
 		<p id="minus'+size+'" class="no-drag" onclick='+'count("minus'+size+'","'+sellPrice+'","'+size+'")'+'\
 			style="border: 1px solid #000; width: 40px; \
-				   height: 40px; line-height: 40px; text-align: center;">-</p> \
+				   height: 40px; line-height: 40px; text-align: center; border-radius:3px;">-</p> \
 		<p id="delete'+size+'" style="border: 1px solid #000; width: 40px; \
-			height: 40px; line-height: 40px; text-align: center; margin-left:15px;" \
+			height: 40px; line-height: 40px; text-align: center; margin-left:15px; border-radius:3px;" \
 			onclick='+'del("'+size+'","'+sellPrice+'")'+'>취소</p> \
 		</div> ' ;
 	$(selector).append(buyCount);
@@ -137,7 +138,7 @@ function calc(sellPrice){
 	let res = sellPrice * fullCalc;
 	allCount.value = fullCalc;
 	if(res == 0){
-		res = sellPrice;
+		res = 0;
 	}
 	document.getElementById('Scount').value = SALL;
 	document.getElementById('Mcount').value = MALL;
@@ -147,9 +148,22 @@ function calc(sellPrice){
 }
 
 function addBasket(){
-	if(SALL == 0 && MALL == 0 && LALL == 0 && XLALL == 0){
+	if(uID == 'null'){
+		if(confirm("로그인 하셔야 합니다. 로그인하시겠습니까?")) {
+        location.href='../Account/Login.jsp';
+        } 
+	} else if(SALL == 0 && MALL == 0 && LALL == 0 && XLALL == 0){
 		alert('상품의 사이즈와 갯수를 선택해주세요.');
 	} else {
 		$("#addBasket").submit(); 
 	}
 }
+/*
+$(document).ready(function(){ 
+	var currentPosition = parseInt($(".buyOption").css("top"));
+	$(window).scroll(function() {
+		var position = $(window).scrollTop();
+		$(".buyOption").stop().animate({"top":position+currentPosition+"px"},1000); 
+	});
+});
+*/

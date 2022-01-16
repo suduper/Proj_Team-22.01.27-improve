@@ -52,9 +52,7 @@ if(res == 1){
 } else if(res == 0){
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
-	script.println("alert('이용에 불편을 드려 대단히 죄송합니다. \n " +
-						"오류로 인하여 옷바구니를 갱신하지 못했습니다. \n "+
-						"빠른 시일내에 정상적으로 사용 가능하도록 노력하겠습니다.')");
+	script.println("alert('이용에 불편을 드려 대단히 죄송합니다. 오류로 인하여 옷바구니를 갱신하지 못했습니다. 빠른 시일내에 정상적으로 사용 가능하도록 노력하겠습니다.')");
 	script.println("</script>");
 }
 %>

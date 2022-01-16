@@ -47,6 +47,9 @@
  $("#ifLogin").click(function(){
 		location.href = "../Account/Login.jsp";
 	});
+ $("#orderCus").click(function(){
+		location.href = "../GoodsUpload/BuyList.jsp";
+	});
  </script>
 </body>
 </html>

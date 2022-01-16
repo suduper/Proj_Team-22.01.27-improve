@@ -48,53 +48,7 @@ String PayedWalletMoney = money.format(pay);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CheckYourWallet</title>
-<style>
-div#purchaseInfo{
-border: 1px solid #000;
-border-radius : 10px;
-}
-div#purchaseCheck{
-border: 1px solid #000;
-border-radius : 10px;
-width : 250px;
-margin: 0px auto;
-margin-top: 30px;
-}
-div#purchaseCheck p{
-text-align: center;
-font-size: 25px;
-}
-ul {
-list-style: none;
-padding: 0;
-margin: 0;
-}
-.choice {
-    display: flex;
-    justify-content: space-around;
-}
-li{
-border: 1px solid #000;
-border-radius : 10px;
-margin-bottom : 20px;
-width: 80px;
-height: 40px;
-line-height : 40px;
-font-size:28px;
-text-align: center;
-}
-h1 {
-text-align: center;
-}
-span#showInfo {
-border: 3px inset #777;
-font-weight: bold;
-}
-.choice li:hover{
-background-color: #CfCfCf;
-cursor: pointer;
-}
-</style>
+<link rel="stylesheet" href="../style/style_goods.css">
 </head>
 <body>
 <h1>결제정보</h1>

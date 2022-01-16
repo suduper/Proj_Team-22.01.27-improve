@@ -562,27 +562,6 @@ public class GoodsProc {
 						File forIUp = new File(ChgFolder +"/"+ goodsImages);
 						allImages += goodsImages + " / ";
 						fileItem.write(forIUp);
-					/*	for (int i = 0; i < OimgArray.length; i++) {
-							if(ImgLoop == OimgArray.length-1) {
-								continue;
-							} else {
-								System.out.println(OimgArray[i]);
-								File forImgDel = new File(ChgFolder+"/"+OimgArray[i]); 
-								System.out.println(forImgDel);
-								if(forImgDel.delete()) {
-									System.out.println("이미지 삭제됨 : " + OimgArray[i]); 
-								} 
-								ImgLoop ++;
-							}
-						}
-						/*
-						System.out.println(filename);
-						goodsImages = encoder.encodeToString(Byte)+"."+ext;
-						System.out.println("GI : " + goodsImages);
-						File forIUp = new File(ChgFolder +"/"+ goodsImages);
-						allImages += goodsImages;
-						fileItem.write(forIUp);
-						*/
 					}
 				}
 			}
@@ -654,16 +633,24 @@ public class GoodsProc {
 			if(objRs.next()) {
 				if(objRs.getInt(1) == 0) { // 옷바구니에 같은 상품이 없다면
 					System.out.println(uID + "의 옷바구니 목록 추가");
-					sql = "insert into userBasket value (?, ?, ?, ?, ?, ?, ?, ?, 0)";
+					sql = "insert into userBasket value (?,now(), ?, ?, ?, ?, ?, ?, ?, 0)";
 					objPstmt = objConn.prepareStatement(sql);
 					objPstmt.setString(1, uID);
+					System.out.println(1);
 					objPstmt.setString(2, goodsName);
+					System.out.println(2);
 					objPstmt.setInt(3, Integer.parseInt(Scount));
+					System.out.println(3);
 					objPstmt.setInt(4, Integer.parseInt(Mcount));
+					System.out.println(4);
 					objPstmt.setInt(5, Integer.parseInt(Lcount));
+					System.out.println(5);
 					objPstmt.setInt(6, Integer.parseInt(XLcount));
+					System.out.println(6);
 					objPstmt.setInt(7, Integer.parseInt(Allcount));
+					System.out.println(7);
 					objPstmt.setInt(8, Integer.parseInt(calcRes)); 
+					System.out.println(8);
 					objPstmt.executeUpdate();
 					return 1;
 				} else if(objRs.getInt(1) == 1) { // 옷바구니에 같은 상품이 있다면
@@ -754,6 +741,7 @@ public class GoodsProc {
 	 
 			while (objRs.next()) {
 				MyBasket BList = new MyBasket();
+				BList.setAddDate(objRs.getString("addDate"));
 				BList.setGoodsName(objRs.getString("goodsName"));
 				BList.setScount(objRs.getInt("Scount"));
 				BList.setMcount(objRs.getInt("Mcount"));
@@ -777,13 +765,14 @@ public class GoodsProc {
 	
 	
 	// 상품 주문 시작 //
-	public String userOrder(String orderName, 
-								  String info,
-								  int Zip,
-								  String Addr1,
-								  String Addr2,
-								  String phone,
-								  String notice) {
+	public String userOrder(String uID,
+									   String orderName, 
+								  	   String info,
+								  	   int Zip,
+								  	   String Addr1,
+								  	   String Addr2,
+								  	   String phone,
+								  	   String notice) {
 		Connection					objConn		=	null;
 		PreparedStatement 		objPstmt 		= 	null;
 		ResultSet						objRs			=	null;
@@ -791,30 +780,33 @@ public class GoodsProc {
 		
 		System.out.println(info);
 		String[] info_split = info.split(" / ");
-		System.out.println(info_split[0]);
-		System.out.println(info_split[1]);
-		System.out.println(info_split[2]);
-		System.out.println(info_split[3]);
-		System.out.println(info_split[4]);
-		System.out.println(info_split[5]);
+		System.out.println(info_split[0]); //addDate
+		System.out.println(info_split[1]); //goodsName
+		System.out.println(info_split[2]); //Ss
+		System.out.println(info_split[3]); //Ms
+		System.out.println(info_split[4]); //Ls
+		System.out.println(info_split[5]); //XLs
+		System.out.println(info_split[6]); //calcRes
 		System.out.println(Addr1);
 		System.out.println(Addr2);
 		try {
 			objConn = pool.getConnection();
-			sql= "insert into userOrder values(?, now(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql= "insert into userOrder values(?, now(),?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
 			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setString(1, orderName);
+			objPstmt.setString(1, uID);
 			objPstmt.setString(2, info_split[0]);
-			objPstmt.setInt(3, Integer.parseInt(info_split[1]));
-			objPstmt.setInt(4, Integer.parseInt(info_split[2]));
-			objPstmt.setInt(5, Integer.parseInt(info_split[3]));
-			objPstmt.setInt(6, Integer.parseInt(info_split[4]));
-			objPstmt.setInt(7, Zip);
-			objPstmt.setString(8, Addr1);
-			objPstmt.setString(9, Addr2);
-			objPstmt.setString(10, phone);
-			objPstmt.setString(11, notice);
-			
+			objPstmt.setString(3, orderName);
+			objPstmt.setString(4, info_split[1]);
+			objPstmt.setInt(5, Integer.parseInt(info_split[2]));
+			objPstmt.setInt(6, Integer.parseInt(info_split[3]));
+			objPstmt.setInt(7, Integer.parseInt(info_split[4]));
+			objPstmt.setInt(8, Integer.parseInt(info_split[5]));
+			objPstmt.setInt(9, Integer.parseInt(info_split[6]));
+			objPstmt.setInt(10, Zip);
+			objPstmt.setString(11, Addr1);
+			objPstmt.setString(12, Addr2);
+			objPstmt.setString(13, phone);
+			objPstmt.setString(14, notice);
 			objPstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -824,10 +816,9 @@ public class GoodsProc {
 		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
-		System.out.println(info_split[0]+" 장바구니 삭제로 보냄");
-		return info_split[0];
+		System.out.println(info_split[1]+" 장바구니 삭제로 보냄");
+		return info_split[1];
 	}
-	
 	// 상품 주문 끝 //
 	
 	// 주문상품 장바구니 삭제 시작//
@@ -858,6 +849,49 @@ public class GoodsProc {
 		return 0;
 	}
 	// 주문상품 장바구니 삭제 끝//
+	
+	// 구매리스트 보기 시작 //
+	public Vector<MyBasket> showBuyList(String uID) {
+
+			Vector<MyBasket> MyBuyList = new Vector<>();
+			Connection					objConn		=	null;
+			PreparedStatement 		objPstmt 		= 	null;
+			ResultSet						objRs			=	null;
+			String							sql 				=	null;
+
+			try {
+				objConn = pool.getConnection();   // DB연동구문 사용
+				sql = "select * from userOrder where uID =? ";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setString(1, uID);
+				objRs = objPstmt.executeQuery(); 
+		 
+				while (objRs.next()) {
+					MyBasket BuyList = new MyBasket();
+					BuyList.setAddDate(objRs.getString("addDate"));
+					BuyList.setGoodsName(objRs.getString("goodsName"));
+					BuyList.setScount(objRs.getInt("Scount"));
+					BuyList.setMcount(objRs.getInt("Mcount"));
+					BuyList.setLcount(objRs.getInt("Lcount"));
+					BuyList.setXLcount(objRs.getInt("XLcount"));
+					BuyList.setCalcRes(objRs.getInt("calcRes"));
+					BuyList.setZip(objRs.getInt("Zip"));
+					BuyList.setAddr1(objRs.getString("Addr1"));
+					BuyList.setAddr2(objRs.getString("Addr2"));
+					BuyList.setDelivery(objRs.getInt("delivery"));
+					MyBuyList.add(BuyList);
+				}
+			
+			} catch (SQLException e) {
+				System.out.println("SQL 이슈 : " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("DB 접속이슈 : " + e.getMessage());
+			} finally {
+				pool.freeConnection(objConn, objPstmt, objRs);
+			}
+			return MyBuyList;
+		}
+		// 구매리스트 보기 끝 //
 	
 }
 

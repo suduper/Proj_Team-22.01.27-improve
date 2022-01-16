@@ -36,24 +36,29 @@ goodsLike      			double
 
 /*---------------------주문 테이블--------------------*/
 create table userOrder(
-orderName   				char(20)				not null,
+uID        	  				char(20)				not null,
 orderDate                  char(20)             	not null,
+addDate                  	char(20)             	not null,
+orderName   				char(20)				not null,
 goodsName     			varchar(200)			not null,
 Scount                     	int(3)						,
 Mcount                  	int(3)						,
 Lcount                      	int(3)						,
 XLcount                    	int(3)						,
+calcRes 						int(9)						,
 Zip							int(7)					not null,
 Addr1						char(100)				not null,
 Addr2						char(100)				not null,
 phone						char(13)				not null,
-notice						char(100)				
+notice						char(100)					,
+delivery						int(1)					not null
 );
 
 /*---------------------장바구니 테이블--------------------*/
 
 create table userBasket (
 uID        			char(20),
+addDate				char(20)  				not null,
 goodsName     	varchar(200)			not null,
 Scount 				int(3),
 Mcount 				int(3),
@@ -104,40 +109,17 @@ select*from userBasket;
 select*from tblReview;
 
 -- --///////////// 명령어 /////////////--  --
+
 update userInfo set wallet = 10000000 where uID = 'user1231';
-update userBasket set ordered = 0 where uID = 'user1231' and goodsName = '새로운 겨울옷시리즈_2201070445';
-select * from goodsInfo where goodsNum=1;
-select*from userBasket where uID = 'a123' and goodsName ='b234';
-delete from userBasket where uID = 'a123' and goodsName ='b234';
-select * from userInfo where uID = 'user1231';
-insert into userBasket value ('a123','b234',123,123,123,123,23231,223123);
-
-select*from tblReview order by num desc limit 15,5;
-
-select count(*) from userbasket where uID = 'user1234';
-
-select * from userBasket where uID = 'user1234';
-
-delete from userBasket where uID = 'user1234';
-
-select Wallet from userInfo where uID = 'user1231';
-
-update userBasket set Scount = 3 , Mcount = 2,  Lcount = 1 , XLcount = 0 ,  allCount = 6, calcRes = 300000 where uID = 'user1234' and goodsName = '겨울옷시리즈_2201040857' ;
-
-select exists (select * from userBasket where uID = 'user1234' and goodsName = '겨울옷시리즈_2201040857' limit 1) as RES;
--- select EXISTS (select * from 테이블이름 where 컬럼=찾는 값 limit 1) as success;
-select count(case when uID = 'user1234' and goodsName ='겨울옷시리즈_2201040857' then 1 end) as uID from userBasket; 
-
+update userBasket set ordered = 0 where uID = 'user1231' and goodsName = '새로운 겨울옷시리즈_2201070445' and ordered = 1;
+update userOrder set delivery = 1 where uID ='user1231' and addDate = '2022-01-14 18:31:03' and goodsName = '시험상품_2201100601' and delivery = 0;
+select * from userOrder where uID = 'user1231';
+select * from userOrder where uID ='user1231' and addDate = '2022-01-14 18:31:03' and goodsName = '시험상품_2201100601' and delivery = 1 ;
 
 -- --////////////// 업데이트 //////////////--  -- 
 set SQL_SAFE_UPDATES = 0;
 
-update GoodsInfo set goodsName = '봄옷 시리즈시험_2112310953',goodsPrice=12321231 where goodsName='봄옷 시리즈시험';
-update GoodsInfo set goodsThumbnail = '67SE7Ji3MQ==.jpg' where goodsName = '봄옷 시즌1_2201011215';
-update GoodsInfo set goodsImages = '67SE7Ji3Mg==.jpg / 67SE7Ji3Mw==.jpg / 67SE7Ji3MQ==.jpg / 67SE7Ji3Mg==3.jpg / ' where goodsName = '완전변경 봄옷시즌!_2201011215';
-update GoodsInfo set inventoryM = 0 where goodsName='겨울옷시리즈_2201040838';
-update userInfo set Wallet = 10000000 where uID = 'user1231';
-delete from GoodsInfo where goodsName= '전체변경 _2201010238';
+
 
 -- --//////////////!!!드랍!!!///////////////--  -- 
 
@@ -145,5 +127,5 @@ drop database !lofip;
 drop table !UserInfo;
 drop table !GoodsInfo;
 drop table !tblReview;
-drop table userBasket;
-drop table userOrder;
+drop table !userBasket;
+drop table !userOrder;

@@ -14,12 +14,12 @@
 if(session.getAttribute("sessionChecker") != null){
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
-	script.println("alert('구매 세션이 만료되었습니다.')");
-	script.println("location.href='../Main/Main.jsp'");
+	script.println("alert('구매취소 세션이 만료되었습니다.')");
+	script.println("location.href='../GoodsUpload/BuyList.jsp'");
 	script.println("</script>");
 }
 %>
-<!DOCTYPE html>
+<!DOCTYPE html>	
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -31,32 +31,27 @@ if(session.getAttribute("sessionChecker") != null){
 <body>
 
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
-
 <%
 	String uID = request.getParameter("uID");
 	String orderName = request.getParameter("who");
 	int sendCount = Integer.parseInt(request.getParameter("sendCount"));
 	int sum = Integer.parseInt(request.getParameter("sum"));
 	
-	int Zip = Integer.parseInt(request.getParameter("Zip"));
-	String Addr1 = request.getParameter("Addr1");
-	String Addr2 = request.getParameter("Addr2");
-	String phone = request.getParameter("phone");
-	String notice = request.getParameter("notice");
+	String addDate = request.getParameter("addDate");
 	
 	int delCheckers = 0;
 	String goodsName = null;
 	int setInfoNum = 0;
-	String buyThis = null;
+	String CancelThis = null;
 	for(int i =0 ; i < sendCount ; i++){ 
-		buyThis = request.getParameter("buyThis"+setInfoNum);
-		if(request.getParameter("buyThis"+setInfoNum) == null){
+		CancelThis = request.getParameter("cancelThis"+setInfoNum);
+		if(request.getParameter("cancelThis"+setInfoNum) == null){
 			setInfoNum++;
 			if(i == 0){
 				i--;
 			}
 		} else {
-			goodsName = order.userOrder(uID,orderName, buyThis, Zip, Addr1, Addr2, phone, notice);
+			goodsName = order.userOrder(uID,orderName,CancelThis);
 			delCheckers += order.set0Basket(uID, goodsName);
 			setInfoNum++;
 		}
@@ -64,18 +59,17 @@ if(session.getAttribute("sessionChecker") != null){
 	if(delCheckers == sendCount){
 %>
 <jsp:setProperty name="SessionCheck" property="sessionChecker" value="impossible"/>
-
-<div id="wrap">
+<div id="res">
 <% session.setAttribute("sessionChecker","impossible");%>
-	<h1 id="BuyProcH1">구매완료</h1>
+	<h1>구매 취소 완료</h1>
 </div>
 <%
 	} else {
 %>
 
-<div id="wrap">
-	<h1 id="BuyProcH1">구매 정보 오류</h1>
-	<p id="sorryMsg">대단히 죄송합니다. 관리자에게 문의해 주세요.</p>
+<div id="res">
+	<h1>구매 취소 오류</h1>
+	<p>대단히 죄송합니다. 관리자에게 문의해 주세요.</p>
 </div>
 <%			
 	}

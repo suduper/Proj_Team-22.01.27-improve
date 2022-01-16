@@ -103,7 +103,7 @@ let origZip = document.getElementById('Zip').value;
 let origAddr1 = document.getElementById('Addr1').value;
 let origAddr2 = document.getElementById('Addr2').value;
 
-function change(){
+function changeZip(){
 	if(CC == 0){
 		CC++;
 		Zip.value = null;
@@ -137,4 +137,12 @@ function callWallet() {
 	alert('확인');
 	$('#Purchase').submit();
     //self.close();
+}
+
+
+////////
+
+function CancelIt(){
+	alert('작동')
+	$("#CancelGoods").submit();
 }

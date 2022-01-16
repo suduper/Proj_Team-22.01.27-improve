@@ -1,0 +1,623 @@
+@charset "UTF-8";
+* {font-family: "Helvetica Neue","Helvetica","Arial",'Spoqa Han Sans','Malgun Gothic','Apple SD Gothic Neo','돋움',dotum,sans-serif;
+		box-sizing: border-box;
+}
+div#wrap{
+	margin: 5px auto;
+	padding: 5px;
+}
+hr#crossLine {
+	width: 90%;
+	margin:20px auto;
+}
+/* ////////////////////////// GoodsList ////////////////////////// */
+div#goodsList {
+	/* border: 2px solid #000; */
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: 20px auto;
+	font-size: 15px;
+	font-weight: bold;
+}
+div#Show {
+	text-align:center;
+    border: 2px solid #d3d3d3;
+	border-radius : 10px;
+	width: 400px;
+	margin-top: 40px;
+	padding:10px;
+	justify-content: center;
+	text-align: center;
+	box-shadow: 10px 10px 5px grey;
+}
+div#imgSrc{
+	width: 280px;
+	height: 280px;
+	border-radius : 4px;
+	background-color: #d3d3d3;
+	line-height: 280px;
+	justify-content: center;
+	display: inline-block;
+}
+img#ListThumb {
+	width: 265px;
+	object-fit:contain;
+	border-radius : 4px;
+}
+table#ListTable {
+	/* border: 1px solid #000; */
+	margin: 0px auto;
+	width: 300px;
+	border-collapse: separate;
+	border-spacing: 0 10px;
+}
+div#ListInfo{
+	/* border: 1px solid #000; */
+	font-size: 14px;
+	font-weight:normal;
+	width: 300px;
+	display: inline-block;
+}
+div#ListInfo span {
+	color: #666666;
+}
+/* ////////////////////////// GoodsList ////////////////////////// */
+
+/* ////////////////////////// GoodsView ////////////////////////// */
+div#Content{
+	/* border: 1px solid #f00; */
+}
+
+/* --------- Thumb_and_info --------- */
+div#Thumb_and_info {
+	/* border: 1px solid #0f0; */
+	display: flex;
+	justify-content: space-around;
+	margin-top: 20px;
+}
+div#thumbImg{
+	/* border: 1px solid #000; */
+	border-radius:8px;
+	margin: 20px;
+	width: 400px;
+	height: 400px;
+	line-height:400px;
+	text-align: center;
+	box-shadow: 5px 5px 5px grey;
+	object-fit: contain;
+}
+img#thumb {
+	width: 380px;
+	height: 380px;
+	border-radius:7px;
+	object-fit: contain;
+}
+/* --------- Thumb_and_info --------- */
+
+/* --------- mainContent --------- */
+div#mainContent {
+	/* border: 2px solid #00f; */
+	width: 600px;
+	text-align: center;
+}
+h2#ViewH2{
+	margin: 20px;
+}
+table#ViewInfoTable{
+	/* border: 2px solid #000; */
+	width: 550px;
+	font-weight: bold;
+	position:relative;
+	left: 25px;
+}
+table#ViewInfoTable td{
+	/* border: 1px solid #000; */
+	height: 40px;
+	line-height: 40px;
+}
+span#discount{
+	text-align: center;
+	font-size: 25px;
+	font-weight: bold;
+	width: 80px;
+}
+span#arriveDate{
+	font-size: 20px;
+	font-weight: bolder;
+}
+
+div#ViewContent{
+	/* border: 1px solid #000; */
+	height: 200px;
+	padding: 20px;
+}
+div#reg_and_wCount{
+	/* border: 1px solid #000; */
+	text-align: right;
+	padding-right: 20px;
+	font-weight: bold;
+}
+span#ViewRegDate_wCount{
+	font-size:15px;
+	color: #5f5f5f;	
+}
+/* --------- mainContent --------- */
+
+div#Img_and_buyOption {
+	display: flex;
+	justify-content: space-around;
+}
+
+/* --------- buyOption --------- */
+div#buyOption{
+	padding-top:10px;
+	/* border: 2px solid #ff0; */ 
+	width: 400px;
+	height: 560px;
+	position: sticky ; 
+	top: 100px;
+	left:900px;
+}
+div#size {
+	/* border: 1px solid #0f0; */
+	text-align: center;
+	-webkit-user-select:none; 
+	-moz-user-select:none; 
+	-ms-user-select:none; 
+	user-select:none
+}
+div#size p{
+	font-weight: bold;
+}
+
+p#sizeNotice{
+	border:1px solid #000;
+	height: 40px;
+	line-height: 40px;
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	-webkit-user-select:none; 
+	-moz-user-select:none; 
+	-ms-user-select:none; 
+	user-select:none
+}
+p#PS{
+	border: 1px solid #000;
+	border-radius:6px;
+	width: 175px;
+	height:40px;
+	line-height:40px;
+	box-shadow: 2px 2px grey;
+	margin-bottom: 5px;
+}
+
+p#PM{
+	border: 1px solid #000;
+	border-radius:6px;
+	width: 175px;
+	height:40px;
+	line-height:40px;
+	box-shadow: 2px 2px grey;
+	margin-bottom: 5px;
+}
+p#PL{
+	border: 1px solid #000;
+	border-radius:6px;
+	width: 175px;
+	height:40px;
+	line-height:40px;
+	box-shadow: 2px 2px grey;
+	margin-bottom: 5px;
+}
+p#PXL{
+	border: 1px solid #000;
+	border-radius:6px;
+	width: 175px;
+	height:40px;
+	line-height:40px;
+	box-shadow: 2px 2px grey;
+	margin-bottom: 5px;
+}
+p#PS:hover{
+	background-color: #d4d4d4;
+}
+p#PM:hover{
+	background-color: #d4d4d4;
+}
+p#PL:hover{
+	background-color: #d4d4d4;
+}
+p#PXL:hover{
+	background-color: #d4d4d4;
+}
+
+div#calc{
+	/* border: 1px solid #000; */
+	width: 200px;
+	height: 175px;
+	position: relative;
+	text-align:center;
+	left:180px;
+	top:-180px;
+}
+div#calc p{
+	/* border: 1px solid #000; */
+	height:40px;
+	line-height:40px;
+	font-size:30px;
+	font-weight:bold;
+	text-align: center;
+}
+div#calc p input {
+	font-family:sans-serif;
+	border:none; 
+	width:120px;
+	height: 36px;
+	position: relative;
+	text-align:center;
+	font-size:26px;
+	font-weight: bold;
+	top:-2px;
+	-webkit-user-select:none; 
+	-moz-user-select:none; 
+	-ms-user-select:none; 
+	user-select:none
+}
+div#goAddBasket {
+	display: none;
+}
+p#addBasket_btn{
+	margin: 0px auto;
+	border:2px solid #000;
+	border-radius:20px;
+	box-shadow: 5px 5px grey;
+	width: 300px;
+	height: 60px;
+	line-height:60px;
+	font-size:40px;
+	font-weight:bold;
+	text-align: center;
+	position: relative;
+	top: -165px;
+}
+
+p#addBasket_btn:hover{
+	background-color: #d4d4d4;
+}
+
+div#myOption{
+	/* border:1px solid #000; */
+	margin-top:20px;
+	position: relative;
+	top: -160px;
+	text-align: center;
+}
+div#myOption ul {
+	margin-top:10px;
+}
+div#myOption ul li {
+	margin:5px auto;
+	border: 2px solid #000;
+	border-radius:9px;
+	width: 200px;
+	height: 35px;
+	line-height: 35px;
+	font-size: 28px;
+	font-weight: lighter;
+}
+div#myOption ul li:hover{
+	background-color: #d4d4d4;
+}
+/* --------- buyOption --------- */
+
+/* --------- goodsImgZone --------- */
+div#goodsImgZone{
+	/* border: 1px solid #000; */
+	width: 840px;
+}
+img#gImg {
+	margin-left: 105px;
+	width: 720px;
+	height: auto;
+}
+/* --------- goodsImgZone --------- */
+
+/* --------- userOption --------- */
+div#userOption{
+	/* border: 1px solid #000; */
+	text-align: center;
+	justify-content: space-around;
+}
+div#userOption button {
+	padding-left:10px;
+	padding-right:10px;
+	height: 40px;
+	font-size: 30px;
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 20px auto;
+}
+div#userOption button:hover{
+	background-color: #d4d4d4;
+}
+/* --------- userOption --------- */
+
+/* ////////////////////////// GoodsView ////////////////////////// */
+
+/* ////////////////////////// MyBasket ////////////////////////// */
+h2#MyBasketH2{
+	text-align: center;
+	margin: 10px auto;
+}
+div#BasketList{
+	/* border:4px solid #000; */
+	min-height:180px;
+	display: flex;
+	justify-content: space-around;
+}
+div#ShowItem {
+	/* border:1px solid #000; */
+}
+table#MyBasketTable{
+	margin-left:100px;
+	/* border: 1px solid #000; */
+	border-radius:8px;
+	background-color:#d3d3d3;
+	width: 1000px;
+	text-align: center;
+}
+table#MyBasketTable th{
+	background-color: #fff;
+	height: 30px;
+}
+table#MyBasketTable tr:nth-child(odd) {
+	border:5px solid #000;
+	background-color: #efefef;
+}
+table#MyBasketTable tr:nth-child(even) {
+	border:5px solid #000;
+	background-color: #fff;
+}
+table#MyBasketTable td {
+	/* border: 1px solid #000; */
+}
+table#MyBasketTable td:nth-child(1){
+	width: 130px;
+	height: 130px;
+}
+table#MyBasketTable td:nth-child(2){
+	font-size: 20px;
+}
+table#MyBasketTable td:nth-child(3){
+	font-weight: bold;
+	text-decoration: underline;
+}
+table#MyBasketTable td:nth-child(4){
+	font-size:25px;
+	font-weight: bold;
+}
+table#MyBasketTable td:nth-child(5){
+	font-size:25px;
+	font-weight: bold;
+}
+table#MyBasketTable td:nth-child(6){
+	width: 150px;
+}
+table#MyBasketTable td:nth-child(6) input[type=checkbox]{
+	width: 30px;
+	height: 30px;
+}
+img#mBImg {
+	width: 120px;
+	height: 120px;
+}
+
+div#buyProc{
+	/* border: 1px solid #000; */
+	width: 200px;
+	text-align: center;
+	margin-right: 80px;
+	padding-top: 30px;
+}
+div#buyProc p{
+	font-size: 25px;
+	height: 30px;
+	margin: 10px;
+}
+div#buyProc ul{
+	margin-top: 20px;
+}
+div#buyProc ul li{
+	border:2px solid #000;
+	border-radius: 8px;
+	width:150px;
+	height:35px;
+	line-height:35px;
+	font-size:20px;
+	font-weight:bold;
+	margin: 5px auto;
+	box-shadow: 2px 2px 2px grey;
+}
+div#buyProc ul li:hover{
+	background-color:#d3d3d3;
+}
+div#buyProc ul li input[type=checkbox]{
+	width: 20px;
+	height: 20px;
+	position: relative;
+	top:3px;
+}
+/* ////////////////////////// MyBasket ////////////////////////// */
+
+/* ////////////////////////// GoodsBuy ////////////////////////// */
+div#BuyList{
+	/* border: 1px solid #000; */
+	display: flex;
+	justify-content: center;
+}
+table#GoodsBuyTable{
+	margin-left:100px;
+	/* border: 1px solid #000; */
+	border-radius:8px;
+	background-color:#d3d3d3;
+	width: 1000px;
+	text-align: center;
+}
+
+table#GoodsBuyTable tr:nth-child(odd) {
+	border:5px solid #000;
+	background-color: #ecf9f9;
+}
+table#GoodsBuyTable tr:nth-child(even) {
+	border:5px solid #000;
+	background-color: #fff;
+}
+table#GoodsBuyTable td {
+	/* border: 1px solid #000; */
+}
+table#GoodsBuyTable td:nth-child(1){
+	width: 81px;
+	height: 81px;
+}
+table#GoodsBuyTable td:nth-child(2){
+	font-size: 20px;
+	font-weight: bold;
+}
+table#GoodsBuyTable td:nth-child(3){
+	font-weight: bold;
+	text-decoration: underline;
+}
+table#GoodsBuyTable td:nth-child(4){
+	font-size:25px;
+	font-weight: bold;
+}
+table#GoodsBuyTable td:nth-child(5){
+	font-size:25px;
+	font-weight: bold;
+}
+table#GoodsBuyTable td:nth-child(6){
+	width: 150px;
+}
+img#BuyThumb{
+	width: 80px;
+	height: 80px;
+}
+div#sendInfo{
+	/* border: 1px solid #000; */
+	padding: 10px 100px;
+}
+div#sendInfo p {
+	height: 25px;
+	font-size: 23px;
+	line-height: 25px;
+	margin: 20px;
+}
+div#sendInfo p span#AllBuyCost {
+	font-weight: bold;
+	font-size: 26px;
+	text-decoration: underline;
+}
+div#sendInfo p input[type=text]{
+	border: 1px solid #000;
+	text-align: center;
+	height: 30px;
+	line-height: 30px;
+	font-size: 25px;
+}
+div#sendInfo p input#ZipChange{
+	margin-left:20px;
+	width:20px;
+	height: 20px;
+	position: relative;
+	top:3px;
+}
+div#sendInfo p input#Zip{
+	margin-left:50px;
+	width: 150px;
+}
+
+div#sendInfo p input#Addr1{
+	margin-left: 50px;
+}
+span#small{
+	font-size: 15px;
+}
+span#changeZip{
+	border: 2px solid #000;
+	border-radius: 10px;
+}
+div#buy{
+/* 	border: 1px solid #000; */
+	text-align: center;
+}
+div#buy ul li{
+	border: 2px solid #000;
+	border-radius: 8px;
+	width: 200px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 28px;
+	margin: 10px auto;
+}
+/* ////////////////////////// GoodsBuy ////////////////////////// */
+
+/* ////////////////////////// CheckYourWallet////////////////////////// */
+div#purchaseInfo{
+border: 1px solid #000;
+border-radius : 10px;
+}
+div#purchaseCheck{
+border: 1px solid #000;
+border-radius : 10px;
+width : 250px;
+margin: 0px auto;
+margin-top: 30px;
+}
+div#purchaseCheck p{
+text-align: center;
+font-size: 25px;
+}
+ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+.choice {
+    display: flex;
+    justify-content: space-around;
+}
+.choice li{
+border: 1px solid #000;
+border-radius : 10px;
+margin-bottom : 20px;
+width: 80px;
+height: 40px;
+line-height : 40px;
+font-size:28px;
+text-align: center;
+}
+h1 {
+text-align: center;
+}
+span#showInfo {
+border: 3px inset #777;
+font-weight: bold;
+}
+.choice li:hover{
+background-color: #CfCfCf;
+cursor: pointer;
+}
+/* ////////////////////////// CheckYourWallet ////////////////////////// */
+
+/* ////////////////////////// BuyProc  ////////////////////////// */
+h1#BuyProcH1{
+	margin: 40px auto;
+}
+p#sorryMsg{
+	margin: 30px auto;
+	text-align: center;
+	font-size: 25px;
+}
+/* ////////////////////////// BuyProc  ////////////////////////// */
