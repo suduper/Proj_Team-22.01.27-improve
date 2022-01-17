@@ -66,13 +66,13 @@
 	}else if(result == -1){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('아이디 또는 비밀번호가 올바르지 않습니다')");
+		script.println("alert('비밀번호가 올바르지 않습니다')");
 		script.println("history.back()");
 		script.println("</script>");
 	}else if(result == -2){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("alert('데이터베이스 오류입니다')");
+		script.println("alert('아이디 또는 비밀번호가 올바르지 않습니다')");
 		script.println("history.back()");
 		script.println("</script>");
 	}

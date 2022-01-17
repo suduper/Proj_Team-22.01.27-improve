@@ -23,40 +23,47 @@ public class UserDAO {
 	//////////////////////////////// 로그인 ////////////////////////////////
 	public int login(String uID, String uPw,String authority) {
 		
-			Connection				objConn 			=		null;
-			PreparedStatement	objPstmt 			=		null;
-			ResultSet					objRs 				=		null;
-			String						sql_checkPw 		=		null;
-			String						sql_chekAuth 	=		null;
-
-     sql_chekAuth = "select authority from userInfo where uID = ?;";
+		Connection				objConn 			=		null;
+		PreparedStatement	objPstmt 			=		null;
+		ResultSet					objRs 				=		null;
+		String						sql_checkPw 		=		null;
+		String						sql_chekAuth 	=		null;
+		
+		sql_chekAuth = "select authority from userInfo where uID = ?;";
 
 		try {
 			objConn = pool.getConnection();
 			sql_checkPw = "select uPw from userInfo where uID = ?";
-			objPstmt = objConn.prepareStatement(sql_checkPw); //쿼리문1을 대기 시킨다
+			objPstmt = objConn.prepareStatement(sql_checkPw); 
 			objPstmt.setString(1, uID);
 			objRs = objPstmt.executeQuery();
+			
 			if(objRs.next()) {
-				if(objRs.getString(1).equals(uPw)) {
-					 sql_chekAuth = "select authority from userInfo where uID = ?;";
-					 objPstmt = objConn.prepareStatement(sql_chekAuth);
-					 objPstmt.setString(1, uID);
-					 objRs = objPstmt.executeQuery();
-					 if(objRs.next()) {
-						 if(objRs.getString(1).equals("admin")) {
-								authority = "admin";
-								return 2;
-						 }else 
-								authority = "user";
-						 return 1;
-					 }
+				if(objRs.getString(1).equals(uPw)) { // 아이디 / 비밀번호가 일치할때
+					sql_chekAuth = "select authority from userInfo where uID = ?"; //사용자 권한 확인
+					objPstmt = objConn.prepareStatement(sql_chekAuth);
+					objPstmt.setString(1, uID);
+					objRs = objPstmt.executeQuery();
+					if(objRs.next()) {
+						System.out.println(objRs.next());
+						if(objRs.getString(1).equals("admin")) {//권한이 관리자일때
+							authority = "admin"; //관리자 권한 부여
+							return 2;
+						} else {
+							authority = "user"; //일반 사용자 권한 부여
+							return 1;
+						}
+					}
 				} else {
 					return -1;
 				}
 			}
-		}catch (Exception e) {
-			e.printStackTrace();
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
 		}
 		return -2; //오류
 	}
@@ -83,9 +90,13 @@ public class UserDAO {
 			  objPstmt.setString(8, user.getAuthority());
 			  objPstmt.setInt(9, 0);
 			  return objPstmt.executeUpdate();
-		  }catch (Exception e) {
-		 	e.printStackTrace();
-		  }
+		  } catch (SQLException e) {
+				System.out.println("SQL 이슈 : " + e.getMessage());
+			} catch (Exception e) {
+				System.out.println("DB 접속이슈 : " + e.getMessage());
+			} finally {
+				pool.freeConnection(objConn, objPstmt, objRs);
+			}
 		  return -1;
 		}
 	/*

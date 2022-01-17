@@ -35,18 +35,18 @@ for(int i = 0; i < count ; i++){
 		int Allcount = Scount + Mcount + Lcount + XLcount;
 		
 		res += goods.DelBasketProc(uID,goodsName,addDate,Scount,Mcount,Lcount,XLcount,Allcount,eachPay);
-		if(res == count){
+		if(res == 0){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("location.href='../GoodsUpload/MyBasket.jsp'");
 			script.println("</script>");
-		} else{
+		} else {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('죄송합니다. 장바구니 오류입니다. 잠시후 다시 시도해주세요')");
-			script.println("history.back()");
+			script.println("location.href='../GoodsUpload/MyBasket.jsp'");
 			script.println("</script>");
 		}
 	}
 }
-		%>
+%>

@@ -803,6 +803,7 @@ public class GoodsProc {
 			objPstmt.setInt(9,eachPay);
 			if(objPstmt.executeUpdate() == 1) {
 				System.out.println("내용 삭제 성공");
+				System.out.println("결과"+objPstmt.executeUpdate());
 				return objPstmt.executeUpdate();
 			} else {
 				System.out.println("!!!!! 내용 삭제중 오류 !!!!!");
