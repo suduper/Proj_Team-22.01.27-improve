@@ -67,15 +67,19 @@ if(session.getAttribute("sessionChecker") != null){
 
 <div id="wrap">
 <% session.setAttribute("sessionChecker","impossible");%>
+	<hr id="crossLine" />
 	<h1 id="BuyProcH1">구매완료</h1>
+	<hr id="crossLine" />
 </div>
 <%
 	} else {
 %>
 
 <div id="wrap">
+	<hr id="crossLine" />
 	<h1 id="BuyProcH1">구매 정보 오류</h1>
 	<p id="sorryMsg">대단히 죄송합니다. 관리자에게 문의해 주세요.</p>
+	<hr id="crossLine" />
 </div>
 <%			
 	}

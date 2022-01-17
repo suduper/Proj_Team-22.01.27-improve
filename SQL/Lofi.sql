@@ -112,10 +112,12 @@ select*from tblReview;
 
 update userInfo set wallet = 10000000 where uID = 'user1231';
 update userBasket set ordered = 0 where uID = 'user1231' and goodsName = '새로운 겨울옷시리즈_2201070445' and ordered = 1;
-update userOrder set delivery = 1 where uID ='user1231' and addDate = '2022-01-14 18:31:03' and goodsName = '시험상품_2201100601' and delivery = 0;
+update userOrder set delivery = 1 where uID ='user1231' and orderDate = '2022-01-17 16:05:03' and goodsName = '여름옷 시리즈~_2201140900' and delivery = 0;
 select * from userOrder where uID = 'user1231';
 select * from userOrder where uID ='user1231' and addDate = '2022-01-14 18:31:03' and goodsName = '시험상품_2201100601' and delivery = 1 ;
-
+delete from userBasket where uID = 'user1231' and addDate = '2022-01-17 18:15:39' and goodsName ='여름옷 시리즈~_2201140900' and Scount=0  and Mcount= 0 and Lcount= 0 and XLcount= 1 and allcount= 1 and calcRes= 80000 and ordered = 0;
+delete from userBasket where uID='user1231' and goodsName ='여름옷 시리즈~_2201140900' and addDate = '2022-01-17 18:15:39';
+insert into userBasket value('user1231',  '2022-01-17 18:15:39',  '여름옷 시리즈~_2201140900',  0, 0,  0,  1,  1,  80000, 0);
 -- --////////////// 업데이트 //////////////--  -- 
 set SQL_SAFE_UPDATES = 0;
 

@@ -97,7 +97,7 @@
 				
 				<!-- tbody -->
 				<tbody>
-					<form action="GoodsBuy.jsp?count=<%=listSize%>" method="post" id="buyGoods">
+					<form action="" method="post" id="buyGoods">
 					<input type="hidden" name="uID" id="uID" value="<%=uID %>" />
 					<%
 					for (int i = 0; i < listSize; i++){
@@ -164,8 +164,8 @@
 			<p><span id="AllBuyCost">0</span>원</p>
 			<ul>
 				<li><span >전체 선택 &nbsp;&nbsp;<input type="checkbox" name="buyThis" id="selectAll" onclick='selectAll(this,<%=listSize %>)'></span></li>
-				<li><span onclick="">선택 상품 삭제</span></li>
-				<li><span onclick="BuyIt()">선택 상품 구매</span></li>
+				<li><span onclick="DelBasket('<%=listSize%>')">선택 상품 삭제</span></li>
+				<li><span onclick="BuyIt('<%=listSize%>')">선택 상품 구매</span></li>
 			</ul>
 		</div> <!-- <div id="buyProc"> -->
 		<%

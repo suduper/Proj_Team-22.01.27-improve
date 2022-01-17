@@ -51,10 +51,13 @@ function PayCalc(listSize,checkNum){
 			checkboxes = document.getElementsByName('buyThis'+i);
 			rs = "전체 추가 : "
 			val = $("#calcRes"+i).val();
+			if(val == undefined){
+				val = 0;
+			}
 			sum = sum + parseInt(val);
 			AllBuyCostCalc(sum);
 		}
-		console.log(checkNum + rs + val + " 전체 : " + sum);
+		console.log(checkNum + rs + " 전체 : " + sum);
 	} else {
 		checkboxes = document.getElementsByName('buyThis'+checkNum);
 		val = $("#calcRes"+checkNum).val();
@@ -84,13 +87,26 @@ function AllBuyCostCalc(sum){
 }
 //금액 계산 결과 변환기
 
+function DelBasket(listSize){
+	let form = document.getElementById('buyGoods');
+	if(document.getElementById('AllBuyCost').innerHTML == 0){
+		alert('장바구니에서 삭제할 상품을 선택해주세요');
+		return false;	
+	}
+	alert("DelBasketProc.jsp?count="+listSize);
+	form.action="DelBasketProc.jsp?count="+listSize;
+	form.submit();
+	
+}
 
-function BuyIt(){
+function BuyIt(listSize){
+	let form = document.getElementById('buyGoods');
 	if(document.getElementById('AllBuyCost').innerHTML == 0){
 		alert('구매하실 상품을 선택해 주세요');
 		return false;	
 	}
-	$("#buyGoods").submit();
+	form.action="GoodsBuy.jsp?count="+listSize;
+	form.submit();
 }
 
 
@@ -141,8 +157,28 @@ function callWallet() {
 
 
 ////////
-
+/*function CselectAll(selectAll,listSize){
+	for(let i = 0; i < listSize ; i++){
+		checkboxes = document.getElementsByName('CancelThis'+i);
+		$(checkboxes).prop('checked',true);
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll.checked;
+		})
+	}
+	if(selectAllCnt == 0){	
+		checkNum = listSize; 
+		selectAllCnt++;
+	} else if(selectAllCnt == 1){
+		checkNum = -1; selectAllCnt = 0;
+	}
+	PayCalc(listSize,checkNum);	
+}
+*/
 function CancelIt(){
 	alert('작동')
+	if(document.getElementById('AllBuyCost').innerHTML == 0){
+		alert('구매 취소하실 상품이 선택되지 않았습니다.');
+		return false;	
+	}
 	$("#CancelGoods").submit();
 }

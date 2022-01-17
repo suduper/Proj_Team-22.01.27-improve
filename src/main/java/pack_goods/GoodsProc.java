@@ -616,9 +616,6 @@ public class GoodsProc {
 		ResultSet					objRs 				=		null;
 		String						sql 					=		null;
 		
-		System.out.println(goodsName);
-		System.out.println(uID);
-		
 		try {
 			objConn = pool.getConnection();
 			sql = "select exists ("
@@ -632,29 +629,30 @@ public class GoodsProc {
 			objRs = objPstmt.executeQuery(sql);
 			if(objRs.next()) {
 				if(objRs.getInt(1) == 0) { // 옷바구니에 같은 상품이 없다면
-					System.out.println(uID + "의 옷바구니 목록 추가");
+					System.out.println("==== "+uID + "의 옷바구니 목록 추가 ====");
 					sql = "insert into userBasket value (?,now(), ?, ?, ?, ?, ?, ?, ?, 0)";
 					objPstmt = objConn.prepareStatement(sql);
 					objPstmt.setString(1, uID);
-					System.out.println(1);
+					System.out.println("uID : " + uID);
 					objPstmt.setString(2, goodsName);
-					System.out.println(2);
+					System.out.println("goodsName : " + goodsName);
 					objPstmt.setInt(3, Integer.parseInt(Scount));
-					System.out.println(3);
+					System.out.print("S : " + Integer.parseInt(Scount) +" / ");
 					objPstmt.setInt(4, Integer.parseInt(Mcount));
-					System.out.println(4);
+					System.out.print("M : " + Integer.parseInt(Mcount) +" / ");
 					objPstmt.setInt(5, Integer.parseInt(Lcount));
-					System.out.println(5);
+					System.out.print("L: " + Integer.parseInt(Lcount) +" / ");
 					objPstmt.setInt(6, Integer.parseInt(XLcount));
-					System.out.println(6);
+					System.out.println("XL : " + Integer.parseInt(XLcount));
 					objPstmt.setInt(7, Integer.parseInt(Allcount));
-					System.out.println(7);
+					System.out.print("전체 수량 : " + Integer.parseInt(Allcount) +" / ");
 					objPstmt.setInt(8, Integer.parseInt(calcRes)); 
-					System.out.println(8);
-					objPstmt.executeUpdate();
+					System.out.println("전체 금액 : " + Integer.parseInt(calcRes));
+					System.out.println("==== "+uID + "의 옷바구니 목록 추가 ==== \n");
+					 objPstmt.executeUpdate();
 					return 1;
 				} else if(objRs.getInt(1) == 1) { // 옷바구니에 같은 상품이 있다면
-					System.out.println(uID + "의 옷바구니 업데이트됨");
+					System.out.println("==== "+uID + "의 옷바구니 업데이트  ==== \n");
 					sql = "update userBasket set "
 							+ "Scount = ? , "
 							+ "Mcount = ? ,  "
@@ -764,6 +762,64 @@ public class GoodsProc {
 	// 옷바구니 보기 끝 //
 	
 	
+	// 옷바구니 에서 지우기 시작 //
+	public int DelBasketProc(String uID,
+										String goodsName,
+										String addDate,
+										int Scount,
+										int Mcount,
+										int Lcount,
+										int XLcount,
+										int Allcount,
+										int eachPay) {
+		
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+		System.out.println(uID + " 장바구니 내용 삭제 : " + goodsName + " / " + addDate +"\n");
+		try {
+			objConn = pool.getConnection();   // DB연동구문 사용
+			sql ="delete from userBasket "
+					+ "where uID =? "
+					+ "and addDate = ? "
+					+ "and goodsName = ? "
+					+ "and Scount = ? "
+					+ "and Mcount = ? "
+					+ "and Lcount = ? "
+					+ "and XLcount = ? "
+					+ "and allcount = ? "
+					+ "and calcRes = ? "
+					+ "and ordered = 0 ";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objPstmt.setString(2, addDate);
+			objPstmt.setString(3, goodsName);
+			objPstmt.setInt(4,Scount);
+			objPstmt.setInt(5,Mcount);
+			objPstmt.setInt(6,Lcount);
+			objPstmt.setInt(7,XLcount);
+			objPstmt.setInt(8,Allcount);
+			objPstmt.setInt(9,eachPay);
+			if(objPstmt.executeUpdate() == 1) {
+				System.out.println("내용 삭제 성공");
+				return objPstmt.executeUpdate();
+			} else {
+				System.out.println("!!!!! 내용 삭제중 오류 !!!!!");
+				return -999;
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return 0;
+	}
+	// 옷바구니 에서 지우기 끝 //
+	
+	
 	// 상품 주문 시작 //
 	public String userOrder(String uID,
 									   String orderName, 
@@ -778,17 +834,18 @@ public class GoodsProc {
 		ResultSet						objRs			=	null;
 		String							sql 				=	null;
 		
-		System.out.println(info);
 		String[] info_split = info.split(" / ");
-		System.out.println(info_split[0]); //addDate
-		System.out.println(info_split[1]); //goodsName
-		System.out.println(info_split[2]); //Ss
-		System.out.println(info_split[3]); //Ms
-		System.out.println(info_split[4]); //Ls
-		System.out.println(info_split[5]); //XLs
-		System.out.println(info_split[6]); //calcRes
-		System.out.println(Addr1);
-		System.out.println(Addr2);
+		System.out.println("====고객 구매정보====");
+		System.out.println("장바구니 추가일 : "+info_split[0]); //addDate
+		System.out.println("상품명 : "+info_split[1]); //goodsName
+		System.out.print("S"+info_split[2] + " / "); //Ss
+		System.out.print("M"+info_split[3]+ " / "); //Ms
+		System.out.print("L"+info_split[4]+ " / "); //Ls
+		System.out.println("XL"+info_split[5]+ " / "); //XLs
+		System.out.println("금액 : "+info_split[6]); //calcRes
+		System.out.println("주소1 : "+Addr1);
+		System.out.println("주소2 : "+Addr2);
+		System.out.println("====고객 구매정보==== \n");
 		try {
 			objConn = pool.getConnection();
 			sql= "insert into userOrder values(?, now(),?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
@@ -816,12 +873,12 @@ public class GoodsProc {
 		} finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}
-		System.out.println(info_split[1]+" 장바구니 삭제로 보냄");
+		System.out.println(info_split[1]+" 장바구니 구매변경으로 보냄 \n");
 		return info_split[1];
 	}
 	// 상품 주문 끝 //
 	
-	// 주문상품 장바구니 삭제 시작//
+	// 주문상품 장바구니 구매변경 시작//
 	public int set0Basket(String uID, String goodsName) {
 		Connection					objConn		=	null;
 		PreparedStatement 		objPstmt 		= 	null;
@@ -836,7 +893,7 @@ public class GoodsProc {
 			objPstmt.setString(1, uID);
 			objPstmt.setString(2, goodsName);
 			res = objPstmt.executeUpdate();
-			System.out.println(goodsName + "장바구니에서 삭제됨");
+			System.out.println(goodsName + " 장바구니에서 구매변경 됨 \n");
 			return res;
 			
 		} catch (SQLException e) {
@@ -848,7 +905,7 @@ public class GoodsProc {
 		}
 		return 0;
 	}
-	// 주문상품 장바구니 삭제 끝//
+	// 주문상품 장바구니 변경 끝//
 	
 	// 구매리스트 보기 시작 //
 	public Vector<MyBasket> showBuyList(String uID) {
@@ -893,6 +950,11 @@ public class GoodsProc {
 		}
 		// 구매리스트 보기 끝 //
 	
+	public String cancelOrder() {
+		
+		
+		return null;
+	}
 }
 
 

@@ -178,7 +178,8 @@ public class UserDAO {
 		ResultSet						objRs			=	null;
 		String							sql 				=	null;
 		
-		System.out.println(uID + " 가 " + pay +" 원 결제함");
+		System.out.println("==== "+uID + " 가 " + pay +" 원 결제 ==== \n");
+		System.out.println();
 		try {
 			objConn = pool.getConnection();
 			sql= "update userInfo set wallet = wallet - ? where uID = ?";
