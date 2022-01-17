@@ -113,7 +113,7 @@
 			<input type="hidden" name="buyThis<%=i%>" id="buyThis<%=i%>" value="<%=request.getParameter("buyThis"+i)%>"/>
 		<%
 			}
-		} 
+		}  
 		%>
 		<input type="hidden" name="sum" id="sum" value="<%=sum%>"/>
 		<input type="hidden" name="uID" id="uID" value="<%=uID %>" />

@@ -59,7 +59,7 @@ for(int i = 0; i < listSize ; i++){
 }
 %>
 
-
+ 
 <%if(res > listSize){
 		session.setAttribute("sessionChecker","impossible");%>
 	<div id="res">
@@ -68,7 +68,7 @@ for(int i = 0; i < listSize ; i++){
 <%
 	} else {
 %>
-
+ 
 <div id="res">
 	<h1>구매 취소 오류</h1>
 	<p>대단히 죄송합니다. 관리자에게 문의해 주세요.</p>

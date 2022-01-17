@@ -26,7 +26,7 @@ if(10 < hours && hours < 16){ //오늘발송
 	}
 	send = '내일'
 }
-
+ 
 window.onload = function(){
 	$('#arriveDate').append(send);
 };

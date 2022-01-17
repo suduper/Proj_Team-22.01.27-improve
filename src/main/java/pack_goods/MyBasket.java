@@ -1,7 +1,7 @@
 package pack_goods;
 
 public class MyBasket {
-	
+	 
 	private String addDate;
 	private String goodsName;
 	private int Scount;

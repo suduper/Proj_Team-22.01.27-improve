@@ -663,7 +663,7 @@ table#BuyListTable td {
 	border: 1px solid #000;
 	border-radius: 5px;
 }
-table#BuyListTable td:nth-child(1){
+table#BuyListTable td:nth-child(1){ 
 	width: 81px;
 	height: 81px;
 }

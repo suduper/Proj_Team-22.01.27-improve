@@ -19,7 +19,7 @@
 <jsp:useBean id="SessionCheck" class="pack_goods.Goods" scope="page" />
 
 <% request.setCharacterEncoding("UTF-8");%>
-
+ 
 <%
 	String uID = null; 
 	if(session.getAttribute("uID") != null){

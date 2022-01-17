@@ -11,7 +11,7 @@
 
 <jsp:useBean id="walletInfo" class="pack_user.UserDAO" scope="page"/>
 <jsp:useBean id="useWallet" class="pack_goods.GoodsProc" scope="page" />
-
+ 
 <%request.setCharacterEncoding("UTF-8"); %>
 
 <% 

@@ -96,7 +96,7 @@ function DelBasket(listSize){
 	alert("DelBasketProc.jsp?count="+listSize);
 	form.action="DelBasketProc.jsp?count="+listSize;
 	form.submit();
-	
+	 
 }
 
 function BuyIt(listSize){

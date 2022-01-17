@@ -33,7 +33,7 @@ for(int i = 0; i < count ; i++){
 		int XLcount = Integer.parseInt(valSplit[5]);
 		int eachPay = Integer.parseInt(valSplit[6]);
 		int Allcount = Scount + Mcount + Lcount + XLcount;
-		
+		 
 		res += goods.DelBasketProc(uID,goodsName,addDate,Scount,Mcount,Lcount,XLcount,Allcount,eachPay);
 		if(res == 0){
 			PrintWriter script = response.getWriter();

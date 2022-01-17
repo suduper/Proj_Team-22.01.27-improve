@@ -121,7 +121,7 @@
 									int Allcount = Scount + Mcount + Lcount + XLcount;
 									int calcRes = list.getCalcRes();
 									String buyCost = money.format(calcRes);
-									
+									 
 									sum +=calcRes;
 									allBuyCost = money.format(sum);
 									%>

@@ -42,7 +42,7 @@
 			script.println("</script>");
 		}
 	/*<!-- ///////// 이미 로그인 되있으면 회원가입 불가하게 함 ///////// -->*/
-	
+	 
 	/*<!-- ///////// 입력사항확인 ///////// -->*/
 		if(user.getuID() == null){
 			PrintWriter script = response.getWriter();

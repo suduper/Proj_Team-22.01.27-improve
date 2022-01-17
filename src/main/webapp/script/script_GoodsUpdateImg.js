@@ -23,7 +23,7 @@ Thumbdrop
   .on('dragover', function (e1) { //드래그 요소 위에 있을때
     e1.stopPropagation();
     e1.preventDefault();
-  })
+  }) 
   .on('drop', function (e1) { //드래그한 항목을 떨어뜨렸을때
     e1.preventDefault();
     $(this).removeClass('drag-over');

@@ -934,8 +934,8 @@ public class GoodsProc {
 			Connection					objConn		=	null;
 			PreparedStatement 		objPstmt 		= 	null;
 			ResultSet						objRs			=	null;
-			String							sql 				=	null;
-
+			String						 	sql 				=	null;
+ 
 			try {
 				objConn = pool.getConnection();   // DB연동구문 사용
 				sql = "select * from userOrder where uID =? and delivery = 0";

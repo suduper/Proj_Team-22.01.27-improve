@@ -13,6 +13,6 @@ int pay = Integer.parseInt(request.getParameter("sum"));
 int res = purchase.Pay(uID,pay);
 %>
 <input type="hidden" name="res" id="res" value="<%=res %>" onload="resulter(<%=res %>)" />
-
+ 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="../script/script_Purchase.js"></script>
