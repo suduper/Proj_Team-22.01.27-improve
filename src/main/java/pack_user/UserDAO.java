@@ -45,7 +45,6 @@ public class UserDAO {
 					objPstmt.setString(1, uID);
 					objRs = objPstmt.executeQuery();
 					if(objRs.next()) {
-						System.out.println(objRs.next());
 						if(objRs.getString(1).equals("admin")) {//권한이 관리자일때
 							authority = "admin"; //관리자 권한 부여
 							return 2;
