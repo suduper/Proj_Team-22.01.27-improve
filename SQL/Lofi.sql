@@ -11,6 +11,10 @@ uAddr1         char(100),
 uAddr2         char(100),
 authority      char(5),
 Wallet      	   int(8),
+uEmail char(20),
+PhoneNum1 char(5),
+PhoneNum2 char(5),
+PhoneNum3 char(5),
 primary key(uID)
 );
 

@@ -87,25 +87,24 @@
 				</tr>
 				<tr>
 				<td>
-				
-				<select style="width:150px;height:40px; padding: 5px;  border: 1px solid #000;" id="normalNum1" name="normalNum1">
-				<option value="02">02<option>
-				<option value="031">031<option>
-				<option value="032">032<option>
-				<option value="033">033<option>
-				<option value="041">041<option>
-				<option value="042">042<option>
-				<option value="043">043<option>
-				<option value="044">044<option>
-				<option value="051">051<option>
-				<option value="052">052<option>
-				<option value="053">053<option>
-				<option value="054">054<option>
-				<option value="055">055<option>
-				<option value="061">061<option>
-				<option value="062">062<option>
-				<option value="063">063<option>
-				<option value="064">064<option>
+				<select name="normalNum1" id="normalNum1" style="width:150px;height:40px; border: 1px solid #000;">
+					<option value="02" selected>02</option>
+					<option value="031" >031</option>
+					<option value="032" >032</option>
+					<option value="033" >033</option>
+					<option value="041" >041</option>
+					<option value="042" >042</option>
+					<option value="043" >043</option>
+					<option value="044" >044</option>
+					<option value="051" >051</option>
+					<option value="052" >052</option>
+					<option value="053" >053</option>
+					<option value="054" >054</option>
+					<option value="055" >055</option>
+					<option value="061" >061</option>
+					<option value="062" >062</option>
+					<option value="063" >063</option>
+					<option value="064" >064</option>
 				</select>
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
@@ -117,21 +116,22 @@
 				</tr>
 				<tr>
 				<td>
-				
-				<select style="width:150px;height:40px; padding: 5px;  border: 1px solid #000;" id="normalNum1" name="normalNum1">
-				<option value="02">010<option>
-				<option value="031">011<option>
-				<option value="032">016<option>
-				<option value="033">017<option>
-				<option value="041">018<option>
-				<option value="042">019<option>
+				<!-- 인국아 세욱이형 헬프미 ㅠㅠ -->
+				<select name="phoneNum1" id="phoneNum1" style="width:150px;height:40px; padding: 5px;  border: 1px solid #000;">
+					<option value="010" >010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>
+					<option value="018">018</option>
+					<option value="019">019</option>
 				</select>
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
-				<input type="text" placeholder="일반전화" id="" style="padding-left: 5px;font-size: 12px; width: 155px" id="normalNum2" name="normalNum2" >
+				<input type="text" placeholder="휴대전화" id="" style="padding-left: 5px;font-size: 12px; width: 155px" id="phoneNum2" name="phoneNum2" >
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
-				<input type="text" style="padding-left: 5px;font-size: 12px;" id="normalNum3" name="normalNum3">
+				<input type="text" style="padding-left: 5px;font-size: 12px;" id="phoneNum3" name="phoneNum3">
+				<!-- 인국아 세욱이형 헬프미끝 ㅠㅠ -->
 				</td>
 				</tr>
 				<tr>
@@ -144,9 +144,9 @@
 				</tr>
 				<tr>
 				<td >
-				<input type="text"> <span >년</span>
-				<input type="text"> <span>월</span>
-				<input type="text"> <span>일</span>
+				<input type="number"> <span >년</span>
+				<input type="number"> <span>월</span>
+				<input type="number"> <span>일</span>
 				</td>
 				</tr>
 				<tr>

@@ -23,7 +23,7 @@
     	}
 %> 
     <div id="wrap">
-    
+    ㅇㅋㅇㅋ
     <!-- HTML템플릿(Template, Templet) 헤더 시작 -->
 
         <header id="header" class="flex-container">
@@ -33,7 +33,7 @@
             <nav id="nav1" class="flex-container">
                 <ul id="goods"><a href="../Main/Main.jsp">shop</a>
                     <li class="goods1"><a href="../Goods/Goods1.jsp">Goods1</a></li>
-                    <li class="goods1"><a href="#">품목2</a></li>
+                    <li class="goods1"><a href="../Goods/Goods1.jsp">품목2</a></li> 
                     <li class="goods1"><a href="#">품목3</a></li>
                     <li class="goods1"><a href="#">품목4</a></li>
                     <li class="goods1"><a href="#">품목5</a></li>

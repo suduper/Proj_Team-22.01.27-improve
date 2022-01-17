@@ -27,22 +27,29 @@
 
         <header id="header" class="flex-container">
             <div id="logo">
-                <a href="../Main/Main.html"></a>
+                <a href="../Main/Main.jsp"></a>
             </div>
             <nav id="nav1" class="flex-container">
-                <ul id="goods"><a href="../Main/Main.jsp">shop</a>
-                    <li class="goods1"><a href="../Goods/Goods1.jsp">Goods1</a></li>
-                    <li class="goods1"><a href="#">품목2</a></li>
-                    <li class="goods1"><a href="#">품목3</a></li>
-                    <li class="goods1"><a href="#">품목4</a></li>
-                    <li class="goods1"><a href="#">품목5</a></li>
-                </ul>
-                <ul><a href="#">LookBook</a></ul>
-                <ul><a href="#">About</a></ul>
-                <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+            <ul>  
+                <li id="goods"><a href="../Main/Main.jsp">shop</a>
+                    <ul class="goods1"><a href="../Goods/Goods1.jsp"> Lookbook</a></ul>
+                    <ul class="goods1"><a href="#">21A/W 신상품</a></ul>
+                    <ul class="goods1"><a href="#">Leather</a></ul>
+                    <ul class="goods1"><a href="#">Blazer</a></ul>
+                    <ul class="goods1"><a href="#">Outers</a>
+                    <li>자켓</li>
+                    <li>레더</li>
+                    <li>코트</li>
+                    </ul>
+                </li>
+              
+                <li><a href="#">LookBook</a></li>
+                <li><a href="#">About</a></li>
+                <li id="board1"><a href="#">Board</a>
+                    <ul class="board"><a href="#">Notice</a></ul>
+                    <ul class="board"><a href="#">Q&A</a></ul>
+                    <ul class="board"><a href="#">Review</a></ul>
+                </li>
                 </ul>
             </nav>
             

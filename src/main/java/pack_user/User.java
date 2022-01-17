@@ -11,8 +11,10 @@ public class User {
 	private String uAddr2;
 	private String authority;
 	private String Wallet;
-	
-	
+	private String uEmail;
+	private String phoneNum1;
+	private String phoneNum2;
+	private String phoneNum3;
 	public String getNationality() {
 		return Nationality;
 	}
@@ -67,6 +69,31 @@ public class User {
 	public void setWallet(String wallet) {
 		Wallet = wallet;
 	}
-	
+	public String getuEmail() {
+		return uEmail;
+	}
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
+	public String getPhoneNum1() {
+		return phoneNum1;
+	}
+	public void setPhoneNum1(String phoneNum1) {
+		this.phoneNum1 = phoneNum1;
+	}
+	public String getPhoneNum2() {
+		return phoneNum2;
+	}
+	public void setPhoneNum2(String phoneNum2) {
+		this.phoneNum2 = phoneNum2;
+	}
+	public String getPhoneNum3() {
+		return phoneNum3;
+	}
+	public void setPhoneNum3(String phoneNum3) {
+		this.phoneNum3 = phoneNum3;
+	}
+
+
 	
 }
