@@ -155,7 +155,7 @@ $('#btnSubmit').on('click', function () {
 	var inventoryXL = $("#inventoryXL").val().trim();
 
 	if (goodsType == "1") {
-		alert("상품 종류 미선택.");
+		alert("상품 종류 미선택."); 
 		$("#goodsType").focus();
 	} else if (goodsPrice == "" || goodsPrice > 9999999) {
 		alert("상품 가격을 확인해주세요.");
