@@ -116,7 +116,7 @@
 				</tr>
 				<tr>
 				<td>
-				<!-- 인국아 세욱이형 헬프미 ㅠㅠ -->
+				
 				<select name="phoneNum1" id="phoneNum1" style="width:150px;height:40px; padding: 5px;  border: 1px solid #000;">
 					<option value="010" >010</option>
 					<option value="011">011</option>
@@ -131,7 +131,7 @@
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
 				<input type="text" style="padding-left: 5px;font-size: 12px;" id="phoneNum3" name="phoneNum3">
-				<!-- 인국아 세욱이형 헬프미끝 ㅠㅠ -->
+				
 				</td>
 				</tr>
 				<tr>
