@@ -835,6 +835,7 @@ public class GoodsProc {
 		ResultSet						objRs			=	null;
 		String							sql 				=	null;
 		
+		
 		String[] info_split = info.split(" / ");
 		System.out.println("====고객 구매정보====");
 		System.out.println("장바구니 추가일 : "+info_split[0]); //addDate
@@ -847,8 +848,10 @@ public class GoodsProc {
 		System.out.println("주소1 : "+Addr1);
 		System.out.println("주소2 : "+Addr2);
 		System.out.println("====고객 구매정보==== \n");
+		
 		try {
 			objConn = pool.getConnection();
+			/////////////// 구매목록 집어넣기 ///////////////
 			sql= "insert into userOrder values(?, now(),?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0)";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, uID);
@@ -867,6 +870,22 @@ public class GoodsProc {
 			objPstmt.setString(14, notice);
 			objPstmt.executeUpdate();
 			
+			/////////////// 재고수량 변경 ///////////////
+			System.out.println("재고 업데이트 시작");
+			sql ="update GoodsInfo set "
+					+ "inventoryS = inventoryS - ?, "
+					+ "inventoryM = inventoryM - ?, "
+					+ "inventoryL =  inventoryL - ?,  "
+					+ "inventoryXL =  inventoryXL - ? "
+					+ "where goodsName = ? ";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setInt(1, Integer.parseInt(info_split[2]));
+			objPstmt.setInt(2, Integer.parseInt(info_split[3]));
+			objPstmt.setInt(3, Integer.parseInt(info_split[4]));
+			objPstmt.setInt(4, Integer.parseInt(info_split[5]));
+			objPstmt.setString(5, info_split[1]);
+			objPstmt.executeUpdate();
+			System.out.println("재고 업데이트 끝");
 		} catch (SQLException e) {
 			System.out.println("SQL 이슈 : " + e.getMessage());
 		} catch (Exception e) {
@@ -919,7 +938,7 @@ public class GoodsProc {
 
 			try {
 				objConn = pool.getConnection();   // DB연동구문 사용
-				sql = "select * from userOrder where uID =? ";
+				sql = "select * from userOrder where uID =? and delivery = 0";
 				objPstmt = objConn.prepareStatement(sql);
 				objPstmt.setString(1, uID);
 				objRs = objPstmt.executeQuery(); 
@@ -951,16 +970,87 @@ public class GoodsProc {
 		}
 		// 구매리스트 보기 끝 //
 	
-	public String cancelOrder() {
+	// 구매 취소 시작 //
+	public int cancelOrder(String uID, String info) {
+		
+		Connection					objConn		=	null;
+		PreparedStatement 		objPstmt 		= 	null;
+		ResultSet						objRs			=	null;
+		String							sql 				=	null;
+		int							res_userOrder		= 0;
+		int 						res_Inventory		= 0;
+		System.out.println(uID + "님의 배송전 구매 취소 \n");
+		String[] info_split = info.split(" / ");
+		System.out.println("====배송전 구매 취소 정보====");
+		System.out.println("장바구니 추가일 : "+info_split[0]); //addDate
+		System.out.println("상품명 : "+info_split[1]); //goodsName
+		System.out.print("S"+info_split[2] + " / "); //Ss
+		System.out.print("M"+info_split[3]+ " / "); //Ms
+		System.out.print("L"+info_split[4]+ " / "); //Ls
+		System.out.println("XL"+info_split[5]+ " / "); //XLs
+		System.out.println("금액 : "+info_split[6]); //calcRes
+		System.out.println("====배송전 구매 취소 정보==== \n");
 		
 		
-		return null;
+		try {
+			objConn = pool.getConnection(); 
+			sql = "update userOrder "
+					+ "set delivery = -99 "
+					+ "where uID = ? "
+					+ "and addDate = ? "
+					+ "and goodsName = ? "
+					+ "and Scount = ? "
+					+ "and Mcount = ? "
+					+ "and Lcount = ? "
+					+ "and XLcount = ? "
+					+ "and calcRes = ? ";
+			objPstmt = objConn.prepareStatement(sql);
+			objPstmt.setString(1, uID);
+			objPstmt.setString(2, info_split[0]);
+			objPstmt.setString(3, info_split[1]);
+			objPstmt.setInt(4, Integer.parseInt(info_split[2]));
+			objPstmt.setInt(5, Integer.parseInt(info_split[3]));
+			objPstmt.setInt(6, Integer.parseInt(info_split[4]));
+			objPstmt.setInt(7, Integer.parseInt(info_split[5]));
+			objPstmt.setInt(8, Integer.parseInt(info_split[6]));
+	
+			res_userOrder = objPstmt.executeUpdate();
+			if(res_userOrder  == 1) {
+				System.out.println(uID + "구매취소 성공");
+				sql ="update GoodsInfo set "
+						+ "inventoryS = inventoryS + ?, "
+						+ "inventoryM = inventoryM + ?, "
+						+ "inventoryL =  inventoryL + ?,  "
+						+ "inventoryXL =  inventoryXL + ? "
+						+ "where goodsName = ? ";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setInt(1, Integer.parseInt(info_split[2]));
+				objPstmt.setInt(2, Integer.parseInt(info_split[3]));
+				objPstmt.setInt(3, Integer.parseInt(info_split[4]));
+				objPstmt.setInt(4, Integer.parseInt(info_split[5]));
+				objPstmt.setString(5, info_split[1]);
+				res_userOrder = objPstmt.executeUpdate();
+				if(res_userOrder == 1) {
+					System.out.println("재고 복귀 성공");
+					return 1;
+				} else {
+					System.out.println("!!!Error!!!재고 복귀에 실패했습니다.");
+					return 2;
+				}
+				
+			} else {
+				System.out.println(uID + "구매 취소 실패");
+				return -1;
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return 0;
 	}
+	/////////////// 구매취소 끝 ///////////////
 }
-
-
-
-
-
-
-

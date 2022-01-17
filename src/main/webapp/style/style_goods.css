@@ -648,7 +648,9 @@ table#BuyListTable{
 	width: 1000px;
 	text-align: center;
 }
-
+table#BuyListTable th{
+	font-size: 20px;
+}
 table#BuyListTable tr:nth-child(odd) {
 	border:5px solid #000;
 	background-color: #ecf9f9;
@@ -658,7 +660,8 @@ table#BuyListTable tr:nth-child(even) {
 	background-color: #fff;
 }
 table#BuyListTable td {
-	/* border: 1px solid #000; */
+	border: 1px solid #000;
+	border-radius: 5px;
 }
 table#BuyListTable td:nth-child(1){
 	width: 81px;
@@ -682,6 +685,8 @@ table#BuyListTable td:nth-child(5){
 }
 table#BuyListTable td:nth-child(6){
 	width: 150px;
+	font-size: 15px;
+	font-weight: bold;
 }
 img#BuyListImg {
 	width: 100px;
