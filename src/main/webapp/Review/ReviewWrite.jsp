@@ -11,7 +11,6 @@
     	authority = (String)session.getAttribute("authority"); 
     	}
 %> 
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
