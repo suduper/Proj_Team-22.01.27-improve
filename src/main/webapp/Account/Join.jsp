@@ -144,14 +144,14 @@
 				</tr>
 				<tr>
 				<td >
-				<input type="number"> <span >년</span>
-				<input type="number"> <span>월</span>
-				<input type="number"> <span>일</span>
+				<input type="number" id="birthYear" name="birthYear"> <span>년</span>
+				<input type="number" id="birthMonth" name="birthMonth"> <span>월</span>
+				<input type="number" id="birthDay" name="birthDay"> <span>일</span>
 				</td>
 				</tr>
 				<tr>
 					<td>
-						<input type="text" id="#" name="#" placeholder="추천인 아이디" class="full" style="padding: 5px;">
+						<input type="text" id="recommend" name="recommend" placeholder="추천인 아이디" class="full" style="padding: 5px;">
 					</td>
 				</tr>
 				<tr>

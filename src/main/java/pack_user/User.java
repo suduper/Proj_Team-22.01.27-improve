@@ -15,6 +15,35 @@ public class User {
 	private String phoneNum1;
 	private String phoneNum2;
 	private String phoneNum3;
+	private int birthYear;
+	private int birthMonth;
+	public int getBirthYear() {
+		return birthYear;
+	}
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
+	}
+	public int getBirthMonth() {
+		return birthMonth;
+	}
+	public void setBirthMonth(int birthMonth) {
+		this.birthMonth = birthMonth;
+	}
+	public int getBirthDay() {
+		return birthDay;
+	}
+	public void setBirthDay(int birthDay) {
+		this.birthDay = birthDay;
+	}
+	public String getRecommend() {
+		return recommend;
+	}
+	public void setRecommend(String recommend) {
+		this.recommend = recommend;
+	}
+	private int birthDay;
+	private String recommend;
+	
 	public String getNationality() {
 		return Nationality;
 	}

@@ -16,6 +16,10 @@
 <jsp:setProperty name="user" property="phoneNum1" />
 <jsp:setProperty name="user" property="phoneNum2" />
 <jsp:setProperty name="user" property="phoneNum3" />
+<jsp:setProperty name="user" property="birthYear" />
+<jsp:setProperty name="user" property="birthMonth" />
+<jsp:setProperty name="user" property="birthDay" />
+<jsp:setProperty name="user" property="recommend" />
 
 <!DOCTYPE html>
 <html lang="ko">
