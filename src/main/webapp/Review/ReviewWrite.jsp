@@ -70,12 +70,17 @@
 	<tbody>
 		<tr>
 			<td>
-			<input type="text" name="subject" placeholder="제목"  size = "80" id="subject">
+			<input type="text" name="subjcet" placeholder="제목" size = "80" id="subject">
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" placeholder="작성자" size = "80" id="uName">
+			<%if(uID == null) {%>
+			<input type="text" name="uName" placeholder="작성자"  size = "80" id="uName">
+			<%} else { %>
+			<input type="text" name="uName" value="<%=uID %>"  size = "80" id="uName">
+			<%} %>
+
 			</td>
 		</tr>
 		<tr>
@@ -90,8 +95,10 @@
 		</tr>
 		<tr>
 			<td>
-			<!-- <label for="file">첨부하기</label> -->
-			<input type="file" name="fileName" placeholder="파일 선택" size = "71" id="fileName">
+			<input type="file" name="file"size = "71" id="file"
+			 onchange="fileNameValue(this.value)" accept="image/*">
+			<input type="text" name="fileName" id="fileName" value="파일 선택" disabled="disabled" size="58">
+			 <label for="file" id="upload">첨부하기</label>
 			</td>
 		</tr>
 		<tr>

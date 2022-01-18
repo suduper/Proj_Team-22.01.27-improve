@@ -23,7 +23,7 @@ public class ReviewMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
-	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op-develop/src/main/webapp/Resource/ReviewImg/";
+	 = "F:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op/src/main/webapp/Resource/ReviewImg/";
 	
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
@@ -144,6 +144,7 @@ public class ReviewMgr {
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
 				bean.setContent(objRs.getString("content"));
+				bean.setFileName(objRs.getString("fileName"));
 				
 				
 				vList.add(bean);

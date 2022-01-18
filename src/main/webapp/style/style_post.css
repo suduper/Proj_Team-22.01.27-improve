@@ -71,7 +71,7 @@ li{
 }
 
 #main{
-    height: 1000px;
+
 }
 
 #info{
@@ -86,23 +86,37 @@ li{
 #center {
 	width: 100%;
 	text-align: center;
-	line-height: 30px;
+	border-spacing: 3px;
 }
+
 #content{
 	width: 570px;
 	resize: none;
 	outline: none;
 }
 
-#subject, #uName, #email,  #filename, #pass{
+#subject, #uName, #email,  #fileName, #pass, #upload{
 	height: 50px;
 }
 #file{
-	/* display: none; */
+	display: none;
+}
+#fileName{
+	background-color: white;
+	border: 1px solid;
+}
+#upload{
+	border: 1px solid;
+	font-weight: bold;
+	border-radius: 10px;
+	display: inline-block;
+	line-height: 50px;
+	width: 150px;
 }
 
 .pBtn{
 	margin-top: 10px;
+	margin-bottom: 50px;
 	width: 283px;
 	height: 50px;
 	border: 1px solid black;

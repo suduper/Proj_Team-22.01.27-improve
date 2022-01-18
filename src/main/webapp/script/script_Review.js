@@ -32,8 +32,15 @@ function moveBlock(p1, p2) {    // 블럭 이동
 
 }
 
-
-
+function fileNameValue(name){
+	
+	name = name.split('\\')[name.split('\\').length-1];
+	
+	$("#fileName").val(name);
+	
+	console.log(name);
+	
+}
 
 $(function(){
 // 헤더푸터
@@ -155,7 +162,15 @@ $(function(){
 		} else {
 			$("#searchFrm").submit();
 		}
-	});	
+	});
+	
+	$("#fileName").change(function(){
+		
+		let file = document.getElementById("#file").value;
+		let name = document.getElementById("#fileName").value;	
+		
+	});
+	
 	
 	
 

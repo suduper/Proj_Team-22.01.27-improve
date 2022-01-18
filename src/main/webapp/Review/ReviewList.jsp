@@ -135,10 +135,19 @@ listSize = vList.size();
 		String uName = bean.getuName();
 		String regDate = bean.getRegDate();
 		String content = bean.getContent();
+		String filename = bean.getFileName();
 	
 	%>
 		<tr class="prnTr" >
 			<td class="List" id="listNum" onclick="ReviewRead(<%=num%>)"><%= num %></td>
+						<td class="List">
+			<%if(filename != null){ %>
+			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="#" width="90px" height="90px">
+			<%} else{ 
+			out.print("");
+			}
+			%>
+			</td>
 			<td class="List" id="listSub"><%= subject %>
 			<br><br>
 			<input type="text" placeholder="<%=content%>" readonly id="listContent" maxlength="20">

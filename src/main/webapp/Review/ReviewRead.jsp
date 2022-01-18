@@ -38,6 +38,7 @@
     
     session.setAttribute("bean", bean);
     %>
+    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -103,7 +104,7 @@
 		</tr>
 		<tr>
 			<td id="readContents" >
-			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="">
+			<img src="../Resource/ReviewImg/1234/<%=filename%>" width="auto" height="auto" alt="">
 			<textarea name="txtArea" id="txtArea" cols="30" rows="10" readonly><%=content %></textarea>
 			</td>
 		</tr>
