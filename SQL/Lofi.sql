@@ -12,9 +12,13 @@ uAddr2         char(100),
 authority      char(5),
 Wallet      	   int(8),
 uEmail char(20),
-PhoneNum1 char(5),
-PhoneNum2 char(5),
-PhoneNum3 char(5),
+PhoneNum1 varchar(5),
+PhoneNum2 varchar(5),
+PhoneNum3 varchar(5),
+BirthYear int(5),
+BirthMonth int(5),
+BirthDay int(5),
+Recommend char(20),
 primary key(uID)
 );
 
@@ -113,7 +117,7 @@ select*from userBasket;
 select*from tblReview;
 
 -- --///////////// 명령어 /////////////--  --
-update GoodsInfo set inventoryS = inventoryS+1, inventoryM = inventoryM +1, inventoryL =  inventoryL + 1,  inventoryXL =  inventoryXL +1 where goodsName = '새로운 겨울옷시리즈_2201070445';
+
 update userInfo set wallet = 10000000 where uID = 'user1231';
 update userBasket set ordered = 0 where uID = 'user1231' and goodsName = '새로운 겨울옷시리즈_2201070445' and ordered = 1;
 update userOrder set delivery = 1 where uID ='user1231' and orderDate = '2022-01-17 16:05:03' and goodsName = '여름옷 시리즈~_2201140900' and delivery = 0;
@@ -130,8 +134,8 @@ set SQL_SAFE_UPDATES = 0;
 -- --//////////////!!!드랍!!!///////////////--  -- 
 
 drop database !lofip;
-drop table UserInfo;
+drop table !UserInfo;
 drop table !GoodsInfo;
 drop table !tblReview;
-drop table userBasket;
-drop table userOrder;
+drop table !userBasket;
+drop table !userOrder;
