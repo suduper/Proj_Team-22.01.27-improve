@@ -127,7 +127,7 @@
 				</select>
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
-				<input type="text" placeholder="휴대전화" id="" style="padding-left: 5px;font-size: 12px; width: 155px" id="phoneNum2" name="phoneNum2" >
+				<input type="text" placeholder="휴대전화"id="" style="padding-left: 5px;font-size: 12px; width: 155px" id="phoneNum2" name="phoneNum2" >
 				
 				<span style="margin-left: 5px; margin-right: 5px;">-</span>
 				<input type="text" style="padding-left: 5px;font-size: 12px;" id="phoneNum3" name="phoneNum3">
