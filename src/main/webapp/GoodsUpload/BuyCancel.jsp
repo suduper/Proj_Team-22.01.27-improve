@@ -1,3 +1,4 @@
+<%@page import="pack_goods.GoodsProc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -5,12 +6,23 @@
 
 <%@page import="java.io.PrintWriter"%>
 
-<jsp:useBean id="order" class="pack_goods.GoodsProc" scope="page" />
+<jsp:useBean id="CancelOrder" class="pack_goods.GoodsProc" scope="page" />
 
 <jsp:useBean id="SessionCheck" class="pack_goods.Goods" scope="page" />
 
 <jsp:setProperty name="SessionCheck" property="sessionChecker"/>
 <%
+String uID = null; 
+if(session.getAttribute("uID") != null){
+	uID = (String)session.getAttribute("uID"); 
+} else {
+	PrintWriter script = response.getWriter();
+	script.println("<script>");
+	script.println("alert('로그인 해주세요')");
+	script.println("location.href='../Account/Login.jsp'");
+	script.println("</script>");
+}
+
 if(session.getAttribute("sessionChecker") != null){
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
@@ -18,6 +30,9 @@ if(session.getAttribute("sessionChecker") != null){
 	script.println("location.href='../GoodsUpload/BuyList.jsp'");
 	script.println("</script>");
 }
+int listSize = Integer.parseInt(request.getParameter("count"));
+String CancelBuyThis = null;
+int res = 0;
 %>
 <!DOCTYPE html>	
 <html lang="ko">
@@ -31,46 +46,34 @@ if(session.getAttribute("sessionChecker") != null){
 <body>
 
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
+
+<%=listSize%>
+
 <%
-	String uID = request.getParameter("uID");
-	String orderName = request.getParameter("who");
-	int sendCount = Integer.parseInt(request.getParameter("sendCount"));
-	int sum = Integer.parseInt(request.getParameter("sum"));
-	
-	String addDate = request.getParameter("addDate");
-	
-	int delCheckers = 0;
-	String goodsName = null;
-	int setInfoNum = 0;
-	String CancelThis = null;
-	for(int i =0 ; i < sendCount ; i++){ 
-		CancelThis = request.getParameter("cancelThis"+setInfoNum);
-		if(request.getParameter("cancelThis"+setInfoNum) == null){
-			setInfoNum++;
-			if(i == 0){
-				i--;
-			}
-		} else {
-			goodsName = order.cancelOrder();
-			delCheckers += order.set0Basket(uID, goodsName);
-			setInfoNum++;
-		}
-	} 
-	if(delCheckers == sendCount){
+for(int i = 0; i < listSize ; i++){
+	CancelBuyThis = request.getParameter("buyThis"+i);
+	res += CancelOrder.cancelOrder(uID, CancelBuyThis);
 %>
-<jsp:setProperty name="SessionCheck" property="sessionChecker" value="impossible"/>
-<div id="res">
-<% session.setAttribute("sessionChecker","impossible");%>
-	<h1>구매 취소 완료</h1>
-</div>
+	<%=CancelBuyThis %>
+<%
+}
+%>
+
+ 
+<%if(res > listSize){
+		session.setAttribute("sessionChecker","impossible");%>
+	<div id="res">
+		<h1>구매 취소 완료</h1>
+	</div>
 <%
 	} else {
 %>
-
+ 
 <div id="res">
 	<h1>구매 취소 오류</h1>
 	<p>대단히 죄송합니다. 관리자에게 문의해 주세요.</p>
 </div>
+
 <%			
 	}
 %>

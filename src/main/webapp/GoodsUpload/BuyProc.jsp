@@ -43,7 +43,7 @@ if(session.getAttribute("sessionChecker") != null){
 	String Addr2 = request.getParameter("Addr2");
 	String phone = request.getParameter("phone");
 	String notice = request.getParameter("notice");
-	
+	 
 	int delCheckers = 0;
 	String goodsName = null;
 	int setInfoNum = 0;

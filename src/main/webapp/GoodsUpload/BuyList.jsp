@@ -121,11 +121,10 @@
 									int Allcount = Scount + Mcount + Lcount + XLcount;
 									int calcRes = list.getCalcRes();
 									String buyCost = money.format(calcRes);
-									
+									 
 									sum +=calcRes;
 									allBuyCost = money.format(sum);
 									%>
-									<input type="hidden" name="addDate" id="addDate" value="<%=list.getAddDate()%>"/>
 									<tr>
 										<td id="showThumb">
 											<img id="BuyListImg" src="../Resource/GoodsImg/<%=tloc %>/thumb/thumb_<%=view.getGoodsThumbnail() %>"/>
@@ -151,7 +150,7 @@
 										<% } else { %> 
 												<input type="hidden" name="calcRes<%=i %>" id="calcRes<%=i %>" value="<%=calcRes%>"/>
 												<input type="checkbox"
-															value="<%=goodsName %> / <%=Scount %> / <%=Mcount %> / <%=Lcount %> / <%=XLcount %> / <%=calcRes %>"
+															value="<%=list.getAddDate()%> / <%=goodsName %> / <%=Scount %> / <%=Mcount %> / <%=Lcount %> / <%=XLcount %> / <%=calcRes %>"
 															name="buyThis<%=i %>" id="buyThis<%=i %>" 
 															onclick="PayCalc(<%=listSize%>,<%=i %>)" />
 											<p id="deliNotice">배송 준비중</p>

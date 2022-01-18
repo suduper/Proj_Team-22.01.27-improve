@@ -13,7 +13,7 @@ function read(param) {
 ///////////////////////////////////////////////////////////
 ////////////////////바닐라 JS 영역 끝/////////////////////
 ///////////////////////////////////////////////////////////
- 
+  
 
 $(function(){
 /*
@@ -22,7 +22,7 @@ $(function(){
 	$("#info :input").attr("disabled",true); 
 	*/ 
 
-	
+	  
 	const editor = document.getElementById("write");
 	editor.contentEditable ='false';
 	

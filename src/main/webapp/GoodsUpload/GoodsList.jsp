@@ -14,7 +14,7 @@
 Vector<Goods> GoodsList = null;
 
 int listSize = 0;
-
+ 
 String SAVEFOLDER
 ="C:/Users/TridentK/git/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/"; // 경로명 반드시 변경
 

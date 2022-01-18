@@ -11,7 +11,7 @@ var Imagedrop = $('#Img_drop'); //상품 이미지 드래그 앤 드롭 영역 �
 var ImgIdx = 0;  // 상품이미지 갯수 초기화
 
 var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
-  
+   
 //////////// 썸네일 드래그 앤 드롭 영역 /////////////
 Thumbdrop
   .on('dragenter', function (e1) { //드래그 요소가 들어왔을떄
@@ -155,7 +155,7 @@ $('#btnSubmit').on('click', function () {
 	var inventoryXL = $("#inventoryXL").val().trim();
 
 	if (goodsType == "1") {
-		alert("상품 종류 미선택.");
+		alert("상품 종류 미선택."); 
 		$("#goodsType").focus();
 	} else if (goodsPrice == "" || goodsPrice > 9999999) {
 		alert("상품 가격을 확인해주세요.");
