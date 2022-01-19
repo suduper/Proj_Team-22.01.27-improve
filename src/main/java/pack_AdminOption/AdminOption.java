@@ -1,7 +1,7 @@
 package pack_AdminOption;
 
 public class AdminOption {
-	
+	 
 	private int num;
 	private String uID;
 	private String addDate;

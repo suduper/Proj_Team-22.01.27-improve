@@ -3,7 +3,7 @@
     
 <%@ page import="pack_AdminOption.AdminOption"%>
 <%@ page import="pack_AdminOption.AdminOptionProc" %> 
-    
+     
 <%@ page import="pack_AdminOption.AdminOption, java.util.Vector" %>
 <%@ page import="java.text.NumberFormat"%>
 <%@ page import="java.io.PrintWriter"%>
@@ -39,6 +39,39 @@ int listSize = 0;
 
 NumberFormat money = NumberFormat.getNumberInstance();
 
+int totalRecord = 0; // 전체 레코드
+int numPerPage = 5; // 페이지 당 레코드
+int pagePerBlock = 5; // 블럭 당 페이지
+
+int totalPage = 0;
+int totalBlock = 0;
+
+
+int nowPage = 1; // 현재 페이지
+int nowBlock = 1;// 현재 블럭
+
+int start = 0; // DB의 select 시작 번호
+int end = 5; // 시작번호로부터 가져올 select 수
+
+String keyField = "";
+String keyWord = "";
+
+if (request.getParameter("keyWord") != null) {
+	keyField = request.getParameter("keyField");
+	keyWord = request.getParameter("keyWord");
+}
+
+if (request.getParameter("nowPage") != null) {
+	nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	start = (nowPage * numPerPage) - numPerPage;
+	end = numPerPage;
+}
+
+totalRecord = Order.OrderCount(keyField, keyWord);
+
+totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
+nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
+totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -54,23 +87,60 @@ NumberFormat money = NumberFormat.getNumberInstance();
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
 
 <div id="wrap">
+
+	<div id="OrderListPage">
+
+		<%
+		int pageStart = (nowBlock-1)*pagePerBlock+1;
+		int pageEnd = (nowBlock<totalBlock) ?
+		pageStart + pagePerBlock-1 : totalPage;
+		if(totalPage != 0) {
+			if(nowBlock>1) { 
+		%>
+		<span onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>')"> << </span>
+		<% } 
+		for( ; pageStart<=pageEnd; pageStart++) {	
+			if(pageStart == nowPage){%>
+			<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>')"> <%=pageStart %> </span>
+		<%} else {%>
+			<span class="mBtn" onclick="movePage('<%=pageStart%>')"> <%=pageStart %> </span>
+		<%
+			} 
+		} 
+		%>
+		
+		<% if(totalBlock>nowBlock) { %>
+		<span onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>')"> >> </span>
+		<% 
+			}
+		}
+		%>
+	</div>
 	
-	<div id="Option"><!-- div id="Option" -->
-			<select>
-				<option value="전체">전체</option>
-				<option value="정장">정장</option>
-				<option value="패딩">패딩</option>
-				<option value="기타">기타</option>
+	<input type="hidden" id="pKeyField" value="<%= keyField%>">
+	<input type="hidden" id="pKeyWord" value="<%= keyWord%>">
+	<div id="searchArea" class="flex-container">
+
+		<form name = "searchFrm" id="searchFrm">
+				
+			<select name="keyField" id="keyField">
+				<option value="all" <% if(keyField.equals("all")) out.print("selected"); %>>전체</option>
+				<option value="uID" <% if(keyField.equals("uID")) out.print("selected"); %>>uID</option>
+				<option value="goodsName" <% if(keyField.equals("goodsName")) out.print("selected"); %>>상품명</option>
+				<option value="Addr" <% if(keyField.equals("Addr")) out.print("selected"); %>>주소</option>
 			</select>
-			<input type="text" name="serch" id="serch" placeholder="검색어 입력" />
-			<p id="goSerch" onclick="goSerch()">검색</p>
-	</div><!-- div id="Option" -->
+			
+			<input type="text" name="keyWord" id="keyWord" value="<%= keyWord%>">
+			
+		</form>
+			<p id="searchBtn">검색</p>
+	</div> 
 		
 	<div id="OrderShowWrap"><!-- div id="OrderShowWrap" -->
 		
 		<div id="OrderShowContent"><!-- div id="OrderShowContent" -->
 		<% 
-			AllOrderList = Order.OrderList();
+			AllOrderList = Order.OrderList(keyField, keyWord, start, end);
 			listSize = AllOrderList.size();
 			if(AllOrderList.isEmpty()){
 		%>
@@ -172,7 +242,7 @@ NumberFormat money = NumberFormat.getNumberInstance();
 				%>
 					</form>
 				</tbody>
-			</table>
+			</table> 
 		</div><!-- div id="OrderShowContent" -->
 		
 		<div id="OrderOption"> <!-- div id="OrderOption" -->
@@ -189,7 +259,6 @@ NumberFormat money = NumberFormat.getNumberInstance();
 		</div> <!-- div id="OrderOption" -->
 		
 	</div><!-- div id="OrderShowWrap" -->
-	여기<span id="test"></span>
 </div><!-- div id="wrap" -->
 
 <jsp:include page="../Main/Main_Bottom.jsp" flush="true"/>

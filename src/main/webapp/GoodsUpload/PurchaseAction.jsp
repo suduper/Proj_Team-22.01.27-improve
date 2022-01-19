@@ -4,7 +4,7 @@
 <%@page import="java.io.PrintWriter"%>
     
 <%request.setCharacterEncoding("UTF-8"); %>
-
+ 
 <jsp:useBean id="purchase" class="pack_user.UserDAO" scope="page"/>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <%

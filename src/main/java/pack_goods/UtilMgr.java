@@ -13,7 +13,7 @@ public class UtilMgr {
 			      result.append(str.substring(s, e));
 			      result.append(replace);
 			      s = e + pattern.length();
-			      
+			       
 		}
 		result.append(str.substring(s));
 		

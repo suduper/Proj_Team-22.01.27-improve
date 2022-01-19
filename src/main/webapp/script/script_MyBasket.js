@@ -23,7 +23,7 @@ function selectAll(selectAll,listSize)  {
 		checkboxes = document.getElementsByName('buyThis'+i);
 		$(checkboxes).prop('checked',true);
 		checkboxes.forEach((checkbox) => { 
-			checkbox.checked = selectAll.checked;
+			checkbox.checked = selectAll.checked; 
 		})
 	}
 	if(selectAllCnt == 0){	

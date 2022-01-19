@@ -189,7 +189,7 @@ listSize = vList.size();
 		for( ; pageStart<=pageEnd; pageStart++) {		%>
 		<%
 		if(pageStart == nowPage){%>
-		<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>)">
+		<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>')">
 		<%=pageStart %>
 		</span>
 		<%} else{%>

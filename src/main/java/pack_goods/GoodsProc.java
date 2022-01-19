@@ -33,7 +33,7 @@ public class GoodsProc {
 															   + "Resource/GoodsImg/"; // 경로명 반드시 변경
 	private static String encType = "UTF-8";
 	private static int maxSize = 100*1024*1024;
-	
+	 
 	 Date now = new Date();
 	 SimpleDateFormat fm = new SimpleDateFormat("_yyMMddhhmm");
 	 String add = fm.format(now);
@@ -247,8 +247,55 @@ public class GoodsProc {
 	}
 	//  			상품 등록      끝       //
 	
+	// 저장된 상품 리스트 페이징 시작 //
+	public int GoodsCount(String keyField, String keyWord) {
+		
+		Connection objConn = null;
+		PreparedStatement objPstmt = null;
+		ResultSet objRs = null;
+		String sql = null;
+		int totalCnt = 0;
+		
+		try {
+			objConn = pool.getConnection();
+			if(keyWord.equals("null") || keyWord.equals("")) {
+				sql = "select count(*) from goodsInfo";
+				objPstmt = objConn.prepareStatement(sql);
+			} else {
+				if(keyField.equals("all")) {
+					sql = "select count(*) from goodsInfo where goodsName like ? ";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setString(1, "%"+keyWord+"%");
+				} else {
+					sql = "select count(*) from goodsInfo "
+					 + "where goodsType = "+keyField+" and goodsName like ? ";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setString(1, "%" + keyWord + "%");
+				}
+			}
+
+			objRs = objPstmt.executeQuery();
+
+			if (objRs.next()) {
+				totalCnt = objRs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("SQL 이슈 : " + e.getMessage());
+		} catch (Exception e) {
+			System.out.println("DB 접속이슈 : " + e.getMessage());
+		} finally {
+			pool.freeConnection(objConn, objPstmt, objRs);
+		}
+		return totalCnt;
+	}
+	// 저장된 상품 리스트 페이징 끝 //
+	
 	// 저장된 상품 리스트 불러오기 시작 //
-	public Vector<Goods> getBoardList() {
+	public Vector<Goods> getBoardList(String keyField, 
+														 String keyWord, 
+														 int start, 
+														 int end) {
 
 		Vector<Goods> GoodsList = new Vector<>();
 		Connection					objConn		=	null;
@@ -258,10 +305,28 @@ public class GoodsProc {
 
 		try {
 			objConn = pool.getConnection();   // DB연동구문 사용
-			sql = "select * from goodsInfo order by goodsnum desc limit ?, ?";
-			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setInt(1, 0);
-			objPstmt.setInt(2, 20);
+
+			if(keyWord.equals("null") || keyWord.equals("")) {
+				sql = "select * from goodsInfo order by goodsnum desc limit ?, ?";
+				objPstmt = objConn.prepareStatement(sql);
+				objPstmt.setInt(1, start);
+				objPstmt.setInt(2, end);
+			} else {
+				if(keyField.equals("all")) {
+					sql = "select*from goodsInfo where goodsName like ? order by goodsNum desc limit ?,?";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setString(1, "%"+keyWord+"%");
+					objPstmt.setInt(2, start);
+					objPstmt.setInt(3, end);
+				} else {
+					sql = "select*from goodsInfo where goodsType = '"+keyField+"' and goodsName like ? order by goodsNum desc limit ?,?";
+					objPstmt = objConn.prepareStatement(sql);
+					objPstmt.setString(1, "%"+keyWord+"%");
+					objPstmt.setInt(2, start);
+					objPstmt.setInt(3, end);
+				}
+			}
+			
 			objRs = objPstmt.executeQuery(); 
 	 
 			while (objRs.next()) {
