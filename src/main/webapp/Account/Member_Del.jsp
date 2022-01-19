@@ -4,7 +4,7 @@
 <jsp:useBean id="mMgr" class="pack_user.UserDAO" scope="page" />
     
 <%
-String uID = (String)session.getAttribute("idKey");
+String uID = (String)session.getAttribute("uID");
 boolean res = mMgr.deleteMember(uID);
 
 if (res) {
