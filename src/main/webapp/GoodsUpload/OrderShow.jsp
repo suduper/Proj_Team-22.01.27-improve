@@ -242,7 +242,7 @@ totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
 				%>
 					</form>
 				</tbody>
-			</table>
+			</table> 
 		</div><!-- div id="OrderShowContent" -->
 		
 		<div id="OrderOption"> <!-- div id="OrderOption" -->
