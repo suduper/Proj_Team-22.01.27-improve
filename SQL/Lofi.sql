@@ -21,7 +21,7 @@ BirthDay int(5),
 Recommend char(20),
 uName char(20),
 primary key(uID)
-);
+); 
 
 /*---------------------상품 테이블--------------------*/
 create table GoodsInfo(
@@ -157,7 +157,9 @@ insert into tblNotice(uName, subject, content, regDate, ip) values(1, '2', '3', 
 select max(num) from tblNotice;
 select*from tblNotice order by num desc limit 0,5;
 select count(*) from tblNotice;
+
 -- --///////////// 명령어 /////////////--  --
+
 select * from tblReview order by num desc limit 0,10;
 select*from userOrder where goodsName like 'user1231' or uID like 'user1231' order by num desc limit 0,5;
 select count(*) from goodsInfo where goodsType = '기타' and goodsName like '%봄%' ;
