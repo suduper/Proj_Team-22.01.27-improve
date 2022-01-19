@@ -9,6 +9,15 @@
     <%
     request.setCharacterEncoding("utf-8");
     
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}
+    
     
     int totalRecord = 0; // 전체 레코드
     int numPerPage = 5; // 페이지 당 레코드
@@ -80,16 +89,29 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
+                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
+                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
                 </ul>
             </nav>
              
             <nav id="nav2" class="flex-container">
-                <ul><a href="#">Login</a></ul>
-                <ul><a href="#">Account</a></ul>
-                <ul><a href="#">Cart</a></ul>
+            <% if(uID == null){ /* 로그인 안되있을때 */ %>
+                <ul><a href="../Account/Login.jsp">Login</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
+			<%  }
+            
+            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+			<% } 
+            else if(uID !=null && authority.equals("admin")){
+			%>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -136,13 +158,14 @@ listSize = vList.size();
 		String regDate = bean.getRegDate();
 		String content = bean.getContent();
 		String filename = bean.getFileName();
+		String email = bean.getuEmail();
 	
 	%>
 		<tr class="prnTr" >
-			<td class="List" id="listNum" onclick="ReviewRead(<%=num%>)"><%= num %></td>
+			<td class="List" id="listNum" onclick="ReviewRead('<%=num%>', '<%=nowPage%>')"><%= num %></td>
 						<td class="List">
 			<%if(filename != null){ %>
-			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="#" width="90px" height="90px">
+			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="" width="90px" height="90px">
 			<%} else{ 
 			out.print("");
 			}
@@ -161,12 +184,12 @@ listSize = vList.size();
 		%>
 		
 		<tr>
-			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='ReviewWrite.jsp'">리뷰 남기기</button></td>
+			<td colspan="4"><button type="button" id="writeBtn" onclick="location.href='ReviewWrite.jsp'">리뷰 남기기</button></td>
 		</tr>
 
 
 		<tr>
-		<td colspan="3" id="pagingTd">
+		<td colspan="4" id="pagingTd">
 		<%
 		int pageStart = (nowBlock-1)*pagePerBlock+1;
 		

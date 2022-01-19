@@ -86,6 +86,7 @@ height: 100%;
 	width: 50%;
 	margin-right: auto;
 	margin-left: auto;
+	border-spacing: 2px;
 }
 
 .rContent{
@@ -101,7 +102,7 @@ height: 100%;
 	width: 800px;
 	height: 200px;
 	resize: none;
-	border: 1.5px solid #000;
+	border: none;
 	text-align: left;
 	outline: none;
 	line-height: 20px;
@@ -109,8 +110,13 @@ height: 100%;
 	padding-left: 20px;
 }
 
+#readContent{
+	border: 1.5px solid #000;
+}
+
 .reviewBtn{
 	margin-top: 20px;
+	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: bold;
 	width: 150px;

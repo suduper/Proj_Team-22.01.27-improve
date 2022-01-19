@@ -49,6 +49,15 @@
     
     Vector<QnABean> vList = null;
     
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}
+    
     
     %>
     
@@ -62,7 +71,6 @@
     <link rel="stylesheet" href="../style/style_ListQnA.css">
 </head>
 <body>
-
 <div id="wrap">
 
         <header id="header" class="flex-container">
@@ -83,16 +91,29 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
+                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
+                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
                 </ul>
             </nav>
              
             <nav id="nav2" class="flex-container">
-                <ul><a href="#">Login</a></ul>
-                <ul><a href="#">Account</a></ul>
-                <ul><a href="#">Cart</a></ul>
+            <% if(uID == null){ /* 로그인 안되있을때 */ %>
+                <ul><a href="../Account/Login.jsp">Login</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
+			<%  }
+            
+            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+			<% } 
+            else if(uID !=null && authority.equals("admin")){
+			%>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -103,7 +124,7 @@
         </header>
 
 
-<div id="top"><span>QnA</span></div>
+<div id="top"><h4>QnA</h4></div>
 
 <main id="main">
 
@@ -141,7 +162,7 @@ listSize = vList.size();
 		int depth = bean.getDepth();
 	
 		%>
-  	<tr class="prnTr"  onclick="QnARead(<%=num%>)">
+  	<tr id="listNum" class="prnTr"  onclick="QnARead('<%=num%>', '<%=nowPage%>')">
 			<td class="List">
 					<% if (depth == 0) out.print(num);  %>
 			</td> 
@@ -163,7 +184,7 @@ listSize = vList.size();
 	}
 %>
 		<tr>
-			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='QnAWrite.jsp'">리뷰 남기기</button></td>
+			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='QnAWrite.jsp'">작성하기</button></td>
 		</tr>
 		<tr>
 		<td colspan="3" id="pagingTd">
@@ -189,11 +210,11 @@ listSize = vList.size();
 		for( ; pageStart<=pageEnd; pageStart++) {		%>
 		<%
 		if(pageStart == nowPage){%>
-		<span onclick="movePage('<%=pageStart%>')">
+		<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>')">
 		<%=pageStart %>
 		</span>
 		<%} else{%>
-		<span onclick="movePage('<%=pageStart%>')">
+		<span class="mBtn" onclick="movePage('<%=pageStart%>')">
 		<%=pageStart %>
 		</span>
 		<%} %>

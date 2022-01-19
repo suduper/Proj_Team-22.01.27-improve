@@ -8,10 +8,25 @@
     int num = Integer.parseInt(request.getParameter("num"));
     String nowPage = request.getParameter("nowPage");
     
+    String keyField = request.getParameter("keyField");
+    String keyWord = request.getParameter("keyWord");
+    
     QnABean bean = (QnABean)session.getAttribute("bean");
     String subject = bean.getSubject();
     String uName = bean.getuName();
     String content = bean.getContent();
+    String fileName = bean.getFileName();
+    String email = bean.getuEmail();
+    int depth = bean.getDepth();
+    
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}
     
     %>
 <!DOCTYPE html>
@@ -45,16 +60,29 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
+                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
+                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
                 </ul>
             </nav>
              
             <nav id="nav2" class="flex-container">
-                <ul><a href="#">Login</a></ul>
-                <ul><a href="#">Account</a></ul>
-                <ul><a href="#">Cart</a></ul>
+            <% if(uID == null){ /* 로그인 안되있을때 */ %>
+                <ul><a href="../Account/Login.jsp">Login</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
+			<%  }
+            
+            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+			<% } 
+            else if(uID !=null && authority.equals("admin")){
+			%>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -66,7 +94,7 @@
         
         <div id="mod">
         
-        <h3>REVIEW</h3>
+        <h3>QnA</h3>
 <br><br>
 <form action="QnAUpdateProc.jsp" method="get" id="UpdateFrm" enctype="multipart/form-data" name="UpdateFrm">
 
@@ -74,17 +102,24 @@
 	<tbody>
 		<tr>
 			<td>
-			<input type="text" name="subject" placeholder="<%=subject %>>"  size = "80" id="subject">
+			<input type="text" name="subject" value="<%=subject %>"  size = "80" id="subject">
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" placeholder="<%=uName %>" size = "80" id="uName">
+			<input type="text" name="uName" value="<%=uName %>" size = "80" id="uName">
 			</td>
 		</tr>
+			<%if(depth>0){ %>
+			<%}else{ %>
 		<tr>
 			<td>
-			<input type="email" name="email" placeholder="이메일" size = "80" id="email">
+			<% if(email == null) { %>
+			<input type="text" name="email" placeholder="이메일" size = "80" id="email">
+			<%}else { %>
+			<input type="text" name="email" value="<%=email %>" size = "80" id="email">
+			<%} %>
+			<%} %>
 			</td>
 		</tr>
 		<tr>
@@ -96,8 +131,10 @@
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="file" placeholder="파일 선택" size = "71" id="fileName" readonly>
-			<input type="file" name="file" id="file"><label for="file">첨부하기</label>
+			<%if(fileName == null) {
+			 } else{ %>
+			<input type="text" value="<%=fileName%>" disabled>
+			 <%} %>
 			</td>
 		</tr>
 		<tr>

@@ -77,11 +77,12 @@ calcRes 				int(9),
 ordered				int(1)
 );
 
-/*---------------------리뷰 테이블--------------------*/
+/*---------------------게시판 테이블--------------------*/
 create table tblReview (
     num          int                    auto_increment,
     uName		char(20)			not null,
     subject     char(50)			not null,
+    uEmail		char(50),
     content		text					null		,    
     ref			int					not null,
     pos			int					not null,
@@ -95,6 +96,35 @@ create table tblReview (
     constraint		primary key(num)
 );
 
+create table tblQnA (
+    num          int                    auto_increment,
+    uName		char(20)			not null,
+    subject     char(50)			not null,
+    uEmail		char(50)			null,
+    content		text					null		,    
+    ref			int					not null,
+    pos			int					not null,
+    depth		int					not null,
+    regDate		date					not null,
+    pass			char(20)			null,
+    ip				char(15)			null,    
+    count			int					not null,
+    fileName	char(50)			null,
+    fileSize		int					null,
+    constraint		primary key(num)
+);
+
+create table tblNotice (
+    num          int                    auto_increment,
+    uName		char(20)			not null,
+    subject     char(50)			not null,
+    content		text				not	null,    
+    regDate		date				not null,
+    ip				char(15)			null,    
+    constraint		primary key(num)
+);
+
+
 
 /*----------------초기 입력----------------*/
 insert into userInfo(uID,uPw,authority) values ('test1234','1234','admin');  /*관리자 권한 계정 임시 생성*/
@@ -107,6 +137,8 @@ desc Goodsinfo;
 desc userOrder;
 desc userBasket;
 desc tblReview;
+desc tblQnA;
+desc tblNotice;
 
 -- --////////////// 선택문 //////////////--  -- 
 
@@ -115,7 +147,15 @@ select*from GoodsInfo;
 select*from userOrder;
 select*from userBasket;
 select*from tblReview;
+select*from tblQnA;
+select*from tblNotice;
 
+select count(*) from tblNotice;
+select * from tblNotice order by num desc limit ?,?;
+insert into tblNotice(uName, subject, content, regDate, ip) values(1, '2', '3', now(), 10);
+select max(num) from tblNotice;
+select*from tblNotice order by num desc limit 0,5;
+select count(*) from tblNotice;
 -- --///////////// 명령어 /////////////--  --
 
 update userInfo set wallet = 10000000 where uID = 'user1231';
@@ -139,3 +179,5 @@ drop table !GoodsInfo;
 drop table !tblReview;
 drop table !userBasket;
 drop table !userOrder;
+drop table !tblQnA;
+drop table !tblNotice;

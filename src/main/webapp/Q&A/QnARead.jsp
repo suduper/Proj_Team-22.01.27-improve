@@ -8,6 +8,9 @@
     
     int numParam = Integer.parseInt(request.getParameter("num"));
     
+    String keyField = request.getParameter("keyField");
+    String keyWord = request.getParameter("keyWord");
+    
     QnABean bean = qMgr.getQnA(numParam);
     
     String nowPage = request.getParameter("nowPage");
@@ -16,6 +19,8 @@
     String uName = bean.getuName();
     String subject = bean.getSubject();
     String content = bean.getContent();
+    String email = bean.getuEmail();
+    
     
     int pos = bean.getPos();
     int ref = bean.getRef();
@@ -33,6 +38,16 @@
     String ip = bean.getIp();
     
     session.setAttribute("bean", bean);
+    
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}
+   	
     %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -66,16 +81,29 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
+                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
+                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
                 </ul>
             </nav>
-            
+             
             <nav id="nav2" class="flex-container">
-                <ul><a href="#">Login</a></ul>
-                <ul><a href="#">Account</a></ul>
-                <ul><a href="#">Cart</a></ul>
+            <% if(uID == null){ /* 로그인 안되있을때 */ %>
+                <ul><a href="../Account/Login.jsp">Login</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
+			<%  }
+            
+            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+			<% } 
+            else if(uID !=null && authority.equals("admin")){
+			%>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -88,7 +116,7 @@
 <!-- HTML템플릿(Template, Templet) 헤더 끝 -->
 
 <main id="main">
-<%=ref %>
+
 <table id = "read">
 	<tbody>
 		<tr>
@@ -98,19 +126,30 @@
 			<td class="rContent"><span>제목  <%=subject %></span></td>
 		</tr>
 		<tr>
-			<td><textarea id="txtArea" readonly ><%=content %></textarea></td>
+			<td>
+			<div id="readContent">
+			<img src="../Resource/ReviewImg/1234/<%=fileName%>" width="auto" height="auto" alt="">
+			<textarea name="txtArea" id="txtArea" cols="30" rows="10" readonly><%=content %></textarea>
+			</div>
+			</td>
 		</tr>
 	</tbody>
 </table>
 
 <hr>
-<button type="button" onclick="history.back()" class="reviewBtn">리스트</button>
-<button type="button" id="modBtn"  class="reviewBtn">수정</button>
-<button type="button" id="delBtn"  class="reviewBtn">삭제</button>
-<button type="button" id="replyBtn"  class="reviewBtn">답변</button>
+<button type="button" id="listBtn" class="QnABtn">리스트</button>
+<button type="button" id="modBtn"  class="QnABtn">수정</button>
+<button type="button" id="delBtn"  class="QnABtn">삭제</button>
+<%if(authority != null) {%>
+<button type="button" id="replyBtn"  class="QnABtn">답변</button>
+<%} %>
 
 			<input type="hidden" name="nowPage" value="<%=nowPage%>" id="nowPage">
 			<input type="hidden" name="num" value="<%=num%>" id="num">
+			<input type="hidden" id="pKeyField" value="<%=keyField%>">
+			<input type="hidden" id="pKeyWord" value="<%=keyWord%>">
+			<input type="hidden" name="email" value="<%=email%>" id="email">
+			<input type="hidden" name="email" value="<%=depth%>" id="depth">
 
 </main>
 

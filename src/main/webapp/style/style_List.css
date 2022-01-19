@@ -144,6 +144,7 @@ li{
 }
 #listContent{
 	border: none;
+	outline: none;
 }
 #searchArea{
 	position: relative;

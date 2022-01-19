@@ -23,7 +23,7 @@ public class QnAMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
-	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op-develop/src/main/webapp/Resource/ReviewImg/";
+	= "F:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op/src/main/webapp/Resource/ReviewImg/";
 	
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
@@ -38,7 +38,7 @@ public class QnAMgr {
 		
 	}
 
-	public void insertQnA(HttpServletRequest req, String subject) {
+	public void insertQnA(HttpServletRequest req) {
 		
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
@@ -60,21 +60,19 @@ public class QnAMgr {
 			
 			
 			
-			File file = new File(SAVEFOLDER+subject);
+			File file = new File(SAVEFOLDER);
 			
 			if (!file.exists())
 				file.mkdirs();
 			
-			multi = new MultipartRequest(req, SAVEFOLDER+subject, maxSize, encType, new DefaultFileRenamePolicy());
+			multi = new MultipartRequest(req, SAVEFOLDER, maxSize, encType, new DefaultFileRenamePolicy());
 			
 			
-			if(multi.getFilesystemName("fileName") != null) {
-				fileName = multi.getFilesystemName("fileName");
-				fileSize = (int)multi.getFile("fileName").length();
+			if(multi.getFilesystemName("file") != null) {
+				fileName = multi.getFilesystemName("file");
+				fileSize = (int)multi.getFile("file").length();
 			}
 			String content = multi.getParameter("content");
-			
-			subject = multi.getParameter("subject");
 		
 			
 			sql = "insert into tblQnA(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
@@ -116,14 +114,16 @@ public class QnAMgr {
 			
 			
 			if (keyWord.equals("null") || keyWord.equals("")) {
-				// 검색어가 없을 경우
 				sql = "select * from tblQna "
 						+ "order by ref desc, pos asc limit ?, ?";
 				objPstmt = objConn.prepareStatement(sql);
 				objPstmt.setInt(1, start);
 				objPstmt.setInt(2, end);
+				
+				
 			} else {
-				// 검색어가 있을 경우
+				
+				
 				sql = "select * from tblQna "
 						+ "where "+ keyField +" like ? "
 						+ "order by ref desc, pos asc limit ?, ?";

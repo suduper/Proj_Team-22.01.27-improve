@@ -74,13 +74,11 @@ public class NoticeMgr {
 			
 			objConn = pool.getConnection();
 			
-			sql = "select*from tblNotice order by num desc limit ?,?";
+			sql = "select * from tblNotice order by num desc limit ?, ?";
 			objPstmt = objConn.prepareStatement(sql);
-			objPstmt.setInt(1, start);
-			objPstmt.setInt(2, end);
-			
-			
-			objRs = objPstmt.executeQuery(sql);
+			objPstmt.setInt(1, 0);
+			objPstmt.setInt(2, 5);
+			objRs = objPstmt.executeQuery();
 			
 			while(objRs.next()) {
 				
@@ -97,7 +95,7 @@ public class NoticeMgr {
 			
 			
 		}catch (Exception e) {
-			System.out.println("SQL2 : "+e.getMessage()+"  "+sql);
+			System.out.println("SQL2 : "+e.getMessage());
 		}finally {
 			pool.freeConnection(objConn, objPstmt, objRs);
 		}

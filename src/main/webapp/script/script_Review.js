@@ -5,8 +5,8 @@
 } */
 
 function ReviewRead(p1, p2) {
-    let p3 = $("#pKeyField").val().trim();  // p3 : keyField
-    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
+    let p3 = $("#pKeyField").val().trim();
+    let p4 = $("#pKeyWord").val().trim();
 	let param = "ReviewRead.jsp?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
@@ -38,7 +38,8 @@ function fileNameValue(name){
 	
 	$("#fileName").val(name);
 	
-	console.log(name);
+	$("#file").val(name);
+	
 	
 }
 
@@ -97,7 +98,7 @@ $(function(){
 		let nowPage = $("input#nowPage").val().trim();
 		let num = $("input#num").val().trim();
 		
-		let url = "../Review/ReviewUpdate.jsp?num="+num+"&nowPage="+nowPage;
+		let url = "../Review/ReviewUpdateSbm.jsp?num="+num+"&nowPage="+nowPage;
 		location.href=url;
 		
 	})
@@ -164,15 +165,30 @@ $(function(){
 		}
 	});
 	
-	$("#fileName").change(function(){
+		$("#modSbmBtn").click(function(){
 		
-		let file = document.getElementById("#file").value;
-		let name = document.getElementById("#fileName").value;	
+		let pass = $("input#modpass").val().trim();
 		
+		if(pass == ""){
+			$("input#modpass").focus();
+			alert("비밀번호를 입력하세요");
+			return;
+		}else{
+			$("#modFrm").submit();
+		}
 	});
 	
-	
-	
+		$("#listBtn").click(function(){
+		let param = $("#nowPage").val().trim();
+		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
+	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
+	     
+		let url = "../Review/ReviewList.jsp?nowPage=" + param;		    
+		    url += "&keyField="+p3;
+	     	url += "&keyWord="+p4 ; 
+		location.href=url;
+	});
+
 
 
 
