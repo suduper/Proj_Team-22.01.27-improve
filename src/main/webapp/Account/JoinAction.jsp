@@ -20,6 +20,7 @@
 <jsp:setProperty name="user" property="birthMonth" />
 <jsp:setProperty name="user" property="birthDay" />
 <jsp:setProperty name="user" property="recommend" />
+<jsp:setProperty name="user" property="uName" />
 
 <!DOCTYPE html>
 <html lang="ko">
