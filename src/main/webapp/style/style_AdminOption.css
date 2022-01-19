@@ -1,7 +1,7 @@
 @charset "UTF-8";
-* {font-family: "Helvetica Neue","Helvetica","Arial",'Spoqa Han Sans','Malgun Gothic','Apple SD Gothic Neo','돋움',dotum,sans-serif;
-		box-sizing: border-box;
-}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url(Style_Reset.css);
+
 div#wrap{
 	margin: 5px auto;
 	padding: 5px;
