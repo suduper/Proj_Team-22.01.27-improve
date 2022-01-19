@@ -19,6 +19,7 @@ BirthYear int(5),
 BirthMonth int(5),
 BirthDay int(5),
 Recommend char(20),
+uName char(20),
 primary key(uID)
 );
 
