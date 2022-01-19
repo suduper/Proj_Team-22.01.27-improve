@@ -30,27 +30,43 @@
                 <a href="../Main/Main.jsp"></a>
             </div>
             <nav id="nav1" class="flex-container">
-            <ul>  
-                <li id="goods"><a href="../Main/Main.jsp">shop</a>
-                    <ul class="goods1"><a href="../Goods/Goods1.jsp"> Lookbook</a></ul>
-                    <ul class="goods1"><a href="#">21A/W 신상품</a></ul>
-                    <ul class="goods1"><a href="#">Leather</a></ul>
-                    <ul class="goods1"><a href="#">Blazer</a></ul>
-                    <ul class="goods1"><a href="#">Outers</a>
-                    <li>자켓</li>
-                    <li>레더</li>
-                    <li>코트</li>
-                    </ul>
-                </li>
-              
-                <li><a href="#">LookBook</a></li>
-                <li><a href="#">About</a></li>
-                <li id="board1"><a href="#">Board</a>
-                    <ul class="board"><a href="#">Notice</a></ul>
-                    <ul class="board"><a href="#">Q&A</a></ul>
-                    <ul class="board"><a href="#">Review</a></ul>
-                </li>
+            
+                <ul id="goods">
+                	<a href="../Main/Main.jsp">shop</a>
+                    <li><a href="#">품목1</a></li>
+                    <li><a href="#">품목2</a></li> 
+                    <li><a href="#">품목3</a></li>
+                    <li><a href="#">품목4</a></li>
+                    <li><a href="#">품목5</a></li>
                 </ul>
+                
+                <ul id="List">
+                	<a href="../GoodsUpload/GoodsList.jsp">List</a>
+                	<li>List1</li>
+                	<li>List2</li>
+                	<li>List3</li>
+                </ul>
+                
+                <ul id="LookBook">
+                	<a href="#">LookBook</a>
+                	<li>LookBook1</li>
+                	<li>LookBook2</li>
+                	<li>LookBook3</li>
+                </ul>
+                
+                <ul id="About">
+                	<a href="#">About</a>
+                	<li>About1</li>
+                	<li>About2</li>
+                	<li>About3</li>
+                </ul>
+                
+                <ul  id="Board"><a href="#">Board</a>
+                	<li><a href="#">Notice</a></li>
+                	<li><a href="#">Q&A</a></li>
+                	<li><a href="../Review/ReviewList.jsp">Review</a></li>
+                </ul>
+
             </nav>
             
             <nav id="nav2" class="flex-container">
@@ -61,7 +77,7 @@
             
             else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-                <ul><a href="#">Cart</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
 			<% } 
             else if(uID !=null && authority.equals("admin")){
 			%>
