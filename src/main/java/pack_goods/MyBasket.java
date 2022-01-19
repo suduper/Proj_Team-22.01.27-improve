@@ -14,7 +14,7 @@ public class MyBasket {
 	private String Addr1;
 	private String Addr2;
 	private String phone;
-	private String notice;
+	private String notice; 
 	private int delivery;
 	
 	public String getAddDate() {

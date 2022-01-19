@@ -25,7 +25,7 @@ $("#searchBtn").click(function(){
 		if(keyWord=="") {
 			alert("검색어를 입력해주세요.");
 			$("#keyWord").focus();			
-		} else {
+		} else { 
 		$("#searchFrm").submit();
 		}
 	}

@@ -1,4 +1,4 @@
- 
+
 const hideT = document.getElementById('hider');
 	hideT.style.display = 'none';
 

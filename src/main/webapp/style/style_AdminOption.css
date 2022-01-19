@@ -15,7 +15,7 @@ div#OrderListPage{
 	justify-content: space-around;
 }
 span.mBtn {
-	cursor: pointer;
+	cursor: pointer; 
 }
 hr#crossLine {
 	width: 90%;

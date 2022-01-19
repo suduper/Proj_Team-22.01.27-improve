@@ -30,7 +30,7 @@ import java.util.Vector;
 /**
  * Manages a java.sql.Connection pool.
  *
- * @author  Anil Hemrajani
+ * @author  Anil Hemrajani 
  */
 public class DBConnectionMgr {
     private Vector connections = new Vector(10); 

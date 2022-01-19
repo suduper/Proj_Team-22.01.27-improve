@@ -33,7 +33,7 @@ public class GoodsProc {
 															   + "Resource/GoodsImg/"; // 경로명 반드시 변경
 	private static String encType = "UTF-8";
 	private static int maxSize = 100*1024*1024;
-	
+	 
 	 Date now = new Date();
 	 SimpleDateFormat fm = new SimpleDateFormat("_yyMMddhhmm");
 	 String add = fm.format(now);

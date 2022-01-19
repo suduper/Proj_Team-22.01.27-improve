@@ -1,7 +1,7 @@
 function movePage(p1){
 	let p3 = $("#pKeyField").val().trim();
     let p4 = $("#pKeyWord").val().trim();
-
+ 
 	let param = "GoodsList.jsp?nowPage="+p1+"&keyField="+p3+"&keyWord="+p4;
 	location.href = param;
 }

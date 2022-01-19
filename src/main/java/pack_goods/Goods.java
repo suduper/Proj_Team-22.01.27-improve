@@ -1,7 +1,7 @@
 package pack_goods;
  
 public class Goods {
-	 
+	  
 	private int goodsNum;        //상품 번호
 	private String goodsName; //상품 이름
 	private String goodsWarehousing; //상품 입고일

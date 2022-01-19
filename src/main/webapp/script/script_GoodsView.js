@@ -1,6 +1,6 @@
 function forUpdate(goodsName){
 	location.href="GoodsUpdate.jsp?goodsName="+goodsName;
-} 
+}
 
 let origPrice = null;
 let nowday = new Date();   

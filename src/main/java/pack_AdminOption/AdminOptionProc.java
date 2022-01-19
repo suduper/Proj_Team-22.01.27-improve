@@ -9,7 +9,7 @@ import java.util.Vector;
 public class AdminOptionProc {
 	
 	private DBConnectionMgr pool;
-	private static final String SAVEFOLDER ="C:/Users/TridentK/git/"
+	private static final String SAVEFOLDER ="C:/Users/TridentK/git/" 
 															   + "Project_Lofi_Co-op/"
 															   + "src/main/webapp/"
 															   + "Resource/GoodsImg/"; // 경로명 반드시 변경
