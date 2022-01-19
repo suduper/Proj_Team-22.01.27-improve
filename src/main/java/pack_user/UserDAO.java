@@ -140,14 +140,14 @@ while (objRs.next()) {
 	  user.setuAddr1(objRs.getString("uAddr1"));
 	  user.setuAddr2(objRs.getString("uAddr2"));
 	  user.setuEmail(objRs.getString("uEmail"));
-		/*
-		 * user.setPhoneNum1(objRs.getString("PhoneNum1"));
-		 * user.setPhoneNum2(objRs.getString("PhoneNum2"));
-		 * user.setPhoneNum3(objRs.getString("PhoneNum3"));
-		 */
-	  user.setBirthYear(objRs.getInt("BirthYear"));
-	  user.setBirthMonth(objRs.getInt("BirthMonth"));
-	  user.setBirthDay(objRs.getInt("BirthDay"));
+	
+	user.setPhoneNum1(objRs.getString("PhoneNum1"));
+	user.setPhoneNum2(objRs.getString("PhoneNum2"));
+	user.setPhoneNum3(objRs.getString("PhoneNum3"));
+		 
+	 // user.setBirthYear(objRs.getInt("BirthYear"));
+	  //user.setBirthMonth(objRs.getInt("BirthMonth"));
+	  //user.setBirthDay(objRs.getInt("BirthDay"));
 	  user.setuName(objRs.getString("uName"));
 
 

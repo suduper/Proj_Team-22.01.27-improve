@@ -5,11 +5,11 @@
   
 <jsp:useBean  id="mDAO"   class="pack_user.UserDAO"  scope="page" />
 <%
-String sessionUId = (String)session.getAttribute("idKey");
-Vector<User> vList = mDAO.modifyMember(sessionUId);
+String sessionuID = (String)session.getAttribute("uID");
+Vector<User> vList = mDAO.modifyMember(sessionuID);
 %>  
 
-<% if (sessionUId != null) {   // 현재 로그인 상태라면  %>
+<% if (sessionuID != null) {   // 현재 로그인 상태라면  %>
 <!-- ////////////////  로그인 상태 시작  ////////////////// -->
 
 
@@ -35,204 +35,186 @@ Vector<User> vList = mDAO.modifyMember(sessionUId);
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>회원정보 수정</title>
-	<style>
-	* {
-		box-sizing: border-box;
-	}
-	div#wrap {
-		width: 680px;
-		padding: 10px;
-		border: 1px solid #000;
-		margin: 10px auto;
-	}
-	
-	table {
-		width: 100%;
-		/*border: 1px solid #000;*/
-	}
-	th, td {
-		padding: 10px 6px;
-/*		border: 1px solid #000;  */
-	}
-	table>caption {
-		font-size: 24px;
-		font-weight: bold;
-		padding: 20px;
-		border-bottom: 2px solid #ddd;
-	}
-	
-	tr:last-child td {
-		text-align: center;
-	}
-	td:first-child {
-		width: 120px;
-		text-align: right;
-	}
-	input {
-		font-size: 15px;
-		padding: 4px 10px;
-	}
-	input.uAddr {
-		border: none;
-		border-bottom: 1px solid #ddd;
-		outline: none;
-	}
-	td#hobbyArea span:hover {
-		color: #555;
-		cursor: pointer;
-	}
-	
-	td.req::after {   /* 입력 필수 */
-		content: " *";
-		color: #f80;
-		font-size: 20px;
-	}
-	
-	button {
-		font-size: 14px;
-		font-weight: bold;
-		padding: 4px 10px;
-		cursor: pointer;
-		transform: translateY(1px);
-	}
-	
-	select {
-		font-size: 18px;
-		transform: translateY(2px);
-		
-	}
-	
-	
-	</style>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script>
-		$(function(){
-			
-			
-			////////////// 유효성 검사 시작 //////////////////////
-			
-			$("#modBtn").click(function(){
-				
-				let uPw = $("#uPw").val();
-				let uPw_Re = $("#uPw_Re").val();
-				let uName = $("#uName").val();
-				
-				if (uPw == "") {     // 비밀번호 검사 시작
-					alert("비밀번호를 입력하세요.");
-					$("#uPw").focus();
-				} else if (uPw != uPw_Re) {     // 비밀번호 동일검사 시작
-					alert("비밀번호가 다릅니다. 확인 후 다시 입력하세요.");
-					$("#uPw_Re").val("");
-					$("#uPw").focus();
-				} else if (uName == "") {     // 이름 검사 시작
-					alert("이름을 입력하세요.");
-					$("#uName").focus();
-				} else {
-					$("#modFrm").submit();
-				}
-				
-			});
-			////////////// 유효성 검사 끝 //////////////////////
-			
-
-			///////////  로그인 페이지 이동 시작 ////////////////
-			$("#logoutBtn").click(function(){
-				location.href = "Logout.jsp";
-			});
-
-			///////////  메인 페이지 이동 시작 ////////////////
-			$("#mainBtn").click(function(){
-				location.href = "../Index.jsp";
-			});
-			
-			
-			
-		});	
-	</script>
+<title>회원가입수정</title>
+<link rel="stylesheet" href="../style/style.css">
 </head>
 <body>
-	<div id="wrap">
-	
-	<form name="modFrm" id="modFrm" action="Member_ModProc.jsp" method="get">
-	
+
+<div id="wrap">
+	<form action="Member_ModAction.jsp" method="get" id="regFrm" name="regFrm">
 		<table>
-			<caption>회원정보 수정</caption>
 			<tbody>
+			<caption>회원가입수정</caption>
+				
 				<tr>
-					<td class="req">아이디</td>
-					<td><%=uID %></td>
-					<td></td>
-				</tr> 
-				<tr>
-					<td class="req">패스워드</td>
-					<td>
-						<input type="text" name="uPw" id="uPw" size="15" value="<%=uPw%>">
-					</td>
-					<td>패스워드를 적어주세요</td>
+					<td><input type="text" name="uID" id="uID" value="<%=uID%>"class="full" readonly="readonly"></td>
 				</tr>
-				<tr>
-					<td>패스워드 확인</td>
-					<td>
-						<input type="password" id="uPw_Re" size="15">
-					</td>
-					<td>패스워드를 확인합니다.</td>
-				</tr>
-				<tr>
-					<td class="req">이름</td>
-					<td>
-						<input type="text" name="uName" id="uName" size="15"
-						   value="<%=uName%>">
-					</td>
-					<td>이름을 적어주세요.</td>
-				</tr>
-				<tr>
-					<td class="req">Email</td>
-					<td>
-						<%=uEmail%>
-					</td>
-					<td>이메일을 적어주세요.</td>
-				</tr>
-				<tr>
-					<td colspan="3" style="border-bottom: 2px solid #ddd;"></td>
-				</tr>				
 
 				<tr>
-					<td>우편번호</td>
-					<td><%=uZip%></td>
-					<td>우편번호를 검색하세요.</td>
+					<td><input type="password" name="uPw" id="uPw" value="<%=uPw%>"class="full"></td>
 				</tr>
 				<tr>
-					<td>주소</td>
-					<td><%=uAddr1 %></td>
-					<td></td>
+					<td><input type="password" name="uPw_Re" id="uPw_Re" placeholder="비밀번호 확인" class="full"></td>
 				</tr>
-			
-			
+
 				<tr>
-					<td colspan="3">
-						<button type="button" id="modBtn">정보수정</button>
-						<button type="reset">다시쓰기</button>
-						<button type="button" id="mainBtn">메인으로</button>		
-						<button type="button" id="logoutBtn">로그아웃</button>					
+					<td class="uZip"><input type="text" id="uZip" name="uZip" size="64"value="<%=uZip%>" readonly>
+						<button type="button" id="zipBtn" onclick="kakaopost()" style="cursor: pointer;">우편번호</button>
 					</td>
 				</tr>
-			</tbody>
+				<tr>
+					<td>
+						<input type="text" id="uAddr1" name="uAddr1" value="<%=uAddr1%>" class="full" readonly>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" id="uAddr2" name="uAddr2" value="<%=uAddr2%>" class="full">
+					</td>
+				</tr>
+				<tr>
+				<td>
+				
+				<select name="phoneNum1" id="phoneNum1" style="width:150px;height:40px; padding: 5px;  border: 1px solid #000; value="<%=PhoneNum1%>">
+					<option value="010" >010</option>
+					<option value="011">011</option>
+					<option value="016">016</option>
+					<option value="017">017</option>
+					<option value="018">018</option>
+					<option value="019">019</option>
+				</select>
+				
+				<span style="margin-left: 5px; margin-right: 5px;">-</span>
+				<input type="text" placeholder="휴대전화"id="" style="padding-left: 5px;font-size: 12px; width: 155px" id="phoneNum2" name="phoneNum2" value="<%=PhoneNum2%>" >
+				
+				<span style="margin-left: 5px; margin-right: 5px;">-</span>
+				<input type="text" style="padding-left: 5px;font-size: 12px;" id="phoneNum3" name="phoneNum3" value="<%=PhoneNum3%>">
+				
+				</td>
+				</tr>
+				<tr>
+				<td>
+						<input type="text" id="uEmail" name="uEmail" placeholder="이메일" class="full" style="padding: 8px" value="<%=uEmail%>">
+				</td>
+				</tr>
+				<tr>
+				<td>배송 받으실 성함</td>
+				</tr>
+			<!--	<tr>
+				<td >
+				<input type="number" id="birthYear" name="birthYear"> <span>년</span>
+				<input type="number" id="birthMonth" name="birthMonth"> <span>월</span>
+				<input type="number" id="birthDay" name="birthDay"> <span>일</span>
+				</td>
+				</tr>  생일-->
+				<tr>
+					<td>
+						<input type="text" id="uName" name="uName" placeholder="배송받으실 성함" class="full" style="padding: 5px;" value="<%=uName%>">
+					</td>
+				</tr>
+
+	            <tr class="infor">
+					<td ><button type="button" id="btn-Join" class="Join_btn" style="background-color: #000; color: #fff">정보수정</button></td>
+					<td><button type="button" id="btn-Cancel" class="Join_btn"style="background-color: #fff; color: #000">정보수정취소</button></td>
+				</tr>
+
+			<!-- 체크박스 끝 -->
 		</table>
-	
 	</form>
-	<!-- document.modFrm -->
-
-
-	</div>
-	<!-- div#wrap -->
 	
 	
-	<script src="script/script.js"></script>    
+ </div>
+<%@include file="../Main/Main_Bottom.jsp" %>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <!--  카카오 우편번호 예제시작-->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+function kakaopost() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+           document.querySelector("#uZip").value = data.zonecode;
+           document.querySelector("#uAddr1").value = data.address;
+        }
+    }).open();
+}
+</script>
+<!--  카카오 우편번호 예제끝-->
+
+<!-- jquery로 submit -->
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+
+
+//아이디 유효성검사시작
+	$("#btn-Join").click(function(){
+		
+		let uID = $("#uID").val();
+		let uIdLen  = uID.length;
+		let uIdReg = /[^a-z|A-Z|0-9|_]/;
+		if (uIdLen < 5) {
+			alert("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+			$("#uID").focus();
+			return;
+		} else if(uIdReg.test(uID)) {
+			alert("ID는 영어, 숫자, 특수기호(_), 5글자 이상 20글자 이하");
+			$("#uID").focus();
+			return;
+		}
+		//아이디 검사끝
+		//비밀번호 및 회원가입필수들 시작
+		let uPw = $("#uPw").val();
+		let uPw_Re = $("#uPw_Re").val();
+		let uName = $("#uName").val();
+		let uEmail = $("#uEmail").val();
+		let uAddr1 = $("#uAddr1").val();
+		let uAddr2 = $("#uAddr2").val();
+		let uAddr = uAddr1 + " " + uAddr2;
+
+		//let uIdBtnClickChk = $("#uIdBtnClickChk").val();
+		if(uID == "") {    	// 아이디 검사 시작
+			alert("ID를 입력해주세요");
+			$("#uID").focus();
+			
+			$("#uID").focus(function(){
+				$(this).css({"outline": "1px solid #555"});	
+			}).blur(function(){
+				$(this).css({"outline": "none"});	
+			});					
+			// 아이디 검사 끝
+		} else if (uPw == "") {     // 비밀번호 검사 시작
+			alert("비밀번호를 입력하세요.");
+			$("#uPw").focus();
+		} else if (uPw != uPw_Re) {     // 비밀번호 동일검사 시작
+			alert("비밀번호가 다릅니다. 확인 후 다시 입력하세요.");
+			$("#uPw_Re").val("");
+			$("#uPw").focus();
+		} else if (uEmail == "") {     // 이메일 검사 시작
+			alert("이메일을 입력하세요.");
+			$("#uEmail").focus();
+		} else if (uEmail.indexOf("@") < 0 || uEmail.indexOf(".") < 0) {     // 이메일 검사 시작
+			alert("이메일주소를 확인하세요.");
+			$("#uEmail").focus();
+		} else {
+			$("#uAddr").val(uAddr);
+			
+			$("#regFrm").submit();		
+			
+		}
+	
+	});
+//////////////유효성 검사 시작//////////////////////
+	
+//////////////유효성 검사 끝 //////////////////////
+	$("#btn-Cancel").click(function(){
+		location.href = "../Index.jsp";
+	});
+
+
+</script>
+
 </body>
-</html>   
-
-<!-- ////////////////  로그인 상태 끝  ////////////////// -->
+</html>
 
 <% } else { %>
 
