@@ -19,7 +19,7 @@ Thumbdrop
   })
   .on('dragleave', function (e1) { //드래그 요소가 나갔을때
     $(this).removeClass('drag-over');
-  })
+  }) 
   .on('dragover', function (e1) { //드래그 요소 위에 있을때
     e1.stopPropagation();
     e1.preventDefault();

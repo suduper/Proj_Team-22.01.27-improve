@@ -1,4 +1,4 @@
-package pack_goods;
+package pack_AdminOption;
 
 public class UtilMgr {
 	
@@ -9,7 +9,7 @@ public class UtilMgr {
 		
 		while ((e = str.indexOf(pattern, s)) >= 0) {
 			      // 지역변수 e의 값이 0보다 크면 true, 즉 1이상이면 true
-			 
+			
 			      result.append(str.substring(s, e));
 			      result.append(replace);
 			      s = e + pattern.length();

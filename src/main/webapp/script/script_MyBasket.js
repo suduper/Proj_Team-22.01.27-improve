@@ -22,7 +22,7 @@ function selectAll(selectAll,listSize)  {
   	for(let i = 0; i < listSize ; i++){
 		checkboxes = document.getElementsByName('buyThis'+i);
 		$(checkboxes).prop('checked',true);
-		checkboxes.forEach((checkbox) => {
+		checkboxes.forEach((checkbox) => { 
 			checkbox.checked = selectAll.checked;
 		})
 	}

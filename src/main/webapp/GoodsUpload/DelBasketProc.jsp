@@ -8,7 +8,7 @@
 
 <%
 int count = Integer.parseInt(request.getParameter("count"));
-String uID = null; 
+String uID = null;  
 if(session.getAttribute("uID") != null){
 	uID = (String)session.getAttribute("uID"); 
 } else {

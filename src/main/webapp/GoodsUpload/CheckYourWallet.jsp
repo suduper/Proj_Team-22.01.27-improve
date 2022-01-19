@@ -8,7 +8,7 @@
 <%@page import="java.text.NumberFormat"%>
 
 <%@page import="java.io.PrintWriter"%>
-
+ 
 <jsp:useBean id="walletInfo" class="pack_user.UserDAO" scope="page"/>
 <jsp:useBean id="useWallet" class="pack_goods.GoodsProc" scope="page" />
  

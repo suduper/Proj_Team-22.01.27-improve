@@ -8,7 +8,7 @@
 <jsp:useBean id="order" class="pack_goods.GoodsProc" scope="page" />
 
 <jsp:useBean id="SessionCheck" class="pack_goods.Goods" scope="page" />
-
+ 
 <jsp:setProperty name="SessionCheck" property="sessionChecker"/>
 <%
 if(session.getAttribute("sessionChecker") != null){

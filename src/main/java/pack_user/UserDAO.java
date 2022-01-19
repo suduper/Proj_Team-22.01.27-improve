@@ -74,10 +74,10 @@ public class UserDAO {
 		ResultSet					objRs 				=		null;
 		String						sql_join 		=		null;
 		
-		  String sql =   "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		  String sql = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		  try {
 			  objConn = pool.getConnection();
-			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?)";
+			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			  objPstmt = objConn.prepareStatement(sql_join); //쿼리문1을 대기 시킨다
 			  objPstmt.setString(1, user.getNationality());
 			  objPstmt.setString(2, user.getCertify());
@@ -87,15 +87,7 @@ public class UserDAO {
 			  objPstmt.setString(6, user.getuAddr1());
 			  objPstmt.setString(7, user.getuAddr2());
 			  objPstmt.setString(8, user.getAuthority());
-			  objPstmt.setString(9, user.getuEmail()); //이메일
-			  objPstmt.setString(10, user.getPhoneNum1());//핸드폰번호1
-			  objPstmt.setString(11, user.getPhoneNum2());//핸폰2
-			  objPstmt.setString(12, user.getPhoneNum3());//핸폰3
-			  objPstmt.setInt(13, user.getBirthYear());
-			  objPstmt.setInt(14, user.getBirthMonth());
-			  objPstmt.setInt(15, user.getBirthDay());
-			  objPstmt.setString(16, user.getRecommend());//핸폰3
-
+			  objPstmt.setInt(9, 0);
 			  return objPstmt.executeUpdate();
 		  } catch (SQLException e) {
 				System.out.println("SQL 이슈 : " + e.getMessage());

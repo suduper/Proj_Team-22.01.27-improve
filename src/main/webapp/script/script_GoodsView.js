@@ -22,7 +22,7 @@ if(10 < hours && hours < 16){ //오늘발송
 	alert(arrival);
 } else {    //내일발송
 	if(weekday == 4){
-		send = '월요일';
+		send = '월요일'; 
 	}
 	send = '내일'
 }

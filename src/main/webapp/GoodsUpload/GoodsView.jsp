@@ -62,15 +62,13 @@
 	String goodsWarehousing = view.getGoodsWarehousing(); // 상품 입고일
 	String goodsType = view.getGoodsType(); // 상품 종류
 	
-	int goodsPrice = view.getGoodsPrice(); // 상품 판매 가격
-	int goodsSPrice = view.getGoodsSPrice(); // 상품 세일 가격
-	int sellPrice = 0;
-	
-	if(goodsSPrice != 0){
-		sellPrice = goodsSPrice;
-	} else {
-		sellPrice = goodsPrice;
+	int Price = view.getGoodsPrice();
+	if(view.getGoodsSPrice() != 0){
+		Price = view.getGoodsSPrice();
 	}
+	String sellPrice = money.format(view.getGoodsPrice());
+	String sellSPrice = money.format(view.getGoodsSPrice());
+	
 	
 	String goodsThumbnail = view.getGoodsThumbnail(); // 상품 썸네일 이름
 	
@@ -125,19 +123,19 @@
 							<td>상품 종류 : <%=goodsType %></td>
 							<td>입고일 : <%=goodsWarehousing %></td>
 						</tr>	
-						<% if(goodsSPrice != 0){ %>
+						<% if(view.getGoodsSPrice() != 0){ %>
 						<tr>
 							<td style="text-decoration: line-through;">가격 : </td>
-							<td style="text-decoration: line-through;font-size: 25px;"><%=goodsPrice%>원</td>
+							<td style="text-decoration: line-through;font-size: 25px;"><%=sellPrice%>원</td>
 						</tr>
 						<tr>
 							<td>세일 가격 : </td>
-							<td><span id="discount"><%=goodsSPrice%>원</span> (<%=discount %>원 할인)</td>
+							<td><span id="discount"><%=sellSPrice%>원</span> (<%=discount %>원 할인)</td>
 						</tr>
 						<% } else { %>
 						<tr>
 							<td>가격 : </td>
-							<td><input type="text" id="origPrice" value="1232123" readonly="readonly" disabled="disabled" onload=""/></td>
+							<td style="font-size: 25px;"><%=sellPrice%>원</td>
 						</tr>
 						<% } %>
 						<tr>
@@ -193,24 +191,24 @@
 						<p id="sizeNotice">사이즈 & 갯수</p>
 						<hr />
 						<%if(view.getInventoryS() != 0) {%>
-						<p id="PS" onclick="choice('S','<%=sellPrice %>')">S 사이즈 (재고 :<%=view.getInventoryS()%>)</p>
+						<p id="PS" onclick="choice('S','<%=Price %>')">S 사이즈 (재고 :<%=view.getInventoryS()%>)</p>
 						<span id="addS"></span>
 						<%} %>
 						
 						<%if(view.getInventoryM() != 0) {%>
-						<p id="PM" onclick="choice('M','<%=sellPrice %>')">M 사이즈 (재고:<%=view.getInventoryM()%>)</p>
+						<p id="PM" onclick="choice('M','<%=Price %>')">M 사이즈 (재고:<%=view.getInventoryM()%>)</p>
 						<span id="addM"></span>
 						<%} %>
 						
 						<%if(view.getInventoryL() != 0) {%>
-						<p id="PL" onclick="choice('L','<%=sellPrice %>')">L 사이즈 (재고:<%=view.getInventoryL()%>)</p>
+						<p id="PL" onclick="choice('L','<%=Price %>')">L 사이즈 (재고:<%=view.getInventoryL()%>)</p>
 						<span id="addL"></span>
-						<%} %>
+						<% } %>
 						
-						<%if(view.getInventoryXL() != 0) {%>
-						<p id="PXL" onclick="choice('XL','<%=sellPrice %>')" >XL 사이즈 (재고:<%=view.getInventoryXL()%>)</p>
+						<% if(view.getInventoryXL() != 0) {%>
+						<p id="PXL" onclick="choice('XL','<%=Price %>')" >XL 사이즈 (재고:<%=view.getInventoryXL()%>)</p>
 						<span id="addXL"></span>
-						<%} %>
+						<% } %>
 						
 					</div>
 					<!-- 옵션 / 사이즈 -->
@@ -218,13 +216,15 @@
 					<!-- 장바구니로 보내는 내용 -->
 					<div id="addBasket_Content">
 						<form action="GoodsAddBasketProc.jsp" id="addBasket" target="param">
+							<input type="hidden" name="Allcount" id="Allcount" value=""/>
+							<input type="hidden" name="calcRes" id="calcRes" value=""/>
 							<!-- 계산 -->
 							<div id="calc">
 								<p>전체 갯수</p>
-								<p><input type="text" name="Allcount" id="Allcount" value="" readonly="readonly" /><span>개</span></p>
+								<p><input type="text" name="SAllcount" id="SAllcount" value="" readonly="readonly" /><span>개</span></p>
 								<hr />
 								<p>전체 가격</p>
-								<p><input type="text" name="calcRes" id="calcRes" value="" readonly="readonly" /><span>원</span></p>
+								<p><input type="text" name="ScalcRes" id="ScalcRes" value="" readonly="readonly" /><span>원</span></p>
 							</div>
 							<!-- 계산 -->
 							

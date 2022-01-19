@@ -10,7 +10,7 @@
 <%@ page import="java.util.Base64.Encoder" %>
 <%@ page import="java.util.Base64.Decoder" %>
 <%@ page import="java.io.*" %>
-
+ 
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="pack_goods.MyBasket, java.util.Vector" %>
 

@@ -1,7 +1,9 @@
-package pack_goods;
+package pack_AdminOption;
 
-public class MyBasket {
-	 
+public class AdminOption {
+	
+	private int num;
+	private String uID;
 	private String addDate;
 	private String goodsName;
 	private int Scount;
@@ -10,13 +12,25 @@ public class MyBasket {
 	private int XLcount;
 	private int Allcount;
 	private int calcRes;
-	private int Zip; 
+	private int Zip;
 	private String Addr1;
 	private String Addr2;
 	private String phone;
 	private String notice;
 	private int delivery;
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	public String getuID() {
+		return uID;
+	}
+	public void setuID(String uID) {
+		this.uID = uID;
+	}
 	public String getAddDate() {
 		return addDate;
 	}
@@ -65,8 +79,6 @@ public class MyBasket {
 	public void setCalcRes(int calcRes) {
 		this.calcRes = calcRes;
 	}
-	
-	///////////////배송정보////////////////
 	public int getZip() {
 		return Zip;
 	}
@@ -104,6 +116,5 @@ public class MyBasket {
 		this.delivery = delivery;
 	}
 
-	
 	
 }

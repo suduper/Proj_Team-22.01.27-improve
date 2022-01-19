@@ -17,15 +17,32 @@ li{
     top: 5px;
     margin-bottom: 50px;
 }
-ul{
+
+#nav1 {
 	border: 1px solid #000;
-	list-style: none;
-	
+	display: flex;
+	justify-content: space-around;
 }
-li{
-	display: inline;
-	margin-left: 15px;
+#nav1 ul li {
+	display: none;
 }
+
+ul#goods{
+	border: 1px solid #000;
+}
+ul#List{
+	border: 1px solid #000;
+}
+ul#LookBook{
+	border: 1px solid #000;
+}
+ul#About{
+	border: 1px solid #000;
+}
+ul#Board{
+	border: 1px solid #000;
+}
+
 #logo{
     width: 120px;
     height: 70px;

@@ -4,7 +4,7 @@
 <%@ page import="java.io.*" %>
     
 <%@page import="java.io.PrintWriter"%>
-      
+       
 <% request.setCharacterEncoding("UTF-8"); %>
 
 <jsp:useBean id="goods" class="pack_goods.GoodsProc" scope="page" />

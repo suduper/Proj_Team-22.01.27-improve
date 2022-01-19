@@ -22,7 +22,7 @@
  * TO THE SOFTWARE.
  *
  */
-package pack_user;
+package pack_AdminOption;
 import java.sql.*;
 import java.util.Properties;
 import java.util.Vector;
@@ -38,7 +38,7 @@ public class DBConnectionMgr {
     _url = "jdbc:mysql://127.0.0.1:3306/LofiP?"
     		+ "useSSL=false&"
     		+ "serverTimezone=Asia/Seoul&"
-    		+ "useUnicode=true&" 
+    		+ "useUnicode=true&"
     		+ "characterEncoding=UTF-8&"
     		+ "allowPublicKeyRetrieval=true",
     _user = "root",

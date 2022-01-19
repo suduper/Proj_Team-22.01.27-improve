@@ -288,7 +288,7 @@ p#addBasket_btn:hover{
 }
 
 div#myOption{
-	/* border:1px solid #000; */
+	/* border:1px solid #000;  */
 	margin-top:20px;
 	position: relative;
 	top: -160px;
@@ -687,6 +687,9 @@ table#BuyListTable td:nth-child(6){
 	width: 150px;
 	font-size: 15px;
 	font-weight: bold;
+}table#BuyListTable td:nth-child(7) input[type=checkbox]{
+	width: 20px;
+	height: 20px;
 }
 img#BuyListImg {
 	width: 100px;
@@ -697,7 +700,7 @@ p#deliNotice{
 }
 div#CancelProc{
 	border: 1px solid #000;
-	width: 200px;
+	width: 240px;
 	text-align: center;
 	margin-right: 80px;
 	padding-top: 30px;
@@ -710,7 +713,7 @@ div#CancelProc p{
 div#CancelProc ul{
 	margin-top: 20px;
 }
-div#CancelProc ul li{
+div#CancelProc ul li#BuyListLi{
 	border:2px solid #000;
 	border-radius: 8px;
 	width:150px;

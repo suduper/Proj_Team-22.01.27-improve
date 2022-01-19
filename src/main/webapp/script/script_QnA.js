@@ -25,7 +25,7 @@ function moveBlock(p1, p2) {    // 블럭 이동
 $(function(){
 // 헤더푸터
     $("#goods").mouseover(function(){
-        $(".goods1").css({"display" : "block"});
+        $(".goods1").css({"display" : "block"}); 
     });
 
     $("#goods").mouseout(function(){
