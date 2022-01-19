@@ -19,6 +19,13 @@ public class User {
 	private int birthMonth;
 	private int birthDay;
 	private String recommend;
+	private String uName;
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
 	public String getuEmail() {
 		return uEmail;
 	}
