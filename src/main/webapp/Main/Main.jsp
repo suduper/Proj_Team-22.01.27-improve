@@ -23,7 +23,6 @@
     	}
 %> 
     <div id="wrap">
-    ㅇㅋㅇㅋ
     <!-- HTML템플릿(Template, Templet) 헤더 시작 -->
 
         <header id="header" class="flex-container">
@@ -31,21 +30,43 @@
                 <a href="index.html"><img src="/logoB.jpg" alt=""></a>
             </div>
             <nav id="nav1" class="flex-container">
-                <ul id="goods"><a href="../Main/Main.jsp">shop</a>
-                    <li class="goods1"><a href="../Goods/Goods1.jsp">Goods1</a></li>
-                    <li class="goods1"><a href="../Goods/Goods1.jsp">품목2</a></li> 
-                    <li class="goods1"><a href="#">품목3</a></li>
-                    <li class="goods1"><a href="#">품목4</a></li>
-                    <li class="goods1"><a href="#">품목5</a></li>
+            
+                <ul id="goods">
+                	<a href="../Main/Main.jsp">shop</a>
+                    <li><a href="#">품목1</a></li>
+                    <li><a href="#">품목2</a></li> 
+                    <li><a href="#">품목3</a></li>
+                    <li><a href="#">품목4</a></li>
+                    <li><a href="#">품목5</a></li>
                 </ul>
-                <ul><a href="../GoodsUpload/GoodsList.jsp">List</a></ul>
-                <ul><a href="#">LookBook</a></ul>
-                <ul><a href="#">About</a></ul>
-                <ul id="board1"><a href="#">Board</a>
-                <ul  class="board"><a href="#">Notice</a></ul >
-                <ul  class="board"><a href="#">Q&A</a></ul >
-                <ul  class="board"><a href="../Review/ReviewList.jsp">Review</a></ul >
+                
+                <ul id="List">
+                	<a href="../GoodsUpload/GoodsList.jsp">List</a>
+                	<li>List1</li>
+                	<li>List2</li>
+                	<li>List3</li>
                 </ul>
+                
+                <ul id="LookBook">
+                	<a href="#">LookBook</a>
+                	<li>LookBook1</li>
+                	<li>LookBook2</li>
+                	<li>LookBook3</li>
+                </ul>
+                
+                <ul id="About">
+                	<a href="#">About</a>
+                	<li>About1</li>
+                	<li>About2</li>
+                	<li>About3</li>
+                </ul>
+                
+                <ul  id="Board"><a href="#">Board</a>
+                	<li><a href="#">Notice</a></li>
+                	<li><a href="#">Q&A</a></li>
+                	<li><a href="../Review/ReviewList.jsp">Review</a></li>
+                </ul>
+
             </nav>
             
             <nav id="nav2" class="flex-container">
@@ -63,6 +84,7 @@
 			%>
 			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/OrderShow.jsp">OrderManagement</a></ul>
 				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
 			<% } %>
                 <ul id="search1"><a href="#">Search</a>
@@ -126,6 +148,7 @@
     </div>
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../script/script.js"></script>
+<script src="../script/jquery-3.6.0.min.js"></script>
+<script src="../script/script_main.js"></script>
 </body>
 </html>

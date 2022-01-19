@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../style/style_index.css">
 </head>
 <body>
-<div id="wrap">
+<div id="wrap"> 
 <!-- HTML템플릿(Template, Templet) 푸터 시작 -->
         <footer id="footer">
 

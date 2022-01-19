@@ -1,7 +1,8 @@
-<%@page import="pack_goods.GoodsProc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+     
+<%@page import="pack_goods.GoodsProc"%>
+
 <%	request.setCharacterEncoding("UTF-8"); %>
 
 <%@page import="java.io.PrintWriter"%>
@@ -12,27 +13,43 @@
 
 <jsp:setProperty name="SessionCheck" property="sessionChecker"/>
 <%
-String uID = null; 
-if(session.getAttribute("uID") != null){
-	uID = (String)session.getAttribute("uID"); 
-} else {
+	String uID = null; 
+	if(session.getAttribute("uID") != null){
+		uID = (String)session.getAttribute("uID"); 
+	} else {
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('로그인 해주세요')");
+		script.println("location.href='../Account/Login.jsp'");
+		script.println("</script>");
+	}
+	
+	if(session.getAttribute("sessionChecker") != null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('구매취소 세션이 만료되었습니다.')");
+		script.println("location.href='../GoodsUpload/BuyList.jsp'");
+		script.println("</script>");
+	}
+	
+	int listSize = Integer.parseInt(request.getParameter("count"));
 	PrintWriter script = response.getWriter();
 	script.println("<script>");
-	script.println("alert('로그인 해주세요')");
-	script.println("location.href='../Account/Login.jsp'");
+	script.println("alert('"+listSize+"')");
 	script.println("</script>");
-}
-
-if(session.getAttribute("sessionChecker") != null){
-	PrintWriter script = response.getWriter();
-	script.println("<script>");
-	script.println("alert('구매취소 세션이 만료되었습니다.')");
-	script.println("location.href='../GoodsUpload/BuyList.jsp'");
-	script.println("</script>");
-}
-int listSize = Integer.parseInt(request.getParameter("count"));
-String CancelBuyThis = null;
-int res = 0;
+	String CancelBuyThis = null;
+	int res = 0;
+	int checker = 0;
+	for(int i = 0; i < listSize ; i++){
+		CancelBuyThis = request.getParameter("buyThis"+i);
+		if(CancelBuyThis == null){
+			continue;
+		} else {
+		res += CancelOrder.cancelOrder(uID, CancelBuyThis);
+		checker++;
+		}
+		
+	}
 %>
 <!DOCTYPE html>	
 <html lang="ko">
@@ -47,20 +64,7 @@ int res = 0;
 
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
 
-<%=listSize%>
-
-<%
-for(int i = 0; i < listSize ; i++){
-	CancelBuyThis = request.getParameter("buyThis"+i);
-	res += CancelOrder.cancelOrder(uID, CancelBuyThis);
-%>
-	<%=CancelBuyThis %>
-<%
-}
-%>
-
- 
-<%if(res > listSize){
+<%if(res >= checker){
 		session.setAttribute("sessionChecker","impossible");%>
 	<div id="res">
 		<h1>구매 취소 완료</h1>

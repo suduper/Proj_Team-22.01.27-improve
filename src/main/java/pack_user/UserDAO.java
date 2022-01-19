@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import pack_goods.DBConnectionMgr;
 
@@ -74,10 +75,9 @@ public class UserDAO {
 		ResultSet					objRs 				=		null;
 		String						sql_join 		=		null;
 		
-		  String sql =   "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		  try {
 			  objConn = pool.getConnection();
-			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?)";
+			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			  objPstmt = objConn.prepareStatement(sql_join); //쿼리문1을 대기 시킨다
 			  objPstmt.setString(1, user.getNationality());
 			  objPstmt.setString(2, user.getCertify());
@@ -94,8 +94,8 @@ public class UserDAO {
 			  objPstmt.setInt(13, user.getBirthYear());
 			  objPstmt.setInt(14, user.getBirthMonth());
 			  objPstmt.setInt(15, user.getBirthDay());
-			  objPstmt.setString(16, user.getRecommend());//핸폰3
-
+			  objPstmt.setString(16, user.getRecommend());
+			  objPstmt.setString(17, user.getuName());
 			  return objPstmt.executeUpdate();
 		  } catch (SQLException e) {
 				System.out.println("SQL 이슈 : " + e.getMessage());
@@ -106,6 +106,156 @@ public class UserDAO {
 			}
 		  return -1;
 		}
+///////////////////////////////////////////////////////////////////	
+/////// Member_Mod.jsp 회원정보 수정 입력폼 시작 /////////////
+///////////////////////////////////////////////////////////////////
+
+public Vector modifyMember(String uID) {
+
+Vector<User> vList = new Vector<>();
+
+Connection objConn = null;
+PreparedStatement objPstmt = null;
+ResultSet objRs = null;
+
+String sql = null;
+
+try {
+objConn = pool.getConnection();
+sql = "select * from userInfo where uID=?";
+objPstmt = objConn.prepareStatement(sql);
+objPstmt.setString(1, uID);
+
+objRs = objPstmt.executeQuery();
+
+if (objRs != null) {
+while (objRs.next()) {
+
+	User user = new User();
+	  user.setuID(objRs.getString("uID"));
+	  user.setuPw(objRs.getString("uPw"));
+	  user.setuZip(objRs.getString("uZip"));
+	  user.setuAddr1(objRs.getString("uAddr1"));
+	  user.setuAddr2(objRs.getString("uAddr2"));
+	  user.setuEmail(objRs.getString("uEmail"));
+	
+	user.setPhoneNum1(objRs.getString("PhoneNum1"));
+	user.setPhoneNum2(objRs.getString("PhoneNum2"));
+	user.setPhoneNum3(objRs.getString("PhoneNum3"));
+		 
+	 // user.setBirthYear(objRs.getInt("BirthYear"));
+	  //user.setBirthMonth(objRs.getInt("BirthMonth"));
+	  //user.setBirthDay(objRs.getInt("BirthDay"));
+	  user.setuName(objRs.getString("uName"));
+
+
+vList.add(user);
+
+}
+}
+
+} catch (Exception e) {
+
+System.out.println("SQL 이슈 : " + e.getMessage());
+
+} finally {
+pool.freeConnection(objConn, objPstmt, objRs);
+}
+
+return vList;
+}
+
+///////////////////////////////////////////////////////////////////	
+/////// Member_Mod.jsp 회원정보 수정 입력폼 끝 /////////////
+///////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////	
+/////// Member_ModProc.jsp 회원정보 수정 시작 /////////////
+///////////////////////////////////////////////////////////////////	
+public boolean modifyMember(String uPw, String uName, String uZip,String uAddr1, String uAddr2,String uEmail,String uID) {
+
+Connection objConn = null;
+PreparedStatement objPstmt = null;
+String sql = null;
+boolean flag = false;
+
+try {
+objConn = pool.getConnection();
+
+sql = "update userInfo set ";
+sql += "uPw=?, uName=?, uZip=?,  uAddr1=?, uAddr2=?, uEmail=?"; //PhoneNum1=?,PhoneNum2=?, PhoneNum3=? 
+sql += "where uID = ?";
+objPstmt = objConn.prepareStatement(sql);
+objPstmt.setString(1, uPw);
+objPstmt.setString(2, uName);
+objPstmt.setString(3, uZip);
+objPstmt.setString(4, uAddr1);
+objPstmt.setString(5, uAddr2);
+objPstmt.setString(6, uEmail);
+/*
+ * objPstmt.setInt(7, PhoneNum1); objPstmt.setInt(8, PhoneNum2);
+ * objPstmt.setInt(9, PhoneNum3);
+ */
+objPstmt.setString(7, uID);
+
+
+
+
+int cnt = objPstmt.executeUpdate();
+if (cnt > 0)
+flag = true; // update가 정상실행되었음을 의미
+
+} catch (Exception e) {
+
+System.out.println("SQL 이슈 : " + e.getMessage());
+
+} finally {
+pool.freeConnection(objConn, objPstmt);
+}
+
+return flag;
+}
+
+
+///////////////////////////////////////////////////////////////////	
+/////// Member_ModProc.jsp 회원정보 수정 끝 /////////////
+///////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////	
+//////////////Member_Del.jsp 회원탈퇴 시작 ////////////////////
+///////////////////////////////////////////////////////////////////	
+public boolean deleteMember(String uID) {
+
+Connection objConn = null;
+PreparedStatement objPstmt = null;
+String sql = null;
+boolean flag = false;
+
+try {
+objConn = pool.getConnection();
+
+sql = "delete from userInfo where uID = ?";
+objPstmt = objConn.prepareStatement(sql);
+objPstmt.setString(1, uID);
+
+int cnt = objPstmt.executeUpdate();
+if (cnt > 0)
+flag = true; // update가 정상실행되었음을 의미
+
+} catch (Exception e) {
+
+System.out.println("SQL 이슈 : " + e.getMessage());
+
+} finally {
+pool.freeConnection(objConn, objPstmt);
+}
+
+return flag;
+}
+
+///////////////////////////////////////////////////////////////////	
+//////////////Member_Del.jsp 회원탈퇴 끝 ////////////////////
+///////////////////////////////////////////////////////////////////
 	/*
 	//////////////////////////////// 회원탈퇴 ////////////////////////////////
 	public User getUser(String uID) {

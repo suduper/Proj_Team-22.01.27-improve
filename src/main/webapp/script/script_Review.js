@@ -22,8 +22,8 @@ function movePage(p1){
 	location.href = param;
 }
 
-function moveBlock(p1, p2) {    // 블럭 이동
-
+function moveBlock(p1, p2) {    // 블럭 이동 
+ 
 	let pageNum = parseInt(p1);
 	let pagePerBlock = parseInt(p2);	
 	

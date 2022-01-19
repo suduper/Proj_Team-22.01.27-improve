@@ -5,6 +5,7 @@
     if(session.getAttribute("uID") != null){
     	uID = (String)session.getAttribute("uID"); 
     	} 
+
 %> 
 <!DOCTYPE html>
 <html lang="ko">
@@ -50,7 +51,6 @@
 </table>
 </div>
 	<% } %>
-	<%@include file="../Main/Main_Bottom.jsp" %>
 </body>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
  <script>
@@ -72,6 +72,7 @@
 		}//회원탈퇴
 	});
 	
+
  </script>
 </body>
 </html>

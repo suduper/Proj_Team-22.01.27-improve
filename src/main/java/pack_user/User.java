@@ -11,12 +11,45 @@ public class User {
 	private String uAddr2;
 	private String authority;
 	private String Wallet;
-	private String uEmail;
 	private String phoneNum1;
 	private String phoneNum2;
 	private String phoneNum3;
+	private String uEmail;
 	private int birthYear;
 	private int birthMonth;
+	private int birthDay;
+	private String recommend;
+	private String uName;
+	public String getuName() {
+		return uName;
+	}
+	public void setuName(String uName) {
+		this.uName = uName;
+	}
+	public String getuEmail() {
+		return uEmail;
+	}
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
+	}
+	public String getPhoneNum1() {
+		return phoneNum1;
+	}
+	public void setPhoneNum1(String phoneNum1) {
+		this.phoneNum1 = phoneNum1;
+	}
+	public String getPhoneNum2() {
+		return phoneNum2;
+	}
+	public void setPhoneNum2(String phoneNum2) {
+		this.phoneNum2 = phoneNum2;
+	}
+	public String getPhoneNum3() {
+		return phoneNum3;
+	}
+	public void setPhoneNum3(String phoneNum3) {
+		this.phoneNum3 = phoneNum3;
+	}
 	public int getBirthYear() {
 		return birthYear;
 	}
@@ -41,9 +74,6 @@ public class User {
 	public void setRecommend(String recommend) {
 		this.recommend = recommend;
 	}
-	private int birthDay;
-	private String recommend;
-	
 	public String getNationality() {
 		return Nationality;
 	}
@@ -98,31 +128,6 @@ public class User {
 	public void setWallet(String wallet) {
 		Wallet = wallet;
 	}
-	public String getuEmail() {
-		return uEmail;
-	}
-	public void setuEmail(String uEmail) {
-		this.uEmail = uEmail;
-	}
-	public String getPhoneNum1() {
-		return phoneNum1;
-	}
-	public void setPhoneNum1(String phoneNum1) {
-		this.phoneNum1 = phoneNum1;
-	}
-	public String getPhoneNum2() {
-		return phoneNum2;
-	}
-	public void setPhoneNum2(String phoneNum2) {
-		this.phoneNum2 = phoneNum2;
-	}
-	public String getPhoneNum3() {
-		return phoneNum3;
-	}
-	public void setPhoneNum3(String phoneNum3) {
-		this.phoneNum3 = phoneNum3;
-	}
-
-
+	
 	
 }

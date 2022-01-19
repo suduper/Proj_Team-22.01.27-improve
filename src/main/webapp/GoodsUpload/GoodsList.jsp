@@ -1,25 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+     
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Base64.Encoder" %>
 <%@ page import="java.util.Base64.Decoder" %>
 <%@ page import="java.io.*" %>
-
+<%@ page import="java.text.NumberFormat"%>
+ 
 <%@ page import="pack_goods.Goods, java.util.Vector" %>
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
 <% request.setCharacterEncoding("UTF-8");%>
  
 <%
 Vector<Goods> GoodsList = null;
-
-int listSize = 0;
  
 String SAVEFOLDER
 ="C:/Users/TridentK/git/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/"; // 경로명 반드시 변경
 
 Encoder encoder = Base64.getEncoder();
 Decoder decoder = Base64.getDecoder();
+
+NumberFormat money = NumberFormat.getNumberInstance();
+
+int listSize = 0;
+
+int totalRecord = 0; // 전체 레코드
+int numPerPage = 9; // 페이지 당 레코드
+int pagePerBlock = 9; // 블럭 당 페이지
+
+int totalPage = 0;
+int totalBlock = 0;
+
+
+int nowPage = 1; // 현재 페이지
+int nowBlock = 1;// 현재 블럭
+
+int start = 0; // DB의 select 시작 번호
+int end = 9; // 시작번호로부터 가져올 select 수
+
+String keyField = "";
+String keyWord = "";
+
+if (request.getParameter("keyWord") != null) {
+	keyField = request.getParameter("keyField");
+	keyWord = request.getParameter("keyWord");
+}
+
+if (request.getParameter("nowPage") != null) {
+	nowPage = Integer.parseInt(request.getParameter("nowPage"));
+	start = (nowPage * numPerPage) - numPerPage;
+	end = numPerPage;
+}
+
+totalRecord = goods.GoodsCount(keyField, keyWord);
+
+totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
+nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
+totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
 %> 
 
 <!DOCTYPE html>
@@ -34,11 +71,30 @@ Decoder decoder = Base64.getDecoder();
 <body>
 
 <%@include file="../Main/Main_Top.jsp" %>
+
 <div id="wrap" >
 
+	<div id="searchArea" class="flex-container">
+
+		<form name = "searchFrm" id="searchFrm">
+				
+			<select name="keyField" id="keyField">
+				<option value="all">전체</option>
+				<option value="정장" <% if(keyField.equals("goodsType")) out.print("selected"); %>>정장</option>
+				<option value="패딩" <% if(keyField.equals("goodsType")) out.print("selected"); %>>패딩</option>
+				<option value="기타" <% if(keyField.equals("goodsType")) out.print("selected"); %>>기타</option>
+			</select>
+			
+			<input type="text" name="keyWord" id="keyWord" value="<%= keyWord%>">
+			<button type="button" id="searchBtn">검색</button>
+			
+		</form>
+		
+	</div> 
+	
 	<div id="goodsList">
 		<%
-		GoodsList = goods.getBoardList();
+		GoodsList = goods.getBoardList(keyField, keyWord, start, end);
 		listSize = GoodsList.size();			
 		if (GoodsList.isEmpty()) { // 등록상품이 없을 경우 출력 
 		%> 
@@ -47,7 +103,7 @@ Decoder decoder = Base64.getDecoder();
 					
 		<%	
 		} else { // 등록상품이 있을 경우 출력 시작
-			for (int i=0; i<listSize; i++) {						
+			for (int i=0; i < listSize; i++) {						
 				Goods list = GoodsList.get(i);
 				int goodsNum = list.getGoodsNum();
 				String goodsName = list.getGoodsName();
@@ -92,16 +148,20 @@ Decoder decoder = Base64.getDecoder();
 					<% if(list.getGoodsSPrice() != 0){ %>
 					<tr>
 						<td style="text-decoration: line-through;">가격</td>
-						<td style="text-decoration: line-through;"><%=goodsPrice%></td>
+						<td style="text-decoration: line-through;"><%=money.format(goodsPrice)%></td>
 					</tr>
 					<tr>
 						<td style="text-decoration:underline;">세일 가격</td>
-						<td style="font-size: 16px;"><%=goodsSPrice%></td>
+						<td style="font-size: 16px;"><%=money.format(goodsSPrice)%></td>
 					</tr>
 					<% } else { %>
 					<tr>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
 						<td>가격</td>
-						<td><%=goodsPrice%></td>
+						<td><%=money.format(goodsPrice)%></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -123,9 +183,43 @@ Decoder decoder = Base64.getDecoder();
 		%>
 	</div>
 	
+	<div id="GoodsListPage">
+
+		<%
+		int pageStart = (nowBlock-1)*pagePerBlock+1;
+		int pageEnd = (nowBlock<totalBlock) ?
+		pageStart + pagePerBlock-1 : totalPage;
+		if(totalPage != 0) {
+			if(nowBlock>1) { 
+		%>
+		<span onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>')"> << </span>
+		<% } 
+		for( ; pageStart<=pageEnd; pageStart++) {	
+			if(pageStart == nowPage){%>
+			<span class="mBtn" id="nowView" onclick="movePage('<%=pageStart%>')"> <%=pageStart %> </span>
+		<%} else {%>
+			<span class="mBtn" onclick="movePage('<%=pageStart%>')"> <%=pageStart %> </span>
+		<%
+			} 
+		} 
+		%>
+		
+		<% if(totalBlock>nowBlock) { %>
+		<span onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>')"> >> </span>
+		<% 
+			}
+		}
+		%>
+	</div>
+	
+	<input type="hidden" id="pKeyField" value="<%= keyField%>">
+	<input type="hidden" id="pKeyWord" value="<%= keyWord%>">
+	
 </div>
 	
 <%@include file="../Main/Main_Bottom.jsp" %>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../script/script_GoodsList.js"></script>
 </body>
 </html>

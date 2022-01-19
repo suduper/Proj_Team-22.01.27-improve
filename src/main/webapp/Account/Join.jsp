@@ -151,6 +151,11 @@
 				</tr>
 				<tr>
 					<td>
+						<input type="text" id="uName" name="uName" placeholder="배송받으실 성함" class="full" style="padding: 5px;">
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<input type="text" id="recommend" name="recommend" placeholder="추천인 아이디" class="full" style="padding: 5px;">
 					</td>
 				</tr>

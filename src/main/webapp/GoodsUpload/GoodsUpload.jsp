@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
     
 <%request.setCharacterEncoding("UTF-8"); %>
-
-<%@page import="java.io.PrintWriter"%>
  
+<%@page import="java.io.PrintWriter"%>
+  
 <%
 	String uID = null;
 	if(session.getAttribute("uID") != null){
