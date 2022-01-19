@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import pack_user.*;
 import pack_goods.DBConnectionMgr;
 
 public class UserDAO {
@@ -76,10 +75,9 @@ public class UserDAO {
 		ResultSet					objRs 				=		null;
 		String						sql_join 		=		null;
 		
-		String sql = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
 		  try {
 			  objConn = pool.getConnection();
-			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?,?,?,?,?,?)";
+			  sql_join  = "insert into userInfo values(?, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			  objPstmt = objConn.prepareStatement(sql_join); //쿼리문1을 대기 시킨다
 			  objPstmt.setString(1, user.getNationality());
 			  objPstmt.setString(2, user.getCertify());
