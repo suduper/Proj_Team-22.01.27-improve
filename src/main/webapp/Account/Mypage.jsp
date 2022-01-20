@@ -59,8 +59,8 @@
 		location.href = "../Account/Member_Mod.jsp";
 	}); //회원수정
 	 $("#moneyCus").click(function(){
-			location.href = "../Account/moneyCus.jsp";
-		}); //회원수정
+			location.href = "../Account/MoneyCus.jsp";
+		}); //충전
 	
 	$("#deliCus").click(function(){
 		let chk = confirm("회원탈퇴하시겠습니까?");

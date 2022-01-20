@@ -314,8 +314,8 @@ public int money(String uID, int Wallet) {
 	PreparedStatement 		objPstmt 		= 	null;
 	ResultSet						objRs			=	null;
 	String							sql 				=	null;
-	
-	System.out.println("==== "+uID + " 가 " + Wallet +" 원 결제 ==== \n");
+
+	System.out.println("==== "+uID + " 가 " + Wallet +" 원 충전 ==== \n");
 	System.out.println();
 	try {
 		objConn = pool.getConnection();
