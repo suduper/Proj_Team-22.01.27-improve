@@ -31,13 +31,13 @@ if (uID != null) {   // 현재 로그인 상태라면  %>
 	%>
         
 <div id="wrap">
-	<form action="Moneycharge.jsp" method="get" id="regFrm" name="regFrm">
+	<form action="#" method="get" id="regFrm" name="regFrm">
 		<table>
 			<tbody>
-			<caption><%=uName%>님! 적립금 충전을 확인을 위해 비밀번호를 입력해주세요</caption>
+			<caption><%=uName%>님! 탈퇴확인을 위해 비밀번호를 입력해주세요</caption>
 				
 				<tr>
-					<td><input type="text" name="uID" id="uID" value="충전할 회원아이디: <%=uIDD%>"class="full" readonly="readonly" style="border-style: none;"></td>
+					<td><input type="text" name="uID" id="uID" value="탈퇴할 회원아이디: <%=uIDD%>"class="full" readonly="readonly" style="border-style: none;"></td>
 				</tr>
 
 				
@@ -49,8 +49,8 @@ if (uID != null) {   // 현재 로그인 상태라면  %>
 				</tr>
 
 	            <tr class="infor">
-					<td ><button type="button" id="btn-Join" class="Join_btn" style="background-color: #000; color: #fff">확인</button></td>
-					<td><button type="button" id="btn-Cancel" class="Join_btn"style="background-color: #fff; color: #000">결제취소</button></td>
+					<td ><button type="button" id="btn-Join" class="Join_btn" style="background-color: #000; color: #fff">회원탈퇴</button></td>
+					<td><button type="button" id="btn-Cancel" class="Join_btn"style="background-color: #fff; color: #000">탈퇴취소</button></td>
 				</tr>
 
 			<!-- 체크박스 끝 -->
@@ -80,13 +80,16 @@ if (uPw != uPw_Re) {     // 비밀번호 동일검사 시작
 			$("#uPw_Re").focus();
 		} else {
 			
-			$("#regFrm").submit();		
+				let chk = confirm("정말로 회원탈퇴하시겠습니까?");
+				if (chk) {
+					location.href="../Account/Member_Del.jsp";
+				}//회원탈퇴
+			}
 			
-		}
-	
-	});
-//////////////유효성 검사 시작//////////////////////
+		});
 
+//////////////유효성 검사 시작//////////////////////
+	
 //////////////유효성 검사 끝 //////////////////////
 	$("#btn-Cancel").click(function(){
 		location.href = "../Index.jsp";

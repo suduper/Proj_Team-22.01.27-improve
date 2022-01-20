@@ -63,11 +63,9 @@
 		}); //충전
 	
 	$("#deliCus").click(function(){
-		let chk = confirm("회원탈퇴하시겠습니까?");
-		if (chk) {
-			location.href="../Account/Member_Del.jsp";
-		}//회원탈퇴
-	});
+			location.href="../Account/Member_Cus.jsp";
+		});//회원탈퇴
+
 	
  </script>
 </body>
