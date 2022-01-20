@@ -29,7 +29,7 @@
         
             
             <div id="logo">
-                <a href="index.html"><img src="/logoB.jpg" alt=""></a>
+                <a href="../Main/Main.jsp"><img src="../Main/mainlogo.PNG" alt=""></a>
 
             </div>
             <nav id="nav1" class="flex-container">

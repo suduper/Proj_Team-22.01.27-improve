@@ -7,9 +7,7 @@ div#wrap{
 	margin: 5 auto;
 	padding: 5px;
 }
-nav {
-  border: 1px solid #000;
-}
+
 li {
   display: inline;
 }

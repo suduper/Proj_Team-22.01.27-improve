@@ -19,7 +19,7 @@ li{
     padding-left: 50px;
     flex: 1;
     justify-content: space-around;
-    margin-top: 150px;
+    margin-top: 20px;
 }
 .goods1{
     display: none;
@@ -37,7 +37,7 @@ li{
     margin-left: 500px;
     flex: 1;
     justify-content: space-around;
-    margin-top: 150px;
+    margin-top: 20px;
 }
 .search2{
     display: none;
