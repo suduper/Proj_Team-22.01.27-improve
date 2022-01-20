@@ -20,6 +20,35 @@ div#goodsList {
 	font-size: 15px;
 	font-weight: bold;
 }
+div#searchArea{
+	border: 1px solid #000;
+	width: 900px;
+	text-align: center;
+	margin: 0px auto;
+	padding-left: 100px;
+}
+select#keyField {
+	border:2px solid #000;
+	border-radius:5px;
+	width: 60px;
+	height: 50px;
+	font-size:17px;
+	font-weight: bold;
+}
+input#keyWord {
+	border:2px solid #000;
+	border-radius:5px;
+	width:500px;
+	height: 50px;
+	position: relative;
+	top: -2px;
+}
+button#searchBtn {
+	width:90px;
+	height: 50px;
+	position: relative;
+	top: -2px;
+}
 div#Show {
 	text-align:center;
     border: 2px solid #d3d3d3;

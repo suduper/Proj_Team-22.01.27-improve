@@ -163,41 +163,13 @@ img#gImg {
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
 
 <div id="wrap">
-<%=tloc %>
+
 	<form action="GoodsUpdateProc.jsp
 							?oldGoodsInfo=
 							<%=view.getGoodsName() %>//
 							<%=view.getGoodsThumbnail() %>//
 							<%=view.getGoodsImages() %>//"
-							 method="post" id="send" enctype="multipart/form-data">
-	
-	상품명 : 
-	<input type="text" name="goodsName" id="goodsName" 
-				value="<%=showName%>"/>
-	
-	상품 입고일 : 
-	<input type="text" name="goodsWarehousing" id="goodsWarehousing" placeholder="yy.mm.dd"
-				value="<%= view.getGoodsWarehousing()%>"/>
-	
-	현재 상품 종류 : 
-	<%=view.getGoodsType() %>
-	
-	상품 종류 : 
-		<select name="goodsType" id="goodsType">
-			<option value='1' selected="selected">-- 선택 --</option>
-  			<option value='정장' >정장</option>
-  			<option value='패딩' >패딩</option>
-  			<option value='기타'>기타</option>
-		</select>
-		
-	상품 판매 가격 : 
-		<input type="text" name="goodsPrice" id="goodsPrice"
-					value="<%=view.getGoodsPrice()%>" maxlength="7"/>
-		
-	상품 세일 가격 :
-		<input type="text" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다."
-					value="<%=view.getGoodsSPrice()%>" maxlength="7"/>
-	<br>	
+							 method="post" id="send" enctype="multipart/form-data">	
 	
 	현재 썸네일
 	<img id="thumb" src="../Resource/GoodsImg/<%=tloc %>/thumb/thumb_<%=view.getGoodsThumbnail() %>" alt="" />
@@ -246,6 +218,34 @@ img#gImg {
 		<div id="hider">
 			<textarea name="goodsContent" id="goodsContent" placeholder="테스트"></textarea> 
 		</div>
+		
+		상품명 : 
+	<input type="text" name="goodsName" id="goodsName" 
+				value="<%=showName%>"/>
+	
+	상품 입고일 : 
+	<input type="text" name="goodsWarehousing" id="goodsWarehousing" placeholder="yy.mm.dd"
+				value="<%= view.getGoodsWarehousing()%>"/>
+	
+	현재 상품 종류 : 
+	<%=view.getGoodsType() %>
+	
+	상품 종류 : 
+		<select name="goodsType" id="goodsType">
+			<option value='1' selected="selected">-- 선택 --</option>
+  			<option value='정장' >정장</option>
+  			<option value='패딩' >패딩</option>
+  			<option value='기타'>기타</option>
+		</select>
+		
+	상품 판매 가격 : 
+		<input type="text" name="goodsPrice" id="goodsPrice"
+					value="<%=view.getGoodsPrice()%>" maxlength="7"/>
+		
+	상품 세일 가격 :
+		<input type="text" name="goodsSPrice" id="goodsSPrice" placeholder="미입력시 세일가격은 0원입니다."
+					value="<%=view.getGoodsSPrice()%>" maxlength="7"/>
+	<br>
 		
 	<br>
 	<input type="button" id="btnSubmit" value="상품 수정"/>

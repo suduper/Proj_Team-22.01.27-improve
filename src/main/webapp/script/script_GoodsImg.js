@@ -10,7 +10,9 @@ var Imagedrop = $('#Img_drop'); //상품 이미지 드래그 앤 드롭 영역 �
 var ImgIdx = 0;  // 상품이미지 갯수 초기화
 
 var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
-   
+
+let resetTP = '<p id="T_here">drag & drop</p>';
+let resetIP = '<p id="I_here">drag & drop</p>'; 
 //////////// 썸네일 드래그 앤 드롭 영역 /////////////
 Thumbdrop
   .on('dragenter', function (e1) { //드래그 요소가 들어왔을떄
@@ -26,6 +28,7 @@ Thumbdrop
   .on('drop', function (e1) { //드래그한 항목을 떨어뜨렸을때
     e1.preventDefault();
     $(this).removeClass('drag-over');
+    $('#T_here').remove();
     $('.goodsThumb').remove();
   	$('#goodsThumbnail').val('');
 
@@ -37,6 +40,7 @@ Thumbdrop
       alert('썸네일은 하나만 지정 가능합니다');
       $('.goodsThumb').remove();
       $('#goodsThumbnail').val('');
+      $('#Thumb_drop').append(resetTP);
     } else {
 		for (var i = 0; i < ThumbIdx; i++) {
         var file_T = files_Thumb[i];
@@ -58,6 +62,7 @@ function Preview_Thumb(file_T,idx_T) {
 		alert('.jpg 또는 .png 파일만 업로드 가능합니다.');
 		$('.goodsThumb').remove();
       	$('#goodsThumbnail').val('');
+      	$('#Thumb_drop').append(resetTP);
 	} else {
     return function (e1) {
       var div_Thumb = 
@@ -92,6 +97,7 @@ Imagedrop
   .on('drop', function (e) { //드래그한 항목을 떨어뜨렸을때
     e.preventDefault();
     $(this).removeClass('drag-over');
+    $('#I_here').remove();
     $('.goodsImg').remove();
   	$('#goodsImages').val('');
 
@@ -103,6 +109,7 @@ Imagedrop
       alert('상품 이미지는 최대 10개만 넣을 수 있습니다.');
       $('.goodsImg').remove();
       $('#goodsImages').val('');
+      $('#Img_drop').append(resetIP);
     } else {
       for (var i = 0; i < ImgIdx; i++) {
         var file = files_Img[i];
@@ -121,6 +128,7 @@ function Preview_Img(file, idx) {
 		alert('.jpg 또는 .png 파일만 업로드 가능합니다.');
 		$('.goodsImg').remove();
       	$('#goodsImages').val('');
+      	$('#Img_drop').append(resetIP);
 	} else {
     return function (e) {
       var div = 
@@ -181,11 +189,19 @@ $('#btnSubmit').on('click', function () {
   	$('#send').submit();
   }
 });
-
 $('#reset').on('click', function () {
-  $('.goodsImg').remove();
-  $('#goodsImages').val('');
-  $('#goodsThumbnail').val('');
+	let clickCoumt = 0;
+	$('#T_here').remove();
+	$('#I_here').remove();
+	clickCoumt++;
+	if(clickCoumt == 1){
+		$('.goodsThumb').remove();
+ 		$('.goodsImg').remove();
+  		$('#goodsImages').val('');
+  		$('#goodsThumbnail').val('');
+  		$('#Thumb_drop').append(resetTP);
+  		$('#Img_drop').append(resetIP);
+	}
 });
 ////////////// 버튼 동작 ///////////////
 
