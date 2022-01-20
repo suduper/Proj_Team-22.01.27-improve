@@ -10,7 +10,7 @@ public class User {
 	private String uAddr1;
 	private String uAddr2;
 	private String authority;
-	private String Wallet;
+	private int Wallet;
 	private String phoneNum1;
 	private String phoneNum2;
 	private String phoneNum3;
@@ -122,10 +122,10 @@ public class User {
 	public void setAuthority(String authority) {
 		this.authority = authority;
 	}
-	public String getWallet() {
+	public int getWallet() {
 		return Wallet;
 	}
-	public void setWallet(String wallet) {
+	public void setWallet(int wallet) {
 		Wallet = wallet;
 	}
 	

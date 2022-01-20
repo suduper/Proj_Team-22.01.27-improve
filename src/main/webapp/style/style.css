@@ -124,13 +124,14 @@ display: inline
 .Mytd{
 	border: 1px solid #000; width:49%; font-size:11px;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }
 #orderCus{
 	background-image: url('../Account/img/delivery.png');
 	background-position: 50% 60%;
 }
 #inforCus{
-	cursor: pointer;
+	
 	background-image: url('../Account/img/info.png');
 	background-position: 50% 60%;
 }
@@ -157,8 +158,9 @@ display: inline
 #deliCus{
 	background-image: url('../Account/img/AlwaysDelivery.png');
 	background-position: 50% 60%;
-	cursor: pointer;
+	
 }
+
 /*마이페이지 css 끝 */
 
 /*로그인페이지 시작*/

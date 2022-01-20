@@ -308,7 +308,32 @@ return flag;
 		return -2; //오류
 	}
 	*/
+	//지갑 충전 시작
+public int money(String uID, int Wallet) {
+	Connection					objConn		=	null;
+	PreparedStatement 		objPstmt 		= 	null;
+	ResultSet						objRs			=	null;
+	String							sql 				=	null;
 	
+	System.out.println("==== "+uID + " 가 " + Wallet +" 원 결제 ==== \n");
+	System.out.println();
+	try {
+		objConn = pool.getConnection();
+		sql= "update userInfo set wallet = wallet + ? where uID = ?";
+		objPstmt = objConn.prepareStatement(sql);
+		objPstmt.setInt(1, Wallet);
+		objPstmt.setString(2,uID);
+		return objPstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		System.out.println("SQL 이슈 : " + e.getMessage());
+	} catch (Exception e) {
+		System.out.println("DB 접속이슈 : " + e.getMessage());
+	} finally {
+		pool.freeConnection(objConn, objPstmt, objRs);
+	}
+	return -1;
+}
 	//지갑확인 시작
 	public int Wallet(String uID) {
 		Connection					objConn		=	null;
