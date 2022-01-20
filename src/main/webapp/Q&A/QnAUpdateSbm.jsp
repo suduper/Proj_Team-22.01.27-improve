@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
-    import="pack_review.*"
+    import="pack_QnA.*"
     %>
-    <jsp:useBean id = "rMgr" class = "pack_review.ReviewMgr" scope="page"/>
+    <jsp:useBean id = "rMgr" class = "pack_QnA.QnAMgr" scope="page"/>
     <%
+    request.setCharacterEncoding("utf-8");
     
     String authority = null;
     if(session.getAttribute("authority") != null){ 
@@ -15,8 +16,6 @@
     	} 
     
     
-    request.setCharacterEncoding("utf-8");
-    
     String nowPage = request.getParameter("nowPage");
     String num = request.getParameter("num");
     
@@ -25,12 +24,12 @@
     if(request.getParameter("passParam") != null){
     	String passParam = request.getParameter("passParam");
     	
-    	ReviewBean bean = (ReviewBean)session.getAttribute("bean");
+    	QnABean bean = (QnABean)session.getAttribute("bean");
     	String pass = bean.getPass();
     	
     	if(passParam.equals(pass)){
     		
-    		String url = "QnAUpdate.jsp?nowPage="+num+"&nowPage="+nowPage;
+    		String url = "QnAUpdate.jsp?num="+num+"&nowPage="+nowPage;
     		%>
     		
     		<script>
@@ -112,7 +111,7 @@
         
         <h3>REVIEW</h3>
 			<br><br>
-		<form id="modFrm" name="modFrm" action="QnAUpdate.jsp">
+		<form id="modFrm" name="modFrm">
 		
 		<table>
 			<tbody>

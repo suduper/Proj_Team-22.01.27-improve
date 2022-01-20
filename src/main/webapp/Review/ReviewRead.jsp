@@ -55,7 +55,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReviewRead</title>
+    <title>REVIEW</title>
     <link rel="stylesheet" href="../style/style_Read.css">
 </head>
 <body>

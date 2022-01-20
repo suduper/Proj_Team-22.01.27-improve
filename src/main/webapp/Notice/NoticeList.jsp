@@ -159,7 +159,7 @@ listSize = vList.size();
 		}
 	}
 		%>
-		<%if(authority != null){ %>
+		<%if(authority.equals("admin")){ %>
 		<tr>
 			<td colspan="3"><button type="button" id="writeBtn" onclick="location.href='NoticeWrite.jsp'">공지 입력</button></td>
 		</tr>

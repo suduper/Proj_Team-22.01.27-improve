@@ -18,7 +18,7 @@ String realDBPass = bean.getPass();
 int exeCnt = 0;
 
 if(upPass.equals(realDBPass)){
-	exeCnt = rMgr.updateReview(request, upBean);
+	exeCnt = rMgr.updateReview(upBean);
 	
 	if(exeCnt>0){
 		String url = "ReviewRead.jsp?nowPage="+nowPage+"&num="+upBean.getNum();

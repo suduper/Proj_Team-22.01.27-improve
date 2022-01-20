@@ -39,7 +39,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ReviewRead</title>
+    <title>NOTICE</title>
     <link rel="stylesheet" href="../style/style_ReadNotice.css">
 </head>
 <body>
@@ -122,7 +122,7 @@
 </table>
 
 <button type="button" id="listBtn" class="reviewBtn">리스트</button>
-<%if(authority != null){ %>
+<%if(authority.equals("admin")){ %>
 <button type="button" id="modBtn"  class="reviewBtn">수정</button>
 <button type="button" id="delBtn"  class="reviewBtn">삭제</button>
 <%} %>

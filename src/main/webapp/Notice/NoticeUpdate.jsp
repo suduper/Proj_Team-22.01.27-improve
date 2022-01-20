@@ -30,7 +30,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notice Update</title>
+    <title>Notice</title>
     <link rel="stylesheet" href="../style/style_UpdateNotice.css">
 </head>
 <body>
@@ -88,7 +88,7 @@
         </header>
         
         <div id="mod">
-        <h3>REVIEW</h3>
+        <h4>NOTICE</h4>
 <br><br>
 <form action="NoticeUpdateProc.jsp" method="get" id="UpdateFrm" name="UpdateFrm">
 

@@ -39,7 +39,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notice Delete</title>
+    <title>Notice</title>
     <link rel="stylesheet" href="../style/style_DeleteNotice.css">
 </head>
 <body>
@@ -98,7 +98,7 @@
         
         <div id="delete">
         
-        <h3>REVIEW</h3>
+        <h3>NOTICE</h3>
 			<br><br>
 		<form id="delFrm" name="delFrm">
 

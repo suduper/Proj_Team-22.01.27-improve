@@ -75,7 +75,7 @@
 
 
 <div id="review">
-<h3>NOTICE</h3>
+<h4>NOTICE</h4>
 <br><br>
 
 <form action="NoticeProc.jsp" method="post" id="postFrm" name="postFrm">
@@ -89,7 +89,7 @@
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" value="<%=authority %>"  size = "80" id="uName" readonly="readonly">
+			<input type="text" name="uName" value="<%=uID %>"  size = "80" id="uName" readonly="readonly">
 			</td>
 		</tr>
 		<tr>

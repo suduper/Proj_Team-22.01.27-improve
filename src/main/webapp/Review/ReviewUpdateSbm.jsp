@@ -27,8 +27,8 @@
     	String pass = bean.getPass();
     	
     	if(passParam.equals(pass)){
-    		
-    		String url = "ReviewUpdate.jsp?nowPage="+num+"&nowPage="+nowPage;
+    		    		
+    		String url = "ReviewUpdate.jsp?num="+num+"&nowPage="+nowPage;
     		%>
     		
     		<script>
@@ -49,7 +49,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Update</title>
+    <title>REVIEW</title>
     <link rel="stylesheet" href="../style/style_UpdateSbm.css">
 </head>
 <body>
@@ -108,9 +108,9 @@
         
         <div id="delete">
         
-        <h3>REVIEW</h3>
+        <h4>REVIEW</h4>
 			<br><br>
-		<form id="modFrm" name="modFrm" action="ReviewUpdate.jsp">
+		<form id="modFrm" name="modFrm">
 		
 		<table>
 			<tbody>

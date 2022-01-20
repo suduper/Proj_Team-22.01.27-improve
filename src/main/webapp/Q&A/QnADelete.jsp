@@ -50,7 +50,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QnA Delete</title>
+    <title>QnA</title>
     <link rel="stylesheet" href="../style/style_DeleteQnA.css">
 </head>
 <body>
@@ -109,7 +109,7 @@
         
         <div id="delete">
         
-        <h3>QnA 삭제</h3>
+        <h4>QnA</h4>
 			<br><br>
 		<form id="delFrm" name="delFrm">
 		

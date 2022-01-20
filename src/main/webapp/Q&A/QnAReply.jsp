@@ -92,7 +92,7 @@
 
 
 <div id="QnA">
-<h3>QnA</h3>
+<h4>QnA</h4>
 <br><br>
 <form action="QnAReplyProc.jsp" method="get" id="replyFrm" name="replyFrm">
 
@@ -105,7 +105,7 @@
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" value="<%=authority %>" size = "80" id="uName">
+			<input type="text" name="uName" value="<%=uID %>" size = "80" id="uName">
 			</td>
 		</tr>
 		<tr>

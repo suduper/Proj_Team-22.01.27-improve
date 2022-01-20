@@ -55,7 +55,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QnARead</title>
+    <title>QnA</title>
     <link rel="stylesheet" href="../style/style_ReadQnA.css">
 </head>
 <body>
@@ -140,7 +140,7 @@
 <button type="button" id="listBtn" class="QnABtn">리스트</button>
 <button type="button" id="modBtn"  class="QnABtn">수정</button>
 <button type="button" id="delBtn"  class="QnABtn">삭제</button>
-<%if(authority != null) {%>
+<%if(authority.equals("admin")) {%>
 <button type="button" id="replyBtn"  class="QnABtn">답변</button>
 <%} %>
 
