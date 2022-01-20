@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% // 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크 
-    String uID = null;
-    if(session.getAttribute("uID") != null){
-    	uID = (String)session.getAttribute("uID"); 
-    	} 
-%> 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -15,7 +10,7 @@
 <title>마이페이지</title>
 <link rel="stylesheet" href="../style/style.css">
 <body>
-
+<%@include file="../Main/Main_Top.jsp" %>
 <div id="wrap">
 <table>
 	<tbody>

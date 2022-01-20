@@ -4,18 +4,27 @@
     pageEncoding="UTF-8"%>
   
 <jsp:useBean  id="mDAO"   class="pack_user.UserDAO"  scope="page" />
-<%
-String sessionuID = (String)session.getAttribute("uID");
-Vector<User> vList = mDAO.modifyMember(sessionuID);
-%>  
 
-<% if (sessionuID != null) {   // 현재 로그인 상태라면  %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입수정</title>
+<link rel="stylesheet" href="../style/style.css">
+</head>
+<body>
+        <%@include file="../Main/Main_Top.jsp" %>
+        <% 
+Vector<User> vList = mDAO.modifyMember(uID);
+if (uID != null) {   // 현재 로그인 상태라면  %>
 <!-- ////////////////  로그인 상태 시작  ////////////////// -->
 
 
 	<%
 	User user = (User)vList.get(0);
-	String uID = user.getuID();
+	String uIDD = user.getuID();
 	String uPw = user.getuPw();
 	String uName = user.getuName();
 	String uEmail = user.getuEmail();
@@ -29,17 +38,7 @@ Vector<User> vList = mDAO.modifyMember(sessionuID);
 	Int      BirthMonth =user.getBirthMonth();
 	Int      BirthDay =user.getBirthDay(); */
 	%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>회원가입수정</title>
-<link rel="stylesheet" href="../style/style.css">
-</head>
-<body>
-
+        
 <div id="wrap">
 	<form action="Member_ModAction.jsp" method="get" id="regFrm" name="regFrm">
 		<table>
@@ -47,7 +46,7 @@ Vector<User> vList = mDAO.modifyMember(sessionuID);
 			<caption>회원가입수정</caption>
 				
 				<tr>
-					<td><input type="text" name="uID" id="uID" value="<%=uID%>"class="full" readonly="readonly"></td>
+					<td><input type="text" name="uID" id="uID" value="<%=uIDD%>"class="full" readonly="readonly"></td>
 				</tr>
 
 				<tr>
