@@ -189,7 +189,7 @@
 					<!-- 옵션 / 사이즈 -->
 					<div id="size">
 						<p id="sizeNotice">사이즈 & 갯수</p>
-						<hr />
+						<hr id="crossLine" />
 						<%if(view.getInventoryS() != 0) {%>
 						<p id="PS" onclick="choice('S','<%=Price %>')">S 사이즈 (재고 :<%=view.getInventoryS()%>)</p>
 						<span id="addS"></span>
@@ -249,7 +249,7 @@
 				
 				<!-- 내 옵션 -->
 				<div id="myOption">
-				<hr />
+				<hr id="crossLine" />
 					<ul>
 						<% if(uID != null){ %>
 						<li><a href="MyBasket.jsp">내 옷바구니</a></li>
@@ -257,7 +257,7 @@
 						<% } %>
 						<li><a href="../Review/ReviewList.jsp">리뷰보기</a></li>
 					</ul>
-					<hr />
+					<hr id="crossLine" />
 				</div>
 				<!-- 내 옵션 -->
 			</div>
@@ -273,8 +273,8 @@
 		<button type="button" id="goodsUpdate" onclick="forUpdate('<%=goodsName%>')"> 상품 정보 수정</button>
 		<button type="button" id="delBtn">상품 삭 제</button>
 		<% } %>
-		<button type="button" id="listBtn">상품 리스트</button>
-		<button type="button" id="replyBtn">상품 리 뷰</button>
+		<button type="button" id="listBtn" onclick="forList()">상품 리스트</button>
+		<button type="button" id="replyBtn" onclick="forReview()">상품 리 뷰</button>
 	</div><!-- 사용자 옵션 -->
 	
 </div><!-- div#wrap -->

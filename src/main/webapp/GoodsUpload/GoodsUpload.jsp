@@ -80,10 +80,10 @@
 					<table id="inventory">
 						<tbody>
 							<tr>
-								<td>S 사이즈 재고 : <input type="number" name="inventoryS" id="inventoryS" max="999"/></td>
-								<td>M 사이즈 재고 : <input type="number" name="inventoryM" id="inventoryM" max="999"/></td>
-								<td>L 사이즈 재고 : <input type="number" name="inventoryL" id="inventoryL" max="999"/></td>
-								<td>XL 사이즈 재고 : <input type="number" name="inventoryXL" id="inventoryXL" max="999"/></td>
+								<td>S 사이즈 재고 : <input type="number" name="inventoryS" id="inventoryS" max="999" value="0"/></td>
+								<td>M 사이즈 재고 : <input type="number" name="inventoryM" id="inventoryM" max="999" value="0"/></td>
+								<td>L 사이즈 재고 : <input type="number" name="inventoryL" id="inventoryL" max="999" value="0"/></td>
+								<td>XL 사이즈 재고 : <input type="number" name="inventoryXL" id="inventoryXL" max="999" value="0"/></td>
 							</tr>
 						</tbody>
 					</table>

@@ -1,7 +1,12 @@
 function forUpdate(goodsName){
 	location.href="GoodsUpdate.jsp?goodsName="+goodsName;
 }
-
+function forList(){
+	location.href="GoodsList.jsp";
+}
+function forReview(){
+	location.href="../Review/ReviewList.jsp";
+}
 let origPrice = null;
 let nowday = new Date();   
 let weekday = nowday.getDay();
@@ -135,8 +140,12 @@ function calc(sellPrice){
 	let fullCalc = SALL + MALL + LALL + XLALL;
 	let allCount = document.getElementById('Allcount');
 	let calcRes = document.getElementById('calcRes');
+	let SallCount = document.getElementById('SAllcount');
+	let ScalcRes = document.getElementById('ScalcRes');
+	
 	let res = sellPrice * fullCalc;
 	allCount.value = fullCalc;
+	SallCount.value = fullCalc;
 	if(res == 0){
 		res = 0;
 	}
@@ -145,6 +154,8 @@ function calc(sellPrice){
 	document.getElementById('Lcount').value = LALL;
 	document.getElementById('XLcount').value = XLALL;
 	calcRes.value = res;
+	let resCG = res.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	ScalcRes.value = resCG;
 }
 
 function addBasket(){

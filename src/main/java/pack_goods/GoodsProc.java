@@ -99,7 +99,7 @@ public class GoodsProc {
 			
 			inputID = (String) fileItem.getFieldName(); //input name 요소
 			filename = fileItem.getName(); //input 에 넣은 파일 이름요소 
-			System.out.println("FN" + filename);
+			
 			////////////////////////////////////////////
 			if (fileItem.isFormField()) { // 파일이 아닌경우
 				properties = fileItem.getString("UTF-8"); //파일이름 UTF-8로 인코딩
@@ -142,20 +142,32 @@ public class GoodsProc {
 					
 				}
 				if(inputID.equals("inventoryS")){
-					inventoryS = Integer.parseInt(properties) ;
-			
+					if(properties == "") {
+						inventoryS = 0;
+					} else {
+						inventoryS = Integer.parseInt(properties);
+					}
 				}
 				if(inputID.equals("inventoryM")){
-					inventoryM = Integer.parseInt(properties) ;
-					
+					if(properties == "") {
+						inventoryM = 0;
+					} else {
+						inventoryM = Integer.parseInt(properties) ;
+					}
 				}
 				if(inputID.equals("inventoryL")){
-					inventoryL = Integer.parseInt(properties) ;
-					
+					if(properties == "") {
+						inventoryL = 0;
+					} else {
+						inventoryL = Integer.parseInt(properties);
+					}
 				}
 				if(inputID.equals("inventoryXL")){
-					inventoryXL = Integer.parseInt(properties) ;
-					
+					if(properties == "") {
+						inventoryXL = 0;
+					} else {
+						inventoryXL = Integer.parseInt(properties);
+					}				
 				}
 				
 				
