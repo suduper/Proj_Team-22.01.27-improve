@@ -33,7 +33,7 @@
 
             </div>
             <nav id="nav1" class="flex-container">
-                <ul id="goods"><a href="#">shop</a>
+                <ul id="goods"><a href="../GoodsUpload/GoodsList.jsp">shop</a>
                     <li class="goods1"><a href="#">Blazer</a></li>
                     <li class="goods1"><a href="#">Leather</a></li>
                     <li class="goods1"><a href="#">Bottoms</a></li>
