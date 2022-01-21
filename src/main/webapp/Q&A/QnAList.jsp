@@ -124,9 +124,9 @@
         </header>
 
 
-<div id="top"><h4>QnA</h4></div>
 
 <main id="main">
+<div id="top"><h4>QnA</h4></div>
 
 
 <table id="QnAList">
@@ -277,7 +277,7 @@ listSize = vList.size();
             <div id="cs">
                 <h4>C.S CENTER</h4>
                 <ul>고객센터 -070-4131-0032</ul>
-                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul>
+                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul> 
                 <ul>LUNCH : 12:30PM - 13:30PM</ul>
                 <ul>EVERY WEEKEND, HOLIDAY OFF</ul>
                 <br>

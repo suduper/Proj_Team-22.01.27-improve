@@ -6,8 +6,8 @@
 
 #wrap{
     padding: 20px;
-    margin: 5px auto;
-    width: 100%;
+    margin: 0px auto;
+    width: 1920px;
     border: 1px solid #000;
 }
 /*
@@ -91,6 +91,7 @@ li{
 	text-align: center;
 	border-bottom: 1px solid #aaa;
 	padding-bottom: 20px;
+	margin: 0 auto;
 }
 
 #QnAList{
