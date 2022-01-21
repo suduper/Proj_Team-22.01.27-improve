@@ -6,6 +6,13 @@
 li{
     list-style: none;
 } */
+
+#wrap{
+    padding: 20px;
+    margin: 0px auto;
+    width: 1920px;
+    border: 1px solid #000;
+}
 #header{
     position: sticky;
     top: 5px;
@@ -74,4 +81,7 @@ height: 100%;
 #info2{
     margin-top: 30px;
     font-size: 13px;
+}
+#footer{
+	padding-top: 30px;
 }

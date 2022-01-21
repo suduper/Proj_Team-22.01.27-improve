@@ -140,7 +140,7 @@
 <button type="button" id="listBtn" class="QnABtn">리스트</button>
 <button type="button" id="modBtn"  class="QnABtn">수정</button>
 <button type="button" id="delBtn"  class="QnABtn">삭제</button>
-<%if(authority.equals("admin")) {%>
+<%if(uID !=null && authority.equals("admin")) {%>
 <button type="button" id="replyBtn"  class="QnABtn">답변</button>
 <%} %>
 

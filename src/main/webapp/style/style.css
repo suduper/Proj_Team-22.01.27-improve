@@ -1,13 +1,16 @@
 @charset "UTF-8";
-@import url(Style_HeaderFooter.css);
+@import url(style_HeaderFooter.css);
+
 * {font-family: "Helvetica Neue","Helvetica","Arial",'Spoqa Han Sans','Malgun Gothic','Apple SD Gothic Neo','돋움',dotum,sans-serif;
 		box-sizing: border-box;
 	}
+/*
 div#wrap{
-	margin: 5 auto;
+	margin: 0 auto;
 	padding: 5px;
+	width: 1920px;
 }
-
+*/
 li {
   display: inline;
 }

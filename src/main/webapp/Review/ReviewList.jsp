@@ -9,8 +9,14 @@
     <%
     request.setCharacterEncoding("utf-8");
     
-
-    
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}    
     
     int totalRecord = 0; // 전체 레코드
     int numPerPage = 5; // 페이지 당 레코드
@@ -62,12 +68,11 @@
 </head>
 <body>
 
-        <%@include file="../Main/Main_Top.jsp" %>
 <div id="wrap">
 
 
 
-<div id="top"><h4>REVIEW</h4></div>
+
 
 <header id="header" class="flex-container">
         
@@ -120,6 +125,8 @@
         </header>
 
 <main id="main">
+
+<div id="top"><h4>REVIEW</h4></div>
 
 <%
 vList = rMgr.getReviewList(keyField, keyWord, start, end);
