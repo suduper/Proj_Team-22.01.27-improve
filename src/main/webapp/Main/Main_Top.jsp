@@ -34,13 +34,13 @@
             </div>
             <nav id="nav1" class="flex-container">
                 <ul id="goods"><a href="#">shop</a>
-                    <li class="goods1"><a href="#">품목1</a></li>
-                    <li class="goods1"><a href="#">품목2</a></li>
-                    <li class="goods1"><a href="#">품목3</a></li>
-                    <li class="goods1"><a href="#">품목4</a></li>
-                    <li class="goods1"><a href="#">품목5</a></li>
+                    <li class="goods1"><a href="#">Blazer</a></li>
+                    <li class="goods1"><a href="#">Leather</a></li>
+                    <li class="goods1"><a href="#">Bottoms</a></li>
+                    <li class="goods1"><a href="#">Acc</a></li>
+                    <li class="goods1"><a href="#">Etc</a></li>
                 </ul>
-                <ul><a href="#">LookBook</a></ul>
+                <ul><a href="../Lookbook/Look.jsp">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
                     <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
