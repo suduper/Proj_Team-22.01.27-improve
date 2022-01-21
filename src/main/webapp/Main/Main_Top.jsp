@@ -64,6 +64,7 @@
 			%>
 			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/OrderShow.jsp">OrderManagement</a></ul>
 				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
 			<% } %>
                 <ul id="search1"><a href="#">Search</a>

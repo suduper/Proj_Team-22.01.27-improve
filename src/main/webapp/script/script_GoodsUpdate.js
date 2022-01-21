@@ -1,4 +1,3 @@
-
 const hideT = document.getElementById('hider');
 	hideT.style.display = 'none';
 
@@ -11,7 +10,9 @@ var Imagedrop = $('#Img_drop'); //상품 이미지 드래그 앤 드롭 영역 �
 var ImgIdx = 0;  // 상품이미지 갯수 초기화
 
 var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
-  
+
+let resetTP = '<p id="T_here">drag & drop</p>';
+let resetIP = '<p id="I_here">drag & drop</p>'; 
 //////////// 썸네일 드래그 앤 드롭 영역 /////////////
 Thumbdrop
   .on('dragenter', function (e1) { //드래그 요소가 들어왔을떄
@@ -19,14 +20,15 @@ Thumbdrop
   })
   .on('dragleave', function (e1) { //드래그 요소가 나갔을때
     $(this).removeClass('drag-over');
-  })
-  .on('dragover', function (e1) { //드래그 요소 위에 있을때 
+  }) 
+  .on('dragover', function (e1) { //드래그 요소 위에 있을때
     e1.stopPropagation();
     e1.preventDefault();
-  }) 
+  })
   .on('drop', function (e1) { //드래그한 항목을 떨어뜨렸을때
     e1.preventDefault();
     $(this).removeClass('drag-over');
+    $('#T_here').remove();
     $('.goodsThumb').remove();
   	$('#goodsThumbnail').val('');
 
@@ -38,6 +40,7 @@ Thumbdrop
       alert('썸네일은 하나만 지정 가능합니다');
       $('.goodsThumb').remove();
       $('#goodsThumbnail').val('');
+      $('#Thumb_drop').append(resetTP);
     } else {
 		for (var i = 0; i < ThumbIdx; i++) {
         var file_T = files_Thumb[i];
@@ -47,6 +50,9 @@ Thumbdrop
     }
   });
  //////////// 썸네일 드래그 앤 드롭 영역 /////////////
+ 
+ 
+ 
 
 //////////// 썸네일 미리보기 생성 /////////////
 function Preview_Thumb(file_T,idx_T) {
@@ -56,6 +62,7 @@ function Preview_Thumb(file_T,idx_T) {
 		alert('.jpg 또는 .png 파일만 업로드 가능합니다.');
 		$('.goodsThumb').remove();
       	$('#goodsThumbnail').val('');
+      	$('#Thumb_drop').append(resetTP);
 	} else {
     return function (e1) {
       var div_Thumb = 
@@ -90,6 +97,7 @@ Imagedrop
   .on('drop', function (e) { //드래그한 항목을 떨어뜨렸을때
     e.preventDefault();
     $(this).removeClass('drag-over');
+    $('#I_here').remove();
     $('.goodsImg').remove();
   	$('#goodsImages').val('');
 
@@ -101,6 +109,7 @@ Imagedrop
       alert('상품 이미지는 최대 10개만 넣을 수 있습니다.');
       $('.goodsImg').remove();
       $('#goodsImages').val('');
+      $('#Img_drop').append(resetIP);
     } else {
       for (var i = 0; i < ImgIdx; i++) {
         var file = files_Img[i];
@@ -119,6 +128,7 @@ function Preview_Img(file, idx) {
 		alert('.jpg 또는 .png 파일만 업로드 가능합니다.');
 		$('.goodsImg').remove();
       	$('#goodsImages').val('');
+      	$('#Img_drop').append(resetIP);
 	} else {
     return function (e) {
       var div = 
@@ -145,31 +155,54 @@ $('#btnSubmit').on('click', function () {
 	var goodsType = $("#goodsType").val().trim();
 	var goodsPrice = $("#goodsPrice").val().trim();
 	var goodsSPrice = $("#goodsSPrice").val().trim();
-	
-	//alert('ImgIdx : ' + ImgIdx);
-	//alert('thumb : ' + Timage);
+	var priceCheck = parseInt(goodsPrice) - parseInt(goodsSPrice);
+	var inventoryS = $("#inventoryS").val().trim();
+	var inventoryM = $("#inventoryM").val().trim();
+	var inventoryL = $("#inventoryL").val().trim();
+	var inventoryXL = $("#inventoryXL").val().trim();
+
 	if (goodsType == "1") {
-		alert("상품 종류 미선택.");
+		alert("상품 종류 미선택."); 
 		$("#goodsType").focus();
-	} else if (goodsPrice == "") {
-		alert("상품 가격 미입력.");
+	} else if (goodsPrice == "" || goodsPrice > 9999999) {
+		alert("상품 가격을 확인해주세요.");
 		$("#goodsPrice").focus();
-	} else {
+	    } else if (priceCheck < 0){
+        alert("상품 세일가격을 확인해주세요");
+        $("#goodsSPrice").focus();
+    } else if (inventoryS > 999 || inventoryM > 999 || inventoryL > 999 || inventoryXL > 999){
+        alert("상품 재고를 확인해주세요"); 
+    } else if (Timage == ""){
+		alert("썸네일을 확인할 수 없습니다. 다시 첨부해 주세요")
+	} else if (ImgIdx == 0){
+        alert("상품 이미지를 확인할 수 없습니다. 상품이미지를 첨부해 주세요");
+    } else {
 	if (goodsSPrice == "") {
 		$("#goodsSPrice").val(0)
 	}
 	const writer = jQuery.trim(document.getElementById('write').innerHTML);
 		const setT = document.all("goodsContent");
 		setT.innerHTML = writer;
-		//alert(writer);
+		alert('ImgIdx : ' + ImgIdx);
+		alert('thumb : ' + Timage);
+		alert(writer);
   	$('#send').submit();
   }
 });
-
 $('#reset').on('click', function () {
-  $('.goodsImg').remove();
-  $('#goodsImages').val('');
-  $('#goodsThumbnail').val('');
+	alert('작동');
+	let clickCoumt = 0;
+	$('#T_here').remove();
+	$('#I_here').remove();
+	clickCoumt++;
+	if(clickCoumt == 1){
+		$('.goodsThumb').remove();
+ 		$('.goodsImg').remove();
+  		$('#goodsImages').val('');
+  		$('#goodsThumbnail').val('');
+  		$('#Thumb_drop').append(resetTP);
+  		$('#Img_drop').append(resetIP);
+	}
 });
 ////////////// 버튼 동작 ///////////////
 

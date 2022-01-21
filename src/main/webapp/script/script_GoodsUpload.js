@@ -190,6 +190,7 @@ $('#btnSubmit').on('click', function () {
   }
 });
 $('#reset').on('click', function () {
+	alert('작동');
 	let clickCoumt = 0;
 	$('#T_here').remove();
 	$('#I_here').remove();

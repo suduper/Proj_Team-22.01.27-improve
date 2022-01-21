@@ -39,40 +39,6 @@
 <div id="wrap">
 	<hr id="crossLine" />
 	<form action="GoodsUploadProc.jsp" method="post" id="send" enctype="multipart/form-data">
-		<div id="resetbtnArea">
-			<p id="reset"/>전체 이미지 재선택</p>
-		</div>
-		
-		<div id="GoodsUpload_Imgs"> <!--GoodsUpload_Imgs-->
-		
-			<div id="GoodsUploadThumb">
-				<h2>썸네일</h2>
-							
-				 <div id="Thumb_drop">
-					<div id="Preview_Thumb">
-					</div>
-					<p id="T_here">drag & drop</p>
-				</div>
-				
-				<span id="or">or</span><br />
-				<input type="file" id="goodsThumbnail" name="goodsThumbnail" multiple="multiple" accept='.png, .jpg' required="required"/>
-			</div>
-			
-			<div id="GoodsUploadImg">
-				<h2>상품 이미지</h2>
-				
-				 <div id="Img_drop">
-					<div id="Preview_Img">
-					</div>
-					<p id="I_here">drag & drop</p>
-				</div>
-				
-				<span id="or">or</span><br />
-				<input type="file" id="goodsImages" name="goodsImages" multiple="multiple" accept='.png, .jpg' required="required">
-			</div>
-		</div> <!--GoodsUpload_Imgs-->
-		
-		<hr id="crossLine" />
 		
 		<div id="InputInfo"><!-- <div id="InputInfo"> -->
 		
@@ -101,11 +67,12 @@
 					</div>
 					
 					<div id="priceArea">
-						<span id="InfoSpan">상품 판매 가격 : <input type="number" name="goodsPrice" id="goodsPrice" min="1000" max="9999999"/></span>
-						<span id="InfoSpan">
-							상품 세일 가격 : <input type="number" name="goodsSPrice" id="goodsSPrice"  min="1000" max="9999999"/><br />
-							<span id="SPriceNotice">미입력시 세일가격은 0원입니다.</span>
-						</span>
+						<p id="Price" >상품 판매 가격 : <input type="number" name="goodsPrice" id="goodsPrice" 
+							  	   							maxlength="7" min="1000" max="9999999"/></p>
+						<p id="SPrice">상품 세일 가격 : <input type="number" name="goodsSPrice" id="goodsSPrice"  
+								   							maxlength="7" min="1000" max="9999999"/><span id="SPriceNotice">미입력시 세일가격은 0원입니다.</span>
+						</p>
+						
 					</div>
 				</div> <!-- goodsTextInfo -->
 			
@@ -121,18 +88,52 @@
 						</tbody>
 					</table>
 				</div> <!-- inventoryList -->
-				<p id="btnSubmit">업로드</p>
 			</div>
 		</div><!-- <div id="InputInfo"> -->
+		
+		<hr id="crossLine" />
+		
+		<div id="resetbtnArea">
+			<p id="reset">전체 이미지 재선택</p>
+		</div>
+		
+		<div id="GoodsUpload_Imgs"> <!--GoodsUpload_Imgs-->
+		
+			<div id="GoodsUploadThumb">
+				<h2>썸네일</h2>
+							
+				 <div id="Thumb_drop">
+					<div id="Preview_Thumb"></div>
+					<p id="T_here">drag & drop</p>
+				</div>
+				
+				<span id="or">or</span><br />
+				<input type="file" id="goodsThumbnail" name="goodsThumbnail" multiple="multiple" accept='.png, .jpg' required="required"/>
+			</div>
+			
+			<div id="GoodsUploadImg">
+				<h2>상품 이미지</h2>
+				
+				 <div id="Img_drop">
+					<div id="Preview_Img"></div>
+					<p id="I_here">drag & drop</p>
+				</div>
+				
+				<span id="or">or</span><br />
+				<input type="file" id="goodsImages" name="goodsImages" multiple="multiple" accept='.png, .jpg' required="required">
+			</div>
+		</div> <!--GoodsUpload_Imgs-->
+		
 	</form>
 	<hr id="crossLine" />
+	<p id="btnSubmit">업로드</p>
 </div> 
 
 <jsp:include page="../Main/Main_Bottom.jsp" flush="true"/>
  
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="../script/script_GoodsImg.js"></script>
+<script src="../script/script_GoodsUpload.js"></script>
 
 </body>
 </html>

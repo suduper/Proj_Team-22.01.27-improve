@@ -9,6 +9,7 @@
  
 <%@ page import="pack_goods.Goods, java.util.Vector" %>
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
+
 <% request.setCharacterEncoding("UTF-8");%>
  
 <%
@@ -221,5 +222,8 @@ totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../script/script_GoodsList.js"></script>
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

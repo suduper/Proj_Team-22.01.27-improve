@@ -156,11 +156,65 @@ span#InfoSpan {
 	font-size: 20px;
 	font-weight: bold;
 }
+div#priceArea{
+	/* border: 1px solid #000; */
+	display: flex;
+	width: 800px;
+	margin: 10px auto;
+	margin-left: 30px;
+}
+p#Price {
+	font-size: 20px;
+	font-weight: bold;
+}
+p#SPrice{
+	font-size: 20px;
+	font-weight: bold;
+}
+input#goodsName{
+	border: 2px solid #000;
+	width:200px;
+	height: 25px;
+	border-radius: 8px;
+	position: relative;
+	top: -2px;
+}
+input#goodsWarehousing{
+	border: 2px solid #000;
+	width:100px;
+	height: 25px;
+	border-radius: 8px;
+	position: relative;
+	top: -2px;
+}
+input#goodsPrice{
+	border: 2px solid #000;
+	width:100px;
+	height: 25px;
+	border-radius: 8px;
+	position: relative;
+	top: -2px;
+}
+input#goodsSPrice{
+	border: 2px solid #000;
+	width:100px;
+	height: 25px;
+	border-radius: 8px;
+	position: relative;
+	top: -2px;
+}
+select#goodsType{
+	border: 2px solid #000;
+	border-radius: 5px;
+	height: 25px;
+	position: relative;
+	top: -2px;
+}
 span#SPriceNotice{
-	border: 1px solid #000;
+	/* border: 1px solid #000; */
 	font-size: 12px;
 	color: #5f5f5f;
-	margin-left: 20px;
+	margin-left: 10px;
 }
 div#Gcontents{
 	/* border: 1px solid #000; */
@@ -189,12 +243,7 @@ div#NIT {
 	height: 30px;
 	line-height: 30px;
 }
-div#priceArea{
-	margin:5px;
-	/* border: 1px solid #0f0; */
-	display: flex;
-	justify-content: space-around;
-}
+
 div#inventoryList{
 	margin:5px;
 	margin-bottom: 20px;
@@ -224,6 +273,86 @@ table#inventory tr td input[type=number]{
 	top: -2px;
 }
 p#btnSubmit{
+	border: 2px solid #000;
+	margin-top: 40px;
+	border-radius:8px;
+	width: 150px;
+	height: 40px;
+	margin: 5px auto;
+	text-align: center;
+	line-height: 40px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/* GoodsUpdate */
+div#nowImgs{
+	/* border: 1px solid #000; */
+	display: flex;
+	justify-content: space-around;
+}
+div#oldThumb{
+	/* border: 1px solid #f00; */
+	text-align: center;
+	width: 200px;
+	min-height: 250px;
+}
+div#oldThumb h2{
+	margin: 10px auto;
+}
+div#showOT {
+	border: 2px solid #000;
+	background-color :#9f9f9f;
+	margin:0px auto;
+	border-radius: 8px;
+	width: 150px;
+	height: 150px;
+	padding-top: 2px;
+}
+img#gthumb{
+	border:1px solid #000;
+	background-color :#fff;
+	border-radius:5px;
+	width: 140px;
+	height: 140px;
+	object-fit :contain;
+}
+div#oldImg{
+	/* border: 1px solid #0f0; */
+	text-align: center;
+}
+div#oldImg h2{
+	margin: 10px auto;
+}
+div#showOI {
+	padding-top: 3px;
+	padding-left:20px;
+	padding-right:20px;
+	border: 2px solid #000;
+	background-color :#9f9f9f;
+	margin:0px auto;
+	border-radius: 8px;
+	width:1130px;
+	min-height: 150px;
+	display: flex;
+}
+img#gImg{
+	border:1px solid #000;
+	margin:0px 2px;
+	background-color :#d3d3d3;
+	border-radius:5px;
+	width: 140px;
+	height: 140px;
+	object-fit :contain;
+	
+}
+
+div#btnArea {
+	border: 1px solid #000;
+	display: flex;
+	text-align: center;
+}
+p#goback{
 	border: 2px solid #000;
 	margin-top: 40px;
 	border-radius:8px;

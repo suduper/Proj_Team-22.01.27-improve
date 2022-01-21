@@ -99,11 +99,11 @@ public class GoodsProc {
 			
 			inputID = (String) fileItem.getFieldName(); //input name 요소
 			filename = fileItem.getName(); //input 에 넣은 파일 이름요소 
-			
+			System.out.println("FN" + filename);
 			////////////////////////////////////////////
 			if (fileItem.isFormField()) { // 파일이 아닌경우
 				properties = fileItem.getString("UTF-8"); //파일이름 UTF-8로 인코딩
-				
+				System.out.println(properties);
 				if(inputID.equals("goodsName")){
 					goodsName = properties;
 					
