@@ -18,7 +18,7 @@
 	if(session.getAttribute("uID") != null){ 
 		uID = (String)session.getAttribute("uID"); 
 	} 
-	/* String authority = null;
+	String authority = null;
 	if(session.getAttribute("authority") == "admin"){ 
 		authority = (String)session.getAttribute("authority");
 	} else {
@@ -27,7 +27,7 @@
 		script.println("alert('권한이 없습니다!!!')");
 		script.println("location.href='../Main/Main.jsp'");
 		script.println("</script>");
-	} */
+	}
 	String goodsNameParam = null;
 	 
 	if((String)request.getParameter("goodsName") != null){
@@ -88,7 +88,7 @@
 					<textarea name="goodsContent" id="goodsContent" placeholder="테스트"></textarea> 
 				</div>
 			</div>
-
+ 
 			<div id="must"><!-- <div id="must"> -->
 				<div id="goodsTextInfo"><!-- goodsTextInfo -->
 					<div id="NIT">

@@ -1,6 +1,6 @@
 const hideT = document.getElementById('hider');
 	hideT.style.display = 'none';
-
+ 
 var goodsThumbnail = document.getElementById('goodsThumbnail'); //썸네일 input file 지정
 var Thumbdrop = $('#Thumb_drop'); // 썸네일 드래그 앤 드롭 영역 지정
 var ThumbIdx = 0; //썸네일 갯수 초기화

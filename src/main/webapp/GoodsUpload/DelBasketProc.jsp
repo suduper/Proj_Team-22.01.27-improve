@@ -3,7 +3,7 @@
 <%@ page import="pack_goods.GoodsProc"%>
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
 <%request.setCharacterEncoding("UTF-8"); %>
-
+ 
 <%@ page import="java.io.PrintWriter"%>
 
 <%

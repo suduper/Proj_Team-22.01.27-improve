@@ -12,7 +12,7 @@ hr#crossLine {
 }
 /* ////////////////////////// GoodsList ////////////////////////// */
 div#goodsList {
-	/* border: 2px solid #000; */
+	/* border: 2px solid #000; */ 
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around; 

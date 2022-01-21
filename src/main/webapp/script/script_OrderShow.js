@@ -13,7 +13,7 @@ function moveBlock(p1, p2) {    // 블럭 이동
 	
 	let param = "OrderShow.jsp?nowPage="+(pagePerBlock*(pageNum-1)+1);
 	location.href=param;
-
+ 
 }
 
 $("#searchBtn").click(function(){

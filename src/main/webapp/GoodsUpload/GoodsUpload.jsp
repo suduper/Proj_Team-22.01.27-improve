@@ -118,7 +118,7 @@
 					<div id="Preview_Img"></div>
 					<p id="I_here">drag & drop</p>
 				</div>
-				
+				 
 				<span id="or">or</span><br />
 				<input type="file" id="goodsImages" name="goodsImages" multiple="multiple" accept='.png, .jpg' required="required">
 			</div>

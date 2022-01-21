@@ -56,7 +56,7 @@
 </head>
 <link rel="stylesheet" href="../style/style_goods.css">
 <body>
-
+ 
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
 
 <div id="wrap">

@@ -1,6 +1,6 @@
 function forUpdate(goodsName){
 	location.href="GoodsUpdate.jsp?goodsName="+goodsName;
-}
+} 
 function forList(){
 	location.href="GoodsList.jsp";
 }

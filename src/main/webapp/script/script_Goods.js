@@ -3,7 +3,7 @@ $(function(){
 	const editor = document.getElementById("write");
 	editor.contentEditable ='false';
 	
-
+ 
     $('#goodsType').prop('disabled', true);
     $('#goodsPrice').prop('disabled', true);
     $('#goodsSPrice').prop('disabled', true);

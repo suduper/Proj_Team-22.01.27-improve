@@ -11,7 +11,7 @@ div#OrderListPage{
 	/* border: 1px solid #000; */
 	width: 300px;
 	font-size:25px;
-	display: flex;
+	display: flex; 
 	justify-content: space-around;
 }
 span.mBtn {
