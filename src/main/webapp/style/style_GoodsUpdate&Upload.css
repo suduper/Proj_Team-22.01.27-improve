@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import url(Style_Reset.css);
+@import url(style_HeaderFooter.css);
 
 body {
 	-webkit-user-select:none; 
@@ -8,12 +9,12 @@ body {
 	-ms-user-select:none; 
 	user-select:none
 }
-
+/*
 div#wrap{
 	border:1px solid #000;
 	margin: 5px auto;
 	padding: 5px;
-}
+}*/
 hr#crossLine { 
 	width: 90%;
 	margin:20px auto;

@@ -60,6 +60,7 @@
     <link rel="stylesheet" href="../style/style_List.css">
 </head>
 <body>
+
 <div id="wrap">
 
         <header id="header" class="flex-container">
@@ -214,15 +215,7 @@ listSize = vList.size();
 		</tr>
 	</tbody>
 </table>
-
-</div>
-
-
 </main>
-
-
-
-
 	    <footer id="footer">
 
 
@@ -231,7 +224,7 @@ listSize = vList.size();
             <div id="cs">
                 <h4>C.S CENTER</h4>
                 <ul>고객센터 -070-4131-0032</ul>
-                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul>
+                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul> 
                 <ul>LUNCH : 12:30PM - 13:30PM</ul>
                 <ul>EVERY WEEKEND, HOLIDAY OFF</ul>
                 <br>
@@ -262,7 +255,9 @@ listSize = vList.size();
             </div>
 
         </footer>
+
 </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../script/script_Notice.js"></script>
