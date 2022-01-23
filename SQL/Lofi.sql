@@ -159,7 +159,10 @@ select*from tblNotice order by num desc limit 0,5;
 select count(*) from tblNotice;
 
 -- --///////////// 명령어 /////////////--  --
-
+select * from goodsInfo where goodsLike = 1 order by goodsnum desc limit 0,20;
+select count(*) from goodsInfo where goodsName like '%겨울%' ;
+select count(*) from goodsInfo where goodsLike = 1;
+update GoodsInfo set goodsLike=1 where goodsName = '여름옷 신상품_2201210837';
 select * from tblReview order by num desc limit 0,10;
 select*from userOrder where goodsName like 'user1231' or uID like 'user1231' order by num desc limit 0,5;
 select count(*) from goodsInfo where goodsType = '기타' and goodsName like '%봄%' ;

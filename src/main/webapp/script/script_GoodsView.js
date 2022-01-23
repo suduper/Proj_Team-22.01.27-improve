@@ -1,5 +1,14 @@
 function forUpdate(goodsName){
 	location.href="GoodsUpdate.jsp?goodsName="+goodsName;
+}
+function forDel(goodsName){
+	var checkSure = confirm('해당 상품을 목록에서 보이지 않게합니다.');
+	if(checkSure == true){
+		location.href="GoodsDelete.jsp?goodsName="+goodsName;
+	} else {
+		return fales();
+	}
+	
 } 
 function forList(){
 	location.href="GoodsList.jsp";
