@@ -14,7 +14,7 @@
     
  
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
-     
+ 
 <% request.setCharacterEncoding("UTF-8");%>
 <%
 	String uID = null; 
@@ -271,7 +271,7 @@
 	<hr id="crossLine"/>
 		<% if(authority.equals("admin")){ %>
 		<button type="button" id="goodsUpdate" onclick="forUpdate('<%=goodsName%>')"> 상품 정보 수정</button>
-		<button type="button" id="delBtn">상품 삭 제</button>
+		<button type="button" id="delBtn" onclick="forDel('<%=goodsName%>')">상품 삭 제</button>
 		<% } %>
 		<button type="button" id="listBtn" onclick="forList()">상품 리스트</button>
 		<button type="button" id="replyBtn" onclick="forReview()">상품 리 뷰</button>
