@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
     
-<%@ page import="pack_AdminOption.AdminOptionProc" %> 
-
+<%@ page import="pack_AdminOption.AdminOptionProc" %>
+    
 <%	request.setCharacterEncoding("UTF-8"); %>
- 
+
 <%@ page import="java.io.PrintWriter"%>
 
 <jsp:useBean id="StateSet" class="pack_AdminOption.AdminOptionProc" scope="page" />

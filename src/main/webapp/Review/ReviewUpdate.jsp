@@ -8,24 +8,11 @@
     int num = Integer.parseInt(request.getParameter("num"));
     String nowPage = request.getParameter("nowPage");
     
-    String keyField = request.getParameter("keyField");
-    String keyWord = request.getParameter("keyWord");
-    
     ReviewBean bean = (ReviewBean)session.getAttribute("bean");
     String subject = bean.getSubject();
     String uName = bean.getuName();
     String content = bean.getContent();
-    String fileName = bean.getFileName();
-    String email = bean.getuEmail();
     
-    String uID = null;
-    if(session.getAttribute("uID") != null){
-    	uID = (String)session.getAttribute("uID"); 
-    	} 
-    String authority = null;
-    if(session.getAttribute("authority") != null){ 
-    	authority = (String)session.getAttribute("authority"); 
-    	}
     %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -33,7 +20,7 @@
 <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>REVIEW</title>
+    <title>Review Update</title>
     <link rel="stylesheet" href="../style/style_Update.css">
 </head>
 <body>
@@ -58,29 +45,16 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
-                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
-                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
+                    <li class="board"><a href="#">Notice</a></li>
+                    <li class="board"><a href="#">Q&A</a></li>
+                    <li class="board"><a href="#">Review</a></li>
                 </ul>
             </nav>
              
             <nav id="nav2" class="flex-container">
-            <% if(uID == null){ /* 로그인 안되있을때 */ %>
-                <ul><a href="../Account/Login.jsp">Login</a></ul>
-                <ul><a href="../Account/Join.jsp">Account</a></ul>
-			<%  }
-            
-            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
-				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
-                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
-			<% } 
-            else if(uID !=null && authority.equals("admin")){
-			%>
-			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
-				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
-			<% } %>
+                <ul><a href="#">Login</a></ul>
+                <ul><a href="#">Account</a></ul>
+                <ul><a href="#">Cart</a></ul>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -91,7 +65,8 @@
         </header>
         
         <div id="mod">
-        <h4>REVIEW</h4>
+        
+        <h3>REVIEW</h3>
 <br><br>
 <form action="ReviewUpdateProc.jsp" method="get" id="UpdateFrm" enctype="multipart/form-data" name="UpdateFrm">
 
@@ -99,21 +74,17 @@
 	<tbody>
 		<tr>
 			<td>
-			<input type="text" name="subject" value="<%=subject %>"  size = "80" id="subject">
+			<input type="text" name="subject" placeholder="<%=subject %>"  size = "80" id="subject">
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" value="<%=uName %>" size = "80" id="uName">
+			<input type="text" name="uName" placeholder="<%=uName %>" size = "80" id="uName">
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<% if(email == null) { %>
-			<input type="text" name="email" placeholder="이메일" size = "80" id="email">
-			<%}else { %>
-			<input type="text" name="email" value="<%=email %>" size = "80" id="email">
-			<%} %>
+			<input type="email" name="email" placeholder="이메일" size = "80" id="email">
 			</td>
 		</tr>
 		<tr>
@@ -123,10 +94,7 @@
 		</tr>
 		<tr>
 			<td>
-			<%if(fileName == null) {
-			 } else{ %>
-			<input type="text" value="<%=fileName%>" disabled>
-			 <%} %>
+				<input type="file" name="fileName" size = "80" id="fileName">
 			</td>
 		</tr>
 		<tr>
@@ -144,9 +112,6 @@
 </table>
 				<input type="hidden" name="nowPage" value="<%=nowPage%>" id="nowPage">
 				<input type="hidden" name="num" value="<%=num%>" id="num">
-				
-				<input type="hidden" name="keyField" id="keyField" value="<%=keyField%>">
-				<input type="hidden" name="keyWord" id="keyWord" value="<%=keyWord%>">
 				
 </form>
         

@@ -5,8 +5,8 @@
 } */
 
 function ReviewRead(p1, p2) {
-    let p3 = $("#pKeyField").val().trim();
-    let p4 = $("#pKeyWord").val().trim();
+    let p3 = $("#pKeyField").val().trim();  // p3 : keyField
+    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
 	let param = "ReviewRead.jsp?num="+p1;
 	     param += "&nowPage="+p2;
 	     param += "&keyField="+p3;
@@ -22,8 +22,8 @@ function movePage(p1){
 	location.href = param;
 }
 
-function moveBlock(p1, p2) {    // 블럭 이동 
- 
+function moveBlock(p1, p2) {    // 블럭 이동
+
 	let pageNum = parseInt(p1);
 	let pagePerBlock = parseInt(p2);	
 	
@@ -32,16 +32,8 @@ function moveBlock(p1, p2) {    // 블럭 이동
 
 }
 
-function fileNameValue(name){
-	
-	name = name.split('\\')[name.split('\\').length-1];
-	
-	$("#fileName").val(name);
-	
-	$("#file").val(name);
-	
-	
-}
+
+
 
 $(function(){
 // 헤더푸터
@@ -98,7 +90,7 @@ $(function(){
 		let nowPage = $("input#nowPage").val().trim();
 		let num = $("input#num").val().trim();
 		
-		let url = "../Review/ReviewUpdateSbm.jsp?num="+num+"&nowPage="+nowPage;
+		let url = "../Review/ReviewUpdate.jsp?num="+num+"&nowPage="+nowPage;
 		location.href=url;
 		
 	})
@@ -163,32 +155,9 @@ $(function(){
 		} else {
 			$("#searchFrm").submit();
 		}
-	});
+	});	
 	
-		$("#modSbmBtn").click(function(){
-		
-		let pass = $("input#modpass").val().trim();
-		
-		if(pass == ""){
-			$("input#modpass").focus();
-			alert("비밀번호를 입력하세요");
-			return;
-		}else{
-			$("#modFrm").submit();
-		}
-	});
 	
-		$("#listBtn").click(function(){
-		let param = $("#nowPage").val().trim();
-		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
-	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
-	     
-		let url = "../Review/ReviewList.jsp?nowPage=" + param;		    
-		    url += "&keyField="+p3;
-	     	url += "&keyWord="+p4 ; 
-		location.href=url;
-	});
-
 
 
 

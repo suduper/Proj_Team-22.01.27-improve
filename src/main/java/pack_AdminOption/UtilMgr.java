@@ -4,7 +4,7 @@ public class UtilMgr {
 	
 	public static String replace(String str, String pattern, String replace) {
 		
-		int s = 0, e = 0; 
+		int s = 0, e = 0;
 		StringBuffer result = new StringBuffer();
 		
 		while ((e = str.indexOf(pattern, s)) >= 0) {

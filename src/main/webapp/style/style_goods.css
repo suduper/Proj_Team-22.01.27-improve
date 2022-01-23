@@ -1,58 +1,24 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
-@import url(Style_Reset.css);
-@import url(style_HeaderFooter.css);
-
-/*
+* {font-family: "Helvetica Neue","Helvetica","Arial",'Spoqa Han Sans','Malgun Gothic','Apple SD Gothic Neo','돋움',dotum,sans-serif;
+		box-sizing: border-box;
+}
 div#wrap{
 	margin: 5px auto;
 	padding: 5px;
-}*/
+}
 hr#crossLine {
 	width: 90%;
 	margin:20px auto;
 }
 /* ////////////////////////// GoodsList ////////////////////////// */
 div#goodsList {
-	/* border: 2px solid #000; */ 
+	/* border: 2px solid #000; */
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-around; 
+	justify-content: space-around;
 	margin: 20px auto;
 	font-size: 15px;
 	font-weight: bold;
-}
-div#searchArea{
-	/* border: 1px solid #000; */
-	width: 900px;
-	text-align: center;
-	margin: 0px auto;
-	padding-left: 100px;
-}
-select#keyField {
-	border:2px solid #000;
-	border-radius:5px;
-	width: 60px;
-	height: 50px;
-	font-size:17px;
-	font-weight: bold;
-}
-input#keyWord {
-	border:2px solid #000;
-	border-radius:5px;
-	width:500px;
-	height: 50px;
-	position: relative;
-	top: -2px;
-}
-button#searchBtn {
-	border-radius:10px;
-	font-size:20px;
-	font-weight:bold;
-	color:#fff;
-	background-color:#9e9e9e;
-	width:90px;
-	height: 50px;
 }
 div#Show {
 	text-align:center;
@@ -76,7 +42,6 @@ div#imgSrc{
 }
 img#ListThumb {
 	width: 265px;
-	height:265px;
 	object-fit:contain;
 	border-radius : 4px;
 }
@@ -96,18 +61,6 @@ div#ListInfo{
 }
 div#ListInfo span {
 	color: #666666;
-}
-
-div#GoodsListPage{
-	margin: 0px auto;
-	/* border: 1px solid #000; */
-	width: 300px;
-	font-size:25px;
-	display: flex;
-	justify-content: space-around;
-}
-span.mBtn {
-	cursor: pointer;
 }
 /* ////////////////////////// GoodsList ////////////////////////// */
 
@@ -212,8 +165,7 @@ div#size {
 	-webkit-user-select:none; 
 	-moz-user-select:none; 
 	-ms-user-select:none; 
-	user-select:none;
-	min-height: 300px;
+	user-select:none
 }
 div#size p{
 	font-weight: bold;
@@ -336,7 +288,7 @@ p#addBasket_btn:hover{
 }
 
 div#myOption{
-	/* border:1px solid #000;  */
+	/* border:1px solid #000; */
 	margin-top:20px;
 	position: relative;
 	top: -160px;
@@ -735,9 +687,6 @@ table#BuyListTable td:nth-child(6){
 	width: 150px;
 	font-size: 15px;
 	font-weight: bold;
-}table#BuyListTable td:nth-child(7) input[type=checkbox]{
-	width: 20px;
-	height: 20px;
 }
 img#BuyListImg {
 	width: 100px;
@@ -748,7 +697,7 @@ p#deliNotice{
 }
 div#CancelProc{
 	border: 1px solid #000;
-	width: 240px;
+	width: 200px;
 	text-align: center;
 	margin-right: 80px;
 	padding-top: 30px;
@@ -761,7 +710,7 @@ div#CancelProc p{
 div#CancelProc ul{
 	margin-top: 20px;
 }
-div#CancelProc ul li#BuyListLi{
+div#CancelProc ul li{
 	border:2px solid #000;
 	border-radius: 8px;
 	width:150px;

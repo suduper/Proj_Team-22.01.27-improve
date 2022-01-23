@@ -12,16 +12,6 @@
 <jsp:setProperty name="user" property="uAddr1" />
 <jsp:setProperty name="user" property="uAddr2" />
 <jsp:setProperty name="user" property="authority" />
-<jsp:setProperty name="user" property="uEmail" />
-<jsp:setProperty name="user" property="phoneNum1" />
-<jsp:setProperty name="user" property="phoneNum2" />
-<jsp:setProperty name="user" property="phoneNum3" />
-<jsp:setProperty name="user" property="birthYear" />
-<jsp:setProperty name="user" property="birthMonth" />
-<jsp:setProperty name="user" property="birthDay" />
-<jsp:setProperty name="user" property="recommend" />
-<jsp:setProperty name="user" property="uName" />
-<!-- 앞서 기록된 모든것들을 멤버객체에 저장 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -82,15 +72,8 @@
 					script.println("history.back()");
 					script.println("</script>");
 				}
-		if(user.getPhoneNum1() == null){
-			PrintWriter script = response.getWriter();
-			script.println("<script>");
-			script.println("alert('PhoneNum1')");
-			script.println("history.back()");
-			script.println("</script>");
-		}
 	/*<!-- ///////// 입력사항확인 ///////// -->*/
-
+	
 		else{
 	
 	/*<!-- ///////// 입력사항 확인 후 진행사항 ///////// -->*/

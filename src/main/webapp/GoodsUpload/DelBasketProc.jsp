@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%> 
+    pageEncoding="UTF-8"%>
 <%@ page import="pack_goods.GoodsProc"%>
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
 <%request.setCharacterEncoding("UTF-8"); %>
- 
+
 <%@ page import="java.io.PrintWriter"%>
 
 <%
 int count = Integer.parseInt(request.getParameter("count"));
-String uID = null;  
+String uID = null; 
 if(session.getAttribute("uID") != null){
 	uID = (String)session.getAttribute("uID"); 
 } else {

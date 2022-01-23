@@ -16,7 +16,7 @@ String keyWord = request.getParameter("keyWord");
 if(repInsCnt > 0) { 
 	
 	String url = "QnAList.jsp?nowPage="+nowPage;
-	url += "&keyField="+keyField;
+	url += "&keyField="+keyField; 
 	url += "&keyWord="+keyWord;
 %>    
 	<script>

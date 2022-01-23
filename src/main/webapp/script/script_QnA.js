@@ -1,14 +1,8 @@
 
 
-function QnARead(p1, p2) {
-    let p3 = $("#pKeyField").val().trim();
-    let p4 = $("#pKeyWord").val().trim();
-	let param = "QnARead.jsp?num="+p1;
-	     param += "&nowPage="+p2;
-	     param += "&keyField="+p3;
-	     param += "&keyWord="+p4 ; 
-	location.href=param;
-}	
+function QnARead(param) {
+	location.href="QnARead.jsp?num="+param;
+}
 
 function movePage(p1){
 	let param = "QnAList.jsp?nowPage="+p1;
@@ -25,24 +19,13 @@ function moveBlock(p1, p2) {    // 블럭 이동
 
 }
 
-function fileNameValue(name){
-	
-	name = name.split('\\')[name.split('\\').length-1];
-	
-	$("#fileName").val(name);
-	
-	$("#file").val(name);
-	
-	
-}
-
 
 
 
 $(function(){
 // 헤더푸터
     $("#goods").mouseover(function(){
-        $(".goods1").css({"display" : "block"}); 
+        $(".goods1").css({"display" : "block"});
     });
 
     $("#goods").mouseout(function(){
@@ -94,7 +77,7 @@ $(function(){
 		let nowPage = $("input#nowPage").val().trim();
 		let num = $("input#num").val().trim();
 		
-		let url = "../Q&A/QnAUpdateSbm.jsp?num="+num+"&nowPage="+nowPage;
+		let url = "../Q&A/QnAUpdate.jsp?num="+num+"&nowPage="+nowPage;
 		location.href=url;
 		
 	})
@@ -162,30 +145,24 @@ $(function(){
 	});
 	
 		$("#replySubBtn").click(function(){
+		let uName = $("#uName").val().trim();
+		let subject = $("#subject").val().trim();
+		let pass = $("#pass").val().trim();
+		
+		if(uName == ""){
+			alert("이름을 입력하세요");
+			$("#uName").focus;
+		} else if(subject == ""){
+			alert("제목을 입력하세요");
+			$("#subject").focus;
+		}else if(pass == ""){
+			alert("비밀번호를 입력하세요");
+			$("#pass").focus;
+		}else{
 			$("#replyFrm").submit();
-	});
-	
-			$("#listBtn").click(function(){
-		let param = $("#nowPage").val().trim();
-		let p3 = $("#pKeyField").val().trim();  // p3 : keyField
-	    let p4 = $("#pKeyWord").val().trim();  // p4 : keyWord
-	     
-		let url = "../Q&A/QnAList.jsp?nowPage=" + param;		    
-		    url += "&keyField="+p3;
-	     	url += "&keyWord="+p4 ; 
-		location.href=url;
-	});
-	
-			$("#searchBtn").click(function(){
-		let keyWord = $("#keyWord").val().trim();
-		if (keyWord=="") {
-			alert("검색어를 입력해주세요.");
-			$("#keyWord").focus();			
-		} else {
-			$("#searchFrm").submit();
 		}
+		
 	});
-
 
 
 

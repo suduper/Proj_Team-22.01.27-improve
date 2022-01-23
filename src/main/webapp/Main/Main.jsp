@@ -1,16 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"
     %>
-        <%
-    String uID = null;
-    if(session.getAttribute("uID") != null){
-    	uID = (String)session.getAttribute("uID"); 
-    	} 
-    String authority = null;
-    if(session.getAttribute("authority") != null){ 
-    	authority = (String)session.getAttribute("authority"); 
-    	}
-    %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -22,33 +12,42 @@
 </head>
 <body>
 
-
+<% // 메인 페이지로 이동했을 때 세션에 값이 담겨있는지 체크 
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    }
+%> 
     <div id="wrap">
-    <!-- HTML템플릿(Template, Templet) 헤더 시작 -->
     
-           <header id="header" class="flex-container">
-            
+    <!-- HTML템플릿(Template, Templet) 헤더 시작 -->
+
+        <header id="header" class="flex-container">
             <div id="logo">
                 <a href="index.html"><img src="/logoB.jpg" alt=""></a>
-
             </div>
             <nav id="nav1" class="flex-container">
-                <ul id="goods"><a href="#">shop</a>
-                    <li class="goods1"><a href="#">품목1</a></li>
+                <ul id="goods"><a href="../Main/Main.jsp">shop</a>
+                    <li class="goods1"><a href="../Goods/Goods1.jsp">Goods1</a></li>
                     <li class="goods1"><a href="#">품목2</a></li>
                     <li class="goods1"><a href="#">품목3</a></li>
                     <li class="goods1"><a href="#">품목4</a></li>
                     <li class="goods1"><a href="#">품목5</a></li>
                 </ul>
+                <ul><a href="../GoodsUpload/GoodsList.jsp">List</a></ul>
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
-                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
-                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
+                <ul  class="board"><a href="#">Notice</a></ul >
+                <ul  class="board"><a href="#">Q&A</a></ul >
+                <ul  class="board"><a href="../Review/ReviewList.jsp">Review</a></ul >
                 </ul>
             </nav>
-             
+            
             <nav id="nav2" class="flex-container">
             <% if(uID == null){ /* 로그인 안되있을때 */ %>
                 <ul><a href="../Account/Login.jsp">Login</a></ul>
@@ -62,20 +61,18 @@
 			<% } 
             else if(uID !=null && authority.equals("admin")){
 			%>
-			<p>안녕하세요<br><%=uID %>님! 관리자 권한입니다!</p>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
 				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+				<ul><a href="../GoodsUpload/OrderShow.jsp">Order Management</a></ul>
 			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
-                
             </nav>
             
 
         </header>
-
-        
 
 <!-- HTML템플릿(Template, Templet) 헤더 끝 -->
 
@@ -87,8 +84,7 @@
         </main>
 
 <!-- HTML템플릿(Template, Templet) 푸터 시작 -->
-
-	    <footer id="footer">
+        <footer id="footer">
 
 
             <div id="info" class="flex-container">
@@ -96,7 +92,7 @@
             <div id="cs">
                 <h4>C.S CENTER</h4>
                 <ul>고객센터 -070-4131-0032</ul>
-                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul> 
+                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul>
                 <ul>LUNCH : 12:30PM - 13:30PM</ul>
                 <ul>EVERY WEEKEND, HOLIDAY OFF</ul>
                 <br>
@@ -127,13 +123,10 @@
             </div>
 
         </footer>
-        
     <!-- HTML템플릿(Template, Templet) 푸터 끝 -->
     </div>
  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="../script/jquery-3.6.0.min.js"></script>
-<script src="../script/script_main.js"></script>
- <script src="../script/script_HeaderFooter.js"></script>
+<script src="../script/script.js"></script>
 </body>
 </html>

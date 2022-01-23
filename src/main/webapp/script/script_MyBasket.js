@@ -1,5 +1,5 @@
 
- 
+
 let checkboxes =null;
 let sum = 0;
 let val = null;
@@ -22,8 +22,8 @@ function selectAll(selectAll,listSize)  {
   	for(let i = 0; i < listSize ; i++){
 		checkboxes = document.getElementsByName('buyThis'+i);
 		$(checkboxes).prop('checked',true);
-		checkboxes.forEach((checkbox) => { 
-			checkbox.checked = selectAll.checked; 
+		checkboxes.forEach((checkbox) => {
+			checkbox.checked = selectAll.checked;
 		})
 	}
 	if(selectAllCnt == 0){	
