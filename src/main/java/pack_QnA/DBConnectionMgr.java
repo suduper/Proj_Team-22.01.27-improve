@@ -41,7 +41,7 @@ public class DBConnectionMgr {
     		+ "useUnicode=true&"
     		+ "characterEncoding=UTF-8&"
     		+ "allowPublicKeyRetrieval=true",
-    _user = "root",
+    _user = "root", 
     _password = "1234";
     private boolean _traceOn = false;
     private boolean initialized = false;

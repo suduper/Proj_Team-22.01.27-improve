@@ -17,4 +17,4 @@ window.onload = function(){
 		alert('대단히 죄송합니다. 결제 관련 오류입니다. 나중에 다시 시도해 주십시오.' + res);
 		self.close();
 	}
-} 
+}    

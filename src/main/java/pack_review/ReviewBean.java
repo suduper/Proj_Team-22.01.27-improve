@@ -6,6 +6,7 @@ public class ReviewBean {
 	private String uName;
 	private String subject;
 	private String content;
+	private String uEmail;
 	private int pos;
 	private int ref;
 	private int depth;
@@ -93,6 +94,12 @@ public class ReviewBean {
 	}
 	public void setFileSize(int fileSize) {
 		this.fileSize = fileSize;
+	}
+	public String getuEmail() {
+		return uEmail;
+	}
+	public void setuEmail(String uEmail) {
+		this.uEmail = uEmail;
 	}
 
 }

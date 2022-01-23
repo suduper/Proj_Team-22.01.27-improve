@@ -23,7 +23,7 @@ public class ReviewMgr {
 	
 	public DBConnectionMgr pool;
 	private static final String SAVEFOLDER
-	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op-develop/src/main/webapp/Resource/ReviewImg/";
+	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op/src/main/webapp/Resource/ReviewImg/";
 	
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
@@ -38,7 +38,7 @@ public class ReviewMgr {
 		
 	}
 	// 리뷰 입력
-	public void insertReview(HttpServletRequest req, String subject) {
+	public void insertReview(HttpServletRequest req) {
 		
 		Connection objConn = null;
 		PreparedStatement	objPstmt = null;
@@ -47,6 +47,9 @@ public class ReviewMgr {
 		MultipartRequest	multi = null;
 		int fileSize = 0;
 		String fileName = null;
+		String uEmail = null;
+
+		
 		// String subject = null;
 		
 		try {
@@ -60,35 +63,39 @@ public class ReviewMgr {
 			
 			
 			
-			File file = new File(SAVEFOLDER+subject);
+			File file = new File(SAVEFOLDER);
 			
 			if (!file.exists())
 				file.mkdirs();
 			
-			multi = new MultipartRequest(req, SAVEFOLDER+subject, maxSize, encType, new DefaultFileRenamePolicy());
+			multi = new MultipartRequest(req, SAVEFOLDER, maxSize, encType, new DefaultFileRenamePolicy());
 			
 			
-			if(multi.getFilesystemName("fileName") != null) {
-				fileName = multi.getFilesystemName("fileName");
-				fileSize = (int)multi.getFile("fileName").length();
+			if(multi.getFilesystemName("file") != null) {
+				fileName = multi.getFilesystemName("file");
+				fileSize = (int)multi.getFile("file").length();
 			}
 			String content = multi.getParameter("content");
 			
-			subject = multi.getParameter("subject");
+			if(multi.getParameter("email") == null || multi.getParameter("email") == " ") {
+				uEmail = null;
+			}
+			
 		
 			
-			sql = "insert into tblReview(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
-					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
+			sql = "insert into tblReview(uName, subject, content, uEmail, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
+					+ " values (?, ?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1,  multi.getParameter("uName"));
 			objPstmt.setString(2,  multi.getParameter("subject"));
 			objPstmt.setString(3,  content);
-			objPstmt.setInt(4,  ref);
-			objPstmt.setString(5,  multi.getParameter("pass"));
-			objPstmt.setString(6,  multi.getParameter("ip"));
-			objPstmt.setString(7,  fileName);
-			objPstmt.setInt(8,  fileSize);
+			objPstmt.setString(4, uEmail);
+			objPstmt.setInt(5,  ref);
+			objPstmt.setString(6,  multi.getParameter("pass"));
+			objPstmt.setString(7,  multi.getParameter("email"));
+			objPstmt.setString(8,  fileName);
+			objPstmt.setInt(9,  fileSize);
 			objPstmt.executeUpdate();
 			
 		}catch (SQLException e) {
@@ -144,6 +151,7 @@ public class ReviewMgr {
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
 				bean.setContent(objRs.getString("content"));
+				bean.setFileName(objRs.getString("fileName"));
 				
 				
 				vList.add(bean);
@@ -183,6 +191,7 @@ public class ReviewMgr {
 				bean.setuName(objRs.getString("uName"));
 				bean.setSubject(objRs.getString("subject"));
 				bean.setContent(objRs.getString("content"));
+				bean.setuEmail(objRs.getString("uEmail"));
 				bean.setPos(objRs.getInt("pos"));
 				bean.setDepth(objRs.getInt("depth"));
 				bean.setRegDate(objRs.getString("regDate"));
@@ -251,16 +260,22 @@ public class ReviewMgr {
 		Connection objConn = null;
 		PreparedStatement objPstmt = null;
 		String sql = null;
+
+		
 		int exeCnt = 0;
 		
 		try {
+			
+
+			
 			objConn = pool.getConnection();
-			sql = "update tblReview set uName=?, subject=?, content=? where num=?";
+			sql = "update tblReview set uName=?, subject=?, content=?, uEmail=? where num=?";
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, bean.getuName());
 			objPstmt.setString(2, bean.getSubject());
 			objPstmt.setString(3, bean.getContent());
-			objPstmt.setInt(4, bean.getNum());
+			objPstmt.setString(4, bean.getuEmail());
+			objPstmt.setInt(5, bean.getNum());
 			exeCnt = objPstmt.executeUpdate();
 
 		} catch (Exception e) {
@@ -284,6 +299,8 @@ public class ReviewMgr {
 		ResultSet objRs = null;
 		String sql = null;
 		
+		
+		
 		int exeCnt = 0;
 		
 		try {
@@ -297,7 +314,7 @@ public class ReviewMgr {
 			if(objRs.next() && objRs.getString(1) != null) {
 				if(!objRs.getString(1).equals("")) {
 					String fName = objRs.getString(1);
-					String fileSrc = SAVEFOLDER + "/" + fName;
+					String fileSrc = SAVEFOLDER + "/1234" + fName;
 					File file = new File(fileSrc);
 					
 					if(file.exists())

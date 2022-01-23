@@ -17,7 +17,7 @@ String realDBPass = bean.getPass();
 <%
 int exeCnt = 0;
 
-if(upPass.equals(realDBPass)){ 
+if(upPass.equals(realDBPass)){
 	exeCnt = rMgr.updateReview(upBean);
 	
 	if(exeCnt>0){

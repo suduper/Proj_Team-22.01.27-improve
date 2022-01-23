@@ -43,7 +43,7 @@ public class DBConnectionMgr {
     		+ "allowPublicKeyRetrieval=true",
     _user = "root",
     _password = "1234";
-    private boolean _traceOn = false;
+    private boolean _traceOn = false; 
     private boolean initialized = false;
     private int _openConnections = 10;
     private static DBConnectionMgr instance = null;

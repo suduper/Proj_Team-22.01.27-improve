@@ -10,11 +10,11 @@ public class MyBasket {
 	private int XLcount;
 	private int Allcount;
 	private int calcRes;
-	private int Zip;
+	private int Zip; 
 	private String Addr1;
 	private String Addr2;
 	private String phone;
-	private String notice;
+	private String notice; 
 	private int delivery;
 	
 	public String getAddDate() {

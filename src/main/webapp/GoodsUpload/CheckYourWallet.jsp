@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+      
 <%@ page import="pack_user.User" %>
 <%@ page import="pack_user.UserDAO" %>
 <%@ page import="pack_goods.GoodsProc" %>
@@ -8,7 +8,7 @@
 <%@page import="java.text.NumberFormat"%>
 
 <%@page import="java.io.PrintWriter"%>
-
+ 
 <jsp:useBean id="walletInfo" class="pack_user.UserDAO" scope="page"/>
 <jsp:useBean id="useWallet" class="pack_goods.GoodsProc" scope="page" />
  

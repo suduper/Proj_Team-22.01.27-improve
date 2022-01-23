@@ -30,10 +30,10 @@ import java.util.Vector;
 /**
  * Manages a java.sql.Connection pool.
  *
- * @author  Anil Hemrajani
+ * @author  Anil Hemrajani 
  */
 public class DBConnectionMgr {
-    private Vector connections = new Vector(10);
+    private Vector connections = new Vector(10); 
     private String _driver = "com.mysql.cj.jdbc.Driver",
     _url = "jdbc:mysql://127.0.0.1:3306/LofiP?"
     		+ "useSSL=false&"

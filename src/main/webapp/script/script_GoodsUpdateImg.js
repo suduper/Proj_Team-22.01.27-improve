@@ -16,7 +16,7 @@ var regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
 Thumbdrop
   .on('dragenter', function (e1) { //드래그 요소가 들어왔을떄
     $(this).addClass('drag-over');
-  })
+  }) 
   .on('dragleave', function (e1) { //드래그 요소가 나갔을때
     $(this).removeClass('drag-over');
   })

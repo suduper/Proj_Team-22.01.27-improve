@@ -1,12 +1,12 @@
 <%@page import="pack_goods.GoodsProc"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%> 
 <%@ page import="java.io.PrintWriter"%>
-
+ 
 <% request.setCharacterEncoding("UTF-8");%>
 
 <jsp:useBean id="goods" class="pack_goods.GoodsProc" scope="page" />
- 
+  
 <%
 String uID = null; 
 if(session.getAttribute("uID") != null){

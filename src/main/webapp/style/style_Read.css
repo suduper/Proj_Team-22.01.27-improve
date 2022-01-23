@@ -4,7 +4,7 @@
 
 #wrap{
     padding: 20px;
-    margin: 0px auto;
+    margin: 5px auto;
     width: 1500px;
     border: 1px solid #000;
 }
@@ -70,7 +70,7 @@ li{
 }
 
 #main{
-    height: 1000px;
+height: 100%;
 }
 
 #info{
@@ -86,6 +86,7 @@ li{
 	width: 50%;
 	margin-right: auto;
 	margin-left: auto;
+	border-spacing: 2px;
 }
 
 .rContent{
@@ -101,7 +102,7 @@ li{
 	width: 800px;
 	height: 200px;
 	resize: none;
-	border: 1.5px solid #000;
+	border: none;
 	text-align: left;
 	outline: none;
 	line-height: 20px;
@@ -109,8 +110,13 @@ li{
 	padding-left: 20px;
 }
 
+#readContent{
+	border: 1.5px solid #000;
+}
+
 .reviewBtn{
 	margin-top: 20px;
+	margin-bottom: 20px;
 	font-size: 20px;
 	font-weight: bold;
 	width: 150px;

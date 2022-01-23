@@ -4,13 +4,13 @@
 <%@ page import="pack_goods.GoodsProc"%>
 <%@ page import="pack_goods.Goods" %>
 <%@ page import="pack_goods.MyBasket" %>
-
+ 
 <%@ page import="java.text.NumberFormat"%>
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Base64.Encoder" %>
 <%@ page import="java.util.Base64.Decoder" %>
 <%@ page import="java.io.*" %>
-
+ 
 <%@ page import="java.io.PrintWriter"%>
 <%@ page import="pack_goods.MyBasket, java.util.Vector" %>
 
@@ -56,7 +56,7 @@
 </head>
 <link rel="stylesheet" href="../style/style_goods.css">
 <body>
-
+ 
 <jsp:include page="../Main/Main_Top.jsp" flush="true"/>
 
 <div id="wrap">

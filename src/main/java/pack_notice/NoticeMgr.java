@@ -19,7 +19,7 @@ public class NoticeMgr {
 	public NoticeMgr() {
 		
 		try {
-			pool = DBConnectionMgr.getInstance();
+			pool = DBConnectionMgr.getInstance(); 
 		}catch (Exception e) {
 			// TODO: handle exception
 		}

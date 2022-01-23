@@ -1,17 +1,19 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import url(Style_Reset.css);
+@import url(style_HeaderFooter.css);
+
 
 #wrap{
     padding: 20px;
     margin: 0px auto;
-    width: 1500px;
+    width: 1920px;
     border: 1px solid #000;
 }
-/* 
+/*
 li{
     list-style: none;
-} */
+} 
 #header{
     position: sticky;
     top: 5px;
@@ -25,11 +27,11 @@ li{
     padding-left: 50px;
     flex: 1;
     justify-content: space-around;
-    margin-top: 150px;
+    margin-top: 20px;
 }
 .goods1{
     display: none;
-    /* display: inline; */
+    /* display: inline; 
     line-height: 30px;
 }
 
@@ -43,7 +45,7 @@ li{
     margin-left: 500px;
     flex: 1;
     justify-content: space-around;
-    margin-top: 150px;
+      margin-top: 20px;
 }
 .search2{
     display: none;
@@ -81,13 +83,15 @@ li{
     margin-top: 30px;
     font-size: 13px;
 }
-
+ */
+ 
 #top{
 	margin-left: 148px;
 	width: 80%;
 	text-align: center;
 	border-bottom: 1px solid #aaa;
 	padding-bottom: 20px;
+	margin: 0 auto;
 }
 
 #QnAList{

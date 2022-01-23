@@ -4,7 +4,6 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <jsp:useBean id="qMgr" class="pack_QnA.QnAMgr" scope="page"/>
 <%
-String subject = request.getParameter("subject");
-qMgr.insertQnA(request, subject);
+qMgr.insertQnA(request);
 response.sendRedirect("QnAList.jsp");
-%> 
+%>

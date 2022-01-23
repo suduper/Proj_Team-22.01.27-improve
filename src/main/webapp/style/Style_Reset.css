@@ -16,7 +16,7 @@
 	box-sizing: border-box;   
 }
 
-a:link {    /* a요소에서 href속성값이 적용된 텍스트의 색상 */ 
+a:link {    /* a요소에서 href속성값이 적용된 텍스트의 색상 */
     color: #333;
 } 
 a:visited {    

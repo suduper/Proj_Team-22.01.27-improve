@@ -1,32 +1,9 @@
-///////////////////////////////////////////////////////////
-////////////////////바닐라 JS 영역 시작/////////////////////
-///////////////////////////////////////////////////////////
-
-
-/////////// 뷰페이지(=내용 보기 페이지) 이동 시작 ///////////
-function read(param) {
-	location.href="Read.jsp?num="+param ;
-}	
-/////////// 뷰페이지(=내용 보기 페이지) 이동 끝 ///////////
-	
-
-///////////////////////////////////////////////////////////
-////////////////////바닐라 JS 영역 끝/////////////////////
-///////////////////////////////////////////////////////////
-  
-
 $(function(){
-/*
-	const editor = document.getElementById("write");
-	editor.contentEditable ='false';
-	$("#info :input").attr("disabled",true); 
-	*/ 
-
-	  
+  
 	const editor = document.getElementById("write");
 	editor.contentEditable ='false';
 	
-
+ 
     $('#goodsType').prop('disabled', true);
     $('#goodsPrice').prop('disabled', true);
     $('#goodsSPrice').prop('disabled', true);

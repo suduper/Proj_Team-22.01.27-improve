@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+      
 <%@ page import="pack_goods.GoodsProc"%>
 <%@ page import="pack_goods.Goods" %>
 <%@ page import="pack_goods.MyBasket" %>
@@ -178,8 +178,8 @@
 					<p><span id="AllBuyCost">0</span>원</p>
 					<hr id="crossLine" />
 					<ul id="BuyListUl">
-						<li><span >전체 선택 &nbsp;&nbsp;<input type="checkbox" name="selectAll" id="selectAll" onclick='selectAll(this,<%=listSize %>)'></span></li>
-						<li><span onclick="CancelIt()" id="cancel">선택 상품 구매취소</span></li>
+						<li id="BuyListLi"><span >전체 선택 &nbsp;&nbsp;<input type="checkbox" name="selectAll" id="selectAll" onclick='selectAll(this,<%=listSize %>)'></span></li>
+						<li id="BuyListLi"><span onclick="CancelIt()" id="cancel">선택 상품 구매취소</span></li>
 					</ul>
 				</div> <!-- <div id="buyProc"> -->
 				<%

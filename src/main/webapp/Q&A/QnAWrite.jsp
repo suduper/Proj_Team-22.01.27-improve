@@ -1,5 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+        <%
+    String uID = null;
+    if(session.getAttribute("uID") != null){
+    	uID = (String)session.getAttribute("uID"); 
+    	} 
+    String authority = null;
+    if(session.getAttribute("authority") != null){ 
+    	authority = (String)session.getAttribute("authority"); 
+    	}
+%> 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,16 +42,29 @@
                 <ul><a href="#">LookBook</a></ul>
                 <ul><a href="#">About</a></ul>
                 <ul id="board1"><a href="#">Board</a>
-                    <li class="board"><a href="#">Notice</a></li>
-                    <li class="board"><a href="#">Q&A</a></li>
-                    <li class="board"><a href="#">Review</a></li>
+                    <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
+                    <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
+                    <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
                 </ul>
             </nav>
-            
+             
             <nav id="nav2" class="flex-container">
-                <ul><a href="#">Login</a></ul>
-                <ul><a href="#">Account</a></ul>
-                <ul><a href="#">Cart</a></ul>
+            <% if(uID == null){ /* 로그인 안되있을때 */ %>
+                <ul><a href="../Account/Login.jsp">Login</a></ul>
+                <ul><a href="../Account/Join.jsp">Account</a></ul>
+			<%  }
+            
+            else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+			<% } 
+            else if(uID !=null && authority.equals("admin")){
+			%>
+			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
+				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
                 </ul>
@@ -64,7 +89,11 @@
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="uName" placeholder="작성자" size = "80" id="uName">
+			<%if(uID == null) {%>
+			<input type="text" name="uName" placeholder="작성자"  size = "80" id="uName">
+			<%} else { %>
+			<input type="text" name="uName" value="<%=uID %>"  size = "80" id="uName">
+			<%} %>
 			</td>
 		</tr>
 		<tr>
@@ -74,13 +103,15 @@
 		</tr>
 		<tr>
 			<td>
-			<textarea rows="30" cols="79" name="content" size="80" di="content"></textarea>
+			<textarea rows="30" cols="79" name="content" size="80" id="content"></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td>
-			<input type="text" name="file" placeholder="파일 선택" size = "71" id="fileName" readonly>
-			<input type="file" name="file" id="file"><label for="file">첨부하기</label>
+			<input type="file" name="file"size = "71" id="file"
+			 onchange="fileNameValue(this.value)" accept="image/*">
+			<input type="text" name="fileName" id="fileName" value="파일 선택" disabled="disabled" size="58">
+			 <label for="file" id="upload">첨부하기</label>
 			</td>
 		</tr>
 		<tr>
