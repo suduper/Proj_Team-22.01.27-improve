@@ -12,7 +12,7 @@
 	String uID = null;
 	if(session.getAttribute("uID") != null){
 		uID = (String)session.getAttribute("uID");
-	} 
+	}
 	int  Wallet = Integer.parseInt(request.getParameter("Wallet"));
 
 /*<!-- //////////////////////// 세션 체크 //////////////////////// -->*/

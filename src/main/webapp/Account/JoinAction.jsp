@@ -13,7 +13,7 @@
 <jsp:setProperty name="user" property="uAddr2" />
 <jsp:setProperty name="user" property="authority" />
 <jsp:setProperty name="user" property="uEmail" />
-<jsp:setProperty name="user" property="phoneNum1" /> 
+<jsp:setProperty name="user" property="phoneNum1" />
 <jsp:setProperty name="user" property="phoneNum2" />
 <jsp:setProperty name="user" property="phoneNum3" />
 <jsp:setProperty name="user" property="birthYear" />
@@ -82,7 +82,7 @@
 					script.println("history.back()");
 					script.println("</script>");
 				}
-		if(user.getPhoneNum1() == null){ 
+		if(user.getPhoneNum1() == null){
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('PhoneNum1')");
@@ -94,7 +94,7 @@
 		else{
 	
 	/*<!-- ///////// 입력사항 확인 후 진행사항 ///////// -->*/
-			UserDAO userDAO = new UserDAO(); 
+			UserDAO userDAO = new UserDAO();
 			int result = userDAO.join(user);
 			if(result == -1){
 				PrintWriter script = response.getWriter();

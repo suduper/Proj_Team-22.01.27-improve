@@ -16,7 +16,7 @@ String sessionuID = (String)session.getAttribute("uID");
 boolean res = mMgr.modifyMember(uPw, uName, uZip, uAddr1,uAddr2, uEmail, sessionuID);
 %>
 
-<script> 
+<script>
 <% if (res) { %>
 	alert("회원정보 수정완료!");
 	location.href = "../Main/Main.jsp";

@@ -14,8 +14,8 @@
 <title>적립금충전확인</title>
 <link rel="stylesheet" href="../style/style.css">
 </head>
-<body> 
-        <%@include file="../Main/Main_Top.jsp" %> 
+<body>
+        <%@include file="../Main/Main_Top.jsp" %>
         <% 
 Vector<User> vList = mDAO.modifyMember(uID);
 if (uID != null) {   // 현재 로그인 상태라면  %>

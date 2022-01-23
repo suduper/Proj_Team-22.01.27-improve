@@ -15,4 +15,4 @@ if (res) {
 <script>
 	alert("정상적으로 처리되었습니다.\n확인을 눌러주세요.");
 	location.href = "../Main/Main.jsp";
-</script> 
+</script>
