@@ -21,7 +21,7 @@
 <jsp:setProperty name="user" property="birthDay" />
 <jsp:setProperty name="user" property="recommend" />
 <jsp:setProperty name="user" property="uName" />
-
+<!-- 앞서 기록된 모든것들을 멤버객체에 저장 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
