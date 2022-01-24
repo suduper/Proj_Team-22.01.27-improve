@@ -42,7 +42,7 @@ int end = 9; // 시작번호로부터 가져올 select 수
 String keyField = "";
 String keyWord = "";
 
-if (request.getParameter("keyWord") != null) {
+if (request.getParameter("keyWord") != null) { 
 	keyField = request.getParameter("keyField");
 	keyWord = request.getParameter("keyWord");
 }
