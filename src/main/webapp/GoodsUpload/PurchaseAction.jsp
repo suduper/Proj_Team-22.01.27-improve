@@ -7,7 +7,7 @@
  
 <jsp:useBean id="purchase" class="pack_user.UserDAO" scope="page"/>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<%
+<% 
 String uID = request.getParameter("uID");
 int pay = Integer.parseInt(request.getParameter("sum"));
 int res = purchase.Pay(uID,pay);

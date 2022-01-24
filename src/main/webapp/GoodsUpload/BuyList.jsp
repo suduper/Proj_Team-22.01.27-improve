@@ -4,7 +4,7 @@
 <%@ page import="pack_goods.GoodsProc"%>
 <%@ page import="pack_goods.Goods" %>
 <%@ page import="pack_goods.MyBasket" %>
-
+ 
 <%@ page import="java.text.NumberFormat"%>
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Base64.Encoder" %>

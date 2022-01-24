@@ -12,7 +12,7 @@
 <%@ page import="java.io.*" %>
  
 <%@ page import="java.io.PrintWriter"%>
-<%@ page import="pack_goods.MyBasket, java.util.Vector" %>
+<%@ page import="pack_goods.MyBasket, java.util.Vector" %> 
 
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
 

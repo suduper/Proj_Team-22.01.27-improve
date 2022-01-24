@@ -1,5 +1,5 @@
 $(function(){
-  
+
 	const editor = document.getElementById("write");
 	editor.contentEditable ='false';
 	

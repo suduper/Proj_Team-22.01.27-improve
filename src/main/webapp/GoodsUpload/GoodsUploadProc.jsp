@@ -13,7 +13,7 @@
 String uID = null; 
 if(session.getAttribute("uID") != null){
 	uID = (String)session.getAttribute("uID"); 
-}  
+}   
 String authority = null;
 if(session.getAttribute("authority") != null){ 
 	authority = (String)session.getAttribute("authority"); 

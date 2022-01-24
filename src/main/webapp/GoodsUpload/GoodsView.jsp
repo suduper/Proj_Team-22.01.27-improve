@@ -13,7 +13,7 @@
 <%@ page import="java.util.Base64.Decoder" %>
     
  
-<jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />
+<jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" /> 
  
 <% request.setCharacterEncoding("UTF-8");%>
 <%

@@ -5,7 +5,6 @@ function movePage(p1){
 	let param = "GoodsList.jsp?nowPage="+p1+"&keyField="+p3+"&keyWord="+p4;
 	location.href = param;
 }
- 
 function moveBlock(p1, p2) {    // 블럭 이동 
  
 	let pageNum = parseInt(p1);

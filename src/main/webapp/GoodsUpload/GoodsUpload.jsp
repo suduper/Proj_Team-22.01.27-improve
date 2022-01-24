@@ -14,7 +14,7 @@
 	if(session.getAttribute("authority").equals("admin")){ 
 		authority = (String)session.getAttribute("authority");		
 	} else {
-		PrintWriter script = response.getWriter();
+		PrintWriter script = response.getWriter(); 
 		script.println("<script>");
 		script.println("alert('권한이 없습니다!!!')");
 		script.println("location.href='../Main/Main.jsp'");

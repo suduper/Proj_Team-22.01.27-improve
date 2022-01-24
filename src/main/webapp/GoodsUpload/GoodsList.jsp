@@ -16,7 +16,7 @@
 Vector<Goods> GoodsList = null;
  
 String SAVEFOLDER
-="C:/JSP_BigData_0616/LHG/Git/gitDownload/Project_Lofi/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/"; // 경로명 반드시 변경
+="C:/Users/TridentK/git/Project_Lofi_Co-op/src/main/webapp/Resource/GoodsImg/"; // 경로명 반드시 변경
 
 Encoder encoder = Base64.getEncoder();
 Decoder decoder = Base64.getDecoder();

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
 @import url(Style_Reset.css);
-
+ 
 div#wrap{
 	margin: 5px auto;
 	padding: 5px;

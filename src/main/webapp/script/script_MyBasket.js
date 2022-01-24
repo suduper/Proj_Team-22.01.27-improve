@@ -1,5 +1,3 @@
-
- 
 let checkboxes =null;
 let sum = 0;
 let val = null;

@@ -14,7 +14,7 @@ String uID = null;
 if(session.getAttribute("uID") != null){
 	uID = (String)session.getAttribute("uID"); 
 }  
-String authority = null;
+String authority = null; 
 if(session.getAttribute("authority") != null){  
 	authority = (String)session.getAttribute("authority"); 
 	String oldGoodsInfo = request.getParameter("oldGoodsInfo");

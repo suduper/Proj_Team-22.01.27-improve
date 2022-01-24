@@ -8,7 +8,7 @@
 <%@ page import="java.io.PrintWriter"%>
 
 <jsp:useBean id="StateSet" class="pack_AdminOption.AdminOptionProc" scope="page" />
-
+ 
 <%
 
 int changeState = Integer.parseInt(request.getParameter("changeState"));

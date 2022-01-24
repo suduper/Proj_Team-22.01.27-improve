@@ -1,4 +1,3 @@
-
 window.onload = function(){
 	let res = document.getElementById('res').value;
 	let parent = window.opener;

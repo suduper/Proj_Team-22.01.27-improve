@@ -9,7 +9,7 @@
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Base64.Encoder" %>
 <%@ page import="java.util.Base64.Decoder" %>
-
+ 
 
 <jsp:useBean id="user" class="pack_user.UserDAO"  scope="page" />
 <jsp:useBean id="goods" class="pack_goods.GoodsProc"  scope="page" />

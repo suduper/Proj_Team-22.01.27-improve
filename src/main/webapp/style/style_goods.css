@@ -611,19 +611,27 @@ div#buy ul li{
 
 /* ////////////////////////// CheckYourWallet////////////////////////// */
 div#purchaseInfo{
-border: 1px solid #000;
+border: 2px solid #000;
+margin: 10px auto;
 border-radius : 10px;
 }
 div#purchaseCheck{
-border: 1px solid #000;
+border: 2px solid #000;
 border-radius : 10px;
 width : 250px;
 margin: 0px auto;
 margin-top: 30px;
 }
-div#purchaseCheck p{
-text-align: center;
+
+div#purchaseInfo p{
 font-size: 25px;
+margin: 10px 0px;
+}
+div#purchaseCheck p {
+	text-align: center;
+	font-size: 25px;
+	margin: 5px auto;
+	font-weight: bold;
 }
 ul {
 list-style: none;
@@ -706,7 +714,7 @@ table#BuyListTable tr:nth-child(even) {
 	background-color: #fff;
 }
 table#BuyListTable td {
-	border: 1px solid #000;
+	/* border: 1px solid #000; */
 	border-radius: 5px;
 }
 table#BuyListTable td:nth-child(1){ 

@@ -13,7 +13,7 @@
 
 <%	request.setCharacterEncoding("UTF-8"); %>
 
-<%
+<% 
 String uID = null;
 if(session.getAttribute("uID") != null){ 
 	uID = (String)session.getAttribute("uID"); 

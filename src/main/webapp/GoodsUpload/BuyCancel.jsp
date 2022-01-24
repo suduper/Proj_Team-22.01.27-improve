@@ -12,7 +12,7 @@
 <jsp:useBean id="SessionCheck" class="pack_goods.Goods" scope="page" />
 
 <jsp:setProperty name="SessionCheck" property="sessionChecker"/>
-<%
+<% 
 	String uID = null; 
 	if(session.getAttribute("uID") != null){
 		uID = (String)session.getAttribute("uID"); 

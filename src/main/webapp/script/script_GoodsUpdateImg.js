@@ -1,5 +1,4 @@
- 
-const hideT = document.getElementById('hider');
+ const hideT = document.getElementById('hider');
 	hideT.style.display = 'none';
 
 var goodsThumbnail = document.getElementById('goodsThumbnail'); //썸네일 input file 지정

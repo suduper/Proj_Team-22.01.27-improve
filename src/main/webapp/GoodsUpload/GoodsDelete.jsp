@@ -14,7 +14,7 @@ String authority = null;
 if(session.getAttribute("authority") != null){ 
 	authority = (String)session.getAttribute("authority"); 
 	int res = goods.GoodsDelete(request.getParameter("goodsName"));
-	if(res == 1){
+	if(res == 1){ 
 		response.sendRedirect("GoodsList.jsp");
 	} else {
 		PrintWriter script = response.getWriter();
