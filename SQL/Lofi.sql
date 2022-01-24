@@ -90,7 +90,7 @@ create table tblReview (
     depth		int					not null,
     regDate		date					not null,
     pass			char(20)			null,
-    ip				char(15)			null,    
+    ip				char(100)			null,    
     count			int					not null,
     fileName	char(50)			null,
     fileSize		int					null,
@@ -108,7 +108,7 @@ create table tblQnA (
     depth		int					not null,
     regDate		date					not null,
     pass			char(20)			null,
-    ip				char(15)			null,    
+    ip				char(127)			null,    
     count			int					not null,
     fileName	char(50)			null,
     fileSize		int					null,
@@ -159,16 +159,13 @@ select*from tblNotice order by num desc limit 0,5;
 select count(*) from tblNotice;
 
 -- --///////////// 명령어 /////////////--  --
-select * from goodsInfo where goodsLike = 1 order by goodsnum desc limit 0,20;
-select count(*) from goodsInfo where goodsName like '%겨울%' ;
-select count(*) from goodsInfo where goodsLike = 1;
-update GoodsInfo set goodsLike=1 where goodsName = '여름옷 신상품_2201210837';
+
 select * from tblReview order by num desc limit 0,10;
 select*from userOrder where goodsName like 'user1231' or uID like 'user1231' order by num desc limit 0,5;
 select count(*) from goodsInfo where goodsType = '기타' and goodsName like '%봄%' ;
 select count(*) from goodsInfo where goodsName like '%겨울%';
 select*from goodsInfo where goodsType = '정장' and goodsName like '%겨울%' order by goodsnum desc limit 0,9;
-update userInfo set wallet = 10000000 where uID = 'user1231';
+update goodsInfo set goodslike = 1 where goodsName = '야_2201240602';
 update userBasket set ordered = 0 where uID = 'user1231' and goodsName = '새로운 겨울옷시리즈_2201070445' and ordered = 1;
 update userOrder set delivery = 1 where uID ='user1231' and orderDate = '2022-01-17 16:05:03' and goodsName = '여름옷 시리즈~_2201140900' and delivery = 0;
 select * from userOrder where uID = 'user1231';

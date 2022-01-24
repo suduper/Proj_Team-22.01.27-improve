@@ -22,9 +22,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 public class ReviewMgr {
 	
 	public DBConnectionMgr pool;
-	private static final String SAVEFOLDER
-	 = "E:/CSW/JAVA/jsp_Model1/Project_Lofi_Co-op/src/main/webapp/Resource/ReviewImg/";
-	
+	private static final String SAVEFOLDER 
+	 = "C:/JSP_BigData_0616/LHG/Git/gitDownload/Project_Lofi/Project_Lofi_Co-op/src/main/webapp/Resource/ReviewImg/";
+	//항상바꿔야함 커밋할때마다
 	private static String encType = "UTF-8";
 	private static int maxSize = 8*1024*1024;
 	
@@ -79,12 +79,14 @@ public class ReviewMgr {
 			
 			if(multi.getParameter("email") == null || multi.getParameter("email") == " ") {
 				uEmail = null;
+			}else {
+			uEmail=	multi.getParameter("email");
 			}
 			
 		
 			
 			sql = "insert into tblReview(uName, subject, content, uEmail, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
-					+ " values (?, ?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
+					+                " values (?, ?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1,  multi.getParameter("uName"));
@@ -93,7 +95,8 @@ public class ReviewMgr {
 			objPstmt.setString(4, uEmail);
 			objPstmt.setInt(5,  ref);
 			objPstmt.setString(6,  multi.getParameter("pass"));
-			objPstmt.setString(7,  multi.getParameter("email"));
+			objPstmt.setString(7,  multi.getParameter("ip"));
+		
 			objPstmt.setString(8,  fileName);
 			objPstmt.setInt(9,  fileSize);
 			objPstmt.executeUpdate();

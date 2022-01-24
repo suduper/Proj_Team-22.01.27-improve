@@ -5,7 +5,6 @@
     %>
     
     <jsp:useBean id="rMgr" class="pack_review.ReviewMgr" scope="page"/>
-    
     <%
     request.setCharacterEncoding("utf-8");
     
@@ -167,11 +166,12 @@ listSize = vList.size();
 			<td class="List" id="listNum" onclick="ReviewRead('<%=num%>', '<%=nowPage%>')"><%= num %></td>
 						<td class="List">
 			<%if(filename != null){ %>
-			<img src="../Resource/ReviewImg/1234/<%=filename%>" alt="" width="90px" height="90px">
+				<img src="../Resource/ReviewImg/<%=filename%>" alt="" width="90px" height="90px">
 			<%} else{ 
 			out.print("");
 			}
 			%>
+			<%=filename %>
 			</td>
 			<td class="List" id="listSub"><%= subject %>
 			<br><br>
