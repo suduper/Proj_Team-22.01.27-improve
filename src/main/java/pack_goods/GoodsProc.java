@@ -228,7 +228,7 @@ public class GoodsProc {
 					+ "inventoryL,"
 					+ "inventoryXL,"
 					+ "goodsLike"
-					+ ")values(?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, 1)";
+					+ ")values(?, ?, ?, ?, ?, ?, ?, ?, now(), ?, ?, ?, ?, 1)"; 
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1, goodsName+add);
