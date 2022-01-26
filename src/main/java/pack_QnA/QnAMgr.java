@@ -76,8 +76,8 @@ public class QnAMgr {
 			String content = multi.getParameter("content");
 		
 			
-			sql = "insert into tblQnA(uName, subject, content, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
-					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
+			sql = "insert into tblQnA(uName, subject, content, ref, pos, depth, regDate, pass, ip, fileName, fileSize)"
+					+ " values (?, ?, ?, ?, 0, 0, now(), ?, ?, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1,  multi.getParameter("uName"));
@@ -146,7 +146,6 @@ public class QnAMgr {
 				bean.setRef(objRs.getInt("ref"));
 				bean.setDepth(objRs.getInt("depth"));
 				bean.setRegDate(objRs.getString("regDate"));
-				bean.setCount(objRs.getInt("count"));
 				vList.add(bean);
 			}
 		} catch (Exception e) {
@@ -187,7 +186,6 @@ public class QnAMgr {
 				bean.setRegDate(objRs.getString("regDate"));
 				bean.setPass(objRs.getString("pass"));
 				bean.setRef(objRs.getInt("ref"));
-				bean.setCount(objRs.getInt("count"));
 				bean.setFileName(objRs.getString("fileName"));
 				bean.setFileSize(objRs.getInt("fileSize"));
 				bean.setIp(objRs.getString("ip"));
@@ -336,8 +334,8 @@ public class QnAMgr {
 			sql = "insert into tblQnA (";
 			sql += "uName, content, subject, ";
 			sql += "ref, pos, depth,  ";
-			sql += "regDate, Pass, count, ip) values (";
-			sql += "?, ?, ?, ?, ?, ?,now(), ?, 0, ?)";
+			sql += "regDate, Pass,  ip) values (";
+			sql += "?, ?, ?, ?, ?, ?,now(), ?, ?)";
 
 			int depth = bean.getDepth() + 1;
 			int pos = bean.getPos() + 1;

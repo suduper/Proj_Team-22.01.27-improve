@@ -48,9 +48,6 @@ public class ReviewMgr {
 		int fileSize = 0;
 		String fileName = null;
 		String uEmail = null;
-
-		
-		// String subject = null;
 		
 		try {
 			objConn = pool.getConnection();
@@ -85,20 +82,17 @@ public class ReviewMgr {
 			
 		
 			
-			sql = "insert into tblReview(uName, subject, content, uEmail, ref, pos, depth, regDate, pass, ip, count, fileName, fileSize)"
-					+                " values (?, ?, ?, ?, ?, 0, 0, now(), ?, ?, 0, ?, ?)";
+			sql = "insert into tblReview(uName, subject, content, uEmail, pass, ip, fileName, fileSize) values (?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			objPstmt = objConn.prepareStatement(sql);
 			objPstmt.setString(1,  multi.getParameter("uName"));
 			objPstmt.setString(2,  multi.getParameter("subject"));
 			objPstmt.setString(3,  content);
 			objPstmt.setString(4, uEmail);
-			objPstmt.setInt(5,  ref);
-			objPstmt.setString(6,  multi.getParameter("pass"));
-			objPstmt.setString(7,  multi.getParameter("ip"));
-		
-			objPstmt.setString(8,  fileName);
-			objPstmt.setInt(9,  fileSize);
+			objPstmt.setString(5,  multi.getParameter("pass"));
+			objPstmt.setString(6,  multi.getParameter("ip"));
+			objPstmt.setString(7,  fileName);
+			objPstmt.setInt(8,  fileSize);
 			objPstmt.executeUpdate();
 			
 		}catch (SQLException e) {
@@ -151,7 +145,6 @@ public class ReviewMgr {
 				ReviewBean bean = new ReviewBean();
 				bean.setNum(objRs.getInt("num"));
 				bean.setSubject(objRs.getString("subject"));
-				bean.setRegDate(objRs.getString("regDate"));
 				bean.setuName(objRs.getString("uName"));
 				bean.setContent(objRs.getString("content"));
 				bean.setFileName(objRs.getString("fileName"));
@@ -195,11 +188,7 @@ public class ReviewMgr {
 				bean.setSubject(objRs.getString("subject"));
 				bean.setContent(objRs.getString("content"));
 				bean.setuEmail(objRs.getString("uEmail"));
-				bean.setPos(objRs.getInt("pos"));
-				bean.setDepth(objRs.getInt("depth"));
-				bean.setRegDate(objRs.getString("regDate"));
 				bean.setPass(objRs.getString("pass"));
-				bean.setCount(objRs.getInt("count"));
 				bean.setFileName(objRs.getString("fileName"));
 				bean.setFileSize(objRs.getInt("fileSize"));
 				bean.setIp(objRs.getString("ip"));
@@ -216,45 +205,7 @@ public class ReviewMgr {
 	// Read 끝
 	
 	// 페이지 출력
-	
-	public int getTotalCount(String keyField, String keyWord) {
-		
-		Connection objConn = null;
-		PreparedStatement objPstmt = null;
-		ResultSet objRs = null;
-		String sql = null;
-		int totalCnt = 0;
-		
-		try {
-			objConn = pool.getConnection();
-			
-			if(keyWord.equals("null") || keyWord.equals("")) {
-				sql = "select count(*) from tblReview";
-				objPstmt = objConn.prepareStatement(sql);
-			} else {
-				sql = "select count(*) from tblReview ";
-				sql += "where "+keyField+" like ?";
-				objPstmt = objConn.prepareStatement(sql);
-				objPstmt.setString(1, "%" + keyWord + "%");
-			}
 
-			objRs = objPstmt.executeQuery();
-
-			if (objRs.next()) {
-				totalCnt = objRs.getInt(1);
-			}
-			
-		} catch (Exception e) {
-			System.out.println("SQL : " + e.getMessage());
-		} finally {
-			pool.freeConnection(objConn, objPstmt, objRs);
-		}
-
-		return totalCnt;
-	}
-	
-		
-	// 페이지 출력 끝
 	
 	// 리뷰 수정
 	

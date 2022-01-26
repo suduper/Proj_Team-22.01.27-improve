@@ -22,19 +22,9 @@
     String subject = bean.getSubject();
     String content = bean.getContent();
     String email = bean.getuEmail();
-    
-    int pos = bean.getPos();
-    int ref = bean.getRef();
-    int depth = bean.getDepth();
-    String regData = bean.getRegDate();
+
     String pass = bean.getPass();
     String fileName = bean.getFileName();
-    double fileSize = bean.getFileSize();
-    String fUnit = "Bytes";
-    if(fileSize>1024){
-    	fileSize /= 1024;
-    	fUnit = "KBytes";
-    }
     
     String ip = bean.getIp();
     

@@ -39,8 +39,6 @@
     	end = numPerPage;
     }
     
-    totalRecord = rMgr.getTotalCount(keyField, keyWord);
-    
     totalPage = (int)Math.ceil((double)totalRecord/numPerPage);
     nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock);
     totalBlock = (int)Math.ceil((double)totalPage/pagePerBlock);
@@ -96,7 +94,6 @@ listSize = vList.size();
 		int num = bean.getNum();
 		String subject = bean.getSubject();
 		String uName = bean.getuName();
-		String regDate = bean.getRegDate();
 		String content = bean.getContent();
 		String filename = bean.getFileName();
 		String email = bean.getuEmail();
@@ -143,7 +140,7 @@ listSize = vList.size();
 		if(nowBlock>1){
 		%>
 		<span onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>')">
-		다음 페이지
+		이전 페이지
 		</span>
 		<%} else{ %>
 		<span></span>
@@ -165,7 +162,7 @@ listSize = vList.size();
 		
 		<%if(totalBlock>nowBlock) { %>
 		<span onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>')">
-		이전 페이지
+		다음 페이지
 		</span>
 		<%} else{ %>
 		<span></span>

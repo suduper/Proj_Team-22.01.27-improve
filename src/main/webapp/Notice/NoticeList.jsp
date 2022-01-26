@@ -124,7 +124,7 @@ listSize = vList.size();
 		if(nowBlock>1){
 		%>
 		<span onclick="moveBlock('<%=nowBlock-1%>', '<%=pagePerBlock%>')">
-		&lt;
+		이전 페이지
 		</span>
 		<%} else{ %>
 		<span></span>
@@ -146,7 +146,7 @@ listSize = vList.size();
 		
 		<%if(totalBlock>nowBlock) { %>
 		<span onclick="moveBlock('<%=nowBlock+1%>', '<%=pagePerBlock%>')">
-		&gt;
+		다음 페이지
 		</span>
 		<%} else{ %>
 		<span></span>

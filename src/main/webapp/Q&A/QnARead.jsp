@@ -80,7 +80,6 @@
 	</tbody>
 </table>
 
-<hr>
 <button type="button" id="listBtn" class="QnABtn">리스트</button>
 <button type="button" id="modBtn"  class="QnABtn">수정</button>
 <button type="button" id="delBtn"  class="QnABtn">삭제</button>
