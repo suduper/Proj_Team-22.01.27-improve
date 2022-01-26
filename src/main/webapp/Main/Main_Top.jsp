@@ -62,9 +62,9 @@
 			<% } 
             else if(uID !=null && authority.equals("admin")){
 			%>
-			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
-				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
+				<ul class="nav2List"><span>관리자 입니다</span></ul>
+				<ul class="nav2List"><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+				<ul class="nav2List"><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
 			<% } %>
                 <ul id="search1"><a href="#">Search</a>
                     <li class="search2"><input type="text" placeholder="검색어를 입력해주세요"><a href="#" id="searcha">검색</a></li>
