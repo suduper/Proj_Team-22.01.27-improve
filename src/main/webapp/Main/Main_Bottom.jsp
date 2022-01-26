@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MainBottom</title>
-<link rel="stylesheet" href="../style/style_index.css">
+<link rel="stylesheet" href="../style/style_HeaderFooter.css">
 </head>
 <body>
 <div id="wrap"> 
 <!-- HTML템플릿(Template, Templet) 푸터 시작 -->
-        <footer id="footer">
+	    <footer id="footer">
 
 
             <div id="info" class="flex-container">
@@ -20,7 +20,7 @@
             <div id="cs">
                 <h4>C.S CENTER</h4>
                 <ul>고객센터 -070-4131-0032</ul>
-                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul>
+                <ul>OPEN : MON - FIR 10:30AM - 18:00PM</ul> 
                 <ul>LUNCH : 12:30PM - 13:30PM</ul>
                 <ul>EVERY WEEKEND, HOLIDAY OFF</ul>
                 <br>
@@ -49,6 +49,7 @@
                 <br>
                 <p>주식회사 슬랜빌리지 Ceo : 고혁준 Address : 서울시 광진구 동일로66길 14 2층 슬랜빌리지 (반품 주소 아님) Business License : 485-88-01590 E-Connerce Permit:제 2013-서울중랑-0431 호 Email : 김도윤(team@lofi.co.kr)</p>
             </div>
+
         </footer>
          <!-- HTML템플릿(Template, Templet) 푸터 끝 -->
 </div>

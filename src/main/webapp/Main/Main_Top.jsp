@@ -29,20 +29,20 @@
         
             
             <div id="logo">
-                <a href="../Main/Main.jsp"><img src="../Main/mainlogo.PNG" alt=""></a>
+                <a href="index.html"><img src="../Logo.png" alt=""></a>
 
             </div>
             <nav id="nav1" class="flex-container">
-                <ul id="goods"><a href="../GoodsUpload/GoodsList.jsp">shop</a>
-                    <li class="goods1"><a href="#">Blazer</a></li>
-                    <li class="goods1"><a href="#">Leather</a></li>
-                    <li class="goods1"><a href="#">Bottoms</a></li>
-                    <li class="goods1"><a href="#">Acc</a></li>
-                    <li class="goods1"><a href="#">Etc</a></li>
+                <ul id="goods" class="nav1List"><a href="#">shop</a>
+                    <li class="goods1"><a href="#">품목1</a></li>
+                    <li class="goods1"><a href="#">품목2</a></li>
+                    <li class="goods1"><a href="#">품목3</a></li>
+                    <li class="goods1"><a href="#">품목4</a></li>
+                    <li class="goods1"><a href="#">품목5</a></li>
                 </ul>
-                <ul><a href="../Lookbook/Look.jsp">LookBook</a></ul>
-                <ul><a href="#">About</a></ul>
-                <ul id="board1"><a href="#">Board</a>
+                <ul class="nav1List"><a href="#">LookBook</a></ul>
+                <ul class="nav1List"><a href="#">About</a></ul>
+                <ul id="board1" class="nav1List"><a href="#">Board</a>
                     <li class="board"><a href="../Notice/NoticeList.jsp">Notice</a></li>
                     <li class="board"><a href="../Q&A/QnAList.jsp">Q&A</a></li>
                     <li class="board"><a href="../Review/ReviewList.jsp">Review</a></li>
@@ -51,20 +51,19 @@
              
             <nav id="nav2" class="flex-container">
             <% if(uID == null){ /* 로그인 안되있을때 */ %>
-                <ul><a href="../Account/Login.jsp">Login</a></ul>
-                <ul><a href="../Account/Join.jsp">Account</a></ul>
+                <ul class="nav2List"><a href="../Account/Login.jsp">Login</a></ul>
+                <ul class="nav2List"><a href="../Account/Join.jsp">Account</a></ul>
 			<%  }
             
             else if(uID !=null && authority.equals("user")){ %> <!-- 로그인이 되있을때 -->
-				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-                <ul><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
-                <ul><a href="../Account/Mypage.jsp">MyPage</a></ul>
+				<ul class="nav2List"><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
+                <ul class="nav2List"><a href="../GoodsUpload/MyBasket.jsp">Cart</a></ul>
+                <ul class="nav2List"><a href="../Account/Mypage.jsp">MyPage</a></ul>
 			<% } 
             else if(uID !=null && authority.equals("admin")){
 			%>
 			<p>안녕하세요 <%=uID %>님! 관리자 권한입니다!</p>
 				<ul><a href="../Account/LogoutAction.jsp">LogOut</a></ul>
-				<ul><a href="../GoodsUpload/OrderShow.jsp">OrderManagement</a></ul>
 				<ul><a href="../GoodsUpload/GoodsUpload.jsp">GoodsUpload</a></ul>
 			<% } %>
                 <ul id="search1"><a href="#">Search</a>
@@ -72,9 +71,11 @@
                 </ul>
                 
             </nav>
+            
+
         </header>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="../script/script_Review.js"></script>
 </body>
 </html>
