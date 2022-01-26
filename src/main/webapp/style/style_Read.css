@@ -4,14 +4,16 @@
 
 #wrap{
     padding: 20px;
-    margin: 5px auto;
-    width: 1500px;
-    border: 1px solid #000;
+    margin: 0px auto;
+    width: 1920px;
+  /*  border: 1px solid #000;*/
+  text-align: center;
 }
 /* 
 li{
     list-style: none;
 } */
+/*
 #header{
     position: sticky;
     top: 5px;
@@ -30,7 +32,7 @@ li{
 .goods1{
     display: none;
     /* display: inline; */
-    line-height: 30px;
+ /*   line-height: 30px;
 }
 
 .board {
@@ -80,7 +82,7 @@ height: 100%;
 #info2{
     margin-top: 30px;
     font-size: 13px;
-}
+}*/
 
 #read{	
 	width: 50%;
@@ -125,6 +127,6 @@ height: 100%;
 	border-radius: 10px;
 	background-color: white;
 	position: relative;
-	left: 330px;
+	left: -240px;
 	cursor: pointer;
 }

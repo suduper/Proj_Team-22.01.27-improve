@@ -12,7 +12,7 @@
     
     int totalRecord = 0; // 전체 레코드
     int numPerPage = 5; // 페이지 당 레코드
-    int pagePerBlock = 5; // 블럭 당 페이지
+    int pagePerBlock = 2; // 블럭 당 페이지
     
     int totalPage = 0;
     int totalBlock = 0;

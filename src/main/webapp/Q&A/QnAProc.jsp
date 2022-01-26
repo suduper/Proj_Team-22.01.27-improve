@@ -7,4 +7,3 @@
 qMgr.insertQnA(request);
 response.sendRedirect("QnAList.jsp");
 %>
- 
